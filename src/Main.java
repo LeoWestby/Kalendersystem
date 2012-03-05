@@ -3,5 +3,6 @@ public class Main {
 		System.out.println("Hello world!");
 		System.out.println("Kristian tester commit");
 		System.out.println("Victor tester commit og push. ");
+		System.out.println("jeg er best");
 	}
 }
