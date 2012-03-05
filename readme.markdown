@@ -17,17 +17,17 @@ Oppsett av SSH-nøkler:
 * Åpne Eclipse og velg Window - Preferences -> General -> Network Connections -> SSH2
 * Sjekk at SSHhome-feltet inneholder noe fornuftig. I private keys skal det stå id_dsa,id_rsa
 * Velg key management-fanen og trykk Generate RSA Key
-* Trykk Save Private Key og overskriv eventuelle filer med samme navn
+* Trykk Save Private Key og overskriv eventuelle filer med samme navn. Passphrase kan godt være blank.
 * Kopier alt i det grå feltet
 * Gå inn på [Github](http://www.github.com) kontoen din og velg account settings -> SSH Keys -> Add New SSH Key
-* Lim inn public nøkkelen i Key-feltet og trykk Add Key. Title kan godt være blank
+* Lim inn public nøkkelen i Key-feltet og trykk Add Key. Title kan være blank
 
 Kloning av prosjektet:
 
 * Åpne Eclipse og velg File -> Import -> Git -> Projects from Git -> URI
 * Lim inn ssh://git@github.com/LeoWestby/Kalendersystem.git i URI-feltet og trykk neste
 * Velg master som branch
-* Trykk neste to ganger og velg Import as general project
+* Velg hvor på disken du vil lagre prosjektet, trykk next to ganger og finish
 
 Nå kan du begynne å jobbe på prosjektet som om det var et helt vanlig prosjekt. Høyreklikk på prosjektet og velg team for å se en liste over funksjonene i EGit. De funksjonene som er viktigst å forstå er pull, commit og push.
 
