@@ -15,14 +15,12 @@ import java.util.Iterator;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 
 import no.ntnu.fp.net.admin.Log;
 import no.ntnu.fp.net.admin.Settings;
 import no.ntnu.fp.net.co.Connection;
 import no.ntnu.fp.net.co.ConnectionImpl;
 import no.ntnu.fp.net.co.SimpleConnection;
-import no.ntnu.fp.net.separat.client.ChatClient;
 
 /**
  * @author Geir Vevle

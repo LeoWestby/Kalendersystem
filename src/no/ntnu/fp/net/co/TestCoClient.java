@@ -10,7 +10,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import no.ntnu.fp.net.admin.Log;
-import no.ntnu.fp.net.co.Connection;
 
 /**
  * Simplest possible test application, client part.

@@ -7,7 +7,6 @@ import no.ntnu.fp.net.admin.Log;
 import no.ntnu.fp.net.cl.ClException;
 import no.ntnu.fp.net.cl.ClSocket;
 import no.ntnu.fp.net.cl.KtnDatagram;
-import no.ntnu.fp.net.co.AbstractConnection;
 
 /**
  * A helper class used when sending datagrams and waiting for ack. The class

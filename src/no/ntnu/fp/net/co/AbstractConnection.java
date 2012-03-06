@@ -16,8 +16,6 @@ import no.ntnu.fp.net.cl.ClException;
 import no.ntnu.fp.net.cl.ClSocket;
 import no.ntnu.fp.net.cl.KtnDatagram;
 import no.ntnu.fp.net.cl.KtnDatagram.Flag;
-import no.ntnu.fp.net.co.ClSocketReceiver;
-import no.ntnu.fp.net.co.Connection;
 
 /**
  * @author mariubje A partial implementation of the Connection-interface. It

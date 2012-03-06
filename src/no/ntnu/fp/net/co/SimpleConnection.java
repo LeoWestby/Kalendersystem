@@ -16,8 +16,6 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
-import no.ntnu.fp.net.co.Connection;
-
 /**
  * @author sebjorns
  * 

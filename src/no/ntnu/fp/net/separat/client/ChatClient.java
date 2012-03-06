@@ -102,7 +102,7 @@ public class ChatClient {
 	private void recieve(String message) {
 		if (message.substring(0, 1).equals("[")
 				&& message.substring(message.length() - 1, message.length())
-						.equals("]")) {
+				.equals("]")) {
 			String[] list = message.substring(1, message.length() - 1).split(
 					", ");
 			gui.updateUserList(list);

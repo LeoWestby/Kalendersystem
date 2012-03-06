@@ -10,7 +10,6 @@ import java.io.EOFException;
 import java.io.IOException;
 
 import no.ntnu.fp.net.admin.Log;
-import no.ntnu.fp.net.co.Connection;
 
 /**
  * Simplest possible test application, server part.
