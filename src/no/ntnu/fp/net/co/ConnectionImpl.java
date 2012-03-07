@@ -12,8 +12,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import no.ntnu.fp.net.cl.ClException;
 import no.ntnu.fp.net.cl.ClSocket;
 import no.ntnu.fp.net.cl.KtnDatagram;
+import no.ntnu.fp.net.co.AbstractConnection.State;
 
 /**
  * Implementation of the Connection-interface. <br>
@@ -41,7 +43,10 @@ public class ConnectionImpl extends AbstractConnection {
 	 *            - the local port to associate with this connection
 	 */
 	public ConnectionImpl(int myPort) {
-		throw new UnsupportedOperationException("Method not implemented");
+		super();
+		myAddress = getIPv4Address();
+		this.myPort = myPort;
+		//throw new UnsupportedOperationException("Method not implemented");
 
 	}
 
@@ -68,7 +73,10 @@ public class ConnectionImpl extends AbstractConnection {
 	 */
 	public void connect(InetAddress remoteAddress, int remotePort)
 			throws IOException, SocketTimeoutException {
-		throw new UnsupportedOperationException("Method not implemented");
+		this.remoteAddress = remoteAddress.getHostAddress();
+		this.remotePort = remotePort;
+		state = State.ESTABLISHED;
+		//throw new UnsupportedOperationException("Method not implemented");
 	}
 
 	/**
@@ -78,7 +86,9 @@ public class ConnectionImpl extends AbstractConnection {
 	 * @see Connection#accept()
 	 */
 	public Connection accept() throws IOException, SocketTimeoutException {
-		throw new UnsupportedOperationException("Method not implemented");
+		state = State.LISTEN;
+		return new ConnectionImpl(myPort);
+		//throw new UnsupportedOperationException("Method not implemented");
 	}
 
 	/**
@@ -94,7 +104,12 @@ public class ConnectionImpl extends AbstractConnection {
 	 * @see no.ntnu.fp.net.co.Connection#send(String)
 	 */
 	public void send(String msg) throws ConnectException, IOException {
-		throw new UnsupportedOperationException("Method not implemented");
+		KtnDatagram packet = constructDataPacket(msg);
+		try {
+			if (packet == null) return;
+			simplySendPacket(packet);
+		} catch (ClException e) {e.printStackTrace();}
+		//throw new UnsupportedOperationException("Method not implemented");
 	}
 
 	/**
@@ -106,7 +121,8 @@ public class ConnectionImpl extends AbstractConnection {
 	 * @see AbstractConnection#sendAck(KtnDatagram, boolean)
 	 */
 	public String receive() throws ConnectException, IOException {
-		throw new UnsupportedOperationException("Method not implemented");
+		return (String)receivePacket(false).getPayload();
+		//throw new UnsupportedOperationException("Method not implemented");
 	}
 
 	/**
@@ -115,7 +131,8 @@ public class ConnectionImpl extends AbstractConnection {
 	 * @see Connection#close()
 	 */
 	public void close() throws IOException {
-		throw new UnsupportedOperationException("Method not implemented");
+		
+		//throw new UnsupportedOperationException("Method not implemented");
 	}
 
 	/**
@@ -127,6 +144,6 @@ public class ConnectionImpl extends AbstractConnection {
 	 * @return true if packet is free of errors, false otherwise.
 	 */
 	protected boolean isValid(KtnDatagram packet) {
-		throw new UnsupportedOperationException("Method not implemented");
+		return packet.calculateChecksum() == packet.getChecksum();
 	}
 }
