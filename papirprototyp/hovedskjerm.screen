@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:VLine" id="1" x="232" y="16" height="545" measuredWidth="6" measuredHeight="545"/>
+  <widgets xsi:type="model:Label" id="31" x="48" y="40" width="121" text="Dagrun Haugland" measuredWidth="121" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Table" id="32" x="280" y="56" width="761" height="505" text="Tid,Mandag,Tirsdag,Onsdag,Torsdag,Fredag,Lørdag,Søndag&#xA;07.00&#xA;07.30&#xA;08.00&#xA;08.30&#xA;09.00&#xA;09.30&#xA;10.00&#xA;10.30&#xA;11.00&#xA;11.30&#xA;12.00&#xA;12.30&#xA;13.00&#xA;13.30&#xA;14.00&#xA;14.30&#xA;15.00&#xA;15.30&#xA;16.00&#xA;16.30&#xA;17.00&#xA;17.30&#xA;18.00" measuredWidth="761" measuredHeight="505" alternative="#eeeeee">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" id="37" x="48" y="112" text="Opprett avtale" measuredWidth="78" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" id="38" x="48" y="134" text="Kalle inn til møte" measuredWidth="92" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" id="39" x="48" y="156" text="Reserver møterom" measuredWidth="100" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="41" x="600" y="-4" width="128" text="Uke 11" measuredWidth="128" measuredHeight="67">
+    <font size="32"/>
+  </widgets>
+  <widgets xsi:type="model:Link" id="46" x="48" y="200" text="Vis flere kalendere" measuredWidth="98" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Link" id="47" x="48" y="178" text="Møteinvitasjoner (3)" measuredWidth="109" measuredHeight="23">
+    <font/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font/>
+</model:Screen>

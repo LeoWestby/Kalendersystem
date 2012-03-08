@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="lib/jlfgr-1_0.jar"/>
 	<classpathentry kind="lib" path="lib/junit.jar"/>
 	<classpathentry kind="lib" path="lib/xom-1.0b5.jar"/>
+	<classpathentry kind="src" path="papirprototyp"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
