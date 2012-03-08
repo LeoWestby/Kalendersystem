@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Window" id="1" x="88" y="104" width="393" height="369" text="Romreservasjon" measuredWidth="393" measuredHeight="369"/>
+  <widgets xsi:type="model:Label" id="8" x="112" y="144" text="Rom:" measuredWidth="51" measuredHeight="33">
+    <font size="14" bold="true" underline="false"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="11" x="112" y="216" text="Starter:" measuredWidth="51" measuredHeight="25">
+    <font size="10" bold="true" italic="true" underline="false"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="12" x="112" y="264" text="Slutter:" measuredWidth="50" measuredHeight="25">
+    <font size="10" bold="true" italic="true" underline="false"/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="7" x="272" y="149" width="129" text="R1" measuredWidth="129" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="10" x="200" y="267" width="57" text="13:00" measuredWidth="57" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="9" x="200" y="219" width="57" text="12:15" measuredWidth="57" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="6" x="528" y="393" width="57" text="R1&#xD;&#xA;R2&#xD;&#xA;R3&#xD;&#xA;R4&#xD;&#xA;R7&#xD;&#xA;S3&#xD;&#xA;S7" measuredWidth="57" measuredHeight="149">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="13" x="608" y="216" text="12:15&#xD;&#xA;12:30&#xD;&#xA;12:45&#xD;&#xA;13:00&#xD;&#xA;13:15&#xD;&#xA;13:30&#xD;&#xA;13:45&#xD;&#xA;14:00" measuredWidth="51" measuredHeight="170">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="14" x="582" text="13:00&#xD;&#xA;13:15&#xD;&#xA;13:30&#xD;&#xA;13:45&#xD;&#xA;14:00&#xD;&#xA;14:15&#xD;&#xA;14:30&#xD;&#xA;14:45&#xD;&#xA;15:00" measuredWidth="51" measuredHeight="191">
+    <font/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font/>
+</model:Screen>
