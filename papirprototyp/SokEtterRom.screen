@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Window" id="1" x="224" y="104" width="401" height="377" text="Søk Etter Rom" measuredWidth="401" measuredHeight="377"/>
+  <hRuler/>
+  <vRuler/>
+  <font/>
+</model:Screen>

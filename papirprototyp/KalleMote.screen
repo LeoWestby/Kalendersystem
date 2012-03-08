@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Window" id="2" x="208" y="72" width="369" height="494" text="Kalle inn til møte" measuredWidth="369" measuredHeight="494"/>
+  <widgets xsi:type="model:Combo" id="3" x="80" y="88" width="73" text="08.30&#xD;&#xA;09.00&#xD;&#xA;09.30&#xD;&#xA;10.00&#xD;&#xA;10.30&#xD;&#xA;11.00&#xD;&#xA;11.30&#xD;&#xA;12.00&#xD;&#xA;12.30&#xD;&#xA;13.00&#xD;&#xA;13.30&#xD;&#xA;14.00&#xD;&#xA;14.30&#xD;&#xA;15.00&#xD;&#xA;15.30&#xD;&#xA;16.00&#xD;&#xA;16.30&#xD;&#xA;17.00&#xD;&#xA;17.30&#xD;&#xA;18.00" measuredWidth="73" measuredHeight="422">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="4" x="664" y="128" width="73" text="08.00&#xD;&#xA;08.30&#xD;&#xA;09.00&#xD;&#xA;09.30&#xD;&#xA;10.00&#xD;&#xA;10.30&#xD;&#xA;11.00&#xD;&#xA;11.30&#xD;&#xA;12.00&#xD;&#xA;12.30&#xD;&#xA;13.00&#xD;&#xA;13.30&#xD;&#xA;14.00&#xD;&#xA;14.30&#xD;&#xA;15.00&#xD;&#xA;15.30&#xD;&#xA;16.00&#xD;&#xA;16.30&#xD;&#xA;17.00&#xD;&#xA;17.30" measuredWidth="73" measuredHeight="422">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:DateField" id="5" x="360" y="124" width="81" text="  /  /  " measuredWidth="81" measuredHeight="23"/>
+  <widgets xsi:type="model:Label" id="6" x="264" y="124" width="49" text="Dato:" measuredWidth="49" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="7" x="264" y="164" width="81" text="Starttidspunkt:" measuredWidth="81" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Text" id="8" x="264" y="212" text="Sluttidspunkt:" measuredWidth="73" measuredHeight="15">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="9" x="264" y="418" width="73" text="Beskrivelse:" measuredWidth="73" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextArea" id="10" x="256" y="440" width="273" height="97" measuredWidth="273" measuredHeight="97">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="11" x="360" y="164" text="08.00" measuredWidth="51" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="12" x="360" y="208" text="08.30" measuredWidth="51" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="13" x="264" y="252" width="73" text="Deltagere:" measuredWidth="73" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:SearchField" id="15" x="280" y="287" text="Search" measuredWidth="65" measuredHeight="24"/>
+  <widgets xsi:type="model:TextArea" id="16" x="360" y="274" width="153" height="49" measuredWidth="153" measuredHeight="49">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="17" x="264" y="344" width="81" text="Sted:" measuredWidth="81" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="18" x="264" y="384" width="65" text="Møterom:" measuredWidth="65" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="19" x="360" y="344" width="153" measuredWidth="153" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="21" x="448" y="384" width="81" measuredWidth="81" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="22" x="360" y="384" width="81" height="23" text="Søk etter rom" measuredWidth="81" measuredHeight="23">
+    <font/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font/>
+</model:Screen>
