@@ -1,152 +1,173 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
-  <widgets xsi:type="model:WidgetGroup" id="71" x="23" y="25" measuredWidth="517" measuredHeight="295">
-    <widgets xsi:type="model:WidgetGroup" id="70" x="60" measuredWidth="457" measuredHeight="295">
-      <widgets xsi:type="model:TabbedPane" id="6" width="457" height="295" text="Februar, Mars, April" measuredWidth="457" measuredHeight="295" selection="1">
-        <items x="10" y="0" width="78" height="37" text="Februar"/>
-        <items x="88" y="0" width="57" height="37" text="Mars"/>
-        <items x="145" y="0" width="57" height="37" text="April"/>
-        <font size="12" bold="true"/>
-      </widgets>
-      <widgets xsi:type="model:WidgetGroup" id="69" x="16" y="48" measuredWidth="429" measuredHeight="23">
-        <widgets xsi:type="model:Label" id="15" text="Mandag" measuredWidth="49" measuredHeight="23">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Label" id="16" x="64" text="Tirsdag" measuredWidth="44" measuredHeight="23">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Label" id="17" x="128" text="Onsdag" measuredWidth="46" measuredHeight="23">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Label" id="18" x="320" text="Lørdag" measuredWidth="42" measuredHeight="23">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Label" id="19" x="192" text="Torsdag" measuredWidth="48" measuredHeight="23">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Label" id="20" x="384" text="Søndag" measuredWidth="45" measuredHeight="23">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Label" id="21" x="256" text="Fredag" measuredWidth="41" measuredHeight="23">
-          <font/>
-        </widgets>
-      </widgets>
-      <widgets xsi:type="model:WidgetGroup" id="68" y="80" measuredWidth="457" measuredHeight="215">
-        <widgets xsi:type="model:HLine" id="8" width="457" measuredWidth="457" measuredHeight="6"/>
-        <widgets xsi:type="model:HLine" id="9" y="40" width="457" measuredWidth="457" measuredHeight="6"/>
-        <widgets xsi:type="model:HLine" id="24" y="81" width="457" measuredWidth="457" measuredHeight="6"/>
-        <widgets xsi:type="model:HLine" id="25" y="168" width="457" measuredWidth="457" measuredHeight="6"/>
-        <widgets xsi:type="model:HLine" id="26" y="124" width="457" measuredWidth="457" measuredHeight="6"/>
-        <widgets xsi:type="model:VLine" id="7" x="64" y="4" height="210" measuredWidth="6" measuredHeight="210"/>
-        <widgets xsi:type="model:VLine" id="27" x="128" y="3" height="212" measuredWidth="6" measuredHeight="212"/>
-        <widgets xsi:type="model:VLine" id="28" x="192" y="3" height="212" measuredWidth="6" measuredHeight="212"/>
-        <widgets xsi:type="model:VLine" id="29" x="255" y="3" height="212" measuredWidth="6" measuredHeight="212"/>
-        <widgets xsi:type="model:VLine" id="30" x="320" y="3" height="212" measuredWidth="6" measuredHeight="212"/>
-        <widgets xsi:type="model:VLine" id="31" x="384" height="215" measuredWidth="6" measuredHeight="215"/>
-      </widgets>
-      <widgets xsi:type="model:WidgetGroup" id="67" x="5" y="85" measuredWidth="443" measuredHeight="204">
-        <widgets xsi:type="model:Button" id="33" x="192" width="59" height="36" text="1" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="34" x="320" width="59" height="36" text="3" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="35" x="384" width="59" height="36" text="4" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="36" x="192" y="40" width="59" height="36" text="8" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="37" x="320" y="40" width="59" height="36" text="10" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="38" x="128" y="40" width="59" height="36" text="7" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="39" x="64" y="40" width="59" height="36" text="6" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="40" y="40" width="59" height="36" text="5" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="41" x="255" width="59" height="36" text="2" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="42" x="255" y="40" width="59" height="36" text="9" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="43" x="384" y="40" width="59" height="36" text="11" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="44" x="128" y="168" width="59" height="36" text="28" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="45" x="128" y="126" width="59" height="36" text="21" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="46" x="128" y="82" width="59" height="36" text="14" measuredWidth="59" measuredHeight="36" background="#3d85c6">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="47" x="64" y="168" width="59" height="36" text="27" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="48" x="64" y="126" width="59" height="36" text="20" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="49" x="64" y="82" width="59" height="36" text="13" measuredWidth="59" measuredHeight="36" background="#3d85c6">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="50" y="168" width="59" height="36" text="26" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="51" y="126" width="59" height="36" text="19" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="52" y="82" width="59" height="36" text="12" measuredWidth="59" measuredHeight="36" background="#3d85c6">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="53" x="320" y="126" width="59" height="36" text="24" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="54" x="255" y="126" width="59" height="36" text="23" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="55" x="192" y="126" width="59" height="36" text="22" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="56" x="384" y="82" width="59" height="36" text="18" measuredWidth="59" measuredHeight="36" background="#3d85c6">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="57" x="320" y="82" width="59" height="36" text="17" measuredWidth="59" measuredHeight="36" background="#3d85c6">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="58" x="255" y="82" width="59" height="36" text="16" measuredWidth="59" measuredHeight="36" background="#3d85c6">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="59" x="192" y="82" width="59" height="36" text="15" measuredWidth="59" measuredHeight="36" background="#3d85c6">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="60" x="320" y="168" width="59" height="36" text="31" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="61" x="255" y="168" width="59" height="36" text="30" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="62" x="192" y="168" width="59" height="36" text="29" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-        <widgets xsi:type="model:Button" id="63" x="384" y="126" width="59" height="36" text="25" measuredWidth="59" measuredHeight="36">
-          <font/>
-        </widgets>
-      </widgets>
+  <widgets xsi:type="model:WidgetGroup" id="72" x="40" y="24" measuredWidth="476" measuredHeight="353">
+    <widgets xsi:type="model:TabbedPane" id="73" width="476" height="353" text="Februar, Mars, April" measuredWidth="476" measuredHeight="353" selection="1">
+      <items x="10" y="0" width="67" height="30" text="Februar"/>
+      <items x="77" y="0" width="50" height="30" text="Mars"/>
+      <items x="127" y="0" width="50" height="30" text="April"/>
+      <font size="10" bold="true"/>
     </widgets>
-    <widgets xsi:type="model:List" id="66" y="80" text="Uke 9&#xD;&#xA;Uke 10&#xD;&#xA;Uke 11&#xD;&#xA;Uke 12&#xD;&#xA;Uke 13" measuredWidth="50" measuredHeight="214" selection="2" rowHeight="42" horizontalLines="true">
-      <font size="10" bold="false" italic="false" underline="false"/>
-      <items x="0" y="2" width="50" height="42" text="Uke 9"/>
-      <items x="0" y="44" width="50" height="42" text="Uke 10"/>
-      <items x="0" y="86" width="50" height="42" text="Uke 11"/>
-      <items x="0" y="128" width="50" height="42" text="Uke 12"/>
-      <items x="0" y="170" width="50" height="42" text="Uke 13"/>
+    <widgets xsi:type="model:WidgetGroup" id="74" y="33" width="476" measuredWidth="476" measuredHeight="311">
+      <widgets xsi:type="model:WidgetGroup" id="75" x="12" y="23" width="433" measuredWidth="432" measuredHeight="23">
+        <widgets xsi:type="model:Label" id="76" x="57" width="17" text="Ma" measuredWidth="17" measuredHeight="23">
+          <font/>
+        </widgets>
+        <widgets xsi:type="model:Label" id="77" x="119" width="12" text="Ti" measuredWidth="12" measuredHeight="23">
+          <font/>
+        </widgets>
+        <widgets xsi:type="model:Label" id="78" x="179" width="17" text="On" measuredWidth="17" measuredHeight="23">
+          <font/>
+        </widgets>
+        <widgets xsi:type="model:Label" id="79" x="359" width="14" text="Lø" measuredWidth="14" measuredHeight="23">
+          <font/>
+        </widgets>
+        <widgets xsi:type="model:Label" id="80" x="237" width="14" text="To" measuredWidth="14" measuredHeight="23">
+          <font/>
+        </widgets>
+        <widgets xsi:type="model:Label" id="81" x="418" width="14" text="Sø" measuredWidth="14" measuredHeight="23">
+          <font/>
+        </widgets>
+        <widgets xsi:type="model:Label" id="82" x="298" width="12" text="Fr" measuredWidth="12" measuredHeight="23">
+          <font/>
+        </widgets>
+        <widgets xsi:type="model:Label" id="83" width="19" text="Uke" measuredWidth="19" measuredHeight="23">
+          <font/>
+        </widgets>
+      </widgets>
+      <widgets xsi:type="model:WidgetGroup" id="84" width="476" measuredWidth="476" measuredHeight="311">
+        <widgets xsi:type="model:WidgetGroup" id="85" y="56" width="476" measuredWidth="476" measuredHeight="201">
+          <widgets xsi:type="model:HLine" id="86" width="476" measuredWidth="476" measuredHeight="6"/>
+          <widgets xsi:type="model:HLine" id="87" y="45" width="476" measuredWidth="476" measuredHeight="6"/>
+          <widgets xsi:type="model:HLine" id="88" y="94" width="476" measuredWidth="476" measuredHeight="6"/>
+          <widgets xsi:type="model:HLine" id="89" y="144" width="476" measuredWidth="476" measuredHeight="6"/>
+          <widgets xsi:type="model:HLine" id="90" y="195" width="476" measuredWidth="476" measuredHeight="6"/>
+        </widgets>
+        <widgets xsi:type="model:WidgetGroup" id="91" x="51" width="362" measuredWidth="361" measuredHeight="311">
+          <widgets xsi:type="model:VLine" id="92" height="308" measuredWidth="6" measuredHeight="308"/>
+          <widgets xsi:type="model:VLine" id="93" x="58" y="62" height="247" measuredWidth="6" measuredHeight="247"/>
+          <widgets xsi:type="model:VLine" id="94" x="118" y="62" height="249" measuredWidth="6" measuredHeight="249"/>
+          <widgets xsi:type="model:VLine" id="95" x="174" y="62" height="249" measuredWidth="6" measuredHeight="249"/>
+          <widgets xsi:type="model:VLine" id="96" x="233" y="62" height="249" measuredWidth="6" measuredHeight="249"/>
+          <widgets xsi:type="model:VLine" id="97" x="296" y="62" height="249" measuredWidth="6" measuredHeight="249"/>
+          <widgets xsi:type="model:VLine" id="98" x="355" y="56" height="252" measuredWidth="6" measuredHeight="252"/>
+        </widgets>
+      </widgets>
+      <widgets xsi:type="model:WidgetGroup" id="99" x="7" y="63" width="448" measuredWidth="446" measuredHeight="233">
+        <widgets xsi:type="model:WidgetGroup" id="100" x="52" width="395" measuredWidth="394" measuredHeight="233">
+          <widgets xsi:type="model:Button" id="101" x="175" width="43" height="36" text="1" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="102" x="233" width="43" height="36" text="2" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="103" x="290" width="43" height="36" text="3" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="104" x="350" width="43" height="36" text="4" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="105" y="49" width="43" height="36" text="5" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="106" x="55" y="49" width="43" height="36" text="6" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="107" x="115" y="52" width="43" height="36" text="7" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="108" x="174" y="49" width="43" height="36" text="8" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="109" x="233" y="48" width="43" height="36" text="9" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="110" x="291" y="49" width="43" height="36" text="10" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="111" x="350" y="48" width="43" height="36" text="11" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:WidgetGroup" id="112" y="98" width="395" measuredWidth="394" measuredHeight="36">
+            <widgets xsi:type="model:Button" id="113" width="43" height="36" text="12" measuredWidth="43" measuredHeight="36" background="#3d85c6">
+              <font/>
+            </widgets>
+            <widgets xsi:type="model:Button" id="114" x="55" width="43" height="36" text="13" measuredWidth="43" measuredHeight="36" background="#3d85c6">
+              <font/>
+            </widgets>
+            <widgets xsi:type="model:Button" id="115" x="116" width="43" height="36" text="14" measuredWidth="43" measuredHeight="36" background="#3d85c6">
+              <font/>
+            </widgets>
+            <widgets xsi:type="model:Button" id="116" x="174" width="43" height="36" text="15" measuredWidth="43" measuredHeight="36" background="#3d85c6">
+              <font/>
+            </widgets>
+            <widgets xsi:type="model:Button" id="117" x="233" width="43" height="36" text="16" measuredWidth="43" measuredHeight="36" background="#3d85c6">
+              <font/>
+            </widgets>
+            <widgets xsi:type="model:Button" id="118" x="291" width="43" height="36" text="17" measuredWidth="43" measuredHeight="36" background="#3d85c6">
+              <font/>
+            </widgets>
+            <widgets xsi:type="model:Button" id="119" x="351" width="43" height="36" text="18" measuredWidth="43" measuredHeight="36" background="#3d85c6">
+              <font/>
+            </widgets>
+          </widgets>
+          <widgets xsi:type="model:Button" id="120" y="146" width="43" height="36" text="19" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="121" x="57" y="146" width="43" height="36" text="20" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="122" x="116" y="146" width="43" height="36" text="21" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="123" x="174" y="146" width="43" height="36" text="22" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="124" x="233" y="146" width="43" height="36" text="23" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="125" x="291" y="146" width="43" height="36" text="24" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="126" x="350" y="146" width="43" height="36" text="25" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="127" x="1" y="197" width="43" height="36" text="26" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="128" x="55" y="197" width="43" height="36" text="27" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="129" x="114" y="197" width="43" height="36" text="28" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="130" x="174" y="197" width="43" height="36" text="29" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="131" x="233" y="197" width="43" height="36" text="30" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="132" x="291" y="197" width="43" height="36" text="31" measuredWidth="43" measuredHeight="36">
+            <font/>
+          </widgets>
+        </widgets>
+        <widgets xsi:type="model:WidgetGroup" id="133" width="35" measuredWidth="35" measuredHeight="233">
+          <widgets xsi:type="model:Button" id="134" width="35" height="39" text="9" measuredWidth="35" measuredHeight="39" style="pointright">
+            <font bold="true"/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="135" y="43" width="35" height="39" text="10" measuredWidth="35" measuredHeight="39" style="pointright">
+            <font bold="true"/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="136" y="94" width="35" height="39" text="11" measuredWidth="35" measuredHeight="39" background="#9fc5e8" style="pointright">
+            <font bold="true"/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="137" y="145" width="35" height="39" text="12" measuredWidth="35" measuredHeight="39" style="pointright">
+            <font bold="true"/>
+          </widgets>
+          <widgets xsi:type="model:Button" id="138" y="194" width="35" height="39" text="13" measuredWidth="35" measuredHeight="39" style="pointright">
+            <font bold="true"/>
+          </widgets>
+        </widgets>
+      </widgets>
     </widgets>
   </widgets>
   <hRuler/>
