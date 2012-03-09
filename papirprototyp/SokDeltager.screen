@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Window" id="1" x="192" y="40" width="369" height="441" text="Søk etter person" measuredWidth="369" measuredHeight="441"/>
+  <widgets xsi:type="model:Button" id="2" x="328" y="424" width="105" height="33" text="Velg person" measuredWidth="105" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="3" x="232" y="88" width="73" text="Fornavn:" measuredWidth="73" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="4" x="232" y="168" width="73" text="Brukernavn:" measuredWidth="73" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="8" x="328" y="88" width="193" measuredWidth="193" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="9" x="328" y="128" width="193" measuredWidth="193" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="10" x="328" y="168" width="193" measuredWidth="193" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="11" x="232" y="128" width="73" text="Etternavn:" measuredWidth="73" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="12" x="232" y="208" width="97" text="Telefonnummer:" measuredWidth="97" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="13" x="328" y="208" width="193" measuredWidth="193" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="14" x="328" y="248" width="105" height="33" text="Søk" measuredWidth="105" measuredHeight="33">
+    <font/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font/>
+</model:Screen>
