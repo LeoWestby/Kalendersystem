@@ -1,42 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
-  <widgets xsi:type="model:Window" id="1" x="192" y="192" width="313" height="377" text="Velg kalendre" measuredWidth="313" measuredHeight="377"/>
-  <widgets xsi:type="model:Button" id="3" x="288" y="496" width="161" height="58" text="Lagre" measuredWidth="161" measuredHeight="58">
-    <font size="10"/>
-  </widgets>
-  <widgets xsi:type="model:Button" id="10" x="385" y="236" width="89" height="44" text="Søk person" measuredWidth="89" measuredHeight="44">
-    <font size="10"/>
-  </widgets>
-  <widgets xsi:type="model:List" id="12" x="208" y="332" width="305" height="133" text="[x] Min&#xA;&#xA;[x] Petter kalender&#xA;&#xA;[ ] Katrines kalender" measuredWidth="305" measuredHeight="133" border="false" alpha="0">
-    <font size="10"/>
-    <items x="0" y="2" width="305" height="23" text="[x] Min"/>
-    <items x="0" y="25" width="305" height="23"/>
-    <items x="0" y="48" width="305" height="23" text="[x] Petter kalender"/>
-    <items x="0" y="71" width="305" height="23"/>
-    <items x="0" y="94" width="305" height="23" text="[ ] Katrines kalender"/>
-  </widgets>
-  <widgets xsi:type="model:Label" id="13" x="208" y="296" text="Dine kalendre:" measuredWidth="105" measuredHeight="28">
-    <font size="11" bold="true"/>
-  </widgets>
-  <widgets xsi:type="model:Label" id="14" x="208" y="244" text="Velg andres kalendre:" measuredWidth="155" measuredHeight="28">
-    <font size="11" bold="true"/>
-  </widgets>
-  <widgets xsi:type="model:WidgetGroup" id="16" x="362" y="332" measuredWidth="90" measuredHeight="23">
-    <widgets xsi:type="model:ColorPicker" id="2" x="48" width="42" measuredWidth="42" measuredHeight="23"/>
-    <widgets xsi:type="model:Label" id="15" width="49" text="Farge:" measuredWidth="49" measuredHeight="23">
-      <font/>
-    </widgets>
-  </widgets>
-  <widgets xsi:type="model:WidgetGroup" id="17" x="362" y="376" measuredWidth="90" measuredHeight="23">
-    <widgets xsi:type="model:ColorPicker" id="18" x="48" width="42" measuredWidth="42" measuredHeight="23" background="#ff00ff"/>
-    <widgets xsi:type="model:Label" id="19" width="49" text="Farge:" measuredWidth="49" measuredHeight="23">
-      <font/>
-    </widgets>
-  </widgets>
-  <widgets xsi:type="model:WidgetGroup" id="20" x="362" y="424" measuredWidth="90" measuredHeight="23">
-    <widgets xsi:type="model:ColorPicker" id="21" x="48" width="42" measuredWidth="42" measuredHeight="23" background="#6aa84f"/>
-    <widgets xsi:type="model:Label" id="22" width="49" text="Farge:" measuredWidth="49" measuredHeight="23">
-      <font/>
+  <widgets xsi:type="model:WidgetGroup" id="28" x="192" y="192" measuredWidth="321" measuredHeight="377">
+    <widgets xsi:type="model:Window" id="1" width="313" height="377" text="Velg kalendre" measuredWidth="313" measuredHeight="377"/>
+    <widgets xsi:type="model:WidgetGroup" id="27" x="16" y="44" measuredWidth="305" measuredHeight="318">
+      <widgets xsi:type="model:WidgetGroup" id="25" measuredWidth="266" measuredHeight="44">
+        <widgets xsi:type="model:Label" id="14" y="8" text="Velg andres kalendre:" measuredWidth="155" measuredHeight="28">
+          <font size="11" bold="true"/>
+        </widgets>
+        <widgets xsi:type="model:Button" id="10" x="177" width="89" height="44" text="Søk person" measuredWidth="89" measuredHeight="44">
+          <font size="10"/>
+        </widgets>
+      </widgets>
+      <widgets xsi:type="model:WidgetGroup" id="26" y="60" measuredWidth="305" measuredHeight="169">
+        <widgets xsi:type="model:Label" id="13" text="Dine kalendre:" measuredWidth="105" measuredHeight="28">
+          <font size="11" bold="true"/>
+        </widgets>
+        <widgets xsi:type="model:List" id="12" y="36" width="305" height="133" text="[x] Min&#xA;&#xA;[x] Petter kalender&#xA;&#xA;[ ] Katrines kalender" measuredWidth="305" measuredHeight="133" border="false" alpha="0">
+          <font size="10"/>
+          <items x="0" y="2" width="305" height="23" text="[x] Min"/>
+          <items x="0" y="25" width="305" height="23"/>
+          <items x="0" y="48" width="305" height="23" text="[x] Petter kalender"/>
+          <items x="0" y="71" width="305" height="23"/>
+          <items x="0" y="94" width="305" height="23" text="[ ] Katrines kalender"/>
+        </widgets>
+        <widgets xsi:type="model:WidgetGroup" id="16" x="154" y="36" measuredWidth="90" measuredHeight="23">
+          <widgets xsi:type="model:ColorPicker" id="2" x="48" width="42" measuredWidth="42" measuredHeight="23"/>
+          <widgets xsi:type="model:Label" id="15" width="49" text="Farge:" measuredWidth="49" measuredHeight="23">
+            <font/>
+          </widgets>
+        </widgets>
+        <widgets xsi:type="model:WidgetGroup" id="17" x="154" y="80" measuredWidth="90" measuredHeight="23">
+          <widgets xsi:type="model:ColorPicker" id="18" x="48" width="42" measuredWidth="42" measuredHeight="23" background="#ff00ff"/>
+          <widgets xsi:type="model:Label" id="19" width="49" text="Farge:" measuredWidth="49" measuredHeight="23">
+            <font/>
+          </widgets>
+        </widgets>
+        <widgets xsi:type="model:WidgetGroup" id="20" x="154" y="128" measuredWidth="90" measuredHeight="23">
+          <widgets xsi:type="model:ColorPicker" id="21" x="48" width="42" measuredWidth="42" measuredHeight="23" background="#6aa84f"/>
+          <widgets xsi:type="model:Label" id="22" width="49" text="Farge:" measuredWidth="49" measuredHeight="23">
+            <font/>
+          </widgets>
+        </widgets>
+        <widgets xsi:type="model:Icon" id="23" x="261" y="80" width="26" height="23" measuredWidth="26" measuredHeight="23" icon="delete (large)"/>
+        <widgets xsi:type="model:Icon" id="24" x="261" y="128" width="26" height="23" measuredWidth="26" measuredHeight="23" icon="delete (large)"/>
+      </widgets>
+      <widgets xsi:type="model:Button" id="3" x="80" y="260" width="161" height="58" text="Lagre" measuredWidth="161" measuredHeight="58">
+        <font size="10"/>
+      </widgets>
     </widgets>
   </widgets>
   <hRuler/>
