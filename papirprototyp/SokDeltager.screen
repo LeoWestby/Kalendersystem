@@ -13,7 +13,7 @@
   <widgets xsi:type="model:TextField" id="8" x="328" y="88" width="193" measuredWidth="193" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:TextField" id="9" x="328" y="128" width="193" measuredWidth="193" measuredHeight="23">
+  <widgets xsi:type="model:TextField" id="9" x="328" y="128" width="193" text="Hansen" measuredWidth="193" measuredHeight="23">
     <font/>
   </widgets>
   <widgets xsi:type="model:TextField" id="10" x="328" y="168" width="193" measuredWidth="193" measuredHeight="23">
@@ -30,6 +30,13 @@
   </widgets>
   <widgets xsi:type="model:Button" id="14" x="328" y="248" width="105" height="33" text="Søk" measuredWidth="105" measuredHeight="33">
     <font/>
+  </widgets>
+  <widgets xsi:type="model:List" id="15" x="312" y="328" text="Ola Hansen (olahas)&#xA;|Petter Hansen (pettrh)&#xA;Katrine Hansen (katrhas)&#xA;Fridtjoff Hansen (frihas)" measuredWidth="139" measuredHeight="88">
+    <font/>
+    <items x="0" y="2" width="139" height="21" text="Ola Hansen (olahas)"/>
+    <items x="0" y="23" width="139" height="21" text="|Petter Hansen (pettrh)"/>
+    <items x="0" y="44" width="139" height="21" text="Katrine Hansen (katrhas)"/>
+    <items x="0" y="65" width="139" height="21" text="Fridtjoff Hansen (frihas)"/>
   </widgets>
   <hRuler/>
   <vRuler/>
