@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
   <widgets xsi:type="model:Panel" id="1" x="264" y="160" width="337" height="241" measuredWidth="337" measuredHeight="241"/>
-  <widgets xsi:type="model:TextField" id="2" x="432" y="224" width="137" text="Text field" measuredWidth="137" measuredHeight="23">
+  <widgets xsi:type="model:TextField" id="2" x="432" y="224" width="137" measuredWidth="137" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:TextField" id="3" x="432" y="269" width="137" text="Text field" measuredWidth="137" measuredHeight="23">
+  <widgets xsi:type="model:TextField" id="3" x="432" y="269" width="137" measuredWidth="137" measuredHeight="23">
     <font/>
   </widgets>
   <widgets xsi:type="model:Label" id="4" x="336" y="224" width="73" text="Brukernavn:" measuredWidth="73" measuredHeight="23">
