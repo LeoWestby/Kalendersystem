@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
   <widgets xsi:type="model:Window" id="3" x="136" y="8" width="369" height="577" text="Se på Møte" measuredWidth="369" measuredHeight="577"/>
-  <widgets xsi:type="model:DateField" id="4" x="288" y="88" width="113" text=" 12 /03 /2012  " measuredWidth="113" measuredHeight="23"/>
   <widgets xsi:type="model:Label" id="5" x="192" y="88" width="49" text="Dato:" measuredWidth="49" measuredHeight="23">
     <font/>
   </widgets>
@@ -51,6 +50,12 @@
     <font/>
   </widgets>
   <widgets xsi:type="model:Button" id="24" x="320" y="520" width="121" height="39" text="Melde meg av møte" measuredWidth="121" measuredHeight="39">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="25" x="288" y="88" width="91" text="12/03/2012" measuredWidth="91" measuredHeight="23" state="disabled">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="26" x="394" y="173" text="13.00" measuredWidth="37" measuredHeight="23">
     <font/>
   </widgets>
   <hRuler/>

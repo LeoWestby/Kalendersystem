@@ -174,7 +174,7 @@
       </widgets>
     </widgets>
   </widgets>
-  <widgets xsi:type="model:WidgetGroup" id="414" x="48" y="112" measuredWidth="165" measuredHeight="89">
+  <widgets xsi:type="model:WidgetGroup" id="414" x="48" y="112" measuredWidth="168" measuredHeight="89">
     <widgets xsi:type="model:Link" id="37" text="Opprett avtale" measuredWidth="78" measuredHeight="23">
       <font/>
     </widgets>
@@ -184,7 +184,7 @@
     <widgets xsi:type="model:Link" id="46" y="66" text="Vis flere kalendere" measuredWidth="98" measuredHeight="23">
       <font/>
     </widgets>
-    <widgets xsi:type="model:Link" id="383" y="44" text="Mine møter(3 nye invitasjoner)" measuredWidth="165" measuredHeight="23">
+    <widgets xsi:type="model:Link" id="383" y="44" text="Mine møter (3 nye invitasjoner)" measuredWidth="168" measuredHeight="23">
       <font/>
     </widgets>
   </widgets>
