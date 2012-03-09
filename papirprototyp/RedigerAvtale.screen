@@ -35,13 +35,16 @@
   <widgets xsi:type="model:TextField" id="13" x="368" y="301" width="71" measuredWidth="71" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Button" id="14" x="344" y="488" height="33" text="Lagre endring" measuredWidth="93" measuredHeight="33">
+  <widgets xsi:type="model:Button" id="14" x="296" y="488" height="33" text="Lagre endring" measuredWidth="93" measuredHeight="33">
     <font/>
   </widgets>
   <widgets xsi:type="model:Label" id="15" x="272" y="136" width="81" text="Tittel:" measuredWidth="81" measuredHeight="23">
     <font/>
   </widgets>
   <widgets xsi:type="model:TextField" id="16" x="368" y="136" width="121" text="Handle inn til Quiz" measuredWidth="121" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="17" x="400" y="488" width="105" height="33" text="Slett avtale" measuredWidth="105" measuredHeight="33">
     <font/>
   </widgets>
   <hRuler/>

@@ -53,13 +53,16 @@
   <widgets xsi:type="model:Button" id="37" x="192" y="244" width="105" text="Søk etter deltager" measuredWidth="105" measuredHeight="25">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Button" id="38" x="272" y="524" width="105" height="33" text="Lagre endring" measuredWidth="105" measuredHeight="33">
+  <widgets xsi:type="model:Button" id="38" x="208" y="520" width="105" height="33" text="Lagre endring" measuredWidth="105" measuredHeight="33">
     <font/>
   </widgets>
   <widgets xsi:type="model:Label" id="39" x="192" y="48" width="73" text="Tittel:" measuredWidth="73" measuredHeight="23">
     <font/>
   </widgets>
   <widgets xsi:type="model:TextField" id="40" x="288" y="48" width="81" text="Møte veileder" measuredWidth="81" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="41" x="328" y="520" width="103" height="33" text="Slett møte" measuredWidth="103" measuredHeight="33">
     <font/>
   </widgets>
   <hRuler/>
