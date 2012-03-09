@@ -67,7 +67,7 @@
   <widgets xsi:type="model:Label" id="30" x="256" y="152" width="161" text="12.Mars, 12.00, Café Dagrun" measuredWidth="161" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Label" id="31" x="280" y="184" width="137" text="13 Mars, 11.00, rom 106" measuredWidth="137" measuredHeight="23">
+  <widgets xsi:type="model:Label" id="31" x="280" y="184" width="137" text="13 Mars, 09.00, rom 106" measuredWidth="137" measuredHeight="23">
     <font/>
   </widgets>
   <widgets xsi:type="model:Label" id="32" x="280" y="219" width="137" text="13.Mars, 13.00, rom 407" measuredWidth="137" measuredHeight="23">
