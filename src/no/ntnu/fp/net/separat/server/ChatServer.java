@@ -132,6 +132,7 @@ public class ChatServer extends JFrame {
 		}
 
 		private void send(String mess) {
+			
 			try {
 				conn.send(mess);
 			} catch (ConnectException e) {

@@ -230,5 +230,6 @@ public class ConnectionImpl extends AbstractConnection {
 	protected boolean isValid(KtnDatagram packet) {
 		return packet != null;
 		//return packet != null && packet.calculateChecksum() == packet.getChecksum();
+		//hallo
 	}
 }

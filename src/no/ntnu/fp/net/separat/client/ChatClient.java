@@ -23,7 +23,6 @@ import no.ntnu.fp.net.co.SimpleConnection;
  *         demo program in TTM4100 on NTNU 2005.
  */
 public class ChatClient {
-
 	private static int portUsed = 0;
 
 	private String username = "default";
@@ -60,7 +59,7 @@ public class ChatClient {
 
 	private class RecieveThread extends Thread {
 		public boolean run = true;
-
+		
 		public void run() {
 			run = true;
 			while (run) {
