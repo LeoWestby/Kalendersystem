@@ -16,13 +16,10 @@
   <widgets xsi:type="model:Link" id="38" x="48" y="134" text="Kalle inn til møte" measuredWidth="92" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Link" id="39" x="48" y="156" text="Reserver møterom" measuredWidth="100" measuredHeight="23">
+  <widgets xsi:type="model:Link" id="46" x="48" y="178" text="Vis flere kalendere" measuredWidth="98" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Link" id="46" x="48" y="200" text="Vis flere kalendere" measuredWidth="98" measuredHeight="23">
-    <font/>
-  </widgets>
-  <widgets xsi:type="model:Link" id="47" x="48" y="178" text="Møteinvitasjoner (3)" measuredWidth="109" measuredHeight="23">
+  <widgets xsi:type="model:Link" id="47" x="48" y="156" text="Møteinvitasjoner (3)" measuredWidth="109" measuredHeight="23">
     <font/>
   </widgets>
   <widgets xsi:type="model:WidgetGroup" id="316" x="8" y="327" measuredWidth="313" measuredHeight="240">
@@ -194,6 +191,9 @@
         </widgets>
       </widgets>
     </widgets>
+  </widgets>
+  <widgets xsi:type="model:Link" id="383" x="48" y="200" text="Mine møter" measuredWidth="65" measuredHeight="23">
+    <font/>
   </widgets>
   <hRuler/>
   <vRuler/>
