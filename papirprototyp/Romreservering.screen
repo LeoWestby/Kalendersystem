@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
-  <widgets xsi:type="model:Window" id="1" x="72" y="104" width="441" height="329" text="Romreservasjon" measuredWidth="441" measuredHeight="329"/>
-  <widgets xsi:type="model:Label" id="8" x="104" y="284" text="Rom:" measuredWidth="51" measuredHeight="33">
-    <font size="14" bold="true" underline="false"/>
-  </widgets>
-  <widgets xsi:type="model:Label" id="11" x="111" y="152" text="Starter:" measuredWidth="51" measuredHeight="25">
-    <font size="10" bold="true" italic="true" underline="false"/>
-  </widgets>
-  <widgets xsi:type="model:Label" id="12" x="111" y="200" text="Slutter:" measuredWidth="50" measuredHeight="25">
-    <font size="10" bold="true" italic="true" underline="false"/>
-  </widgets>
-  <widgets xsi:type="model:Combo" id="7" x="104" y="352" width="137" text="R1" measuredWidth="137" measuredHeight="23">
-    <font/>
-  </widgets>
-  <widgets xsi:type="model:Combo" id="10" x="184" y="203" width="57" text="13:00" measuredWidth="57" measuredHeight="23">
-    <font/>
-  </widgets>
-  <widgets xsi:type="model:Combo" id="9" x="184" y="155" width="57" text="12:15" measuredWidth="57" measuredHeight="23">
-    <font/>
-  </widgets>
-  <widgets xsi:type="model:Combo" id="6" x="720" y="336" width="137" text="R1&#xD;&#xA;R2&#xD;&#xA;R3&#xD;&#xA;R4&#xD;&#xA;R7&#xD;&#xA;S3&#xD;&#xA;S7" measuredWidth="137" measuredHeight="149">
+  <widgets xsi:type="model:Combo" id="6" x="720" y="336" width="137" text="101&#xD;&#xA;106&#xD;&#xA;134&#xD;&#xA;406&#xD;&#xA;407" measuredWidth="137" measuredHeight="107">
     <font/>
   </widgets>
   <widgets xsi:type="model:Combo" id="13" x="608" y="216" text="12:15&#xD;&#xA;12:30&#xD;&#xA;12:45&#xD;&#xA;13:00&#xD;&#xA;13:15&#xD;&#xA;13:30&#xD;&#xA;13:45&#xD;&#xA;14:00" measuredWidth="51" measuredHeight="170">
@@ -28,10 +9,30 @@
   <widgets xsi:type="model:Combo" id="14" x="776" y="29" text="13:00&#xD;&#xA;13:15&#xD;&#xA;13:30&#xD;&#xA;13:45&#xD;&#xA;14:00&#xD;&#xA;14:15&#xD;&#xA;14:30&#xD;&#xA;14:45&#xD;&#xA;15:00" measuredWidth="51" measuredHeight="191">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Button" id="15" x="320" y="345" width="105" height="37" text="Velg rom" measuredWidth="105" measuredHeight="37">
-    <font/>
+  <widgets xsi:type="model:WidgetGroup" id="18" x="72" y="104" measuredWidth="361" measuredHeight="329">
+    <widgets xsi:type="model:Window" id="1" width="361" height="329" text="Romreservasjon" measuredWidth="361" measuredHeight="329"/>
+    <widgets xsi:type="model:Label" id="8" x="39" y="160" text="Rom:" measuredWidth="51" measuredHeight="33">
+      <font size="14" bold="true" underline="false"/>
+    </widgets>
+    <widgets xsi:type="model:Label" id="11" x="39" y="48" text="Starter:" measuredWidth="51" measuredHeight="25">
+      <font size="10" bold="true" italic="true" underline="false"/>
+    </widgets>
+    <widgets xsi:type="model:Label" id="12" x="39" y="96" text="Slutter:" measuredWidth="50" measuredHeight="25">
+      <font size="10" bold="true" italic="true" underline="false"/>
+    </widgets>
+    <widgets xsi:type="model:Combo" id="7" x="112" y="165" width="137" text="101" measuredWidth="137" measuredHeight="23">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Combo" id="10" x="112" y="99" width="57" text="13:00" measuredWidth="57" measuredHeight="23">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Combo" id="9" x="112" y="51" width="57" text="12:15" measuredWidth="57" measuredHeight="23">
+      <font/>
+    </widgets>
+    <widgets xsi:type="model:Button" id="15" x="89" y="232" width="128" height="41" text="Velg rom" measuredWidth="128" measuredHeight="41">
+      <font/>
+    </widgets>
   </widgets>
-  <widgets xsi:type="model:Icon" id="17" x="280" y="123" width="206" height="213" measuredWidth="206" measuredHeight="213" icon="image (large)"/>
   <hRuler/>
   <vRuler/>
   <font/>
