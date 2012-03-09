@@ -71,6 +71,7 @@ public class SimpleConnection implements Connection {
 	public Connection accept() throws IOException, SocketTimeoutException {
 
 		ServerSocket myServerSocket = new ServerSocket(myPort);
+		
 
 		System.out.println("Serversocket lytter på: "
 				+ myServerSocket.getLocalPort());
