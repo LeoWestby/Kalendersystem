@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
-  <widgets xsi:type="model:Window" id="1" x="216" y="88" width="353" height="462" text="Opprett avtale" measuredWidth="353" measuredHeight="462"/>
+  <widgets xsi:type="model:Window" id="1" x="216" y="88" width="353" height="462" text="Endre Avtale" measuredWidth="353" measuredHeight="462"/>
   <widgets xsi:type="model:DateField" id="2" x="368" y="176" width="105" text="14/03/2012 " measuredWidth="105" measuredHeight="23"/>
   <widgets xsi:type="model:Label" id="3" x="272" y="176" width="49" text="Dato:" measuredWidth="49" measuredHeight="23">
     <font/>
