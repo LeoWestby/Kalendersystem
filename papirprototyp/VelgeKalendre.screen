@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
-  <widgets xsi:type="model:Window" id="1" x="182" y="147" width="579" height="470" text="Velg kalendre" measuredWidth="579" measuredHeight="470"/>
-  <widgets xsi:type="model:ColorPicker" id="2" x="368" y="182" measuredWidth="33" measuredHeight="23"/>
-  <widgets xsi:type="model:Button" id="3" x="464" y="312" width="120" height="41" text="Legg til kalendre" measuredWidth="120" measuredHeight="41">
-    <font/>
+  <widgets xsi:type="model:Window" id="1" x="182" y="147" width="347" height="430" text="Velg kalendre" measuredWidth="347" measuredHeight="430"/>
+  <widgets xsi:type="model:ColorPicker" id="2" x="385" y="187" width="42" measuredWidth="42" measuredHeight="23"/>
+  <widgets xsi:type="model:Button" id="3" x="280" y="480" width="161" height="58" text="Legg til kalender" measuredWidth="161" measuredHeight="58">
+    <font size="10"/>
   </widgets>
-  <widgets xsi:type="model:List" id="4" x="182" y="182" text="[x] selected&#xA;[ ] not selected&#xA;~[ ] disabled~&#xA;~[x] disabled and selected~" measuredWidth="142" measuredHeight="92" border="false" alpha="0">
-    <font/>
-    <items x="0" y="2" width="142" height="22" text="[x] selected"/>
-    <items x="0" y="24" width="142" height="22" text="[ ] not selected"/>
-    <items x="0" y="46" width="142" height="22" text="~[ ] disabled~"/>
-    <items x="0" y="68" width="142" height="22" text="~[x] disabled and selected~"/>
+  <widgets xsi:type="model:Button" id="10" x="385" y="236" width="89" height="44" text="Søk person" measuredWidth="89" measuredHeight="44">
+    <font size="10"/>
   </widgets>
-  <widgets xsi:type="model:ColorPicker" id="5" x="368" y="202" measuredWidth="33" measuredHeight="23"/>
-  <widgets xsi:type="model:ColorPicker" id="6" x="368" y="224" measuredWidth="33" measuredHeight="23"/>
-  <widgets xsi:type="model:ColorPicker" id="7" x="368" y="246" measuredWidth="33" measuredHeight="23"/>
+  <widgets xsi:type="model:Label" id="11" x="208" y="184" width="89" text="Velg farge:" measuredWidth="89" measuredHeight="29">
+    <font size="12" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:List" id="12" x="208" y="332" width="178" height="100" text="[x] Min&#xA;[x] Petter kalender&#xA;[ ] Katrines kalender" measuredWidth="178" measuredHeight="100" border="false" alpha="0">
+    <font size="10"/>
+    <items x="0" y="2" width="178" height="23" text="[x] Min"/>
+    <items x="0" y="25" width="178" height="23" text="[x] Petter kalender"/>
+    <items x="0" y="48" width="178" height="23" text="[ ] Katrines kalender"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="13" x="208" y="296" text="Dine kalendre:" measuredWidth="105" measuredHeight="28">
+    <font size="11" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="14" x="208" y="244" text="Velg andres kalendre:" measuredWidth="155" measuredHeight="28">
+    <font size="11" bold="true"/>
+  </widgets>
   <hRuler/>
   <vRuler/>
   <font/>
