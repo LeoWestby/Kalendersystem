@@ -188,11 +188,11 @@
       <font/>
     </widgets>
   </widgets>
-  <widgets xsi:type="model:WidgetGroup" id="415" x="368" y="2" measuredWidth="761" measuredHeight="565">
-    <widgets xsi:type="model:Label" id="41" x="320" width="128" text="Uke 11" measuredWidth="128" measuredHeight="67">
+  <widgets xsi:type="model:WidgetGroup" id="415" x="117" y="2" measuredWidth="1012" measuredHeight="565">
+    <widgets xsi:type="model:Label" id="41" x="571" width="128" text="Uke 11" measuredWidth="128" measuredHeight="67">
       <font size="32"/>
     </widgets>
-    <widgets xsi:type="model:WidgetGroup" id="413" y="60" measuredWidth="761" measuredHeight="505">
+    <widgets xsi:type="model:WidgetGroup" id="413" x="251" y="60" measuredWidth="761" measuredHeight="505">
       <widgets xsi:type="model:WidgetGroup" id="387" measuredWidth="761" measuredHeight="505">
         <widgets xsi:type="model:Table" id="32" width="761" height="505" text="Tid,Mandag,Tirsdag,Onsdag,Torsdag,Fredag,Lørdag,Søndag&#xA;07.00&#xA;07.30&#xA;08.00&#xA;08.30&#xA;09.00&#xA;09.30&#xA;10.00&#xA;10.30&#xA;11.00&#xA;11.30&#xA;12.00&#xA;12.30&#xA;13.00&#xA;13.30&#xA;14.00&#xA;14.30&#xA;15.00&#xA;15.30&#xA;16.00&#xA;16.30&#xA;17.00&#xA;17.30&#xA;18.00" measuredWidth="761" measuredHeight="505" alternative="#eeeeee">
           <font/>
@@ -260,6 +260,9 @@
         <font/>
       </widgets>
     </widgets>
+    <widgets xsi:type="model:Icon" id="416" y="8" measuredWidth="32" measuredHeight="32" icon="image (large)"/>
+    <widgets xsi:type="model:Icon" id="417" x="291" y="18" measuredWidth="32" measuredHeight="32" foreground="#0b5394" icon="filled-arrow-left (large)"/>
+    <widgets xsi:type="model:Icon" id="418" x="939" y="18" measuredWidth="32" measuredHeight="32" foreground="#0b5394" icon="filled-arrow-left (large)" iconRotation="180"/>
   </widgets>
   <hRuler/>
   <vRuler/>
