@@ -45,7 +45,7 @@ public class ChatServer extends JFrame {
 
 	private JList userlist = new JList();
 
-	private static boolean debug = true;
+	private final static boolean debug = false;
 
 	// Lagrer info om hver og en bruker
 	private class User {

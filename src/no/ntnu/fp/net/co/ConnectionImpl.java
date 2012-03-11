@@ -3,9 +3,11 @@
  */
 package no.ntnu.fp.net.co;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.net.InetAddress;
+import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.Collections;
@@ -26,7 +28,7 @@ import no.ntnu.fp.net.cl.KtnDatagram.Flag;
  * of the functionality, leaving message passing and error handling to this
  * implementation.
  * 
- * @author Sebjørn Birkeland and Stein Jakob Nordbø
+ * @author SebjÃ¸rn Birkeland and Stein Jakob NordbÃ¸
  * @see no.ntnu.fp.net.co.Connection
  * @see no.ntnu.fp.net.cl.ClSocket
  */
@@ -89,14 +91,14 @@ public class ConnectionImpl extends AbstractConnection {
 			int tries = 3;
 			boolean sent = false;
 
-			KtnDatagram synPackat = constructInternalPacket(Flag.SYN);
+			KtnDatagram synPacket = constructInternalPacket(Flag.SYN);
 
 			// Send the SYN, trying at most `tries' times.
-			Log.writeToLog(synPackat, "Sending SYN", "ConnectionImpl");
+			Log.writeToLog(synPacket, "Sending SYN", "ConnectionImpl");
 
 			do {
 				try {
-					new ClSocket().send(synPackat);
+					new ClSocket().send(synPacket);
 					sent = true;
 				} catch (ConnectException e) {
 					// Silently ignore: Maybe server was processing and didn't
@@ -114,14 +116,21 @@ public class ConnectionImpl extends AbstractConnection {
 			state = State.SYN_SENT;
 			
 			//Receive SYNACK from server
-			KtnDatagram response = receiveAck(); 
+			KtnDatagram response = receiveAck();
 			
-			if (response == null || response.getFlag() != Flag.SYN_ACK) {
-				throw new ConnectException("No SYNACK received from server");
+			while (response == null) {
+				receiveAck();
 			}
+
+			//Connect to the new connection
+			this.remoteAddress = response.getSrc_addr();
+			this.remotePort = response.getSrc_port();
 			
 			//ACK the SYNACK
 			sendAck(response, false);
+		}
+		catch (ConnectException e) {
+			throw e;
 		}
 		catch (Exception e) {
 			throw new ConnectException("Could not establish connection with server");
@@ -146,21 +155,24 @@ public class ConnectionImpl extends AbstractConnection {
 			//Wait for SYN package
 			response = receivePacket(true);
 		}
-		state = State.SYN_RCVD;
-		remoteAddress = response.getSrc_addr();
-		remotePort = response.getSrc_port();
 		
-		//Send SYNACK
-		sendAck(response, true);
+		//Set up the new connection
+		ConnectionImpl newConnection = new ConnectionImpl(getFreePort());
+		newConnection.lastValidPacketReceived = response;
+		newConnection.state = State.SYN_RCVD;
+		newConnection.remoteAddress = response.getSrc_addr();
+		newConnection.remotePort = response.getSrc_port();
 
-		if (!isValid(receiveAck())) {
-			throw new ConnectException(
-					"Three-way handshake with incoming connection failed");
-		}
+		//Send SYNACK
+		newConnection.sendAck(response, true);
+
+		while (newConnection.receiveAck() == null)
+			;
 		
 		//Return the established connection to client
-		state = State.ESTABLISHED;
-		return new ConnectionImpl(getFreePort());
+		newConnection.state = State.ESTABLISHED;
+		state = State.CLOSED;
+		return newConnection;
     }
 	
 	/**
@@ -186,11 +198,20 @@ public class ConnectionImpl extends AbstractConnection {
 	 * @see AbstractConnection#sendDataPacketWithRetransmit(KtnDatagram)
 	 * @see no.ntnu.fp.net.co.Connection#send(String)
 	 */
-	public void send(String msg) throws ConnectException, IOException {
+	public synchronized void send(String msg) throws ConnectException, IOException {
 		if (state != State.ESTABLISHED) {
 			throw new ConnectException("Cannot send without an established connection");
 		}
-		sendDataPacketWithRetransmit(constructDataPacket(msg));
+		boolean sent = false;
+		
+		while (!sent) {
+			try {
+				sendDataPacketWithRetransmit(constructDataPacket(msg));
+				sent = true;
+			}
+			catch (SocketException e) {/*Try again*/}
+		}
+		
 	}
 
 	/**
@@ -205,8 +226,22 @@ public class ConnectionImpl extends AbstractConnection {
 		if (state != State.ESTABLISHED) {
 			throw new ConnectException("Cannot receive without an established connection");
 		}
-		return (String)receivePacket(false).getPayload();
-		//TODO: Handle potential connection errors
+		boolean done = false;
+		KtnDatagram received = null;
+		
+		while (!isValid(received) || !done) {
+			try {
+				received = receivePacket(false);
+				lastValidPacketReceived = received;
+				done = true;
+				sendAck(received, false);
+			}
+			catch (EOFException e) {
+				//More code for closing the connection goes here
+			}
+			catch (SocketException e){/*Try again*/}
+		}
+		return (String)lastValidPacketReceived.getPayload();
 	}
 
 	/**
@@ -215,7 +250,41 @@ public class ConnectionImpl extends AbstractConnection {
 	 * @see Connection#close()
 	 */
 	public void close() throws IOException {
-		//TODO: Send FIN package
+		if (state != State.ESTABLISHED) {
+			throw new ConnectException("Cannot disconnect an unestablished connection");
+		}
+		
+		if (1 == 1) throw new UnsupportedOperationException();
+		//The below code crashes and needs fixing
+		
+		//Send FIN packet
+		KtnDatagram finPacket = constructInternalPacket(Flag.FIN);
+		sendDataPacketWithRetransmit(finPacket);
+		state = State.FIN_WAIT_1;
+		
+		//Receive ACK
+		if ((lastValidPacketReceived = receiveAck()) == null) {
+			throw new ConnectException(
+					"Unexpected response from server while disconnecting");
+		}
+		state = State.FIN_WAIT_2;
+		
+		//Receive FIN and send ACK
+		lastValidPacketReceived = receivePacket(true);
+		
+		if (lastValidPacketReceived.getFlag() != Flag.FIN
+				|| (lastValidPacketReceived = receiveAck()) == null) {
+			throw new ConnectException(
+					"Unexpected response from server while disconnecting");
+		}
+		state = State.TIME_WAIT;
+		
+		//Allow receiving end to close down
+		try {
+			Thread.sleep(30000);
+		} catch (InterruptedException e) {/*Ignore*/}
+		
+		//Shut down
 		state = State.CLOSED;
 	}
 
@@ -228,8 +297,6 @@ public class ConnectionImpl extends AbstractConnection {
 	 * @return true if packet is free of errors, false otherwise.
 	 */
 	protected boolean isValid(KtnDatagram packet) {
-		return packet != null;
-		//return packet != null && packet.calculateChecksum() == packet.getChecksum();
-		//hallo
+		return packet != null && packet.calculateChecksum() == packet.getChecksum();
 	}
 }

@@ -10,6 +10,8 @@ import java.net.InetAddress;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
+import javax.swing.JOptionPane;
+
 import no.ntnu.fp.net.admin.Log;
 import no.ntnu.fp.net.admin.Settings;
 import no.ntnu.fp.net.co.Connection;
@@ -49,8 +51,7 @@ public class ChatClient {
 		} else {
 			connection = new ConnectionImpl(thisPort);
 		}
-		// this.username = JOptionPane.showInputDialog(gui,"Skriv inn
-		// navn:");
+		this.username = JOptionPane.showInputDialog(gui,"Skriv inn navn:");
 		gui = new Gui("Chat klient laget av Geir", this);
 		this.login(username);
 
