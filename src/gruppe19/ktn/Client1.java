@@ -1,4 +1,4 @@
-package gruppe19.nettverk;
+package gruppe19.ktn;
 
 
 import java.io.IOException;
