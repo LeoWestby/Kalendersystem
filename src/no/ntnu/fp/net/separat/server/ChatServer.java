@@ -51,11 +51,11 @@ public class ChatServer extends JFrame {
 	private class User {
 		public String name;
 		private RecieveThread recieveThread;
-		public Connection conn;
+		public Connection connection;
 
-		public User(String name, Connection conn) {
+		public User(String name, Connection connection) {
 			this.name = name;
-			this.conn = conn;
+			this.connection = connection;
 			recieveThread = new RecieveThread();
 			recieveThread.start();
 		}
@@ -67,14 +67,14 @@ public class ChatServer extends JFrame {
 				run = true;
 				while (run) {
 					try {
-						User.this.recieve(User.this.conn.receive());
+						User.this.recieve(User.this.connection.receive());
 					} catch (ConnectException e) {
 						e.printStackTrace();
 					} catch (EOFException e) {
 						DBG("User.run(): Disconnect was requested.");
 						run = false;
 						try {
-							conn.close();
+							connection.close();
 						} catch (IOException ioe) {
 							System.err
 									.println("Chat server: IOException while"
@@ -103,7 +103,7 @@ public class ChatServer extends JFrame {
 				 recieveThread.run = false;
 				 recieveThread = null;
 				 try {
-					 conn.close();
+					 connection.close();
 				 } catch (IOException e1) {
 					 // TODO Auto-generated catch block
 					 e1.printStackTrace();
@@ -133,7 +133,7 @@ public class ChatServer extends JFrame {
 		private void send(String mess) {
 			
 			try {
-				conn.send(mess);
+				connection.send(mess);
 			} catch (ConnectException e) {
 				DBG("User.send(): ConnectException: '" + e.getMessage()
 						+ "' while sending message '" + mess + "'");
