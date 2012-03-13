@@ -254,7 +254,7 @@ public class ConnectionImpl extends AbstractConnection {
 			throw new ConnectException("Cannot disconnect an unestablished connection");
 		}
 		
-		if (1 == 1) throw new UnsupportedOperationException();
+		//if (1 == 1) throw new UnsupportedOperationException();
 		//The below code crashes and needs fixing
 		
 		//Send FIN packet

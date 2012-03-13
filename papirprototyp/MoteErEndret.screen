@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Window" id="1" x="176" y="88" width="265" height="161" text="Et møte er endret" measuredWidth="265" measuredHeight="161"/>
+  <widgets xsi:type="model:Link" id="4" x="200" y="136" text="Lønnsforhandlinger runde2" measuredWidth="161" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="5" x="200" y="160" width="201" measuredWidth="201" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Text" id="6" x="200" y="168" width="217" height="65" text="Starttiden på dette møttet er endret. Gammel starttid: 09.00. Ny starttid: 10.00.&#xD;&#xA;Trykk på linken for å se ny møteinkalling." measuredWidth="217" measuredHeight="65" dummyText="true">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Window" id="7" x="176" y="296" width="265" height="161" text="Et møte er endret" measuredWidth="265" measuredHeight="161"/>
+  <widgets xsi:type="model:Link" id="8" x="200" y="344" text="Lønnsforhandlinger runde2" measuredWidth="161" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Text" id="9" x="200" y="376" width="225" height="65" text="Datoen for dette møttet er endret. Gammel dato: 15.mars. Ny dato: 22. mars.&#xD;&#xA;Trykk på linken for å se ny møteinkalling" measuredWidth="225" measuredHeight="65" dummyText="true">
+    <font/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font/>
+</model:Screen>

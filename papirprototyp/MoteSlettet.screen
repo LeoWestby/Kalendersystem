@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Window" id="3" x="176" y="88" width="257" height="153" text="Et møte er slettet" measuredWidth="257" measuredHeight="153"/>
+  <widgets xsi:type="model:Label" id="4" x="200" y="136" width="185" text="Lønnsforhandlinger runde2" measuredWidth="185" measuredHeight="25">
+    <font size="10" bold="true"/>
+  </widgets>
+  <widgets xsi:type="model:Text" id="5" x="200" y="168" width="225" height="57" text="&#xD;&#xA;Møtet den 15. mars fra klokken 09.00 til klokken 12.00 i rom 407, har blitt avlyst" measuredWidth="225" measuredHeight="57" dummyText="true">
+    <font/>
+  </widgets>
+  <hRuler>
+    <guides position="719"/>
+  </hRuler>
+  <vRuler/>
+  <font/>
+</model:Screen>

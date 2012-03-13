@@ -11,10 +11,10 @@
   <widgets xsi:type="model:Text" id="5" x="272" y="264" text="Sluttidspunkt:" measuredWidth="73" measuredHeight="15">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Label" id="6" x="272" y="346" width="73" text="Beskrivelse:" measuredWidth="73" measuredHeight="23">
+  <widgets xsi:type="model:Label" id="6" x="272" y="370" width="73" text="Beskrivelse:" measuredWidth="73" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:TextArea" id="7" x="272" y="368" width="257" height="97" measuredWidth="257" measuredHeight="97">
+  <widgets xsi:type="model:TextArea" id="7" x="272" y="392" width="257" height="81" measuredWidth="257" measuredHeight="81">
     <font/>
   </widgets>
   <widgets xsi:type="model:Combo" id="8" x="368" y="216" text="08.00" measuredWidth="51" measuredHeight="23">
@@ -42,6 +42,15 @@
     <font/>
   </widgets>
   <widgets xsi:type="model:TextField" id="17" x="368" y="136" width="89" measuredWidth="89" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="18" x="272" y="336" width="65" text="Møterom:" measuredWidth="65" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="19" x="456" y="336" width="81" measuredWidth="81" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="20" x="368" y="336" width="81" height="23" text="Søk etter rom" measuredWidth="81" measuredHeight="23">
     <font/>
   </widgets>
   <hRuler/>

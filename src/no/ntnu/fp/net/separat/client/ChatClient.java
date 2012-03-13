@@ -100,15 +100,25 @@ public class ChatClient {
 	}
 
 	private void recieve(String message) {
-		if (message.substring(0, 1).equals("[")
-				&& message.substring(message.length() - 1, message.length())
-				.equals("]")) {
-			String[] list = message.substring(1, message.length() - 1).split(
-					", ");
+		if (message.equals(" ")) {
+			System.out.println("close message");
+		}
+		if (message.substring(0, 1).equals("[") && message.substring(message.length() - 1, message.length()).equals("]")) {
+			String[] list = message.substring(1, message.length() - 1).split(", ");
 			gui.updateUserList(list);
 		} else if (!message.substring(0, 1).equals("/")) {
-			gui.addMessage(message.substring(message.indexOf(":")),
-					message.substring(0, message.indexOf(":")));
+			try {
+				gui.addMessage(message.substring(message.indexOf(":")),
+						message.substring(0, message.indexOf(":")));
+			} catch (Exception e) {
+				try {
+					connection.close();
+					System.out.println("conection.close()");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
 		}
 	}
 
