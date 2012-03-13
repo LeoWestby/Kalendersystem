@@ -227,8 +227,7 @@ public abstract class AbstractConnection implements Connection {
 	 *             thrown if unable to send packet.
 	 * @see no.ntnu.fp.net.cl.ClSocket#send(KtnDatagram)
 	 */
-	protected synchronized KtnDatagram sendDataPacketWithRetransmit(
-			KtnDatagram packet) throws IOException {
+	protected synchronized KtnDatagram sendDataPacketWithRetransmit(KtnDatagram packet) throws IOException {
 		if (state != State.ESTABLISHED)
 			throw new IllegalStateException(
 					"Should only be used in ESTABLISHED state.");

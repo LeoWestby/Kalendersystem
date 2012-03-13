@@ -92,7 +92,12 @@ public class SimpleConnection implements Connection {
 	 * @see no.ntnu.fp.net.co.Connection#send(java.lang.String)
 	 */
 	public void send(String msg) throws ConnectException, IOException {
-		os.writeUTF(msg);
+		if (!mySocket.isClosed()) {
+			System.out.println("Socket open.");
+			os.writeUTF(msg);
+		}else{
+			System.out.println("Socket closed.");
+		}
 
 	}
 
@@ -103,7 +108,12 @@ public class SimpleConnection implements Connection {
 	 */
 	public String receive() throws ConnectException, IOException {
 		while (!stop) {
-			String s = is.readUTF();
+			String s = " ";
+			try {
+				s = is.readUTF();
+			} catch (Exception e) {
+				close();
+			}
 			System.out.println("Received the text: " + s);
 			return s;
 		}
