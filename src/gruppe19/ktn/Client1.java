@@ -85,7 +85,6 @@ public class Client1 {
 	
 	
 	private void recieve(String message) {
-//		Sett inn SQL-query meldinger hær.
 		
 		if (message.equals(" ")) {
 			System.out.println("close message");

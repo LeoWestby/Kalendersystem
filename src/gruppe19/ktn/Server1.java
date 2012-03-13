@@ -119,6 +119,7 @@ public class Server1 {
 			} else {
 				Server1.this.broadcast(mess);
 			}
+			System.out.println("The message is:" + mess);
 		}
 
 		private void send(String mess) {
