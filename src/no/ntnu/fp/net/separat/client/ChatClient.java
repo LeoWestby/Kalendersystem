@@ -77,7 +77,7 @@ public class ChatClient {
 	}
 
 	public void sendMessage(String message) {
-		send(this.username + ": " + message);
+		send(this.username + ":" + message);
 	}
 
 	public void login(String username) {

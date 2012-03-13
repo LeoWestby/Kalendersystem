@@ -95,10 +95,10 @@ public class ChatServer extends JFrame {
 			}
 		}
 
-		private void recieve(String mess) {
-			if (mess.length() == 0) {
+		private void recieve(String message) {
+			if (message.length() == 0) {
 
-			} else if (mess.equals(new String(name + " is closing"))) {
+			} else if (message.equals(new String(name + " is closing"))) {
 
 				 recieveThread.run = false;
 				 recieveThread = null;
@@ -116,18 +116,18 @@ public class ChatServer extends JFrame {
 					 // TODO Auto-generated catch block
 					 e.printStackTrace();
 				 }
-			} else if (mess.substring(0, 1).equals("/")) {
-				if (mess.substring(1, 9).equals("newName:")) {
+			} else if (message.substring(0, 1).equals("/")) {
+				if (message.substring(1, 9).equals("newName:")) {
 					String oldName = name;
-					name = mess.substring(10, mess.length());
-					ChatServer.this.broadcast(ChatServer.this.getUsers()
-							.toString());
-					ChatServer.this.broadcast("**: " + oldName
-							+ " changed nick to " + name + ".");
+					name = message.substring(10, message.length());
+					ChatServer.this.broadcast(ChatServer.this.getUsers().toString());
+					ChatServer.this.broadcast("**: " + oldName + " changed nick to " + name + ".");
 				}
 			} else {
-				ChatServer.this.broadcast(mess);
+				ChatServer.this.broadcast(message);
 			}
+			
+			System.out.println("The message is:" + message);
 		}
 
 		private void send(String mess) {
