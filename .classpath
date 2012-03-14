@@ -8,6 +8,7 @@
 	<classpathentry kind="lib" path="lib/junit.jar"/>
 	<classpathentry kind="lib" path="lib/xom-1.0b5.jar"/>
 	<classpathentry kind="lib" path="lib/MySQL_Driver.jar"/>
+	<classpathentry kind="lib" path="lib/jcalendar-1.4.jar"/>
 	<classpathentry kind="src" path="papirprototyp"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
