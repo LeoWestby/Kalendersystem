@@ -1,6 +1,8 @@
 package gruppe19.gui;
 
-import gruppe19.nettverk.ServerAPI;
+import gruppe19.client.ktn.ServerAPI;
+import gruppe19.server.ktn.ServerMessage;
+import gruppe19.server.ktn.ServerMessage.Type;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -21,6 +23,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import no.ntnu.fp.model.Person;
+
 public class LoginScreen extends JFrame {
 	private JLabel userPrefix = new JLabel("Brukernavn: ");
 	private JLabel passPrefix = new JLabel("Passord: ");
@@ -35,6 +39,7 @@ public class LoginScreen extends JFrame {
 			ServerAPI.open();
 		} catch (Exception e) {
 			System.err.println("[Error] Failed to establish connection with server...");
+			System.exit(1);
 		}
 		//catch (SocketTimeoutException e1) {} catch (UnknownHostException e1) {} catch (IOException e1) {}
 		
@@ -56,9 +61,9 @@ public class LoginScreen extends JFrame {
 		logIn.setSize(logIn.getPreferredSize());
 		logIn.setLocation(passBox.getX() + passBox.getWidth() - logIn.getWidth(), passBox.getY() + 60);
 		
-		error.setSize(999, error.getPreferredSize().height);
 		error.setForeground(Color.red);
-		error.setLocation(passBox.getX(), logIn.getY());
+		error.setSize(999, error.getPreferredSize().height);
+		error.setLocation(passBox.getX(), passBox.getY() + passBox.getHeight());
 
 		logIn.addActionListener(new ActionListener() {
 			@Override
@@ -66,13 +71,12 @@ public class LoginScreen extends JFrame {
 				int ret = ServerAPI.login(userBox.getText(), passBox.getText());
 				
 				if (ret < 0) {
-					error.setText("Feil brukernavn");
+					error.setForeground(Color.red);
+					error.setText("Feil brukernavn eller passord");
 				}
-				else if (ret == 0) {
-					error.setText("Feil passord");
-				}
-				else if (ret > 0) {
-					error.setText(" ");
+				else {
+					error.setForeground(Color.green);
+					error.setText("Riktig brukernavn og passord");
 				}
 			}
 		});

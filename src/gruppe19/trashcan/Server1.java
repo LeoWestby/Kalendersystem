@@ -1,4 +1,4 @@
-package gruppe19.ktn;
+package gruppe19.trashcan;
 
 import java.io.EOFException;
 import java.io.IOException;

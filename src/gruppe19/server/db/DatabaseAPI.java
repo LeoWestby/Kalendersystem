@@ -1,10 +1,13 @@
-package gruppe19.db;
+package gruppe19.server.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
+
+import no.ntnu.fp.model.Person;
 
 
 /**
@@ -84,6 +87,21 @@ public class DatabaseAPI {
 		
 		//Insert example data
 		s.executeUpdate("INSERT INTO TestTable VALUES(1, 'TESTING1'), (2, 'TESTING2'), (3, 'TESTING3')");
+	}
+	
+	/**
+	 * Checks if a user exists with the specified username and password.
+	 * 
+	 * @return The user with this username and password or <code>null</code> if
+	 * no such user exists.
+	 * 
+	 * TODO: Replace the Person object with whatever model we're using
+	 */
+	public static Person logIn(String username, String password) {
+		if (username.equals("Test") && password.equals("testpw")) {
+			return new Person("Hans", "Hans@gmail.com", new Date());
+		}
+		return null;
 	}
 	
 	

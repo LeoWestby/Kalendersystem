@@ -3,6 +3,7 @@ package no.ntnu.fp.model;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Date;
  *
  * @version $Revision: 1.5 $ - $Date: 2005/02/20 14:52:29 $
  */
-public class Person {
+public class Person implements Serializable {
 
 	/**
 	 * This member variable holds the person's name.
@@ -27,7 +28,7 @@ public class Person {
 	/**
 	 * This member variable holds the person's date of birth.
 	 */
-	private Date dateOfBirth;
+	private transient Date dateOfBirth;
 
 	/**
 	 * This member variable holds a unique identifier for this object.
