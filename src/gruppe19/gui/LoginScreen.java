@@ -11,6 +11,9 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.io.IOException;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -27,6 +30,14 @@ public class LoginScreen extends JFrame {
 	private JButton logIn = new JButton("Logg inn");
 	
 	public LoginScreen() {
+		//Open a connection to the server
+		try {
+			ServerAPI.open();
+		} catch (Exception e) {
+			System.err.println("[Error] Failed to establish connection with server...");
+		}
+		//catch (SocketTimeoutException e1) {} catch (UnknownHostException e1) {} catch (IOException e1) {}
+		
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(null);
 		
