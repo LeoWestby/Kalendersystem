@@ -174,97 +174,101 @@
       </widgets>
     </widgets>
   </widgets>
-  <widgets xsi:type="model:WidgetGroup" id="422" x="48" y="112" measuredWidth="168" measuredHeight="111">
-    <widgets xsi:type="model:Link" id="37" text="Opprett avtale" measuredWidth="78" measuredHeight="23">
-      <font/>
-    </widgets>
-    <widgets xsi:type="model:Link" id="38" y="22" text="Kalle inn til møte" measuredWidth="92" measuredHeight="23">
-      <font/>
-    </widgets>
-    <widgets xsi:type="model:Link" id="46" y="66" text="Vis flere kalendere" measuredWidth="98" measuredHeight="23">
-      <font/>
-    </widgets>
-    <widgets xsi:type="model:Link" id="383" y="44" text="Mine møter (3 nye invitasjoner)" measuredWidth="168" measuredHeight="23">
-      <font/>
-    </widgets>
-    <widgets xsi:type="model:Link" id="420" y="88" text="Logg ut" measuredWidth="44" measuredHeight="23">
-      <font/>
-    </widgets>
-  </widgets>
-  <widgets xsi:type="model:WidgetGroup" id="419" x="368" y="2" measuredWidth="761" measuredHeight="565">
+  <widgets xsi:type="model:WidgetGroup" id="419" x="366" y="62" height="505" measuredWidth="761" measuredHeight="504">
     <widgets xsi:type="model:Label" id="41" x="320" width="128" text="Uke 11" measuredWidth="128" measuredHeight="67">
       <font size="32"/>
     </widgets>
-    <widgets xsi:type="model:WidgetGroup" id="413" y="60" measuredWidth="761" measuredHeight="505">
-      <widgets xsi:type="model:WidgetGroup" id="387" measuredWidth="761" measuredHeight="505">
-        <widgets xsi:type="model:Table" id="32" width="761" height="505" text="Tid,Mandag,Tirsdag,Onsdag,Torsdag,Fredag,Lørdag,Søndag&#xA;07.00&#xA;07.30&#xA;08.00&#xA;08.30&#xA;09.00&#xA;09.30&#xA;10.00&#xA;10.30&#xA;11.00&#xA;11.30&#xA;12.00&#xA;12.30&#xA;13.00&#xA;13.30&#xA;14.00&#xA;14.30&#xA;15.00&#xA;15.30&#xA;16.00&#xA;16.30&#xA;17.00&#xA;17.30&#xA;18.00" measuredWidth="761" measuredHeight="505" alternative="#eeeeee">
+    <widgets xsi:type="model:WidgetGroup" id="413" y="53" height="451" measuredWidth="761" measuredHeight="451">
+      <widgets xsi:type="model:WidgetGroup" id="387" height="451" measuredWidth="761" measuredHeight="451">
+        <widgets xsi:type="model:Table" id="32" width="761" height="451" text="Tid,Mandag,Tirsdag,Onsdag,Torsdag,Fredag,Lørdag,Søndag&#xA;07.00&#xA;07.30&#xA;08.00&#xA;08.30&#xA;09.00&#xA;09.30&#xA;10.00&#xA;10.30&#xA;11.00&#xA;11.30&#xA;12.00&#xA;12.30&#xA;13.00&#xA;13.30&#xA;14.00&#xA;14.30&#xA;15.00&#xA;15.30&#xA;16.00&#xA;16.30&#xA;17.00&#xA;17.30&#xA;18.00" measuredWidth="761" measuredHeight="451" alternative="#eeeeee">
           <font/>
         </widgets>
-        <widgets xsi:type="model:Panel" id="384" x="72" y="106" width="105" height="41" measuredWidth="105" measuredHeight="41"/>
-        <widgets xsi:type="model:Link" id="385" x="82" y="106" text="Møte veileder" measuredWidth="75" measuredHeight="23">
+        <widgets xsi:type="model:Panel" id="384" x="72" y="94" width="105" height="36" measuredWidth="105" measuredHeight="36"/>
+        <widgets xsi:type="model:Link" id="385" x="82" y="93" text="Møte veileder" measuredWidth="75" measuredHeight="23">
           <font/>
         </widgets>
       </widgets>
-      <widgets xsi:type="model:Label" id="386" x="92" y="128" width="65" text="rom 406" measuredWidth="65" measuredHeight="23">
+      <widgets xsi:type="model:Label" id="386" x="92" y="113" width="65" text="rom 406" measuredWidth="65" measuredHeight="23">
         <font/>
       </widgets>
-      <widgets xsi:type="model:Panel" id="388" x="72" y="234" width="105" height="41" measuredWidth="105" measuredHeight="41"/>
-      <widgets xsi:type="model:Link" id="389" x="82" y="234" text="Lunsj med Kari" measuredWidth="81" measuredHeight="23">
+      <widgets xsi:type="model:Panel" id="388" x="72" y="208" width="105" height="36" measuredWidth="105" measuredHeight="36"/>
+      <widgets xsi:type="model:Link" id="389" x="82" y="207" text="Lunsj med Kari" measuredWidth="81" measuredHeight="23">
         <font/>
       </widgets>
-      <widgets xsi:type="model:Label" id="390" x="82" y="256" width="81" text="Café Dagrun" measuredWidth="81" measuredHeight="23">
+      <widgets xsi:type="model:Label" id="390" x="82" y="227" width="81" text="Café Dagrun" measuredWidth="81" measuredHeight="23">
         <font/>
       </widgets>
-      <widgets xsi:type="model:Panel" id="391" x="176" y="106" width="97" height="129" measuredWidth="97" measuredHeight="129"/>
-      <widgets xsi:type="model:Link" id="392" x="200" y="116" text="Budsjett" measuredWidth="46" measuredHeight="23">
+      <widgets xsi:type="model:Panel" id="391" x="176" y="94" width="97" height="115" measuredWidth="97" measuredHeight="115"/>
+      <widgets xsi:type="model:Link" id="392" x="200" y="102" text="Budsjett" measuredWidth="46" measuredHeight="23">
         <font/>
       </widgets>
-      <widgets xsi:type="model:Link" id="394" x="200" y="128" text="vurdering" measuredWidth="54" measuredHeight="23">
+      <widgets xsi:type="model:Link" id="394" x="200" y="113" text="vurdering" measuredWidth="54" measuredHeight="23">
         <font/>
       </widgets>
-      <widgets xsi:type="model:Label" id="395" x="200" y="194" width="46" text="rom 106" measuredWidth="46" measuredHeight="23">
+      <widgets xsi:type="model:Label" id="395" x="200" y="172" width="46" text="rom 106" measuredWidth="46" measuredHeight="23">
         <font/>
       </widgets>
-      <widgets xsi:type="model:Panel" id="396" x="176" y="278" width="97" height="125" measuredWidth="97" measuredHeight="125"/>
-      <widgets xsi:type="model:Link" id="397" x="186" y="288" text="Lønns" measuredWidth="35" measuredHeight="23">
+      <widgets xsi:type="model:Panel" id="396" x="176" y="248" width="97" height="111" measuredWidth="97" measuredHeight="111"/>
+      <widgets xsi:type="model:Link" id="397" x="186" y="255" text="Lønns" measuredWidth="35" measuredHeight="23">
         <font/>
       </widgets>
-      <widgets xsi:type="model:Link" id="398" x="186" y="304" text="forhandlinger" measuredWidth="75" measuredHeight="23">
+      <widgets xsi:type="model:Link" id="398" x="186" y="270" text="forhandlinger" measuredWidth="75" measuredHeight="23">
         <font/>
       </widgets>
-      <widgets xsi:type="model:Label" id="399" x="200" y="378" width="46" text="rom 407" measuredWidth="46" measuredHeight="23">
+      <widgets xsi:type="model:Label" id="399" x="200" y="336" width="46" text="rom 407" measuredWidth="46" measuredHeight="23">
         <font/>
       </widgets>
-      <widgets xsi:type="model:Panel" id="401" x="272" y="274" width="105" height="41" measuredWidth="105" measuredHeight="41"/>
-      <widgets xsi:type="model:Link" id="402" x="296" y="274" text="Handle inn" measuredWidth="61" measuredHeight="23">
+      <widgets xsi:type="model:Panel" id="401" x="272" y="244" width="105" height="36" measuredWidth="105" measuredHeight="36"/>
+      <widgets xsi:type="model:Link" id="402" x="296" y="243" text="Handle inn" measuredWidth="61" measuredHeight="23">
         <font/>
       </widgets>
-      <widgets xsi:type="model:Link" id="404" x="296" y="288" text="til Quiz" measuredWidth="40" measuredHeight="23">
+      <widgets xsi:type="model:Link" id="404" x="296" y="255" text="til Quiz" measuredWidth="40" measuredHeight="23">
         <font/>
       </widgets>
-      <widgets xsi:type="model:Panel" id="405" x="376" y="106" width="105" height="129" measuredWidth="105" measuredHeight="129"/>
-      <widgets xsi:type="model:Link" id="406" x="386" y="106" text="Lønns" measuredWidth="35" measuredHeight="23">
+      <widgets xsi:type="model:Panel" id="405" x="376" y="94" width="105" height="115" measuredWidth="105" measuredHeight="115"/>
+      <widgets xsi:type="model:Link" id="406" x="386" y="93" text="Lønns" measuredWidth="35" measuredHeight="23">
         <font/>
       </widgets>
-      <widgets xsi:type="model:Link" id="407" x="386" y="122" text="forhandlinger" measuredWidth="75" measuredHeight="23">
+      <widgets xsi:type="model:Link" id="407" x="386" y="107" text="forhandlinger" measuredWidth="75" measuredHeight="23">
         <font/>
       </widgets>
-      <widgets xsi:type="model:Link" id="408" x="386" y="138" text="runde 2" measuredWidth="43" measuredHeight="23">
+      <widgets xsi:type="model:Link" id="408" x="386" y="122" text="runde 2" measuredWidth="43" measuredHeight="23">
         <font/>
       </widgets>
-      <widgets xsi:type="model:Label" id="409" x="400" y="202" width="61" text="rom 407" measuredWidth="61" measuredHeight="23">
+      <widgets xsi:type="model:Label" id="409" x="400" y="179" width="61" text="rom 407" measuredWidth="61" measuredHeight="23">
         <font/>
       </widgets>
-      <widgets xsi:type="model:Panel" id="410" x="376" y="274" width="105" height="37" measuredWidth="105" measuredHeight="37"/>
-      <widgets xsi:type="model:Link" id="411" x="386" y="274" text="Personalmøte" measuredWidth="76" measuredHeight="23">
+      <widgets xsi:type="model:Panel" id="410" x="376" y="244" width="105" height="33" measuredWidth="105" measuredHeight="33"/>
+      <widgets xsi:type="model:Link" id="411" x="386" y="243" text="Personalmøte" measuredWidth="76" measuredHeight="23">
         <font/>
       </widgets>
-      <widgets xsi:type="model:Label" id="412" x="400" y="288" width="57" text="rom 406" measuredWidth="57" measuredHeight="23">
+      <widgets xsi:type="model:Label" id="412" x="400" y="255" width="57" text="rom 406" measuredWidth="57" measuredHeight="23">
         <font/>
       </widgets>
     </widgets>
-    <widgets xsi:type="model:Icon" id="417" x="40" y="18" measuredWidth="32" measuredHeight="32" foreground="#0b5394" icon="filled-arrow-left (large)"/>
-    <widgets xsi:type="model:Icon" id="418" x="688" y="18" measuredWidth="32" measuredHeight="32" foreground="#0b5394" icon="filled-arrow-left (large)" iconRotation="180"/>
+    <widgets xsi:type="model:Icon" id="417" x="40" y="16" height="28" measuredWidth="32" measuredHeight="28" foreground="#0b5394" icon="filled-arrow-left (large)"/>
+    <widgets xsi:type="model:Icon" id="418" x="688" y="16" height="28" measuredWidth="32" measuredHeight="28" foreground="#0b5394" icon="filled-arrow-left (large)" iconRotation="180"/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="423" x="48" y="114" text="Opprett avtale" measuredWidth="95" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="424" x="48" y="144" text="Kalle inn til møte" measuredWidth="109" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="425" x="48" y="62" text="Victor Fielding" measuredWidth="81" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="426" x="48" y="208" text="Invitasjoner (3)" measuredWidth="98" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="427" x="48" y="240" text="Vis flere kalendere" measuredWidth="115" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="428" x="48" y="176" text="Mine møter" measuredWidth="82" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="429" x="1056" y="22" text="Logg ut" measuredWidth="61" measuredHeight="25">
+    <font/>
   </widgets>
   <hRuler/>
   <vRuler/>
