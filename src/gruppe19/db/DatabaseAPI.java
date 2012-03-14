@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 
 /**
- * A static class used for communication with the SQL server.
+ * A static class used for communication between with the server and the SQL server.
  */
 public class DatabaseAPI {
 	private static Connection conn = null;
