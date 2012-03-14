@@ -51,11 +51,11 @@ public class ChatServer extends JFrame {
 	private class User {
 		public String name;
 		private RecieveThread recieveThread;
-		public Connection conn;
+		public Connection connection;
 
-		public User(String name, Connection conn) {
+		public User(String name, Connection connection) {
 			this.name = name;
-			this.conn = conn;
+			this.connection = connection;
 			recieveThread = new RecieveThread();
 			recieveThread.start();
 		}
@@ -67,14 +67,14 @@ public class ChatServer extends JFrame {
 				run = true;
 				while (run) {
 					try {
-						User.this.recieve(User.this.conn.receive());
+						User.this.recieve(User.this.connection.receive());
 					} catch (ConnectException e) {
 						e.printStackTrace();
 					} catch (EOFException e) {
 						DBG("User.run(): Disconnect was requested.");
 						run = false;
 						try {
-							conn.close();
+							connection.close();
 						} catch (IOException ioe) {
 							System.err
 									.println("Chat server: IOException while"
@@ -95,15 +95,15 @@ public class ChatServer extends JFrame {
 			}
 		}
 
-		private void recieve(String mess) {
-			if (mess.length() == 0) {
+		private void recieve(String message) {
+			if (message.length() == 0) {
 
-			} else if (mess.equals(new String(name + " is closing"))) {
+			} else if (message.equals(new String(name + " is closing"))) {
 
 				 recieveThread.run = false;
 				 recieveThread = null;
 				 try {
-					 conn.close();
+					 connection.close();
 				 } catch (IOException e1) {
 					 // TODO Auto-generated catch block
 					 e1.printStackTrace();
@@ -116,24 +116,24 @@ public class ChatServer extends JFrame {
 					 // TODO Auto-generated catch block
 					 e.printStackTrace();
 				 }
-			} else if (mess.substring(0, 1).equals("/")) {
-				if (mess.substring(1, 9).equals("newName:")) {
+			} else if (message.substring(0, 1).equals("/")) {
+				if (message.substring(1, 9).equals("newName:")) {
 					String oldName = name;
-					name = mess.substring(10, mess.length());
-					ChatServer.this.broadcast(ChatServer.this.getUsers()
-							.toString());
-					ChatServer.this.broadcast("**: " + oldName
-							+ " changed nick to " + name + ".");
+					name = message.substring(10, message.length());
+					ChatServer.this.broadcast(ChatServer.this.getUsers().toString());
+					ChatServer.this.broadcast("**: " + oldName + " changed nick to " + name + ".");
 				}
 			} else {
-				ChatServer.this.broadcast(mess);
+				ChatServer.this.broadcast(message);
 			}
+			
+			System.out.println("The message is:" + message);
 		}
 
 		private void send(String mess) {
 			
 			try {
-				conn.send(mess);
+				connection.send(mess);
 			} catch (ConnectException e) {
 				DBG("User.send(): ConnectException: '" + e.getMessage()
 						+ "' while sending message '" + mess + "'");
