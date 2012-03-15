@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
   <widgets xsi:type="model:VLine" id="1" x="344" y="22" height="545" measuredWidth="6" measuredHeight="545"/>
-  <widgets xsi:type="model:Label" id="31" x="48" y="40" width="121" text="Dagrun Haugland" measuredWidth="121" measuredHeight="23">
+  <widgets xsi:type="model:Label" id="31" x="48" y="40" width="121" text="Hans Hansen" measuredWidth="121" measuredHeight="23">
     <font/>
   </widgets>
   <widgets xsi:type="model:WidgetGroup" id="316" x="8" y="309" measuredWidth="329" measuredHeight="258">

@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
-  <widgets xsi:type="model:Window" id="1" x="216" y="88" width="353" height="462" text="Opprett avtale" measuredWidth="353" measuredHeight="462"/>
-  <widgets xsi:type="model:DateField" id="2" x="368" y="176" width="81" text="  /  /  " measuredWidth="81" measuredHeight="23"/>
-  <widgets xsi:type="model:Label" id="3" x="272" y="176" width="49" text="Dato:" measuredWidth="49" measuredHeight="23">
+  <widgets xsi:type="model:Window" id="1" x="144" y="8" width="353" height="462" text="Opprett avtale" measuredWidth="353" measuredHeight="462"/>
+  <widgets xsi:type="model:DateField" id="2" x="296" y="96" width="81" text="  /  /  " measuredWidth="81" measuredHeight="23"/>
+  <widgets xsi:type="model:Label" id="3" x="200" y="96" width="49" text="Dato:" measuredWidth="49" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Label" id="4" x="272" y="216" width="81" text="Starttidspunkt:" measuredWidth="81" measuredHeight="23">
+  <widgets xsi:type="model:Label" id="4" x="200" y="136" width="81" text="Starttidspunkt:" measuredWidth="81" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Text" id="5" x="272" y="264" text="Sluttidspunkt:" measuredWidth="73" measuredHeight="15">
+  <widgets xsi:type="model:Text" id="5" x="200" y="184" text="Sluttidspunkt:" measuredWidth="73" measuredHeight="15">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Label" id="6" x="272" y="370" width="73" text="Beskrivelse:" measuredWidth="73" measuredHeight="23">
+  <widgets xsi:type="model:Label" id="6" x="200" y="290" width="73" text="Beskrivelse:" measuredWidth="73" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:TextArea" id="7" x="272" y="392" width="257" height="81" measuredWidth="257" measuredHeight="81">
+  <widgets xsi:type="model:TextArea" id="7" x="200" y="312" width="257" height="81" measuredWidth="257" measuredHeight="81">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Combo" id="8" x="368" y="216" text="08.00" measuredWidth="51" measuredHeight="23">
+  <widgets xsi:type="model:Combo" id="8" x="296" y="136" text="08.00" measuredWidth="51" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Combo" id="9" x="368" y="260" text="08.30" measuredWidth="51" measuredHeight="23">
+  <widgets xsi:type="model:Combo" id="9" x="296" y="180" text="08.30" measuredWidth="51" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Combo" id="10" x="720" y="88" width="73" text="08.00&#xD;&#xA;08.30&#xD;&#xA;09.00&#xD;&#xA;09.30&#xD;&#xA;10.00&#xD;&#xA;10.30&#xD;&#xA;11.00&#xD;&#xA;11.30&#xD;&#xA;12.00&#xD;&#xA;12.30&#xD;&#xA;13.00&#xD;&#xA;13.30&#xD;&#xA;14.00&#xD;&#xA;14.30&#xD;&#xA;15.00&#xD;&#xA;15.30&#xD;&#xA;16.00&#xD;&#xA;16.30&#xD;&#xA;17.00&#xD;&#xA;17.30" measuredWidth="73" measuredHeight="422">
+  <widgets xsi:type="model:Combo" id="10" x="648" y="8" width="73" text="08.00&#xD;&#xA;08.30&#xD;&#xA;09.00&#xD;&#xA;09.30&#xD;&#xA;10.00&#xD;&#xA;10.30&#xD;&#xA;11.00&#xD;&#xA;11.30&#xD;&#xA;12.00&#xD;&#xA;12.30&#xD;&#xA;13.00&#xD;&#xA;13.30&#xD;&#xA;14.00&#xD;&#xA;14.30&#xD;&#xA;15.00&#xD;&#xA;15.30&#xD;&#xA;16.00&#xD;&#xA;16.30&#xD;&#xA;17.00&#xD;&#xA;17.30" measuredWidth="73" measuredHeight="422">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Combo" id="11" x="80" y="88" width="73" text="08.30&#xD;&#xA;09.00&#xD;&#xA;09.30&#xD;&#xA;10.00&#xD;&#xA;10.30&#xD;&#xA;11.00&#xD;&#xA;11.30&#xD;&#xA;12.00&#xD;&#xA;12.30&#xD;&#xA;13.00&#xD;&#xA;13.30&#xD;&#xA;14.00&#xD;&#xA;14.30&#xD;&#xA;15.00&#xD;&#xA;15.30&#xD;&#xA;16.00&#xD;&#xA;16.30&#xD;&#xA;17.00&#xD;&#xA;17.30&#xD;&#xA;18.00" measuredWidth="73" measuredHeight="422">
+  <widgets xsi:type="model:Combo" id="11" x="8" y="8" width="73" text="08.30&#xD;&#xA;09.00&#xD;&#xA;09.30&#xD;&#xA;10.00&#xD;&#xA;10.30&#xD;&#xA;11.00&#xD;&#xA;11.30&#xD;&#xA;12.00&#xD;&#xA;12.30&#xD;&#xA;13.00&#xD;&#xA;13.30&#xD;&#xA;14.00&#xD;&#xA;14.30&#xD;&#xA;15.00&#xD;&#xA;15.30&#xD;&#xA;16.00&#xD;&#xA;16.30&#xD;&#xA;17.00&#xD;&#xA;17.30&#xD;&#xA;18.00" measuredWidth="73" measuredHeight="422">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Label" id="13" x="272" y="301" width="73" text="Sted:" measuredWidth="73" measuredHeight="23">
+  <widgets xsi:type="model:Label" id="13" x="200" y="221" width="73" text="Sted:" measuredWidth="73" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:TextField" id="14" x="368" y="301" width="71" measuredWidth="71" measuredHeight="23">
+  <widgets xsi:type="model:TextField" id="14" x="296" y="221" width="71" measuredWidth="71" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Button" id="15" x="344" y="488" height="33" text="Opprett avtale" measuredWidth="95" measuredHeight="33">
+  <widgets xsi:type="model:Button" id="15" x="272" y="408" height="33" text="Opprett avtale" measuredWidth="95" measuredHeight="33">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Label" id="16" x="272" y="136" width="81" text="Tittel:" measuredWidth="81" measuredHeight="23">
+  <widgets xsi:type="model:Label" id="16" x="200" y="56" width="81" text="Tittel:" measuredWidth="81" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:TextField" id="17" x="368" y="136" width="89" measuredWidth="89" measuredHeight="23">
+  <widgets xsi:type="model:TextField" id="17" x="296" y="56" width="89" measuredWidth="89" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Label" id="18" x="272" y="336" width="65" text="Møterom:" measuredWidth="65" measuredHeight="23">
+  <widgets xsi:type="model:Label" id="18" x="200" y="256" width="65" text="Møterom:" measuredWidth="65" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Combo" id="21" x="368" y="336" width="101" text="Ingen" measuredWidth="101" measuredHeight="23">
+  <widgets xsi:type="model:Combo" id="21" x="296" y="256" width="101" text="Ingen" measuredWidth="101" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Combo" id="23" x="616" y="88" text="Ingen&#xD;&#xA;rom 101&#xD;&#xA;rom 134&#xD;&#xA;rom 106&#xD;&#xA;rom 406&#xD;&#xA;rom 407" measuredWidth="54" measuredHeight="128">
+  <widgets xsi:type="model:Combo" id="23" x="544" y="8" text="Ingen&#xD;&#xA;rom 101&#xD;&#xA;rom 134&#xD;&#xA;rom 106&#xD;&#xA;rom 406&#xD;&#xA;rom 407" measuredWidth="54" measuredHeight="128">
     <font/>
   </widgets>
   <hRuler/>
