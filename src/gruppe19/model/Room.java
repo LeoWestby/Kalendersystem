@@ -1,13 +1,12 @@
 package gruppe19.model;
 
-import java.beans.PropertyChangeSupport;
+
 
 public class Room {
-
-	private PropertyChangeSupport pcs;
+	public final static String ROOM_PROPERTY = "RoomProperty";
 	
 	private String name;
-	
+
 	public Room(String name) {
 		this.name = name;
 	}
@@ -20,7 +19,5 @@ public class Room {
 		this.name = name;
 	}
 	
-	public void setValues(Room newRoom){
-		setName(newRoom.getName());
-	}
+	
 }

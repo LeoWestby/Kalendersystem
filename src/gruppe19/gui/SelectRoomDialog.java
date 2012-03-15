@@ -1,10 +1,9 @@
 package gruppe19.gui;
 
+import gruppe19.model.Appointment;
 import gruppe19.model.Room;
-import gruppe19.model.User;
 
 import java.awt.FlowLayout;
-import java.awt.Dialog.ModalityType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -24,13 +23,10 @@ public class SelectRoomDialog extends JDialog implements ListSelectionListener, 
 	private JList<Room> listRooms;
 	private DefaultListModel<Room> defaultListModel;
 	private DefaultListSelectionModel defaultListSelectionModel;
-	private Room model;
-	private Date dateStart, dateEnd;
+	private Appointment model;
 	
-	public SelectRoomDialog(Room room, Date dateStart, Date dateEnd) {
-		this.model=room;
-		this.dateStart = dateStart;
-		this.dateEnd = dateEnd;
+	public SelectRoomDialog(Appointment model) {
+		this.model = model;
 		setUp();
 		addRoom();
 	}
@@ -76,13 +72,18 @@ public class SelectRoomDialog extends JDialog implements ListSelectionListener, 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnAdd) {
-			int i = defaultListSelectionModel.getAnchorSelectionIndex();
-			Room a = defaultListModel.get(i);
-			model.setName(a.getName());
-			dispose();
-			
+			if(!defaultListSelectionModel.isSelectionEmpty()){
+				int i = defaultListSelectionModel.getAnchorSelectionIndex();
+				Room a = defaultListModel.get(i);
+				model.getRoom().setName(a.getName());
+				dispose();		
+
+			}
 		}
-		// TODO Auto-generated method stub
+		
+		if(e.getSource() == btnClose){
+			dispose();
+		}
 		
 	}
 

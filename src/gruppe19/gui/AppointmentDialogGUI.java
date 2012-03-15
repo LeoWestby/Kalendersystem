@@ -6,6 +6,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -49,7 +51,6 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 	private JLabel labTimeError, labTitleError;
 	private JList<User> listUsers;
 	private Dimension dim = new Dimension(210, 20);
-	private Room room;
 
 
 	/**
@@ -63,7 +64,6 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 	 */
 	public AppointmentDialogGUI(Appointment model) {
 		this.model=model;
-		this.room = new Room("Hei");
 		setUp();
 		getValues();
 	}
@@ -202,6 +202,8 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		btnCancel = new JButton("Avbryt");
 		add(btnCancel, constraints);
 		
+		//setname
+		
 		//add actionlisteners
 		btnRoom.addActionListener(this);
 		btnAddUser.addActionListener(this);
@@ -257,6 +259,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 	private void getValues(){
 		txtTitle.setText(model.getTitle());
 		dateChooser.setDate(model.getDateStart());
+		txtRoom.setText(model.getRoom().getName());
 
 
 	}
@@ -283,8 +286,9 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		//Button room 
 		if (e.getSource() == btnRoom) {
 			if(setTime()){
-				SelectRoomDialog selectRoom = new SelectRoomDialog(room,model.getDateStart(),model.getDateEnd());
+				SelectRoomDialog selectRoom = new SelectRoomDialog(model);
 				selectRoom.setVisible(true);
+				txtRoom.setText(model.getRoom().getName());
 			}
 			else{
 				labTimeError.setText("Feil i tid");
@@ -337,9 +341,13 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		app.setTitle("En avtale");
 		app.setDateStart(new Date(1000000000));
 		app.setDateEnd(new Date(10000000));
+		Room rom = new Room("Rommet");
+		app.setRoom(rom);
 		AppointmentDialogGUI gui = new AppointmentDialogGUI(app);
 		gui.setVisible(true);
 	}
+	
+
 }
 
 

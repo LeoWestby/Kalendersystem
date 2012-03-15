@@ -1,5 +1,6 @@
 package gruppe19.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -10,7 +11,15 @@ public class Appointment {
 	private Date dateEnd;
 	private String place;
 	private User owner;
+	private Room room;
+	private ArrayList<User> userList;
 	
+	public Room getRoom() {
+		return room;
+	}
+	public void setRoom(Room room) {
+		this.room = room;
+	}
 	public String getPlace() {
 		return place;
 	}
@@ -27,6 +36,9 @@ public class Appointment {
 		this.title="";
 		this.dateStart = new Date();
 		this.dateEnd = new Date();
+		this.room = new Room("");
+		this.userList = new ArrayList<User>();
+		
 	
 		
 	}
