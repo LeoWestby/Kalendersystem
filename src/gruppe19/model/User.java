@@ -2,14 +2,14 @@ package gruppe19.model;
 
 public class User {
 	
-	private String username, name, lastname;
+	private String username, firstname, lastname;
 	
-	public User(String name, String lastname) {
-		this.name = name;
+	public User(String firstname, String lastname) {
+		this.firstname = firstname;
 		this.lastname=lastname;
 	}
 	public String getName(){
-		return name + " " + lastname;
+		return firstname + " " + lastname;
 	}
 	public String getUsername() {
 		return username;
@@ -23,8 +23,12 @@ public class User {
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setfirstname(String firstname) {
+		this.firstname = firstname;
+	}
+	
+	public String getfirstname() {
+		return firstname;
 	}
 
 	public String getLastname() {
