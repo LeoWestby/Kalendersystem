@@ -1,6 +1,8 @@
 package gruppe19.gui;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -35,11 +37,14 @@ public class SelectUserDialog extends JDialog implements ListSelectionListener, 
 		listUsers = new JList();
 		listUsers.setModel(defaultListModel);
 		listUsers.setCellRenderer(new UserListRenderer());
+		
 		defaultListSelectionModel = new DefaultListSelectionModel();
+		defaultListSelectionModel.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
 		listUsers.setSelectionModel(defaultListSelectionModel);
-		defaultListSelectionModel.addListSelectionListener(this);
+		
 		JScrollPane scrollUsers = new JScrollPane(listUsers);
 		scrollUsers.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollUsers.setPreferredSize(new Dimension(200,200));
 		
 		btnClose = new JButton("Lukk");
 		btnAdd = new JButton("Legg til brukere");
@@ -51,6 +56,7 @@ public class SelectUserDialog extends JDialog implements ListSelectionListener, 
 		//actionlisteners
 		btnAdd.addActionListener(this);
 		btnClose.addActionListener(this);
+		defaultListSelectionModel.addListSelectionListener(this);
 		
 		//behaviour
 		setModalityType(ModalityType.APPLICATION_MODAL);

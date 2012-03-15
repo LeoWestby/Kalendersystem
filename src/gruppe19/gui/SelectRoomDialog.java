@@ -76,7 +76,7 @@ public class SelectRoomDialog extends JDialog implements ListSelectionListener, 
 			if(!defaultListSelectionModel.isSelectionEmpty()){
 				int i = defaultListSelectionModel.getAnchorSelectionIndex();
 				Room a = (Room)defaultListModel.get(i);
-				model.getRoom().setName(a.getName());
+				model.getRoom().setRoom(a);
 				dispose();		
 
 			}

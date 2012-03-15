@@ -24,6 +24,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SpinnerListModel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -131,6 +133,8 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		txtDescription = new JTextArea();
 		txtDescription.setLineWrap(true);
 		txtDescription.setName("TextDescription");
+		
+		
 		JScrollPane pane = new JScrollPane(txtDescription);
 		pane.setPreferredSize(new Dimension(210, 100));
 		pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -172,6 +176,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		listUsers.setCellRenderer(new UserListRenderer());
 		
 		defaultSelectModel = new DefaultListSelectionModel();
+		defaultSelectModel.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
 		listUsers.setSelectionModel(defaultSelectModel);
 		defaultSelectModel.addListSelectionListener(this);
 		JScrollPane scrollUsers = new JScrollPane(listUsers);
@@ -260,6 +265,15 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		txtTitle.setText(model.getTitle());
 		dateChooser.setDate(model.getDateStart());
 		txtRoom.setText(model.getRoom().getName());
+		
+		//tid
+		Date start = model.getDateStart();
+		String startS = format.format(start.getHours()) + ":" +format.format(start.getMinutes());
+		Date end = model.getDateEnd();
+		String endS = format.format(end.getHours()) + ":" +format.format(end.getMinutes());
+		System.out.println(startS + " " + endS);
+		spinnerStart.setValue(startS);
+		spinnerEnd.setValue(endS);
 
 
 	}
@@ -317,8 +331,15 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 				labTitleError.setForeground(Color.red);
 				return;
 			}
+			if(!setTime()){
+				labTimeError.setText("Tid er feil");
+				labTimeError.setForeground(Color.red);
+				return;
+			}
 			
-			getValues();	
+			
+			setValues();
+			dispose();
 		}
 		
 		//button cancel
@@ -340,8 +361,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		Appointment app = new Appointment();
 		app.setTitle("En avtale");
 		app.setDateStart(new Date(1000000000));
-		app.setDateEnd(new Date(10000000));
-		Room rom = new Room("Rommet");
+		Room rom = new Room("");
 		app.setRoom(rom);
 		AppointmentDialogGUI gui = new AppointmentDialogGUI(app);
 		gui.setVisible(true);
