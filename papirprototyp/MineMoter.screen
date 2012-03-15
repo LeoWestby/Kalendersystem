@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
-  <widgets xsi:type="model:Window" id="1" x="128" y="16" width="809" height="529" text="Mine møter og avtaler" measuredWidth="809" measuredHeight="529"/>
+  <widgets xsi:type="model:Window" id="1" x="128" y="16" width="393" height="529" text="Mine møter og avtaler" measuredWidth="393" measuredHeight="529"/>
   <widgets xsi:type="model:Label" id="4" x="144" y="117" width="25" text="1." measuredWidth="25" measuredHeight="23">
     <font/>
   </widgets>
@@ -99,46 +99,6 @@
     <items x="87" y="0" width="30" height="23" text="neste"/>
   </widgets>
   <widgets xsi:type="model:SearchField" id="42" x="144" y="64" width="308" text="Filter" measuredWidth="308" measuredHeight="24"/>
-  <widgets xsi:type="model:VLine" id="43" x="528" y="35" height="510" measuredWidth="6" measuredHeight="510"/>
-  <widgets xsi:type="model:Label" id="45" x="544" y="61" text="Nye møteinvitasjoner:" measuredWidth="175" measuredHeight="29">
-    <font size="12" bold="true"/>
-  </widgets>
-  <widgets xsi:type="model:WidgetGroup" id="48" x="648" y="152" measuredWidth="143" measuredHeight="33">
-    <widgets xsi:type="model:Button" id="46" width="66" height="33" text="Godta" measuredWidth="66" measuredHeight="33" background="#6aa84f">
-      <font/>
-    </widgets>
-    <widgets xsi:type="model:Button" id="47" x="82" width="61" height="33" text="Avslå" measuredWidth="61" measuredHeight="33" background="#e06666">
-      <font/>
-    </widgets>
-  </widgets>
-  <widgets xsi:type="model:WidgetGroup" id="49" x="648" y="256" measuredWidth="143" measuredHeight="33">
-    <widgets xsi:type="model:Button" id="50" width="66" height="33" text="Godta" measuredWidth="66" measuredHeight="33" background="#6aa84f">
-      <font/>
-    </widgets>
-    <widgets xsi:type="model:Button" id="51" x="82" width="61" height="33" text="Avslå" measuredWidth="61" measuredHeight="33" background="#e06666">
-      <font/>
-    </widgets>
-  </widgets>
-  <widgets xsi:type="model:WidgetGroup" id="52" x="648" y="358" measuredWidth="143" measuredHeight="33">
-    <widgets xsi:type="model:Button" id="53" width="66" height="33" text="Godta" measuredWidth="66" measuredHeight="33" background="#6aa84f">
-      <font/>
-    </widgets>
-    <widgets xsi:type="model:Button" id="54" x="82" width="61" height="33" text="Avslå" measuredWidth="61" measuredHeight="33" background="#e06666">
-      <font/>
-    </widgets>
-  </widgets>
-  <widgets xsi:type="model:Label" id="58" x="592" y="130" width="281" text="Lunsj med Petter, 20.mars, Kantinen, 12.00-13.00" measuredWidth="281" measuredHeight="23">
-    <font/>
-  </widgets>
-  <widgets xsi:type="model:Label" id="59" x="584" y="206" width="305" text="Foredrag om økonomistyring i mellomstore bedrifter," measuredWidth="305" measuredHeight="23">
-    <font/>
-  </widgets>
-  <widgets xsi:type="model:Label" id="60" x="584" y="228" width="305" text="12.mai, rom 406, 09.00-15.00" measuredWidth="305" measuredHeight="23">
-    <font/>
-  </widgets>
-  <widgets xsi:type="model:Label" id="61" x="584" y="336" width="343" text="Se over regnskap med Ragnhild, 27 mars, rom 106, 13.00-15.00" measuredWidth="343" measuredHeight="23">
-    <font/>
-  </widgets>
   <hRuler/>
   <vRuler/>
   <font/>

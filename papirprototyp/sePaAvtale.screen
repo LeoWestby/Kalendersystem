@@ -10,25 +10,22 @@
   <widgets xsi:type="model:Text" id="4" x="192" y="176" text="Sluttidspunkt:" measuredWidth="73" measuredHeight="15">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Label" id="5" x="192" y="298" width="73" text="Beskrivelse:" measuredWidth="73" measuredHeight="23">
+  <widgets xsi:type="model:Label" id="5" x="192" y="306" width="73" text="Beskrivelse:" measuredWidth="73" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:TextArea" id="6" x="184" y="320" width="273" height="97" text="Handle inn til quizen på mandag den 19. " measuredWidth="273" measuredHeight="97" state="disabled">
+  <widgets xsi:type="model:TextArea" id="6" x="184" y="328" width="273" height="97" text="Handle inn til quizen på mandag den 19. " measuredWidth="273" measuredHeight="97" state="disabled">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Label" id="9" x="192" y="224" width="81" text="Sted:" measuredWidth="81" measuredHeight="23">
+  <widgets xsi:type="model:Label" id="9" x="192" y="216" width="81" text="Sted:" measuredWidth="81" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Label" id="10" x="192" y="264" width="65" text="Møterom:" measuredWidth="65" measuredHeight="23">
+  <widgets xsi:type="model:Label" id="10" x="192" y="256" width="65" text="Møterom:" measuredWidth="65" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:TextField" id="11" x="288" y="224" width="153" text="Butikken" measuredWidth="153" measuredHeight="23" state="disabled">
+  <widgets xsi:type="model:TextField" id="11" x="288" y="216" width="153" text="Butikken" measuredWidth="153" measuredHeight="23" state="disabled">
     <font/>
   </widgets>
-  <widgets xsi:type="model:TextField" id="12" x="288" y="264" width="81" measuredWidth="81" measuredHeight="23" background="#999999">
-    <font/>
-  </widgets>
-  <widgets xsi:type="model:Button" id="13" x="200" y="436" width="113" height="39" text="Lukk" measuredWidth="113" measuredHeight="39">
+  <widgets xsi:type="model:Button" id="13" x="192" y="448" width="113" height="39" text="Lukk" measuredWidth="113" measuredHeight="39">
     <font/>
   </widgets>
   <widgets xsi:type="model:Label" id="14" x="192" y="48" width="73" text="Tittel:" measuredWidth="73" measuredHeight="23">
@@ -44,6 +41,12 @@
     <font/>
   </widgets>
   <widgets xsi:type="model:TextField" id="19" x="288" y="172" width="51" text="14.00" measuredWidth="51" measuredHeight="23" state="disabled">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="20" x="288" y="256" width="101" text="Ingen" measuredWidth="101" measuredHeight="23" state="disabled">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="21" x="338" y="448" width="113" height="39" text="Slett avtale" measuredWidth="113" measuredHeight="39">
     <font/>
   </widgets>
   <hRuler/>

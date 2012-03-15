@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
-  <widgets xsi:type="model:Window" id="1" x="216" y="88" width="353" height="462" text="Endre Avtale" measuredWidth="353" measuredHeight="462"/>
+  <widgets xsi:type="model:Window" id="1" x="216" y="88" width="353" height="489" text="Endre Avtale" measuredWidth="353" measuredHeight="489"/>
   <widgets xsi:type="model:DateField" id="2" x="368" y="176" width="105" text="14/03/2012 " measuredWidth="105" measuredHeight="23"/>
   <widgets xsi:type="model:Label" id="3" x="272" y="176" width="49" text="Dato:" measuredWidth="49" measuredHeight="23">
     <font/>
@@ -11,10 +11,10 @@
   <widgets xsi:type="model:Text" id="5" x="272" y="264" text="Sluttidspunkt:" measuredWidth="73" measuredHeight="15">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Label" id="6" x="272" y="346" width="73" text="Beskrivelse:" measuredWidth="73" measuredHeight="23">
+  <widgets xsi:type="model:Label" id="6" x="272" y="370" width="73" text="Beskrivelse:" measuredWidth="73" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:TextArea" id="7" x="272" y="368" width="257" height="97" text="Handle inn premier til Quizen som skal være på mandag" measuredWidth="257" measuredHeight="97">
+  <widgets xsi:type="model:TextArea" id="7" x="272" y="392" width="249" height="97" text="Handle inn premier til Quizen som skal være på mandag" measuredWidth="249" measuredHeight="97">
     <font/>
   </widgets>
   <widgets xsi:type="model:Combo" id="8" x="368" y="216" text="13.00" measuredWidth="51" measuredHeight="23">
@@ -32,19 +32,28 @@
   <widgets xsi:type="model:Label" id="12" x="272" y="301" width="73" text="Sted:" measuredWidth="73" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:TextField" id="13" x="368" y="301" width="71" measuredWidth="71" measuredHeight="23">
-    <font/>
-  </widgets>
-  <widgets xsi:type="model:Button" id="14" x="296" y="488" height="33" text="Lagre endring" measuredWidth="93" measuredHeight="33">
+  <widgets xsi:type="model:Button" id="14" x="296" y="512" height="33" text="Lagre endring" measuredWidth="93" measuredHeight="33">
     <font/>
   </widgets>
   <widgets xsi:type="model:Label" id="15" x="272" y="136" width="81" text="Tittel:" measuredWidth="81" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:TextField" id="16" x="368" y="136" width="121" text="Handle inn til Quiz" measuredWidth="121" measuredHeight="23">
+  <widgets xsi:type="model:TextField" id="16" x="368" y="136" width="153" text="Handle inn til Quiz" measuredWidth="153" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Button" id="17" x="400" y="488" width="105" height="33" text="Slett avtale" measuredWidth="105" measuredHeight="33">
+  <widgets xsi:type="model:Button" id="17" x="400" y="512" width="105" height="33" text="Slett avtale" measuredWidth="105" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="18" x="272" y="336" width="65" text="Møterom:" measuredWidth="65" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="19" x="368" y="340" width="101" text="rom 406" measuredWidth="101" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="20" x="600" y="108" text="Ingen&#xD;&#xA;rom 101&#xD;&#xA;rom 134&#xD;&#xA;rom 106&#xD;&#xA;rom 406&#xD;&#xA;rom 407" measuredWidth="54" measuredHeight="128">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="21" x="368" y="301" width="153" measuredWidth="153" measuredHeight="23">
     <font/>
   </widgets>
   <hRuler/>

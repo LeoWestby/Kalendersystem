@@ -44,7 +44,7 @@
         <widgets xsi:type="model:Icon" id="23" x="261" y="80" width="26" height="23" measuredWidth="26" measuredHeight="23" icon="delete (large)"/>
         <widgets xsi:type="model:Icon" id="24" x="261" y="128" width="26" height="23" measuredWidth="26" measuredHeight="23" icon="delete (large)"/>
       </widgets>
-      <widgets xsi:type="model:Button" id="3" x="80" y="260" width="161" height="58" text="Lagre" measuredWidth="161" measuredHeight="58">
+      <widgets xsi:type="model:Button" id="3" x="88" y="268" width="153" height="50" text="Lagre" measuredWidth="153" measuredHeight="50">
         <font size="10"/>
       </widgets>
     </widgets>

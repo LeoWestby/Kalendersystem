@@ -47,10 +47,10 @@
   <widgets xsi:type="model:Label" id="18" x="272" y="336" width="65" text="Møterom:" measuredWidth="65" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:TextField" id="19" x="456" y="336" width="81" measuredWidth="81" measuredHeight="23">
+  <widgets xsi:type="model:Combo" id="21" x="368" y="336" width="101" text="Ingen" measuredWidth="101" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Button" id="20" x="368" y="336" width="81" height="23" text="Søk etter rom" measuredWidth="81" measuredHeight="23">
+  <widgets xsi:type="model:Combo" id="23" x="616" y="88" text="Ingen&#xD;&#xA;rom 101&#xD;&#xA;rom 134&#xD;&#xA;rom 106&#xD;&#xA;rom 406&#xD;&#xA;rom 407" measuredWidth="54" measuredHeight="128">
     <font/>
   </widgets>
   <hRuler/>
