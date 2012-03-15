@@ -38,7 +38,7 @@ public class SelectRoomDialog extends JDialog implements ListSelectionListener, 
 		defaultListModel = new DefaultListModel();
 		listRooms = new JList();
 		listRooms.setModel(defaultListModel);
-		
+		listRooms.setCellRenderer(new RoomListRenderer());
 		defaultListSelectionModel = new DefaultListSelectionModel();
 		listRooms.setSelectionModel(defaultListSelectionModel);
 		defaultListSelectionModel.addListSelectionListener(this);
