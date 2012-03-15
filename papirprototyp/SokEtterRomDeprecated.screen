@@ -1,6 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
-  <widgets xsi:type="model:Window" id="1" x="128" y="64" width="401" height="377" text="Søk Etter Rom" measuredWidth="401" measuredHeight="377"/>
+  <widgets xsi:type="model:List" id="2" x="264" y="81" text="Finn Hansen (finhas)&#xA;Finn Lee (filee)&#xA;Finn Ola Hanstveot (fohas)" measuredWidth="151" measuredHeight="67">
+    <font/>
+    <items x="0" y="2" width="151" height="21" text="Finn Hansen (finhas)"/>
+    <items x="0" y="23" width="151" height="21" text="Finn Lee (filee)"/>
+    <items x="0" y="44" width="151" height="21" text="Finn Ola Hanstveot (fohas)"/>
+  </widgets>
+  <widgets xsi:type="model:Panel" id="6" x="592" y="40" width="91" height="42" measuredWidth="91" measuredHeight="42"/>
+  <widgets xsi:type="model:Link" id="7" x="608" y="49" text="HairPower" measuredWidth="58" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="8" x="264" y="18" width="193" text="Hansen" measuredWidth="193" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="9" x="264" y="184" width="193" text="Beate" measuredWidth="193" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="10" x="264" y="216" width="193" text="Olsen" measuredWidth="193" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="11" x="264" y="49" width="193" text="Lee" measuredWidth="193" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="12" x="264" y="288" width="193" text="Morten" measuredWidth="193" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="13" x="264" y="320" width="193" text="Henriksen" measuredWidth="193" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Panel" id="14" x="640" y="216" width="91" height="83" measuredWidth="91" measuredHeight="83" background="#fce5cd"/>
+  <widgets xsi:type="model:Panel" id="15" x="624" y="109" width="91" height="42" measuredWidth="91" measuredHeight="42"/>
+  <widgets xsi:type="model:Link" id="16" x="650" y="226" text="Spinningtime" measuredWidth="74" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="18" x="528" y="176" text="rom 134" measuredWidth="48" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="19" x="528" y="147" text="rom 101" measuredWidth="48" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="20" x="528" y="118" text="Ingen" measuredWidth="35" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="21" x="528" y="238" text="rom 406" measuredWidth="48" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="22" x="528" y="206" text="rom 106" measuredWidth="48" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="23" x="528" y="266" text="rom 407" measuredWidth="48" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Window" id="24" x="810" y="5" width="353" height="604" text="Endre Møte" measuredWidth="353" measuredHeight="604"/>
+  <widgets xsi:type="model:DateField" id="25" x="962" y="93" width="105" text="16/03/2012 " measuredWidth="105" measuredHeight="23"/>
+  <widgets xsi:type="model:Label" id="26" x="866" y="93" width="49" text="Dato:" measuredWidth="49" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="27" x="866" y="133" width="81" text="Starttidspunkt:" measuredWidth="81" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Text" id="28" x="866" y="181" text="Sluttidspunkt:" measuredWidth="73" measuredHeight="15">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="29" x="866" y="410" width="73" text="Beskrivelse:" measuredWidth="73" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextArea" id="30" x="866" y="432" width="249" height="97" text="Jeg må diskutere med dere hva vi skal gjøre med dette problemet som jeg fant. Det kommer til å få store ringvirkninger i prosjektet vårt." measuredWidth="249" measuredHeight="97">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="31" x="962" y="133" text="12.00" measuredWidth="51" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="32" x="962" y="177" text="14.00" measuredWidth="51" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="33" x="866" y="341" width="73" text="Sted:" measuredWidth="73" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="34" x="890" y="552" height="33" text="Lagre endring" measuredWidth="93" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="35" x="994" y="552" width="105" height="33" text="Slett avtale" measuredWidth="105" measuredHeight="33">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="36" x="866" y="376" width="65" text="Møterom:" measuredWidth="65" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="37" x="962" y="380" width="101" text="rom 406" measuredWidth="101" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="38" x="962" y="341" width="153" measuredWidth="153" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="39" x="866" y="49" width="81" text="Tittel:" measuredWidth="81" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextField" id="40" x="962" y="49" width="153" text="Møte med Beate, Morten og Finn" measuredWidth="153" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="41" x="866" y="217" width="73" text="Deltagere:" measuredWidth="73" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:TextArea" id="42" x="985" y="248" width="152" height="63" text="Beate Olsen&#xD;&#xA;Morten Henriksen&#xD;&#xA;Finn Lee" measuredWidth="152" measuredHeight="63">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Button" id="43" x="866" y="245" width="105" text="Søk etter deltager" measuredWidth="105" measuredHeight="25">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Icon" id="44" x="1112" y="271" width="18" height="14" measuredWidth="18" measuredHeight="14" icon="delete (large)"/>
+  <widgets xsi:type="model:Icon" id="45" x="1112" y="251" width="18" height="14" measuredWidth="18" measuredHeight="14" icon="delete (large)"/>
+  <widgets xsi:type="model:Icon" id="46" x="1112" y="284" width="18" height="14" measuredWidth="18" measuredHeight="14" icon="delete (large)"/>
   <hRuler/>
   <vRuler/>
   <font/>

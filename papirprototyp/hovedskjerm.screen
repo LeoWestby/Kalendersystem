@@ -255,7 +255,7 @@
   <widgets xsi:type="model:Button" id="426" x="48" y="208" text="Invitasjoner (3)" measuredWidth="98" measuredHeight="25">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Button" id="427" x="48" y="240" text="Vis flere kalendere" measuredWidth="115" measuredHeight="25">
+  <widgets xsi:type="model:Button" id="427" x="48" y="240" text="Importer kalendere" measuredWidth="120" measuredHeight="25">
     <font/>
   </widgets>
   <widgets xsi:type="model:Button" id="428" x="48" y="176" text="Mine møter" measuredWidth="82" measuredHeight="25">

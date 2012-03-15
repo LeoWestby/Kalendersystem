@@ -62,7 +62,9 @@
   <widgets xsi:type="model:Combo" id="30" x="592" y="128" text="Ingen&#xD;&#xA;rom 101&#xD;&#xA;rom 134&#xD;&#xA;rom 106&#xD;&#xA;rom 406&#xD;&#xA;rom 407" measuredWidth="54" measuredHeight="128">
     <font/>
   </widgets>
-  <hRuler/>
+  <hRuler>
+    <guides position="535"/>
+  </hRuler>
   <vRuler/>
   <font/>
 </model:Screen>
