@@ -249,10 +249,10 @@
     <widgets xsi:type="model:Icon" id="417" x="40" y="16" height="28" measuredWidth="32" measuredHeight="28" foreground="#0b5394" icon="filled-arrow-left (large)"/>
     <widgets xsi:type="model:Icon" id="418" x="688" y="16" height="28" measuredWidth="32" measuredHeight="28" foreground="#0b5394" icon="filled-arrow-left (large)" iconRotation="180"/>
   </widgets>
-  <widgets xsi:type="model:Button" id="423" x="48" y="114" text="Opprett avtale" measuredWidth="95" measuredHeight="25">
+  <widgets xsi:type="model:Button" id="423" x="48" y="144" text="Opprett avtale" measuredWidth="95" measuredHeight="25">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Button" id="424" x="48" y="144" text="Kalle inn til møte" measuredWidth="109" measuredHeight="25">
+  <widgets xsi:type="model:Button" id="424" x="48" y="112" text="Kalle inn til møte" measuredWidth="109" measuredHeight="25">
     <font/>
   </widgets>
   <widgets xsi:type="model:Button" id="426" x="48" y="208" text="Invitasjoner (3)" measuredWidth="98" measuredHeight="25">
