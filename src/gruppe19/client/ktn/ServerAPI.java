@@ -1,5 +1,6 @@
 package gruppe19.client.ktn;
 
+import gruppe19.model.User;
 import gruppe19.server.ktn.ServerMessage;
 import gruppe19.server.ktn.ServerMessage.Type;
 
@@ -128,24 +129,15 @@ public class ServerAPI {
 	 * 
 	 * @param username The user-specified username.
 	 * @param password The user-specified password.
-	 * @return 
-	 * <ul>
-	 * 		<li>A negative value if the username or password is incorrect.
-	 * 		<li>A positive value if both the username and the password is correct.
-	 * </ul>
+	 * @return The user with this username and password or <code>null</code> if
+	 * no such user exists.
 	 */
-	public static int login(String username, String password) {
+	public static User login(String username, String password) {
 		//Send login request to server
 		send("a" + username + "\0" + password);
 		
 		//Parse response
-		//TODO: Replace Person with whatever model we're using and return that instead
-		Person p = (Person)getResponse().payload;
-		
-		if (p == null) {
-			return -1;
-		}
-		return 1;
+		return (User)getResponse().payload;
 	}
 	
 	/**
