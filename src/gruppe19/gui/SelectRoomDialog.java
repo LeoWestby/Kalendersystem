@@ -6,6 +6,7 @@ import gruppe19.model.Room;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Date;
 
 import javax.swing.DefaultListModel;
@@ -20,8 +21,8 @@ import javax.swing.event.ListSelectionListener;
 public class SelectRoomDialog extends JDialog implements ListSelectionListener, ActionListener{
 
 	private JButton btnClose, btnAdd;
-	private JList<Room> listRooms;
-	private DefaultListModel<Room> defaultListModel;
+	private JList listRooms;
+	private DefaultListModel defaultListModel;
 	private DefaultListSelectionModel defaultListSelectionModel;
 	private Appointment model;
 	
@@ -34,8 +35,8 @@ public class SelectRoomDialog extends JDialog implements ListSelectionListener, 
 	private void setUp(){
 		setLayout(new FlowLayout());
 		//User list
-		defaultListModel = new DefaultListModel<Room>();
-		listRooms = new JList<Room>();
+		defaultListModel = new DefaultListModel();
+		listRooms = new JList();
 		listRooms.setModel(defaultListModel);
 		
 		defaultListSelectionModel = new DefaultListSelectionModel();
@@ -67,14 +68,14 @@ public class SelectRoomDialog extends JDialog implements ListSelectionListener, 
 		for (int i = 0; i < 20; i++) {
 			defaultListModel.addElement(new Room("Rom "+i));			
 		}
-
+	
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnAdd) {
 			if(!defaultListSelectionModel.isSelectionEmpty()){
 				int i = defaultListSelectionModel.getAnchorSelectionIndex();
-				Room a = defaultListModel.get(i);
+				Room a = (Room)defaultListModel.get(i);
 				model.getRoom().setName(a.getName());
 				dispose();		
 

@@ -8,14 +8,14 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
-public class UserListRenderer extends JLabel implements ListCellRenderer<User>{
+public class UserListRenderer extends JLabel implements ListCellRenderer{
+
 
 	@Override
-	public Component getListCellRendererComponent(JList<? extends User> list,
-			User value, int index, boolean isSelected, boolean cellHasFocus) {
-	setText(value.getName());
-		
-        if (isSelected) {
+	public Component getListCellRendererComponent(JList list, Object value,
+			int index, boolean isSelected, boolean cellHasFocus) {
+		setText(((User) value).getName());
+		if (isSelected) {
             setBackground(list.getSelectionBackground());
               setForeground(list.getSelectionForeground());
           }

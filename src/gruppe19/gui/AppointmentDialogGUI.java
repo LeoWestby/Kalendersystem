@@ -41,7 +41,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 	private GridBagLayout layout;
 	private JTextField txtTitle, txtPlace, txtRoom;
 	private JButton btnConfirm, btnRoom, btnCancel, btnAddUser, btnDeleteUser;
-	private DefaultListModel<User> defaultModel;
+	private DefaultListModel defaultModel;
 	private DefaultListSelectionModel defaultSelectModel;
 	private JTextArea txtDescription;
 	private GridBagConstraints constraints;
@@ -49,7 +49,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 	private JSpinner spinnerEnd, spinnerStart;
 	private JDateChooser dateChooser;
 	private JLabel labTimeError, labTitleError;
-	private JList<User> listUsers;
+	private JList listUsers;
 	private Dimension dim = new Dimension(210, 20);
 
 
@@ -166,8 +166,8 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		add(new JLabel("Deltagere: "),constraints);
 		
 		constraints.gridx=1;
-		defaultModel = new DefaultListModel<User>();
-		listUsers = new JList<User>();
+		defaultModel = new DefaultListModel();
+		listUsers = new JList();
 		listUsers.setModel(defaultModel);
 		listUsers.setCellRenderer(new UserListRenderer());
 		
