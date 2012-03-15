@@ -22,7 +22,7 @@ public class SelectUserDialog extends JDialog implements ListSelectionListener, 
 	private DefaultListModel defaultListModel, model;
 	private DefaultListSelectionModel defaultListSelectionModel;
 	
-	public SelectUserDialog(DefaultListModel<User> model) {
+	public SelectUserDialog(DefaultListModel model) {
 		this.model = model;
 		setUp();
 		addUsers();
