@@ -255,9 +255,6 @@
   <widgets xsi:type="model:Button" id="424" x="48" y="144" text="Kalle inn til møte" measuredWidth="109" measuredHeight="25">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Label" id="425" x="48" y="62" text="Victor Fielding" measuredWidth="81" measuredHeight="23">
-    <font/>
-  </widgets>
   <widgets xsi:type="model:Button" id="426" x="48" y="208" text="Invitasjoner (3)" measuredWidth="98" measuredHeight="25">
     <font/>
   </widgets>

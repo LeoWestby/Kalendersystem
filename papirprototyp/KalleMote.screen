@@ -44,12 +44,6 @@
   <widgets xsi:type="model:TextField" id="19" x="360" y="308" width="153" measuredWidth="153" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:TextField" id="21" x="448" y="348" width="81" measuredWidth="81" measuredHeight="23">
-    <font/>
-  </widgets>
-  <widgets xsi:type="model:Button" id="22" x="360" y="348" width="81" height="23" text="Søk etter rom" measuredWidth="81" measuredHeight="23">
-    <font/>
-  </widgets>
   <widgets xsi:type="model:Button" id="23" x="264" y="244" width="105" text="Søk etter deltager" measuredWidth="105" measuredHeight="25">
     <font/>
   </widgets>
@@ -60,6 +54,9 @@
     <font/>
   </widgets>
   <widgets xsi:type="model:TextField" id="26" x="360" y="48" width="81" measuredWidth="81" measuredHeight="23">
+    <font/>
+  </widgets>
+  <widgets xsi:type="model:Combo" id="28" x="360" y="348" width="101" text="Ingen" measuredWidth="101" measuredHeight="23">
     <font/>
   </widgets>
   <hRuler/>
