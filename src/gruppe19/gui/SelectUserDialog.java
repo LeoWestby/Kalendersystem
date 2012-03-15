@@ -18,8 +18,8 @@ import javax.swing.event.ListSelectionListener;
 public class SelectUserDialog extends JDialog implements ListSelectionListener, ActionListener{
 	
 	private JButton btnClose, btnAdd;
-	private JList<User> listUsers;
-	private DefaultListModel<User> defaultListModel, model;
+	private JList listUsers;
+	private DefaultListModel defaultListModel, model;
 	private DefaultListSelectionModel defaultListSelectionModel;
 	
 	public SelectUserDialog(DefaultListModel<User> model) {
@@ -31,8 +31,8 @@ public class SelectUserDialog extends JDialog implements ListSelectionListener, 
 	private void setUp(){
 		setLayout(new FlowLayout());
 		//User list
-		defaultListModel = new DefaultListModel<User>();
-		listUsers = new JList<User>();
+		defaultListModel = new DefaultListModel();
+		listUsers = new JList();
 		listUsers.setModel(defaultListModel);
 		listUsers.setCellRenderer(new UserListRenderer());
 		defaultListSelectionModel = new DefaultListSelectionModel();
@@ -73,7 +73,7 @@ public class SelectUserDialog extends JDialog implements ListSelectionListener, 
 		if(e.getSource() == btnAdd){
 			if(!defaultListSelectionModel.isSelectionEmpty()){
 				int i = defaultListSelectionModel.getAnchorSelectionIndex();
-				User a = defaultListModel.get(i);
+				User a = (User)defaultListModel.get(i);
 				if(!model.contains(a)){
 					model.addElement(a);
 				}
