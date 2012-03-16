@@ -2,8 +2,20 @@ package gruppe19.model;
 
 public class User {
 	
-	private String username, firstname, lastname;
+	private String username, firstname, lastname, tlfnr;
 	
+	public String getFirstname() {
+		return firstname;
+	}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+	public String getTlfnr() {
+		return tlfnr;
+	}
+	public void setTlfnr(String tlfnr) {
+		this.tlfnr = tlfnr;
+	}
 	public User(String firstname, String lastname) {
 		this.firstname = firstname;
 		this.lastname=lastname;
