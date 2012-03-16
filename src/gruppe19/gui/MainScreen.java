@@ -11,10 +11,12 @@ import java.util.Date;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
@@ -23,6 +25,9 @@ import com.toedter.plaf.JCalendarTheme;
 
 public class MainScreen extends JFrame {
 	private final User loggedInUser;
+	private final MainMenu menu;
+	private final JCalendar miniCalendar;
+	private final JPanel calendar;
 	
 	private class MainMenu extends JPanel {
 		private final JLabel firstName = new JLabel(loggedInUser.getfirstname()), 
@@ -70,12 +75,29 @@ public class MainScreen extends JFrame {
 	
 	public MainScreen(User user) {
 		loggedInUser = user;
-		final MainMenu menu = new MainMenu();
+		menu = new MainMenu();
+		miniCalendar = new JCalendar();
+		calendar = new JPanel();
+		calendar.setLayout(new BorderLayout());
+		calendar.add(new JLabel(new ImageIcon(getClass().getResource("/gruppe19/client/images/Calendar.png"))), BorderLayout.CENTER);
+		JScrollPane p = new JScrollPane(calendar);
+		//Build the calendar
+		setSize(1280, 720);
+		calendar.setSize(900, 900);
+		calendar.setLocation(50, 0);
+		p.setSize(p.getPreferredSize().width + 15, 720);
+		p.setLocation(getWidth() - p.getPreferredSize().width - 31, 0);
+		add(p);
+		p.setLayout(null);
+		JLabel l = new JLabel("TEST");
+		l.setBounds(0, 600, 100, 20);
+		p.add(l);
+		
 		menu.setLocation(47, 39);
 		add(menu);
 		
 		setLayout(null);		
-		setSize(1280, 720);
+		
 		setTitle("Kalendersystem - Hovedskjerm");
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
