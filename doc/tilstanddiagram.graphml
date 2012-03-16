@@ -17,10 +17,10 @@
     <node id="n0">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.flowchart.terminator">
-          <y:Geometry height="40.0" width="80.0" x="157.0" y="186.0"/>
+          <y:Geometry height="81.6558627264061" width="129.5367016205911" x="157.0" y="186.0"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="custom" textColor="#000000" visible="true" width="74.01953125" x="2.990234375" y="10.6494140625">Hovedskjerm<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="custom" textColor="#000000" visible="true" width="74.01953125" x="27.758585185295544" y="31.47734542570305">Hovedskjerm<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -33,7 +33,7 @@
     <node id="n1">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.flowchart.terminator">
-          <y:Geometry height="40.0" width="108.0" x="344.0" y="186.0"/>
+          <y:Geometry height="40.0" width="108.0" x="386.6876111079562" y="153.54971313476562"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="custom" textColor="#000000" visible="true" width="87.37890625" x="10.310546875" y="10.6494140625">Opprette Avtale<y:LabelModel>
@@ -49,7 +49,7 @@
     <node id="n2">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.flowchart.start2">
-          <y:Geometry height="25.0" width="63.0" x="-134.0" y="326.5"/>
+          <y:Geometry height="25.0" width="63.0" x="8.155862726406099" y="348.767036721636"/>
           <y:Fill color="#000000" color2="#000000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="29.5" y="10.5">
@@ -66,7 +66,7 @@
     <node id="n3">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.flowchart.terminator">
-          <y:Geometry height="40.0" width="80.0" x="627.0" y="186.0"/>
+          <y:Geometry height="40.0" width="80.0" x="554.52344186381" y="333.767036721636"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="custom" textColor="#000000" visible="true" width="64.673828125" x="7.6630859375" y="10.6494140625">Mine møter<y:LabelModel>
@@ -82,7 +82,7 @@
     <node id="n4">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.flowchart.terminator">
-          <y:Geometry height="40.0" width="80.0" x="939.5" y="104.5"/>
+          <y:Geometry height="40.0" width="80.0" x="227.9728312678742" y="-24.970924690181107"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="custom" textColor="#000000" visible="true" width="77.3828125" x="1.30859375" y="10.6494140625">Velg kalender<y:LabelModel>
@@ -98,7 +98,7 @@
     <node id="n5">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.flowchart.terminator">
-          <y:Geometry height="40.0" width="80.0" x="489.5" y="336.0"/>
+          <y:Geometry height="40.0" width="80.0" x="674.3770143491383" y="97.2961448999047"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="custom" textColor="#000000" visible="true" width="72.033203125" x="3.9833984375" y="10.6494140625">Søk deltager<y:LabelModel>
@@ -114,7 +114,7 @@
     <node id="n6">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.flowchart.terminator">
-          <y:Geometry height="40.0" width="80.0" x="149.0" y="352.0"/>
+          <y:Geometry height="40.0" width="80.0" x="277.3450905624405" y="383.91754051477596"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="custom" textColor="#000000" visible="true" width="76.69140625" x="1.654296875" y="10.6494140625">Rediger møte<y:LabelModel>
@@ -130,7 +130,7 @@
     <node id="n7">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.flowchart.terminator">
-          <y:Geometry height="40.0" width="80.0" x="149.0" y="436.0"/>
+          <y:Geometry height="40.0" width="80.0" x="96.26991271972656" y="436.0"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="custom" textColor="#000000" visible="true" width="81.37890625" x="-0.689453125" y="10.6494140625">Rediger avtale<y:LabelModel>
@@ -146,7 +146,7 @@
     <node id="n8">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.flowchart.terminator">
-          <y:Geometry height="40.0" width="80.0" x="489.5" y="186.0"/>
+          <y:Geometry height="40.0" width="80.0" x="538.3402250259734" y="111.69494756911338"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="custom" textColor="#000000" visible="true" width="58.673828125" x="10.6630859375" y="10.6494140625">Kall møter<y:LabelModel>
@@ -178,7 +178,7 @@
     <node id="n10">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.flowchart.terminator">
-          <y:Geometry height="40.0" width="80.0" x="627.0" y="33.166666666666686"/>
+          <y:Geometry height="40.0" width="80.0" x="648.6723069590086" y="219.3183964092011"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="custom" textColor="#000000" visible="true" width="66.02734375" x="6.986328125" y="10.6494140625">Se på møte<y:LabelModel>
@@ -194,7 +194,7 @@
     <node id="n11">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.flowchart.terminator">
-          <y:Geometry height="40.0" width="80.0" x="752.0" y="346.5"/>
+          <y:Geometry height="40.0" width="80.0" x="614.929694947569" y="443.60450097330425"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="custom" textColor="#000000" visible="true" width="70.71484375" x="4.642578125" y="10.6494140625">Se på avtale<y:LabelModel>
@@ -210,7 +210,7 @@
     <node id="n12">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.flowchart.start2">
-          <y:Geometry height="35.0" width="48.0" x="-119.0" y="30.0"/>
+          <y:Geometry height="35.0" width="48.0" x="-33.8441372735939" y="364.767036721636"/>
           <y:Fill color="#FFFFFF" color2="#FFFFFF" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="22.0" y="15.5">
@@ -227,7 +227,7 @@
     <node id="n13">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.flowchart.start2">
-          <y:Geometry height="17.0" width="36.0" x="-113.0" y="39.0"/>
+          <y:Geometry height="17.0" width="36.0" x="-27.8441372735939" y="373.767036721636"/>
           <y:Fill color="#000000" color2="#000000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="16.0" y="6.5">
@@ -244,11 +244,27 @@
     <node id="n14">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.flowchart.terminator">
-          <y:Geometry height="40.0" width="80.0" x="98.99999999999999" y="16.0"/>
+          <y:Geometry height="40.0" width="80.0" x="51.71496663489033" y="25.000000000000007"/>
           <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="custom" textColor="#000000" visible="true" width="65.365234375" x="7.3173828125" y="10.6494140625">Invitasjoner
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="custom" textColor="#000000" visible="true" width="65.365234375" x="7.317382812500014" y="10.6494140625">Invitasjoner
 <y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n15">
+      <data key="d6">
+        <y:GenericNode configuration="com.yworks.flowchart.terminator">
+          <y:Geometry height="40.0" width="80.0" x="420.4299332697809" y="-24.970924690181107"/>
+          <y:Fill color="#E8EEF7" color2="#B7C9E3" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="custom" textColor="#000000" visible="true" width="72.033203125" x="3.9833984375" y="10.6494140625">Søk deltager<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -262,12 +278,12 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="297.5" y="155.75"/>
+            <y:Point x="321.4674987792969" y="160.08303833007812"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="86.048828125" x="73.0140380859375" y="-26.90557861328125">Opprette avtale</y:EdgeLabel>
-          <y:Arc height="50.25" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="thead" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="86.048828125" x="45.1267187619859" y="-51.43260720925295">Opprette avtale</y:EdgeLabel>
+          <y:Arc height="41.276397705078125" ratio="0.732795774936676" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -275,12 +291,12 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="297.5" y="256.25"/>
+            <y:Point x="339.5482482910156" y="234.37652587890625"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="ttail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="88.046875" x="-87.7767333984375" y="5.5517578125">Lagre / Abrutt X</y:EdgeLabel>
-          <y:Arc height="50.25" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="stail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="88.046875" x="-26.14935076897973" y="10.133590698242188">Lagre / Abrutt X</y:EdgeLabel>
+          <y:Arc height="35.18559646606445" ratio="0.6246634125709534" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -288,7 +304,7 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="398.0" y="206.0"/>
+            <y:Point x="440.6876220703125" y="173.54971313476562"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
@@ -300,7 +316,7 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="979.5" y="124.5"/>
+            <y:Point x="267.97283935546875" y="-4.9709248542785645"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
@@ -312,12 +328,12 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="432.0" y="88.5"/>
+            <y:Point x="398.7940979003906" y="317.7588195800781"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="ttail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="60.677734375" x="399.5609130859375" y="-24.281707763671875">Mine møte</y:EdgeLabel>
-          <y:Arc height="117.5" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="head" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="64.673828125" x="168.45103672780346" y="45.94480268656031">Mine møter</y:EdgeLabel>
+          <y:Arc height="-29.009998321533203" ratio="-0.2946849763393402" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -325,12 +341,12 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="567.875" y="-30.375"/>
+            <y:Point x="230.258544921875" y="108.01587677001953"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="96.712890625" x="562.2083864866293" y="-157.5198430983158">Vis flere kalender</y:EdgeLabel>
-          <y:Arc height="196.68319702148438" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="thead" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="96.712890625" x="-68.61774830715001" y="-160.83069641869673">Vis flere kalender</y:EdgeLabel>
+          <y:Arc height="14.899524688720703" ratio="0.2521507740020752" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -338,7 +354,7 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="529.5" y="206.0"/>
+            <y:Point x="578.3402099609375" y="131.6949462890625"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
@@ -350,12 +366,12 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="363.25" y="122.875"/>
+            <y:Point x="375.4976806640625" y="87.21996307373047"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="ttail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="89.359375" x="262.0052185058594" y="-24.303070068359375">Kall inn til  møte</y:EdgeLabel>
-          <y:Arc height="83.125" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="thead" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="89.359375" x="100.39599410448011" y="-84.82782783565676">Kall inn til  møte</y:EdgeLabel>
+          <y:Arc height="95.2610092163086" ratio="1.0325154066085815" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -363,12 +379,12 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="151.5" y="287.0"/>
+            <y:Point x="225.28433227539062" y="339.2669372558594"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="shead" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="84.712890625" x="-92.38766838522518" y="-28.8272705078125">Lagre/ Abrutt X</y:EdgeLabel>
-          <y:Arc height="41.54816436767578" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="shead" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="84.712890625" x="-121.44851218186781" y="-35.36258033483341">Lagre/ Abrutt X</y:EdgeLabel>
+          <y:Arc height="50.30882263183594" ratio="1.0" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -376,12 +392,12 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="234.5" y="291.0"/>
+            <y:Point x="255.4547576904297" y="322.98370361328125"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="ttail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="29.3359375" x="5.560866744429973" y="97.1749267578125">Klikk</y:EdgeLabel>
-          <y:Arc height="41.54816436767578" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="29.3359375" x="52.14852015053043" y="71.89800975934111">Klikk</y:EdgeLabel>
+          <y:Arc height="-16.024742126464844" ratio="-0.318527489900589" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -389,12 +405,12 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="130.5" y="329.0"/>
+            <y:Point x="134.4929656982422" y="324.8023681640625"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="shead" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="84.712890625" x="-92.07787761538049" y="-28.81854248046875">Lagre/ Abrutt X</y:EdgeLabel>
-          <y:Arc height="62.53199005126953" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="shead" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="84.712890625" x="-81.91340972783092" y="-28.84674072265625">Lagre/ Abrutt X</y:EdgeLabel>
+          <y:Arc height="47.52394485473633" ratio="0.7771657109260559" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -402,12 +418,12 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="255.5" y="333.0"/>
+            <y:Point x="164.68466186523438" y="336.0661315917969"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="ttail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="29.3359375" x="3.2720809564357864" y="181.16619873046875">Klikk</y:EdgeLabel>
-          <y:Arc height="62.53199005126953" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="ttail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="29.3359375" x="-46.8108500834345" y="139.5240478515625">Klikk</y:EdgeLabel>
+          <y:Arc height="-15.299555778503418" ratio="-0.25019577145576477" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -415,12 +431,12 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="363.25" y="287.125"/>
+            <y:Point x="419.7601623535156" y="253.12185668945312"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="head" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="138.05078125" x="-245.0030685448316" y="23.29893266491422">Opprettet møte / Abrutt X</y:EdgeLabel>
-          <y:Arc height="81.125" ratio="0.9759398698806763" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="138.05078125" x="-68.89661443300179" y="45.91630618201762">Opprettet møte / Abrutt X</y:EdgeLabel>
+          <y:Arc height="76.4439926147461" ratio="0.8285614252090454" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -428,12 +444,12 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="567.0" y="281.0"/>
+            <y:Point x="642.7589111328125" y="90.48634338378906"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="ttail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="29.3359375" x="9.20574951171875" y="81.14208984375">Klikk</y:EdgeLabel>
-          <y:Arc height="37.5" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="ttail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="29.3359375" x="41.31851205738167" y="-9.50339493245346">Klikk</y:EdgeLabel>
+          <y:Arc height="34.19917678833008" ratio="1.0" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -441,12 +457,12 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="492.0" y="281.0"/>
+            <y:Point x="649.9583740234375" y="158.50474548339844"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="shead" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="47.353515625" x="-56.55926513671875" y="-28.79443359375">Abrutt X</y:EdgeLabel>
-          <y:Arc height="37.5" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="stail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="47.353515625" x="-18.67798355220566" y="5.811959473878119">Abrutt X</y:EdgeLabel>
+          <y:Arc height="34.19917678833008" ratio="1.0" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -454,14 +470,12 @@
       <data key="d10">
         <y:BezierEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="205.0" y="127.0"/>
-            <y:Point x="203.0" y="127.0"/>
-            <y:Point x="162.0" y="136.0"/>
-            <y:Point x="162.0" y="163.0"/>
+            <y:Point x="181.23832221163013" y="149.51668255481414"/>
+            <y:Point x="91.07244995233557" y="169.78169685414684"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="head" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="70.017578125" x="-69.24027764042722" y="-43.417877197265625">Fram/tilbake</y:EdgeLabel>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="shead" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="70.017578125" x="-74.46144746329935" y="-30.088912963867188">Fram/tilbake</y:EdgeLabel>
         </y:BezierEdge>
       </data>
     </edge>
@@ -469,12 +483,12 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="611.1476440429688" y="385.095458984375"/>
+            <y:Point x="260.33319091796875" y="114.01066589355469"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="stail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="88.046875" x="-25.697671255456385" y="10.099945068359375">Lagre / Abrutt X</y:EdgeLabel>
-          <y:Arc height="221.03468322753906" ratio="1.1238107681274414" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="88.046875" x="-2.806608050651903" y="44.71420463183816">Lagre / Abrutt X</y:EdgeLabel>
+          <y:Arc height="15.766778945922852" ratio="0.26682767271995544" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -482,12 +496,12 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="-85.5" y="247.375"/>
+            <y:Point x="-19.988826751708984" y="294.0474853515625"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="70.6796875" x="15.138268464258886" y="-53.488525390625">Start system</y:EdgeLabel>
-          <y:Arc height="41.675270080566406" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="70.6796875" x="-18.739944343878093" y="-46.825343943869484">Start system</y:EdgeLabel>
+          <y:Arc height="40.1894416809082" ratio="1.0" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -499,7 +513,7 @@
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="79.369140625" x="19.802661895751953" y="2.0">Riktig identitet</y:EdgeLabel>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="shead" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="79.369140625" x="10.112232208251953" y="-20.701171875">Riktig identitet</y:EdgeLabel>
         </y:QuadCurveEdge>
       </data>
     </edge>
@@ -507,17 +521,12 @@
       <data key="d10">
         <y:QuadCurveEdge straightness="0.1">
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="16.0" y="143.0"/>
-            <y:Point x="6.0" y="130.0"/>
-            <y:Point x="-21.0" y="124.0"/>
-            <y:Point x="-37.0" y="138.0"/>
-            <y:Point x="-43.0" y="152.0"/>
-            <y:Point x="-38.0" y="171.0"/>
-            <y:Point x="-29.0" y="178.0"/>
+            <y:Point x="36.39752144899904" y="143.51000953288846"/>
+            <y:Point x="-43.0" y="143.51000953288846"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="head" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="132.73046875" x="-129.95512012072976" y="-35.41490173339844">Feil brukernavn/passord</y:EdgeLabel>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="head" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="132.73046875" x="-79.93755652861327" y="-63.2205965462131">Feil brukernavn/passord</y:EdgeLabel>
         </y:QuadCurveEdge>
       </data>
     </edge>
@@ -525,12 +534,12 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="628.7916870117188" y="129.58334350585938"/>
+            <y:Point x="612.9857177734375" y="273.0054931640625"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="29.3359375" x="-2.3526899158762262" y="-89.37609354654947">Klikk</y:EdgeLabel>
-          <y:Arc height="38.20833206176758" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="29.3359375" x="17.3078976062302" y="-44.25536713722886">Klikk</y:EdgeLabel>
+          <y:Arc height="37.04937744140625" ratio="1.0" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -538,7 +547,7 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="979.5" y="124.5"/>
+            <y:Point x="267.97283935546875" y="-4.9709248542785645"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
@@ -550,12 +559,12 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="705.2083129882812" y="129.5833282470703"/>
+            <y:Point x="670.2100830078125" y="320.0799560546875"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="192.07421875" x="15.703270425486267" y="70.67491912841797">Melde meg av møte/ Lukk/ Abrutt X</y:EdgeLabel>
-          <y:Arc height="38.20833206176758" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="stail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="192.07421875" x="-5.496787763899874" y="10.086523850607364">Melde meg av møte/ Lukk/ Abrutt X</y:EdgeLabel>
+          <y:Arc height="37.04937744140625" ratio="1.0" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -563,12 +572,12 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="769.625" y="255.0"/>
+            <y:Point x="636.1406860351562" y="402.408447265625"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="29.3359375" x="76.44452889617787" y="72.81704711914062">Klikk</y:EdgeLabel>
-          <y:Arc height="50.85841369628906" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="29.3359375" x="30.376811329319708" y="35.356083494464656">Klikk</y:EdgeLabel>
+          <y:Arc height="13.02639102935791" ratio="0.4156731963157654" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -576,7 +585,7 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="667.0" y="53.16666793823242"/>
+            <y:Point x="688.6723022460938" y="239.31838989257812"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
@@ -588,12 +597,12 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="432.0" y="323.5"/>
+            <y:Point x="387.0187072753906" y="352.33721923828125"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="stail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="47.353515625" x="-27.8109130859375" y="5.580535888671875">Abrutt X</y:EdgeLabel>
-          <y:Arc height="117.5" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="47.353515625" x="-113.80113002024342" y="-7.010036043679349">Abrutt X</y:EdgeLabel>
+          <y:Arc height="65.53843688964844" ratio="0.6657425761222839" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -601,12 +610,12 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="689.375" y="317.5"/>
+            <y:Point x="613.8925170898438" y="414.6440734863281"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="79.369140625" x="-68.69171525758475" y="-91.51821899414062">Lukk /Abrutt X</y:EdgeLabel>
-          <y:Arc height="50.85841369628906" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="shead" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="79.369140625" x="-101.45934268026781" y="-28.392772096355657">Lukk /Abrutt X</y:EdgeLabel>
+          <y:Arc height="12.364398956298828" ratio="0.3945489525794983" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -614,7 +623,7 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="979.5" y="124.5"/>
+            <y:Point x="267.97283935546875" y="-4.9709248542785645"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
@@ -626,7 +635,7 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="979.5" y="124.5"/>
+            <y:Point x="267.97283935546875" y="-4.9709248542785645"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
@@ -634,29 +643,29 @@
         </y:ArcEdge>
       </data>
     </edge>
-    <edge id="e29" source="n4" target="n5">
-      <data key="d10">
-        <y:ArcEdge>
-          <y:Path sx="0.0" sy="20.009765625" tx="0.0" ty="0.0">
-            <y:Point x="824.2507934570312" y="398.66766357421875"/>
-          </y:Path>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
-          <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="29.3359375" x="-72.69687762759577" y="122.28598022460938">Klikk</y:EdgeLabel>
-          <y:Arc height="163.9863739013672" ratio="1.3192248344421387" type="fixedRatio"/>
-        </y:ArcEdge>
-      </data>
-    </edge>
-    <edge id="e30" source="n5" target="n4">
+    <edge id="e29" source="n4" target="n15">
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="679.1260986328125" y="93.73490905761719"/>
+            <y:Point x="364.2013854980469" y="-31.291946411132812"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="thead" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="118.064453125" x="277.53082275390625" y="-249.45623735714383">Valgt person/Abrutt X</y:EdgeLabel>
-          <y:Arc height="164.76617431640625" ratio="1.3023563623428345" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="thead" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="65.359375" x="53.59919820227327" y="-34.7743889259212">Søk person</y:EdgeLabel>
+          <y:Arc height="26.321022033691406" ratio="0.547052264213562" type="fixedRatio"/>
+        </y:ArcEdge>
+      </data>
+    </edge>
+    <edge id="e30" source="n15" target="n4">
+      <data key="d10">
+        <y:ArcEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="364.2013854980469" y="30.670989990234375"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="stail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="118.064453125" x="-16.699102958031688" y="-0.4062930201526527">Valgt person/Abrutt X</y:EdgeLabel>
+          <y:Arc height="35.64191436767578" ratio="0.7407763600349426" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -664,7 +673,7 @@
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="979.5" y="124.5"/>
+            <y:Point x="267.97283935546875" y="-4.9709248542785645"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
@@ -676,19 +685,12 @@
       <data key="d10">
         <y:QuadCurveEdge straightness="0.1">
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="753.0" y="179.0"/>
-            <y:Point x="785.0" y="179.0"/>
-            <y:Point x="826.0" y="200.0"/>
-            <y:Point x="796.0" y="225.0"/>
-            <y:Point x="773.0" y="230.0"/>
-            <y:Point x="752.0" y="230.0"/>
-            <y:Point x="733.0" y="221.0"/>
-            <y:Point x="719.0" y="215.0"/>
-            <y:Point x="708.0" y="206.0"/>
+            <y:Point x="688.1392664586623" y="353.767036721636"/>
+            <y:Point x="688.1392664586623" y="425.0520700867456"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="six_pos" modelPosition="ttail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="122.728515625" x="45.51408555772582" y="-4.785847056995749">Godta/Avslå invitasjon
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="122.728515625" x="55.61650034538104" y="11.590766783097024">Godta/Avslå invitasjon
 Fram/tilbake
 Filtrer</y:EdgeLabel>
         </y:QuadCurveEdge>
@@ -698,19 +700,12 @@ Filtrer</y:EdgeLabel>
       <data key="d10">
         <y:QuadCurveEdge straightness="0.1">
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="962.0" y="74.0"/>
-            <y:Point x="962.0" y="68.0"/>
-            <y:Point x="962.0" y="61.0"/>
-            <y:Point x="967.0" y="53.0"/>
-            <y:Point x="979.5" y="45.0"/>
-            <y:Point x="1000.0" y="45.0"/>
-            <y:Point x="1015.0" y="58.0"/>
-            <y:Point x="1015.0" y="79.0"/>
-            <y:Point x="1015.0" y="92.0"/>
+            <y:Point x="221.20114394661584" y="-71.60343183984746"/>
+            <y:Point x="309.10200190657775" y="-71.60343183984745"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="31.345703125" x="-1.6287406694771107" y="-29.17267608642578">Slett </y:EdgeLabel>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="31.345703125" x="-4.45119501773911" y="-44.62648596277225">Slett </y:EdgeLabel>
         </y:QuadCurveEdge>
       </data>
     </edge>
@@ -718,12 +713,12 @@ Filtrer</y:EdgeLabel>
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="489.6399230957031" y="466.49322509765625"/>
+            <y:Point x="461.7330322265625" y="410.8916931152344"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="29.3359375" x="-84.28484883812484" y="115.43496704101562">Klikk</y:EdgeLabel>
-          <y:Arc height="187.8917999267578" ratio="1.4852991104125977" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="ttail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="29.3359375" x="-198.48645240630952" y="37.937232234231715">Klikk</y:EdgeLabel>
+          <y:Arc height="32.56977462768555" ratio="0.4625095725059509" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -731,12 +726,12 @@ Filtrer</y:EdgeLabel>
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="525.728759765625" y="517.8573608398438"/>
+            <y:Point x="383.8736877441406" y="487.7056579589844"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="ttail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="29.3359375" x="-425.5301513671875" y="246.60671617532495">Klikk</y:EdgeLabel>
-          <y:Arc height="210.87100219726562" ratio="1.563659906387329" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="head" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="29.3359375" x="-305.73087310791016" y="78.67097094988759">Klikk</y:EdgeLabel>
+          <y:Arc height="84.85816955566406" ratio="0.7229373455047607" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -744,12 +739,12 @@ Filtrer</y:EdgeLabel>
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="97.5" y="255.75"/>
+            <y:Point x="107.22858428955078" y="244.9447784423828"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="head" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="44.037109375" x="-116.5321044921875" y="7.954559326171875">Logg ut</y:EdgeLabel>
-          <y:Arc height="49.75" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="44.037109375" x="-105.31231307983398" y="0.7370407669919814">Logg ut</y:EdgeLabel>
+          <y:Arc height="28.654125213623047" ratio="0.5100060105323792" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -757,12 +752,12 @@ Filtrer</y:EdgeLabel>
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="-88.125" y="150.0"/>
+            <y:Point x="-48.71491241455078" y="292.2291564941406"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="tail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="86.01953125" x="-50.59737331111256" y="-90.611572265625">Skru av system</y:EdgeLabel>
-          <y:Arc height="45.94239044189453" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="thead" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="86.01953125" x="-97.18329967051184" y="109.9240496610891">Skru av system</y:EdgeLabel>
+          <y:Arc height="-42.8351936340332" ratio="-0.9710912704467773" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
@@ -770,7 +765,7 @@ Filtrer</y:EdgeLabel>
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="139.0" y="36.0"/>
+            <y:Point x="91.7149658203125" y="45.0"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
@@ -779,30 +774,28 @@ Filtrer</y:EdgeLabel>
       </data>
     </edge>
     <edge id="e39" source="n0" target="n14">
-      <data key="d9"/>
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="125.5" y="135.5"/>
+            <y:Point x="115.0086898803711" y="165.76370239257812"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="head" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="29.3359375" x="-69.83633169816368" y="-97.41560363769531">Klikk</y:EdgeLabel>
-          <y:Arc height="44.90545654296875" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="head" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="29.3359375" x="-89.59886577228664" y="-95.55801391601562">Klikk</y:EdgeLabel>
+          <y:Arc height="51.3093376159668" ratio="0.9180763363838196" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
     <edge id="e40" source="n14" target="n0">
-      <data key="d9"/>
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
-            <y:Point x="210.5" y="106.5"/>
+            <y:Point x="181.23060607910156" y="118.39813232421875"/>
           </y:Path>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="stail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="47.353515625" x="22.024646840196965" y="12.502517700195312">Abrutt X</y:EdgeLabel>
-          <y:Arc height="44.90545654296875" ratio="1.0" type="fixedRatio"/>
+          <y:EdgeLabel alignment="center" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="18.701171875" modelName="six_pos" modelPosition="stail" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" visible="true" width="47.353515625" x="31.471899963553938" y="12.818588256835938">Abrutt X</y:EdgeLabel>
+          <y:Arc height="30.10834312438965" ratio="0.5387276411056519" type="fixedRatio"/>
         </y:ArcEdge>
       </data>
     </edge>
