@@ -2,8 +2,14 @@ package gruppe19.model;
 
 public class User {
 	
-	private String username, firstname, lastname, tlfnr;
+	private String username, firstname, lastname, tlfnr, password;
 	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public String getFirstname() {
 		return firstname;
 	}
