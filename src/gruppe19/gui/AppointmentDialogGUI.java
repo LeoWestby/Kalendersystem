@@ -194,8 +194,6 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		btnDeleteUser = new JButton("Slett deltager");
 		add(btnDeleteUser,constraints);
 		
-
-		
 		
 		//knapper for godta og slett av avtale
 		constraints.gridx=1;
@@ -271,7 +269,6 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		String startS = format.format(start.getHours()) + ":" +format.format(start.getMinutes());
 		Date end = model.getDateEnd();
 		String endS = format.format(end.getHours()) + ":" +format.format(end.getMinutes());
-		System.out.println(startS + " " + endS);
 		spinnerStart.setValue(startS);
 		spinnerEnd.setValue(endS);
 
