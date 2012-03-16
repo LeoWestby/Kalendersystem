@@ -27,6 +27,8 @@ public class DatabaseAPI {
 	 * @param user The username used to gain access to the database.
 	 * @param password The password used to gain access to the database.
 	 */
+	
+	
 	public static void open(String host, int port, String name, String user, String password) {
 		if (conn != null) {
 			System.out.println("[Error] A database connection is already established.");
@@ -48,6 +50,7 @@ public class DatabaseAPI {
 		}
 	}
 
+	
 	/**
 	 * Opens the database with default values.
 	 */
@@ -58,6 +61,39 @@ public class DatabaseAPI {
 				"leomarti_group19", //Username
 				"group19"); //Password
 	}
+	
+	public static void  createExampleData() throws SQLException{
+		Statement s = conn.createStatement();
+		
+		
+		s.executeUpdate("INSERT INTO `avtale` VALUES " +
+				"(1,'Frisør','klippe meg for å bli pen','frisøren','2012-03-15','15:00:00','16:00:00','dagrunki','101')" +
+				"(2,'lunsj',NULL,'parken','2012-03-12','12:00:00','13:00:00','fredrik','412')");
+
+		s.executeUpdate("INSERT INTO `bruker` VALUES " +
+			"('dagrunki','passord','dagrun','haugland',NULL)," +
+			"('fraol','passord','Frank','olsen',NULL)," +
+			"('annh','passord','anne','hansen',NULL)," +
+			"('annha','passord','anne','haun',NULL)," +
+			"('leoen','passord','Leo','Etternavn',78896756)," +
+			"('fredrik','passord','fredrik','fredriksen',78895690)");
+
+		s.executeUpdate("INSERT INTO `deltager` VALUES " +
+			"('dagrun',1,1)," +
+			"('dagrunki',2,2)," +
+			"('dagrun',2,1);");
+
+		s.executeUpdate("INSERT INTO `rom` VALUES " +
+				"('101')," +
+				"('106')," +
+				"('123')," +
+				"('215')," +
+				"('406')," +
+				"('412')," +
+				"('hovedbygg1')," +
+				"('hovedbygg2');");
+	} 
+	
 	
 	/**
 	 * Clear all tables and optionally insert example data.
@@ -74,34 +110,21 @@ public class DatabaseAPI {
 		s.executeUpdate("DELETE FROM rom");
 		
 		if (insertExampleData) {
-			s.executeUpdate("INSERT INTO `avtale` VALUES " +
-								"(1,'Frisør','klippe meg for å bli pen','frisøren','2012-03-15','15:00:00','16:00:00','dagrunki','101')" +
-								"(2,'lunsj',NULL,'parken','2012-03-12','12:00:00','13:00:00','fredrik','412')");
-			
-			s.executeUpdate("INSERT INTO `bruker` VALUES " +
-							"('dagrunki','passord','dagrun','haugland',NULL)," +
-							"('fraol','passord','Frank','olsen',NULL)," +
-							"('annh','passord','anne','hansen',NULL)," +
-							"('annha','passord','anne','haun',NULL)," +
-							"('leoen','passord','Leo','Etternavn',78896756)," +
-							"('fredrik','passord','fredrik','fredriksen',78895690)");
-			
-			s.executeUpdate("INSERT INTO `deltager` VALUES " +
-							"('dagrun',1,1)," +
-							"('dagrunki',2,2)," +
-							"('dagrun',2,1);");
-	
-			s.executeUpdate("INSERT INTO `rom` VALUES " +
-								"('101')," +
-								"('106')," +
-								"('123')," +
-								"('215')," +
-								"('406')," +
-								"('412')," +
-								"('hovedbygg1')," +
-								"('hovedbygg2');");
+			createExampleData();
 		}
 	}
+	
+	public static void insertBruker(User a){
+//		if(a.get!=null){
+			String st="INSERT INTO bruker IF NOT EXISTS VALUES(";
+			
+//		}
+		
+		
+		
+	}
+	
+	
 	
 	/**
 	 * Checks if a user exists with the specified username and password.
@@ -109,6 +132,7 @@ public class DatabaseAPI {
 	 * @return The user with this username and password or <code>null</code> if
 	 * no such user exists.
 	 */
+	
 	public static User logIn(String username, String password) {
 		if (username.equals("Test") && password.equals("testpw")) {
 			return new User("Test", "Testsen");
@@ -130,6 +154,7 @@ public class DatabaseAPI {
 			System.out.println("tlf: " + result.getInt("tlf"));
 		}
 	}
+	
 	
 	public static void main(String[] args) throws SQLException {
 		open();
