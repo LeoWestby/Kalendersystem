@@ -17,7 +17,7 @@ import no.ntnu.fp.model.Person;
  */
 public class DatabaseAPI {
 	private static Connection conn = null;
-	
+
 	/**
 	 * Opens a connection to a MySQL database.
 	 * 
@@ -27,18 +27,18 @@ public class DatabaseAPI {
 	 * @param user The username used to gain access to the database.
 	 * @param password The password used to gain access to the database.
 	 */
-	
-	
+
+
 	public static void open(String host, int port, String name, String user, String password) {
 		if (conn != null) {
 			System.out.println("[Error] A database connection is already established.");
 			return;
 		}
-		
+
 		try {
 			System.out.println("[Debug] Loading MySQL driver...");
 			Class.forName("com.mysql.jdbc.Driver");
-			
+
 			String url = String.format("jdbc:mysql://%s:%d/%s", host, port, name);
 			System.out.println("[Debug] Opening database " + url + "...");
 			conn = DriverManager.getConnection(url, user, password);
@@ -50,7 +50,7 @@ public class DatabaseAPI {
 		}
 	}
 
-	
+
 	/**
 	 * Opens the database with default values.
 	 */
@@ -61,27 +61,27 @@ public class DatabaseAPI {
 				"leomarti_group19", //Username
 				"group19"); //Password
 	}
-	
+
 	public static void  createExampleData() throws SQLException{
 		Statement s = conn.createStatement();
-		
-		
+
+
 		s.executeUpdate("INSERT INTO `avtale` VALUES " +
 				"(1,'Frisør','klippe meg for å bli pen','frisøren','2012-03-15','15:00:00','16:00:00','dagrunki','101')" +
 				"(2,'lunsj',NULL,'parken','2012-03-12','12:00:00','13:00:00','fredrik','412')");
 
 		s.executeUpdate("INSERT INTO `bruker` VALUES " +
-			"('dagrunki','passord','dagrun','haugland',NULL)," +
-			"('fraol','passord','Frank','olsen',NULL)," +
-			"('annh','passord','anne','hansen',NULL)," +
-			"('annha','passord','anne','haun',NULL)," +
-			"('leoen','passord','Leo','Etternavn',78896756)," +
-			"('fredrik','passord','fredrik','fredriksen',78895690)");
+				"('dagrunki','passord','dagrun','haugland',NULL)," +
+				"('fraol','passord','Frank','olsen',NULL)," +
+				"('annh','passord','anne','hansen',NULL)," +
+				"('annha','passord','anne','haun',NULL)," +
+				"('leoen','passord','Leo','Etternavn',78896756)," +
+				"('fredrik','passord','fredrik','fredriksen',78895690)");
 
 		s.executeUpdate("INSERT INTO `deltager` VALUES " +
-			"('dagrun',1,1)," +
-			"('dagrunki',2,2)," +
-			"('dagrun',2,1);");
+				"('dagrun',1,1)," +
+				"('dagrunki',2,2)," +
+				"('dagrun',2,1);");
 
 		s.executeUpdate("INSERT INTO `rom` VALUES " +
 				"('101')," +
@@ -93,8 +93,8 @@ public class DatabaseAPI {
 				"('hovedbygg1')," +
 				"('hovedbygg2');");
 	} 
-	
-	
+
+
 	/**
 	 * Clear all tables and optionally insert example data.
 	 * 
@@ -102,78 +102,84 @@ public class DatabaseAPI {
 	 */
 	public static void clearDatabase(boolean insertExampleData) throws SQLException {
 		Statement s = conn.createStatement();
-		
+
 		//Clear all tables
 		s.executeUpdate("DELETE FROM avtale");
 		s.executeUpdate("DELETE FROM bruker");
 		s.executeUpdate("DELETE FROM deltager");
 		s.executeUpdate("DELETE FROM rom");
-		
+
 		if (insertExampleData) {
 			createExampleData();
 		}
 	}
-	
-	public static boolean existsUser(String brukernavn) throws SQLException{
+
+	public static boolean userNotExists(String brukernavn) throws SQLException{
 		String st="SELECT brukernavn FROM bruker where brukernavn like ='"+brukernavn+"'";
 		ResultSet rs= conn.createStatement().executeQuery(st);
 		if(rs.wasNull()){
-			return false;
+			return true;
 		}
-		return true;
+		return false;
 	}
-	
+
 	public static void insertBruker(User a){
-		
+
 		try {
-			if(existsUser(a.getName())){
-				
-			
-			if(a.getTlfnr()!=null){
-				String st="INSERT INTO bruker IF NOT EXISTS VALUES("+
-				a.getName()+","+a.getTlfnr()+","+")";
+			if(userNotExists(a.getName())){
+
+
+				if(a.getTlfnr()!=null){
+					String st="INSERT INTO bruker VALUES('"+
+							a.getUsername()+"','"+a.getPassword()+"','"+a.getFirstname()+"','"+a.getLastname()+"','"+a.getTlfnr()+"')";
+					return;
+				}
+				else{
+					String st="INSERT INTO bruker VALUES('"+
+							a.getUsername()+"','"+a.getPassword()+"','"+a.getFirstname()+"','"+a.getLastname()+"')";
+				}
+
 			}
-}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
-		
-		
+
+
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Checks if a user exists with the specified username and password.
 	 * 
 	 * @return The user with this username and password or <code>null</code> if
 	 * no such user exists.
 	 */
-	
+
 	public static User logIn(String username, String password) {
 		if (username.equals("Test") && password.equals("testpw")) {
 			return new User("Test", "Testsen");
 		}
 		return null;
 	}
-	
-	
+
+
 	/**
 	 * Tests to demonstrate how to interpret result sets
 	 */
 	private static void tests() throws SQLException {
 		Statement s = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
 		ResultSet result = s.executeQuery("SELECT brukernavn, tlf FROM bruker");
-		
+
 		//Print out every user and his phone number
 		while (result.next()) {
 			System.out.print("Bruker: " + result.getString("brukernavn"));
 			System.out.println("tlf: " + result.getInt("tlf"));
 		}
 	}
-	
-	
+
+
 	public static void main(String[] args) throws SQLException {
 		open();
 		tests();
