@@ -93,11 +93,15 @@ public class Server {
 			
 			switch (request.charAt(0)) {
 			case 'a':
+				/* Sends a server message containing a valid user object if
+				 * the username and password are valid, or a server message
+				 * containing null if not.
+				 */
+				int i = request.indexOf(0);
 				send(new ServerMessage(
-						DatabaseAPI.logIn(
-								request.substring(1, request.indexOf(0)),
-								request.substring(request.indexOf(0) + 1)),
-								Type.Response));
+						DatabaseAPI.logIn(	request.substring(1, i),
+											request.substring(i + 1)),
+											Type.Response));
 				break;
 			case 'b':
 				
@@ -181,7 +185,7 @@ public class Server {
 				
 				break;
 			default:
-				//Invalid request
+				//Invalid request. Ignore
 			}
 		}
 

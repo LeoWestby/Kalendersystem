@@ -1,6 +1,7 @@
 package gruppe19.gui;
 
 import gruppe19.client.ktn.ServerAPI;
+import gruppe19.model.User;
 import gruppe19.server.ktn.ServerMessage;
 import gruppe19.server.ktn.ServerMessage.Type;
 
@@ -68,15 +69,15 @@ public class LoginScreen extends JFrame {
 		logIn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int ret = ServerAPI.login(userBox.getText(), passBox.getText());
+				User ret = ServerAPI.login(userBox.getText(), passBox.getText());
 				
-				if (ret < 0) {
+				if (ret == null) {
 					error.setForeground(Color.red);
 					error.setText("Feil brukernavn eller passord");
 				}
 				else {
-					error.setForeground(Color.green);
-					error.setText("Riktig brukernavn og passord");
+					setVisible(false);
+					new MainScreen(ret);
 				}
 			}
 		});

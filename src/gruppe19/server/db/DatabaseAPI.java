@@ -1,5 +1,7 @@
 package gruppe19.server.db;
 
+import gruppe19.model.User;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -32,26 +34,16 @@ public class DatabaseAPI {
 		}
 		
 		try {
-		System.out.println("[Debug] Loading MySQL driver...");
-		Class.forName("com.mysql.jdbc.Driver");
-		
-		String url = String.format("jdbc:mysql://%s:%d/%s", host, port, name);
-		System.out.println("[Debug] Opening database " + url + "...");
-		conn = DriverManager.getConnection(url, user, password);
+			System.out.println("[Debug] Loading MySQL driver...");
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			String url = String.format("jdbc:mysql://%s:%d/%s", host, port, name);
+			System.out.println("[Debug] Opening database " + url + "...");
+			conn = DriverManager.getConnection(url, user, password);
 		}
 		catch (Exception e) {
 			System.err.println("[Error] Failed to open database connection: "
 					+ e.getMessage());
-			System.exit(1);
-		}
-		
-		try {
-			createTables();
-			insertExampleData();
-		}
-		catch (Exception e) {
-			System.err.println("[Error] Failed to set up the database.");
-			e.printStackTrace();
 			System.exit(1);
 		}
 	}
@@ -68,25 +60,47 @@ public class DatabaseAPI {
 	}
 	
 	/**
-	 * Creates all the needed tables if the do not already exist.
+	 * Clear all tables and optionally insert example data.
+	 * 
+	 * @param insertExampleData Whether or not example data should be inserted.
 	 */
-	private static void createTables() throws SQLException {
+	public static void clearDatabase(boolean insertExampleData) throws SQLException {
 		Statement s = conn.createStatement();
 		
-		s.executeUpdate("CREATE TABLE IF NOT EXISTS TestTable(id int, text varchar(32))");
-	}
+		//Clear all tables
+		s.executeUpdate("DELETE FROM avtale");
+		s.executeUpdate("DELETE FROM bruker");
+		s.executeUpdate("DELETE FROM deltager");
+		s.executeUpdate("DELETE FROM rom");
+		
+		if (insertExampleData) {
+			s.executeUpdate("INSERT INTO `avtale` VALUES " +
+								"(1,'Frisør','klippe meg for å bli pen','frisøren','2012-03-15','15:00:00','16:00:00','dagrunki','101')" +
+								"(2,'lunsj',NULL,'parken','2012-03-12','12:00:00','13:00:00','fredrik','412')");
+			
+			s.executeUpdate("INSERT INTO `bruker` VALUES " +
+							"('dagrunki','passord','dagrun','haugland',NULL)," +
+							"('fraol','passord','Frank','olsen',NULL)," +
+							"('annh','passord','anne','hansen',NULL)," +
+							"('annha','passord','anne','haun',NULL)," +
+							"('leoen','passord','Leo','Etternavn',78896756)," +
+							"('fredrik','passord','fredrik','fredriksen',78895690)");
+			
+			s.executeUpdate("INSERT INTO `deltager` VALUES " +
+							"('dagrun',1,1)," +
+							"('dagrunki',2,2)," +
+							"('dagrun',2,1);");
 	
-	/**
-	 * Clear all tables and insert example data.
-	 */
-	private static void insertExampleData() throws SQLException {
-		Statement s = conn.createStatement();
-		
-		//Clear the tables
-		s.executeUpdate("DELETE FROM TestTable");
-		
-		//Insert example data
-		s.executeUpdate("INSERT INTO TestTable VALUES(1, 'TESTING1'), (2, 'TESTING2'), (3, 'TESTING3')");
+			s.executeUpdate("INSERT INTO `rom` VALUES " +
+								"('101')," +
+								"('106')," +
+								"('123')," +
+								"('215')," +
+								"('406')," +
+								"('412')," +
+								"('hovedbygg1')," +
+								"('hovedbygg2');");
+		}
 	}
 	
 	/**
@@ -94,34 +108,27 @@ public class DatabaseAPI {
 	 * 
 	 * @return The user with this username and password or <code>null</code> if
 	 * no such user exists.
-	 * 
-	 * TODO: Replace the Person object with whatever model we're using
 	 */
-	public static Person logIn(String username, String password) {
+	public static User logIn(String username, String password) {
 		if (username.equals("Test") && password.equals("testpw")) {
-			return new Person("Hans", "Hans@gmail.com", new Date());
+			return new User("Test", "Testsen");
 		}
 		return null;
 	}
 	
 	
 	/**
-	 * Tests
+	 * Tests to demonstrate how to interpret result sets
 	 */
 	private static void tests() throws SQLException {
 		Statement s = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-		ResultSet result;
+		ResultSet result = s.executeQuery("SELECT brukernavn, tlf FROM bruker");
 		
-		result = s.executeQuery("SELECT * FROM TestTable");
-		
-		//Print out the results
-		for (int i = 1; result.next(); i++) {
-			System.out.printf("*** ROW %d ***\n" +
-					"COLUMN 1: %d\n" +
-					"COLUMN 2: %s\n", i, result.getInt(1), result.getString(2));
-			
+		//Print out every user and his phone number
+		while (result.next()) {
+			System.out.print("Bruker: " + result.getString("brukernavn"));
+			System.out.println("tlf: " + result.getInt("tlf"));
 		}
-		
 	}
 	
 	public static void main(String[] args) throws SQLException {
