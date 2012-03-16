@@ -114,12 +114,30 @@ public class DatabaseAPI {
 		}
 	}
 	
+	public static boolean existsUser(String brukernavn) throws SQLException{
+		String st="SELECT brukernavn FROM bruker where brukernavn like ='"+brukernavn+"'";
+		ResultSet rs= conn.createStatement().executeQuery(st);
+		if(rs.wasNull()){
+			return false;
+		}
+		return true;
+	}
+	
 	public static void insertBruker(User a){
-//		if(a.get!=null){
-			String st="INSERT INTO bruker IF NOT EXISTS VALUES(";
-			
-//		}
 		
+		try {
+			if(existsUser(a.getName())){
+				
+			
+			if(a.getTlfnr()!=null){
+				String st="INSERT INTO bruker IF NOT EXISTS VALUES("+
+				a.getName()+","+a.getTlfnr()+","+")";
+			}
+}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
 		
 		
 	}
