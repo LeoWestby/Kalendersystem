@@ -1,35 +1,30 @@
 package gruppe19.gui;
 
+import gruppe19.model.Appointment;
 import gruppe19.model.User;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
-import java.util.Calendar;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.Date;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 import com.toedter.calendar.JCalendar;
-import com.toedter.calendar.JDateChooser;
-import com.toedter.calendar.JDayChooser;
-import com.toedter.plaf.JCalendarTheme;
 
 public class MainScreen extends JFrame {
 	private final User loggedInUser;
 	private final MainMenu menu;
 	private final JCalendar miniCalendar;
-	private final JPanel calendar;
+	private final CalendarView calendar;
+	public final JLabel calendarHeader;
 	
 	private class MainMenu extends JPanel {
+		private final int XPOS = 47;
+		private final int YPOS = 39;
 		private final JLabel firstName = new JLabel(loggedInUser.getfirstname()), 
 							lastName = new JLabel(loggedInUser.getLastname());
 		
@@ -43,7 +38,7 @@ public class MainScreen extends JFrame {
 			final int spaceBetweenButtons = 5,
 						spaceBetweenButtonsAndName = 40;
 			
-			//First name and last name should be added seperately. Combined for now
+			//First name and last name should be added separately. Combined for now
 			lastName.setText(firstName.getText() + " " + lastName.getText());
 			
 			setLayout(null);
@@ -70,39 +65,61 @@ public class MainScreen extends JFrame {
 			
 			//TODO: Set height properly
 			setSize(Math.max(lastName.getWidth(), importCalendar.getWidth()), 9999);
+			setLocation(XPOS, YPOS);
 		}
 	}
 	
 	public MainScreen(User user) {
+		setLayout(null);
+		setSize(1280, 720);
+		
 		loggedInUser = user;
+		calendarHeader = new JLabel(new ImageIcon(getClass().getResource("/gruppe19/client/images/CalendarHead.png")));
+		calendarHeader.setSize(calendarHeader.getPreferredSize());
+		calendar = new CalendarView(this);
 		menu = new MainMenu();
 		miniCalendar = new JCalendar();
-		calendar = new JPanel();
-		calendar.setLayout(new BorderLayout());
-		calendar.add(new JLabel(new ImageIcon(getClass().getResource("/gruppe19/client/images/Calendar.png"))), BorderLayout.CENTER);
-		JScrollPane p = new JScrollPane(calendar);
-		//Build the calendar
-		setSize(1280, 720);
-		calendar.setSize(900, 900);
-		calendar.setLocation(50, 0);
-		p.setSize(p.getPreferredSize().width + 15, 720);
-		p.setLocation(getWidth() - p.getPreferredSize().width - 31, 0);
-		add(p);
-		p.setLayout(null);
-		JLabel l = new JLabel("TEST");
-		l.setBounds(0, 600, 100, 20);
-		p.add(l);
-		
-		menu.setLocation(47, 39);
+
+		calendarHeader.setLocation(calendar.getX() + 1, 0);
+		add(calendarHeader);
 		add(menu);
-		
-		setLayout(null);		
+		add(calendar);
 		
 		setTitle("Kalendersystem - Hovedskjerm");
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
+		
+		getContentPane().addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				calendar.setPos();
+				calendarHeader.setLocation(calendar.getX() + 1, 0);
+			}
+		});
+		
+		//Add some example appointments
+		Appointment a1 = new Appointment();
+		Appointment a2 = new Appointment();
+		
+		
+		a1.setTitle("Forelesing");
+		a2.setTitle("Shopping");
+		
+		a1.setPlace("Skolen");
+		a2.setPlace("På butikken");
+		
+		a1.setDateStart(new Date(112, 2, 21, 12, 00, 00));
+		a1.setDateEnd(new Date(112, 2, 21, 14, 00, 00));
+		
+		a2.setDateStart(new Date(112, 2, 23, 16, 30, 00));
+		a2.setDateEnd(new Date(112, 2, 23, 20, 00, 00));
+		
+		calendar.addAppointment(a1);
+		calendar.addAppointment(a2);
 	}
+	
+	
 	public static void main(String[] args) {
 		new MainScreen(new User("Hans", "Hansen"));
 	}

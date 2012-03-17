@@ -6,6 +6,7 @@ import gruppe19.server.ktn.ServerMessage.Type;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.net.BindException;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
@@ -255,6 +256,11 @@ public class Server {
 								" waiting for new connections");
 						e.printStackTrace();
 					} 
+					catch (BindException e) {
+						System.err.println("[Error] A server is already listening" +
+								" on this IP and port. Exiting...");
+						System.exit(1);
+					}
 					catch (IOException e) {
 						System.err.println("[Error] IOException occurred while" +
 								" waiting for new connections");

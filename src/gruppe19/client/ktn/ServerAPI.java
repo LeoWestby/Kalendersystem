@@ -184,7 +184,7 @@ public class ServerAPI {
 				}
 				catch (EOFException e) {
 					System.err.println("[Error] Lost connection to server. Exiting...");
-					e.printStackTrace();
+					//e.printStackTrace();
 					System.exit(1);
 				}
 				catch (IOException e) {
