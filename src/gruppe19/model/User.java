@@ -1,6 +1,8 @@
 package gruppe19.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 	
 	private String username, firstname, lastname, tlfnr, password;
 	

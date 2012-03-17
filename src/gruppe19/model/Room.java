@@ -1,8 +1,10 @@
 package gruppe19.model;
 
+import java.io.Serializable;
 
 
-public class Room {
+
+public class Room implements Serializable {
 	
 	private String name;
 

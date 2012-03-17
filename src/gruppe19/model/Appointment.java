@@ -1,10 +1,11 @@
 package gruppe19.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 
-public class Appointment {
+public class Appointment implements Serializable {
 	
 	private String title;
 	private Date dateStart;
