@@ -47,9 +47,11 @@ public class Appointment implements Serializable {
 
 	public void setDateStart(Date dateStart) {
 		this.dateStart = dateStart;
-		Date a = new Date(dateStart.getTime());
-		a.setHours(dateStart.getHours()+1);
-		this.dateEnd  =a;
+		
+		//WTF is this?
+//		Date a = new Date(dateStart.getTime());
+//		a.setHours(dateStart.getHours()+1);
+//		this.dateEnd  =a;
 	}
 	public void setDateEnd(Date dateEnd) {
 		this.dateEnd = dateEnd;
