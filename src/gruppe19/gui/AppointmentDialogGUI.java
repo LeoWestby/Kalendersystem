@@ -334,7 +334,8 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 				return;
 			}
 			
-			
+			System.out.println(model.getDateStart());
+			System.out.println(model.getDateEnd());
 			setValues();
 			dispose();
 		}
@@ -360,6 +361,8 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		app.setDateStart(new Date(1000000000));
 		Room rom = new Room("");
 		app.setRoom(rom);
+		System.out.println(app.getDateStart());
+		System.out.println(app.getDateEnd());
 		AppointmentDialogGUI gui = new AppointmentDialogGUI(app);
 		gui.setVisible(true);
 	}
