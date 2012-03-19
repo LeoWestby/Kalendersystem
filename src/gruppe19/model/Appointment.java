@@ -1,5 +1,7 @@
 package gruppe19.model;
 
+import gruppe19.client.ktn.ServerAPI;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -129,6 +131,10 @@ public class Appointment implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public void save() {
+		ServerAPI.saveAppointment(this);
 	}
 	
 

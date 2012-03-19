@@ -85,6 +85,7 @@ public class LoginScreen extends JFrame {
 					setVisible(false);
 					userBox.setText("");
 					passBox.setText("");
+					error.setText("");
 					
 					frame.addWindowListener(new WindowAdapter() {
 						@Override

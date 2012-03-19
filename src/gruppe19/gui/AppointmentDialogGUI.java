@@ -370,6 +370,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 				return;
 			}
 			setValues();
+			model.save();
 			dispose();
 		}
 		
@@ -408,7 +409,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		a.setUsername("vegahar");
 		app.setOwner(a);
 		User b = new User("Vegard", "Harper");
-		b.setUsername("veghar");
+		b.setUsername("vegahar");
 		AppointmentDialogGUI gui = new AppointmentDialogGUI(app,b);
 		gui.setVisible(true);
 	}

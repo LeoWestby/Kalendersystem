@@ -1,16 +1,25 @@
 package gruppe19.server.ktn;
 
+import gruppe19.client.ktn.ClientMessage;
+import gruppe19.client.ktn.ServerAPI;
+import gruppe19.model.Appointment;
+import gruppe19.model.User;
 import gruppe19.server.db.DatabaseAPI;
 import gruppe19.server.ktn.ServerMessage.Type;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InvalidClassException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.BindException;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.codec.binary.Base64;
 
 import no.ntnu.fp.net.admin.Settings;
 import no.ntnu.fp.net.co.Connection;
@@ -23,6 +32,7 @@ import no.ntnu.fp.net.co.SimpleConnection;
 public class Server {
 	private static List<Client> clients = new ArrayList<Client>();
 	private static Connection server = null;
+	private static Base64 stringEncoder = new Base64();
 	
 	public final static String serverAddress;
 	public final static int listeningPort;
@@ -42,10 +52,12 @@ public class Server {
 	 */
 	private static class Client {
 		private RecieveThread recieveThread;
-		public Connection conn;
+		private Connection conn;
+		private User connectedUser;
 
 		public Client(Connection conn) {
 			this.conn = conn;
+			connectedUser = null;
 			recieveThread = new RecieveThread();
 			recieveThread.start();
 		}
@@ -59,9 +71,25 @@ public class Server {
 			public void run() {
 				while (run) {
 					try {
-						recieve(conn.receive());
+						ObjectInputStream byteStream = 
+								new ObjectInputStream(
+										new ByteArrayInputStream(
+												stringEncoder.decode(
+														conn.receive())));
+						
+						handleMessage((ClientMessage)byteStream.readObject());
 					} 
 					catch (ConnectException e) {
+						e.printStackTrace();
+					}
+					catch (InvalidClassException e) {
+						System.err.println("[Error] Failed to convert the received" +
+								" byte stream to ClientMessage.");
+						e.printStackTrace();
+					}
+					catch (ClassNotFoundException e) {
+						System.err.println("[Error] Failed to convert the received" +
+								" byte stream to ClientMessage.");
 						e.printStackTrace();
 					}
 					catch (Exception e) {
@@ -87,26 +115,42 @@ public class Server {
 		 * 
 		 * @param request The request to handle.
 		 */
-		private void recieve(String request) {
-			if (request == null || request.isEmpty()) {
+		private void handleMessage(ClientMessage msg) {
+			if (msg == null) {
 				return;
 			}
 			
-			switch (request.charAt(0)) {
+			switch (msg.ID) {
 			case 'a':
+			{
 				/* Sends a server message containing a valid user object if
 				 * the username and password are valid, or a server message
 				 * containing null if not.
 				 */
-				int i = request.indexOf(0);
-				send(new ServerMessage(
-						DatabaseAPI.logIn(	request.substring(1, i),
-											request.substring(i + 1)),
-											Type.Response));
+				String loginInfo = (String)msg.payload;
+				int i = loginInfo.indexOf(0);
+				send (new ServerMessage('\0', new User(loginInfo.substring(0, i), "Ola", "Nordmann", "5342523", "123"), Type.Response));
+				this.connectedUser = new User(loginInfo.substring(0, i), "Ola", "Nordmann", "5342523", "123");
+//				send(new ServerMessage(
+//						DatabaseAPI.logIn(	loginInfo.substring(0, i),
+//											loginInfo.substring(i + 1)),
+//											Type.Response));
 				break;
+			}
 			case 'b':
+			{
+				Appointment a = (Appointment)msg.payload;
 				
+				for (User u : a.getUserList()) {
+					for (Client c : clients) {
+						
+						if (u.getUsername().equals(c.connectedUser.getUsername())) {
+							c.send(new ServerMessage('a', a, Type.Request));
+						}
+					}
+				}
 				break;
+			}
 			case 'c':
 							
 				break;
@@ -201,7 +245,7 @@ public class Server {
 		        ObjectOutputStream oos = new ObjectOutputStream(baos);
 		        oos.writeObject(msg);
 		        oos.close();
-				conn.send(new String(baos.toByteArray()));
+				conn.send(stringEncoder.encodeToString(baos.toByteArray()));
 			} 
 			catch (Exception e) {
 				System.err.println("[Error] Failed to send object to client");
@@ -217,7 +261,7 @@ public class Server {
 	 */
 	public static synchronized void broadcast(String msg) {
 		for (Client c : clients) {
-			c.send(new ServerMessage(msg, Type.BroadCast));
+//			c.send(new ServerMessage(msg, Type.BroadCast));
 		}
 	}
 	

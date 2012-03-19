@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -102,6 +103,15 @@ public class CalendarView extends JScrollPane {
 	 */
 	public void addAppointment(Appointment a) {
 		appointments.add(a);
+		repaintAppointments();
+	}
+	
+	public void removeAppointment(int ID) {
+		for (Appointment a : appointments) {
+			if (a.getID() == ID) {
+				appointments.remove(a);
+			}
+		}
 		repaintAppointments();
 	}
 	

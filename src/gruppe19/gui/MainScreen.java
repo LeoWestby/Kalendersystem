@@ -1,5 +1,6 @@
 package gruppe19.gui;
 
+import gruppe19.client.ktn.ServerAPI;
 import gruppe19.model.Appointment;
 import gruppe19.model.User;
 
@@ -12,6 +13,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -128,6 +130,8 @@ public class MainScreen extends JFrame {
 		add(leftArrow);
 		add(rightArrow);
 		
+		ServerAPI.setListener(calendar);
+		
 		setTitle("Kalendersystem - Hovedskjerm");
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -204,6 +208,12 @@ public class MainScreen extends JFrame {
 		
 		a2.setDateStart(new Date(112, 2, 23, 16, 30, 00));
 		a2.setDateEnd(new Date(112, 2, 23, 20, 00, 00));
+		
+		ArrayList<User> users = new ArrayList<User>();
+		users.add(new User("1", "fs", "fsdfd", "gsdg", "fgsdgs"));
+		users.add(new User("2", "fs", "fsdfd", "gsdg", "fgsdgs"));
+		a1.setUserList(users);
+		a2.setUserList(users);
 		
 		calendar.addAppointment(a1);
 		calendar.addAppointment(a2);
