@@ -52,7 +52,7 @@ public class Appointment implements Serializable {
 //		Date a = new Date(dateStart.getTime());
 //		a.setHours(dateStart.getHours()+1);
 //		this.dateEnd  =a;
-		//Prøv å print ut datoen for start og slutt når en avtale blir opprettet
+		//Dette bør egentlig være med i konstruktøren. Vet ikke helt hvorfor jeg tenkte å ha dette her
 	}
 	public void setDateEnd(Date dateEnd) {
 		this.dateEnd = dateEnd;
