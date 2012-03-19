@@ -73,10 +73,10 @@ public class MyAppointments extends JDialog implements ListSelectionListener, Ac
 		User b = new User("lol", "lol");
 		b.setUsername("lol");
 		for (int i = 0; i < 5; i++) {
-			defaultListModel.addElement(new Appointment("Avtale "+ i, new Date(), new Date(), null, user, null, null, null));
+			defaultListModel.addElement(new Appointment(i,"Avtale "+ i, new Date(), new Date(), null, user, null, null, null));
 		}
 		for (int i = 5; i < 10; i++) {
-			defaultListModel.addElement(new Appointment("Avtale "+ i, new Date(), new Date(), null, b, null, null, null));
+			defaultListModel.addElement(new Appointment(i,"Avtale "+ i, new Date(), new Date(), null, b, null, null, null));
 		}
 	}
 	public static void main(String[] args) {		
