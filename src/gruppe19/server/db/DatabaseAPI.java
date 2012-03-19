@@ -4,11 +4,13 @@ import gruppe19.model.Appointment;
 import gruppe19.model.Room;
 import gruppe19.model.User;
 
+import java.io.ObjectInputStream.GetField;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 
 import no.ntnu.fp.model.Person;
@@ -174,16 +176,74 @@ public class DatabaseAPI {
 		
 	}
 	
-	public static void createParticipant(User user, Appointment appointment){
+	//status i deltaker 
+	//2=avslått
+	//1=godtatt
+	//0=ubesvart
+	
+	public static void createParticipant(User user, Appointment appointment) throws SQLException{
+		if(!userNotExists(user.getUsername())&& !appointmentNotExists(appointment)){
+			Statement st= conn.createStatement();
+			ResultSet rs = st.executeQuery("INSERT INTO deltaker VALUES('"+user.getUsername()+"',"+appointment.getID()+","+0);
+		}
+	}
+	
+	public static void createAppointment(Appointment appointment)throws SQLException{
+		if(appointment.getRoom()!=null){
+			if(roomNotExists(appointment.getRoom().getName())) throw new SQLException();
+		}
+		else if(appointment.getOwner()!=null){
+			if(userNotExists(appointment.getOwner().getName()))throw new SQLException();
+		}
+		else{
+			Statement st= conn.createStatement();
+			ResultSet rs;
+			
+			if(appointment.getDescription()==null){
+				if(appointment.getRoom()!=null && appointment.getPlace()==null){
+					rs=st.executeQuery("INSERT INTO avtale (avtalenavn,romNavn,dato,start,slutt,lederBrukernavn) VALUES ('"+appointment.getTitle()+"','"+appointment.getRoom().getName()+"',"+appointment.getDateStart()+","+appointment.getDateStart().getTime()+","+appointment.getDateEnd().getTime()+",'"+appointment.getOwner().getName()+"'");
+				}
+				else if(appointment.getPlace()!=null && appointment.getRoom()==null){
+					rs=st.executeQuery("INSERT INTO avtale (avtalenavn,sted,dato,start,slutt,lederBrukernavn) VALUES ('"+appointment.getTitle()+"','"+appointment.getPlace()+"',"+appointment.getDateStart()+","+appointment.getDateStart().getTime()+","+appointment.getDateEnd().getTime()+",'"+appointment.getOwner().getName()+"'");
+				}
+				else throw new SQLException();
+			}
+			else{
+				if(appointment.getRoom()!=null && appointment.getPlace()==null){
+					rs=st.executeQuery("INSERT INTO avtale (beskrivelse,avtalenavn,romNavn,dato,start,slutt,lederBrukernavn) VALUES ('"+appointment.getDescription()+"','"+appointment.getTitle()+"','"+appointment.getRoom().getName()+"',"+appointment.getDateStart()+","+appointment.getDateStart().getTime()+","+appointment.getDateEnd().getTime()+",'"+appointment.getOwner().getName()+"'");
+				}
+				else if(appointment.getPlace()!=null && appointment.getRoom()==null){
+					rs=st.executeQuery("INSERT INTO avtale (beskrivelse,avtalenavn,sted,dato,start,slutt,lederBrukernavn) VALUES ('"+appointment.getDescription()+"','"+appointment.getTitle()+"','"+appointment.getPlace()+"',"+appointment.getDateStart()+","+appointment.getDateStart().getTime()+","+appointment.getDateEnd().getTime()+",'"+appointment.getOwner().getName()+"'");
+				}
+			}
+			if(!appointment.getUserList().isEmpty()){
+				ArrayList list = appointment.getUserList();
+				for (int i=0;i<list.size();i++) {
+					User user =(User) list.get(i);
+					createParticipant(user, appointment);
+				}
+			}
+		}
+	}
+	
+	public static User getUser(String brukernavn)throws SQLException{
+		User newUser = new User(brukernavn);
+		
+		Statement st=conn.createStatement();
+		
+		newUser.username()=brukernavn;
+		
+				
+				st.executeQuery("SELECT ");
 		
 	}
 	
-	
 	//lage change status
+	
 	
 	public static boolean appointmentNotExists(Appointment appointment)throws SQLException
 	{
-		String st="SELECT navn FROM rom WHERE navn LIKE='"+appointment.getTitle()+"'";
+		String st="SELECT avtaleID FROM avtale WHERE avtaleID LIKE='"+appointment.getID()+"'";
 		ResultSet rs= conn.createStatement().executeQuery(st);
 		if(rs.wasNull())
 			return false;

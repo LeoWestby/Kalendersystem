@@ -9,6 +9,10 @@ public class User implements Serializable {
 	/**
 	 * @deprecated Use the other constructor instead.
 	 */
+	public User(String brukernavn){
+		this.username=brukernavn;
+	}
+	
 	public User(String firstname, String lastname) {
 		this.firstname = firstname;
 		this.lastname=lastname;
