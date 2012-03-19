@@ -226,7 +226,17 @@ public class DatabaseAPI {
 		}
 	}
 	
-	
+	public static User getUser(String brukernavn)throws SQLException{
+		User newUser = new User(brukernavn);
+		
+		Statement st=conn.createStatement();
+		
+		newUser.username()=brukernavn;
+		
+				
+				st.executeQuery("SELECT ");
+		
+	}
 	
 	//lage change status
 	
