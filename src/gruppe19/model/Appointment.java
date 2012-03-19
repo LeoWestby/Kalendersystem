@@ -29,7 +29,9 @@ public class Appointment implements Serializable {
 			
 	}
 
-
+	public Appointment(int ID){
+		this.ID=ID;
+	}
 
 	public Appointment(int ID, String title, Date dateStart, 
 						Date dateEnd, String place, 

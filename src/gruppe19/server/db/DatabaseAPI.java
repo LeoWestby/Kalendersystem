@@ -31,8 +31,6 @@ public class DatabaseAPI {
 	 * @param user The username used to gain access to the database.
 	 * @param password The password used to gain access to the database.
 	 */
-
-
 	public static void open(String host, int port, String name, String user, String password) {
 		if (conn != null) {
 			System.out.println("[Error] A database connection is already established.");
@@ -245,6 +243,24 @@ public class DatabaseAPI {
 		
 	}
 	
+	public static Appointment getAppointment(int ID){
+		Appointment newAppointment = new Appointment(ID);
+//		
+//		Statement st=conn.createStatement();
+//		if(!appointmentNotExists(ID)){
+//			ResultSet rs = st.executeQuery("SELECT * FROM avtale WHERE avtaleID LIKE '"+brukernavn+"'");
+//			newAppointment = new Appointment(ID, title, dateStart, dateEnd, place, owner, room, null, description)	
+//			newUser.setFirstname(rs.getString("brukernavn"));
+//				newUser.setPassword(rs.getString("passord"));
+//				newUser.setLastname(rs.getString("etternavn"));
+//				newUser.setTlfnr(rs.getInt("tlf"));
+//			return newUser;
+//		}
+//		else
+//			throw new SQLException();
+		return newAppointment;
+}
+	
 	//lage change status
 	
 	
@@ -291,7 +307,6 @@ public class DatabaseAPI {
 	 * @return The user with this username and password or <code>null</code> if
 	 * no such user exists.
 	 */
-
 	public static User logIn(String username, String password) {
 		if (username.equals("Test") && password.equals("testpw")) {
 			return new User("Test", "Testsen");
