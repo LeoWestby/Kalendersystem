@@ -6,6 +6,27 @@ public class User implements Serializable {
 	
 	private String username, firstname, lastname, tlfnr, password;
 	
+	/**
+	 * @deprecated Use the other constructor instead.
+	 */
+	public User(String firstname, String lastname) {
+		this.firstname = firstname;
+		this.lastname=lastname;
+	}
+	
+	
+	
+	public User(String username, String firstname, 
+				String lastname, String tlfnr, String password) {
+		this.username = username;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.tlfnr = tlfnr;
+		this.password = password;
+	}
+
+
+
 	public String getPassword() {
 		return password;
 	}
@@ -24,10 +45,7 @@ public class User implements Serializable {
 	public void setTlfnr(String tlfnr) {
 		this.tlfnr = tlfnr;
 	}
-	public User(String firstname, String lastname) {
-		this.firstname = firstname;
-		this.lastname=lastname;
-	}
+
 	public String getName(){
 		return firstname + " " + lastname;
 	}

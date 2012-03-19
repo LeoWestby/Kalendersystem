@@ -68,6 +68,15 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		this.model=model;
 		setUp();
 		getValues();
+
+	}
+	public AppointmentDialogGUI(Appointment model,User opener) {
+		this.model=model;
+		setUp();
+		getValues();
+		if(!model.getOwner().getUsername().equals(opener.getUsername())){
+			setDisabled();
+		}
 	}
 
 	private void setUp(){
@@ -224,10 +233,10 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		String start= spinnerStart.getValue()+"";
 		String end = spinnerEnd.getValue()+"";
 		Date dateStart = dateChooser.getDate();
-		Date dateEnd = dateChooser.getDate();
+		Date dateEnd = model.getDateEnd();
 		if(end.compareTo(start)> 0){
 			String[] startSplit = start.split(":");
-			String[] endSplit = start.split(":");
+			String[] endSplit = end.split(":");
 			dateStart.setHours(Integer.parseInt(startSplit[0]));
 			dateStart.setMinutes(Integer.parseInt(startSplit[1]));
 
@@ -257,12 +266,21 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 
 	private void setValues(){
 		model.setTitle(txtTitle.getText());
+		
+		ArrayList<User> userList= new ArrayList<User>();
+		//adder brukere
+		for (int i = 0; i < defaultModel.size(); i++) {
+			userList.add((User)defaultModel.get(i));
+		}
+		model.setUserList(userList);
 	}
 
 	private void getValues(){
 		txtTitle.setText(model.getTitle());
 		dateChooser.setDate(model.getDateStart());
-		txtRoom.setText(model.getRoom().getName());
+		if(model.getRoom()!=null){			
+			txtRoom.setText(model.getRoom().getName());
+		}
 		
 		//tid
 		Date start = model.getDateStart();
@@ -271,8 +289,26 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		String endS = format.format(end.getHours()) + ":" +format.format(end.getMinutes());
 		spinnerStart.setValue(startS);
 		spinnerEnd.setValue(endS);
-
-
+		
+		//sted
+		if (model.getPlace()!=null) {			
+			txtPlace.setText(model.getPlace());
+		}
+		
+		//rom
+		if(model.getRoom()!=null){			
+			txtRoom.setText(model.getRoom().getName());
+		}
+		
+		//adder brukere
+		ArrayList<User> users = model.getUserList();
+		if(users==null){
+			return;
+		}
+		for (User user : users) {
+			defaultModel.addElement(user);
+		}
+		
 	}
 
 	public void setModel(Appointment a){
@@ -333,9 +369,6 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 				labTimeError.setForeground(Color.red);
 				return;
 			}
-			
-			System.out.println(model.getDateStart());
-			System.out.println(model.getDateEnd());
 			setValues();
 			dispose();
 		}
@@ -352,8 +385,18 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		// TODO Auto-generated method stub
 
 	}
-
-	
+	public void setDisabled(){
+		txtTitle.setEnabled(false);
+		dateChooser.setEnabled(false);
+		spinnerEnd.setEnabled(false);
+		spinnerStart.setEnabled(false);
+		txtDescription.setEnabled(false);
+		txtPlace.setEnabled(false);
+		btnAddUser.setEnabled(false);
+		btnDeleteUser.setEnabled(false);
+		btnRoom.setEnabled(false);
+		btnConfirm.setEnabled(false);
+	}
 	
 	public static void main(String[] args) {
 		Appointment app = new Appointment();
@@ -361,9 +404,12 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		app.setDateStart(new Date(1000000000));
 		Room rom = new Room("");
 		app.setRoom(rom);
-		System.out.println(app.getDateStart());
-		System.out.println(app.getDateEnd());
-		AppointmentDialogGUI gui = new AppointmentDialogGUI(app);
+		User a = new User("Vegard", "Harper");
+		a.setUsername("vegahar");
+		app.setOwner(a);
+		User b = new User("Vegard", "Harper");
+		b.setUsername("veghar");
+		AppointmentDialogGUI gui = new AppointmentDialogGUI(app,b);
 		gui.setVisible(true);
 	}
 	
