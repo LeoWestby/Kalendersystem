@@ -27,6 +27,24 @@ public class Appointment implements Serializable {
 	}
 
 
+
+	public Appointment(String title, Date dateStart, 
+						Date dateEnd, String place, 
+						User owner, Room room, 
+						ArrayList<User> userList, 
+						String description) {
+		this.title = title;
+		this.dateStart = dateStart;
+		this.dateEnd = dateEnd;
+		this.place = place;
+		this.owner = owner;
+		this.room = room;
+		this.userList = userList;
+		this.description = description;
+	}
+
+
+
 	public String getTitle() {
 		return title;
 	}
