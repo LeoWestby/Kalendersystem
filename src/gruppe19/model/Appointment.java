@@ -7,6 +7,7 @@ import java.util.Date;
 
 public class Appointment implements Serializable {
 	
+	private int ID = -1;
 	private String title;
 	private Date dateStart;
 	private Date dateEnd;
@@ -28,11 +29,12 @@ public class Appointment implements Serializable {
 
 
 
-	public Appointment(String title, Date dateStart, 
+	public Appointment(int ID, String title, Date dateStart, 
 						Date dateEnd, String place, 
 						User owner, Room room, 
 						ArrayList<User> userList, 
 						String description) {
+		this.ID = ID;
 		this.title = title;
 		this.dateStart = dateStart;
 		this.dateEnd = dateEnd;
@@ -42,7 +44,10 @@ public class Appointment implements Serializable {
 		this.userList = userList;
 		this.description = description;
 	}
-
+	
+	public int getID() {
+		return ID;
+	}
 
 
 	public String getTitle() {
