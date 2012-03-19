@@ -1,19 +1,26 @@
 package gruppe19.client.ktn;
 
+import gruppe19.gui.CalendarView;
+import gruppe19.model.Appointment;
 import gruppe19.model.User;
 import gruppe19.server.ktn.ServerMessage;
 import gruppe19.server.ktn.ServerMessage.Type;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ConnectException;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
+import java.util.Collection;
+
+import org.apache.commons.codec.binary.Base64;
 
 import no.ntnu.fp.model.Person;
 import no.ntnu.fp.net.admin.Settings;
@@ -31,6 +38,8 @@ public class ServerAPI {
 	private static int serverPort;
 	private static boolean usingSimpleConn;
 	private static ReceiveThread receiver;
+	private static CalendarView listener;
+	private static Base64 stringEncoder = new Base64();
 	
 	/**
 	 * The amount of ms to wait for a response from the server
@@ -89,11 +98,17 @@ public class ServerAPI {
 	 * 
 	 * @param msg The request to send.
 	 */
-	public static void send(String msg) {
+	private static void send(ClientMessage msg) {
 		try {
-			conn.send(msg);
-		} catch (Exception e) {
+	        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	        ObjectOutputStream oos = new ObjectOutputStream(baos);
+	        oos.writeObject(msg);
+	        oos.close();
+	        conn.send(stringEncoder.encodeToString(baos.toByteArray()));
+		}
+		catch (Exception e) {
 			System.err.println("[Error] Failed to contact server. Exiting...");
+			e.printStackTrace();
 			System.exit(1);
 		}
 	}
@@ -123,6 +138,10 @@ public class ServerAPI {
 		response = null;
 		return tmp;
 	}
+	
+	public static void setListener(CalendarView listener) {
+		ServerAPI.listener = listener;
+	}
 
 	/**
 	 * Attempts to log the user into the database.
@@ -134,10 +153,17 @@ public class ServerAPI {
 	 */
 	public static User login(String username, String password) {
 		//Send login request to server
-		send("a" + username + "\0" + password);
-		
+		send(new ClientMessage('a', username + "\0" + password));
 		//Parse response
 		return (User)getResponse().payload;
+	}
+	
+	/**
+	 * Updates or saves an appointment to the database and sends an update
+	 * message to every client that has this appointment in their calendar.
+	 */
+	public static void saveAppointment(Appointment a) {
+		send(new ClientMessage('b', a));
 	}
 	
 	/**
@@ -154,14 +180,22 @@ public class ServerAPI {
 					ObjectInputStream byteStream = 
 							new ObjectInputStream(
 									new ByteArrayInputStream(
-											ServerAPI.conn.receive().getBytes()));
+											stringEncoder.decode(
+													ServerAPI.conn.receive())));
 					ServerMessage msg = (ServerMessage)byteStream.readObject();
 					
 					if (msg.type == Type.Response) {
 						response = msg;
 					}
 					else {
-						//Handle request
+						switch (msg.ID) {
+							case 'a':
+								Appointment a = (Appointment)msg.payload;
+								
+								listener.removeAppointment(a.getID());
+								listener.addAppointment(a);
+								break;
+						}
 					}
 				} 
 				catch (ConnectException e) {

@@ -10,13 +10,16 @@ public class ServerMessage implements Serializable {
 		Response, Request, BroadCast
 	};
 	
+	/**
+	 * Request ID.
+	 */
+	public final char ID;
 	public final Type type;
-	public final boolean isString;
 	public final Object payload;
 	
-	public ServerMessage(Object payload, Type type) {
+	public ServerMessage(char ID, Object payload, Type type) {
 		this.payload = payload;
 		this.type = type;
-		isString = payload instanceof String;
+		this.ID = ID;
 	}
 }
