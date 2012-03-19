@@ -1,5 +1,7 @@
 package gruppe19.server.db;
 
+import gruppe19.model.Appointment;
+import gruppe19.model.Room;
 import gruppe19.model.User;
 
 import java.sql.Connection;
@@ -123,20 +125,20 @@ public class DatabaseAPI {
 		return false;
 	}
 
-	public static void insertBruker(User a){
+	public static void insertBruker(User user){
 
 		try {
-			if(userNotExists(a.getName())){
+			if(userNotExists(user.getName())){
 				String st="";
 
-				if(a.getTlfnr()!=null){
+				if(user.getTlfnr()!=null){
 					st="INSERT INTO bruker VALUES('"+
-							a.getUsername()+"','"+a.getPassword()+"','"+a.getFirstname()+"','"+a.getLastname()+"','"+a.getTlfnr()+"')";
+							user.getUsername()+"','"+user.getPassword()+"','"+user.getFirstname()+"','"+user.getLastname()+"','"+user.getTlfnr()+"')";
 
 				}
 				else{
 					st="INSERT INTO bruker VALUES('"+
-							a.getUsername()+"','"+a.getPassword()+"','"+a.getFirstname()+"','"+a.getLastname()+"')";
+							user.getUsername()+"','"+user.getPassword()+"','"+user.getFirstname()+"','"+user.getLastname()+"')";
 				}
 				conn.createStatement().executeQuery(st);
 			}
@@ -156,8 +158,8 @@ public class DatabaseAPI {
 		return true;
 	}
 
-	public static void removeUser(User a) throws SQLException{
-		String userToBeRemoved= a.getUsername();
+	public static void removeUser(User user) throws SQLException{
+		String userToBeRemoved= user.getUsername();
 		
 			if(userNotExists(userToBeRemoved)){
 				throw new SQLException();
@@ -172,15 +174,27 @@ public class DatabaseAPI {
 		
 	}
 	
-	public static void createParticipant(User a){
+	public static void createParticipant(User user, Appointment appointment){
 		
 	}
 	
-	public static void addRoom(String navn)throws SQLException{
-		if(roomNotExists(navn)){
+	
+	//lage change status
+	
+	public static boolean appointmentNotExists(Appointment appointment)throws SQLException
+	{
+		String st="SELECT navn FROM rom WHERE navn LIKE='"+appointment.getTitle()+"'";
+		ResultSet rs= conn.createStatement().executeQuery(st);
+		if(rs.wasNull())
+			return false;
+		return true;
+	}
+	
+	public static void addRoom(Room room)throws SQLException{
+		if(roomNotExists(room.getName())){
 			Statement st=conn.createStatement();
 			
-			ResultSet rs=st.executeQuery("INSERT INTO rom VALUES('"+navn+"')");
+			ResultSet rs=st.executeQuery("INSERT INTO rom VALUES('"+room.getName()+"')");
 			
 			rs.close();
 		}
@@ -189,15 +203,15 @@ public class DatabaseAPI {
 			throw new SQLException();
 	}
 
-	public static void removeRoom(String navn) throws SQLException{
+	public static void removeRoom(Room room) throws SQLException{
 		
-			if(roomNotExists(navn)){
+			if(roomNotExists(room.getName())){
 				throw new SQLException();
 			}
 			
 			else{
 				Statement st= conn.createStatement();
-				ResultSet rs= st.executeQuery("DELETE FROM rom WHERE navn='"+ navn+"'");
+				ResultSet rs= st.executeQuery("DELETE FROM rom WHERE navn='"+ room.getName()+"'");
 					
 				rs.close();
 			}
