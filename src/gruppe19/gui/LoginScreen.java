@@ -14,6 +14,9 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
@@ -22,6 +25,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import no.ntnu.fp.model.Person;
@@ -31,7 +35,7 @@ public class LoginScreen extends JFrame {
 	private JLabel passPrefix = new JLabel("Passord: ");
 	private JLabel error = new JLabel(" ");
 	private JTextField userBox = new JTextField(16);
-	private JTextField passBox = new JTextField(16);
+	private JTextField passBox = new JPasswordField(16);
 	private JButton logIn = new JButton("Logg inn");
 	
 	public LoginScreen() {
@@ -76,8 +80,20 @@ public class LoginScreen extends JFrame {
 					error.setText("Feil brukernavn eller passord");
 				}
 				else {
+					MainScreen frame = new MainScreen(ret);
+					
 					setVisible(false);
-					new MainScreen(ret);
+					userBox.setText("");
+					passBox.setText("");
+					
+					frame.addWindowListener(new WindowAdapter() {
+						@Override
+						public void windowClosed(WindowEvent e) {
+							setVisible(true);
+							userBox.requestFocus();
+						}
+					});
+					
 				}
 			}
 		});
