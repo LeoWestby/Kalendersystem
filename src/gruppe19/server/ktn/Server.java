@@ -129,8 +129,8 @@ public class Server {
 				 */
 				String loginInfo = (String)msg.payload;
 				int i = loginInfo.indexOf(0);
-				send (new ServerMessage('\0', new User(loginInfo.substring(0, i), "Ola", "Nordmann", "5342523", "123"), Type.Response));
-				this.connectedUser = new User(loginInfo.substring(0, i), "Ola", "Nordmann", "5342523", "123");
+				send (new ServerMessage('\0', new User(loginInfo.substring(0, i), "Ola", "Nordmann", 5342523, "123"), Type.Response));
+				this.connectedUser = new User(loginInfo.substring(0, i), "Ola", "Nordmann", 5342523, "123");
 //				send(new ServerMessage(
 //						DatabaseAPI.logIn(	loginInfo.substring(0, i),
 //											loginInfo.substring(i + 1)),

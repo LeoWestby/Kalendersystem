@@ -210,8 +210,8 @@ public class MainScreen extends JFrame {
 		a2.setDateEnd(new Date(112, 2, 23, 20, 00, 00));
 		
 		ArrayList<User> users = new ArrayList<User>();
-		users.add(new User("1", "fs", "fsdfd", "gsdg", "fgsdgs"));
-		users.add(new User("2", "fs", "fsdfd", "gsdg", "fgsdgs"));
+		users.add(new User("1", "fs", "fsdfd", 12345, "fgsdgs"));
+		users.add(new User("2", "fs", "fsdfd", 80070800, "fgsdgs"));
 		a1.setUserList(users);
 		a2.setUserList(users);
 		
