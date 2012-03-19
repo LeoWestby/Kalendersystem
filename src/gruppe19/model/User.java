@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 	
-	private String username, firstname, lastname, tlfnr, password;
+	private String username, firstname, lastname, password;
+	private int tlfnr;
 	
 	/**
 	 * @deprecated Use the other constructor instead.
@@ -19,9 +20,8 @@ public class User implements Serializable {
 	}
 	
 	
-	
 	public User(String username, String firstname, 
-				String lastname, String tlfnr, String password) {
+				String lastname, int tlfnr, String password) {
 		this.username = username;
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -43,10 +43,10 @@ public class User implements Serializable {
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
-	public String getTlfnr() {
+	public int getTlfnr() {
 		return tlfnr;
 	}
-	public void setTlfnr(String tlfnr) {
+	public void setTlfnr(int tlfnr) {
 		this.tlfnr = tlfnr;
 	}
 

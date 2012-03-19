@@ -133,9 +133,9 @@ public class DatabaseAPI {
 			if(userNotExists(user.getName())){
 				String st="";
 
-				if(user.getTlfnr()!=null){
+				if(user.getTlfnr()!=0){
 					st="INSERT INTO bruker VALUES('"+
-							user.getUsername()+"','"+user.getPassword()+"','"+user.getFirstname()+"','"+user.getLastname()+"','"+user.getTlfnr()+"')";
+							user.getUsername()+"','"+user.getPassword()+"','"+user.getFirstname()+"','"+user.getLastname()+"',"+user.getTlfnr()+")";
 
 				}
 				else{
@@ -230,11 +230,18 @@ public class DatabaseAPI {
 		User newUser = new User(brukernavn);
 		
 		Statement st=conn.createStatement();
-		
-		newUser.username()=brukernavn;
-		
-				
-				st.executeQuery("SELECT ");
+		if(!userNotExists(brukernavn)){
+			ResultSet rs = st.executeQuery("SELECT * FROM bruker WHERE brukernavn LIKE '"+brukernavn+"'");
+			while(rs.next()){
+				newUser.setFirstname(rs.getString("brukernavn"));
+				newUser.setPassword(rs.getString("passord"));
+				newUser.setLastname(rs.getString("etternavn"));
+				newUser.setTlfnr(rs.getInt("tlf"));
+			}
+			return newUser;
+		}
+		else
+			throw new SQLException();
 		
 	}
 	
