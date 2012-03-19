@@ -107,7 +107,10 @@ public class CalendarView extends JScrollPane {
 	}
 	
 	public void removeAppointment(int ID) {
-		for (Appointment a : appointments) {
+		Appointment[] tmp = new Appointment[appointments.size()];
+		appointments.toArray(tmp);
+		
+		for (Appointment a : tmp) {
 			if (a.getID() == ID) {
 				appointments.remove(a);
 			}
