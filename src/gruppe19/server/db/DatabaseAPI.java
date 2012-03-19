@@ -127,18 +127,18 @@ public class DatabaseAPI {
 
 		try {
 			if(userNotExists(a.getName())){
-
+				String st="";
 
 				if(a.getTlfnr()!=null){
-					String st="INSERT INTO bruker VALUES('"+
+					st="INSERT INTO bruker VALUES('"+
 							a.getUsername()+"','"+a.getPassword()+"','"+a.getFirstname()+"','"+a.getLastname()+"','"+a.getTlfnr()+"')";
-					return;
+
 				}
 				else{
-					String st="INSERT INTO bruker VALUES('"+
+					st="INSERT INTO bruker VALUES('"+
 							a.getUsername()+"','"+a.getPassword()+"','"+a.getFirstname()+"','"+a.getLastname()+"')";
 				}
-
+				conn.createStatement().executeQuery(st);
 			}
 		} catch (SQLException e) {
 
@@ -147,9 +147,45 @@ public class DatabaseAPI {
 
 
 	}
+	
+	public static boolean roomNotExists(String navn)throws SQLException{
+		String st="SELECT navn FROM rom WHERE navn LIKE='"+navn+"'";
+		ResultSet rs= conn.createStatement().executeQuery(st);
+		if(rs.wasNull())
+			return false;
+		return true;
+	}
 
+	public static void removeUser(User a) throws SQLException{
+		String userToBeRemoved= a.getUsername();
+		
+			if(userNotExists(userToBeRemoved)){
+				throw new SQLException();
+			}
+			
+			else{
+				Statement st= conn.createStatement();
+				ResultSet rs= st.executeQuery("DELETE FROM bruker WHERE brukernavn='"+ userToBeRemoved+"'");
+					
+				rs.close();
+			}
+		
+	}
+	
+	public static void addRoom(String navn)throws SQLException{
+		if(roomNotExists(navn)){
+			Statement st=conn.createStatement();
+			
+			ResultSet rs=st.executeQuery("INSERT INTO rom VALUES('"+navn+"')");
+			
+			rs.close();
+		}
+		
+		else
+			throw new SQLException();
+	}
 
-
+	
 	/**
 	 * Checks if a user exists with the specified username and password.
 	 * 
