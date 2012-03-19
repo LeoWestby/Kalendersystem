@@ -224,10 +224,10 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		String start= spinnerStart.getValue()+"";
 		String end = spinnerEnd.getValue()+"";
 		Date dateStart = dateChooser.getDate();
-		Date dateEnd = dateChooser.getDate();
+		Date dateEnd = model.getDateEnd();
 		if(end.compareTo(start)> 0){
 			String[] startSplit = start.split(":");
-			String[] endSplit = start.split(":");
+			String[] endSplit = end.split(":");
 			dateStart.setHours(Integer.parseInt(startSplit[0]));
 			dateStart.setMinutes(Integer.parseInt(startSplit[1]));
 
@@ -257,6 +257,13 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 
 	private void setValues(){
 		model.setTitle(txtTitle.getText());
+		
+		ArrayList<User> userList= new ArrayList<User>();
+		//adder brukere
+		for (int i = 0; i < defaultModel.size(); i++) {
+			userList.add((User)defaultModel.get(i));
+		}
+		model.setUserList(userList);
 	}
 
 	private void getValues(){
@@ -271,8 +278,19 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		String endS = format.format(end.getHours()) + ":" +format.format(end.getMinutes());
 		spinnerStart.setValue(startS);
 		spinnerEnd.setValue(endS);
-
-
+		
+		//sted
+		txtPlace.setText(model.getPlace());
+		
+		//rom
+		txtRoom.setText(model.getRoom().getName());
+		
+		//adder brukere
+		ArrayList<User> users = model.getUserList();
+		for (User user : users) {
+			defaultModel.addElement(user);
+		}
+		
 	}
 
 	public void setModel(Appointment a){
@@ -333,9 +351,6 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 				labTimeError.setForeground(Color.red);
 				return;
 			}
-			
-			System.out.println(model.getDateStart());
-			System.out.println(model.getDateEnd());
 			setValues();
 			dispose();
 		}
@@ -353,7 +368,6 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 
 	}
 
-	
 	
 	public static void main(String[] args) {
 		Appointment app = new Appointment();
