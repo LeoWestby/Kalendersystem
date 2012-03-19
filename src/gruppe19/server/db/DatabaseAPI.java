@@ -172,6 +172,10 @@ public class DatabaseAPI {
 		
 	}
 	
+	public static void createParticipant(User a){
+		
+	}
+	
 	public static void addRoom(String navn)throws SQLException{
 		if(roomNotExists(navn)){
 			Statement st=conn.createStatement();
@@ -185,6 +189,20 @@ public class DatabaseAPI {
 			throw new SQLException();
 	}
 
+	public static void removeRoom(String navn) throws SQLException{
+		
+			if(roomNotExists(navn)){
+				throw new SQLException();
+			}
+			
+			else{
+				Statement st= conn.createStatement();
+				ResultSet rs= st.executeQuery("DELETE FROM rom WHERE navn='"+ navn+"'");
+					
+				rs.close();
+			}
+		
+	}
 	
 	/**
 	 * Checks if a user exists with the specified username and password.
