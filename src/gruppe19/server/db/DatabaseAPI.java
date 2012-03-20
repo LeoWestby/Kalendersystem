@@ -13,6 +13,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.text.DateFormatter;
+
 import no.ntnu.fp.model.Person;
 
 
@@ -166,7 +168,7 @@ public class DatabaseAPI {
 	public static void tester()throws SQLException{
 		String string = "select last_insert_id() from bruker;";
 		ResultSet rs = conn.createStatement().executeQuery(string);
-		
+
 	}
 	public static boolean roomNotExists(String navn)throws SQLException{
 		String st="SELECT navn FROM rom WHERE navn LIKE='"+navn+"'";
@@ -174,7 +176,7 @@ public class DatabaseAPI {
 		if(rs.wasNull())
 			return false;
 		return true;
-		
+
 	}
 
 	public static void removeUser(User user) throws SQLException{
@@ -205,41 +207,32 @@ public class DatabaseAPI {
 		}
 	}
 
-	public static void createAppointment(Appointment appointment)throws SQLException{
-		if(appointment.getRoom()!=null){
-			if(roomNotExists(appointment.getRoom().getName())) throw new SQLException();
-		}
-		else if(appointment.getOwner()!=null){
-			if(userNotExists(appointment.getOwner().getName()))throw new SQLException();
-		}
-		else{
-			Statement st= conn.createStatement();
-			ResultSet rs;
+	public static Appointment createAppointment(Appointment appointment)throws SQLException{
 
-			if(appointment.getDescription()==null){
-				if(appointment.getRoom()!=null && appointment.getPlace()==null){
-					rs=st.executeQuery("INSERT INTO avtale (avtalenavn,romNavn,dato,start,slutt,lederBrukernavn) VALUES ('"+appointment.getTitle()+"','"+appointment.getRoom().getName()+"',"+appointment.getDateStart()+","+appointment.getDateStart().getTime()+","+appointment.getDateEnd().getTime()+",'"+appointment.getOwner().getName()+"'");
-				}
-				else if(appointment.getPlace()!=null && appointment.getRoom()==null){
-					rs=st.executeQuery("INSERT INTO avtale (avtalenavn,sted,dato,start,slutt,lederBrukernavn) VALUES ('"+appointment.getTitle()+"','"+appointment.getPlace()+"',"+appointment.getDateStart()+","+appointment.getDateStart().getTime()+","+appointment.getDateEnd().getTime()+",'"+appointment.getOwner().getName()+"'");
-				}
-			}
-			else{
-				if(appointment.getRoom()!=null && appointment.getPlace()==null){
-					rs=st.executeQuery("INSERT INTO avtale (beskrivelse,avtalenavn,romNavn,dato,start,slutt,lederBrukernavn) VALUES ('"+appointment.getDescription()+"','"+appointment.getTitle()+"','"+appointment.getRoom().getName()+"',"+appointment.getDateStart()+","+appointment.getDateStart().getTime()+","+appointment.getDateEnd().getTime()+",'"+appointment.getOwner().getName()+"'");
-				}
-				else if(appointment.getPlace()!=null && appointment.getRoom()==null){
-					rs=st.executeQuery("INSERT INTO avtale (beskrivelse,avtalenavn,sted,dato,start,slutt,lederBrukernavn) VALUES ('"+appointment.getDescription()+"','"+appointment.getTitle()+"','"+appointment.getPlace()+"',"+appointment.getDateStart()+","+appointment.getDateStart().getTime()+","+appointment.getDateEnd().getTime()+",'"+appointment.getOwner().getName()+"'");
-				}
-			}
-			if(!appointment.getUserList().isEmpty()){
-				ArrayList list = appointment.getUserList();
-				for (int i=0;i<list.size();i++) {
-					User user =(User) list.get(i);
-					createParticipant(user, appointment);
-				}
+		Statement st= conn.createStatement();
+		ResultSet rs;
+
+		String avtalenavn=appointment.getTitle();
+		String start =String.format( "{t %d:%d:%d}", appointment.getDateStart().getHours(), appointment.getDateStart().getMinutes(),appointment.getDateStart().getSeconds());
+		String slutt= String.format( "{t %d:%d:%d}", appointment.getDateEnd().getHours(), appointment.getDateEnd().getMinutes(),appointment.getDateEnd().getSeconds());
+		String sted= appointment.getPlace();
+		String eier=appointment.getOwner().getUsername();
+		String rom=appointment.getRoom().getName();
+		ArrayList<User>brukerliste= appointment.getUserList();
+		String beskrivelse=appointment.getDescription();
+
+		rs=st.executeQuery("INSERT INTO avtale (avtalenavn,romNavn,dato,start,slutt,lederBrukernavn,beskrivelse) VALUES ('"+ avtalenavn + "','"+rom+"','"+start+"','"+slutt+"','"+eier+"','"+beskrivelse+"');");
+
+		ResultSet avtaleid=st.executeQuery("SELECT last_insert_id();");
+		if(!brukerliste.isEmpty()){
+			for (int i=0;i<brukerliste.size();i++) {
+				User user =(User) brukerliste.get(i);
+				createParticipant(user, appointment);
 			}
 		}
+
+		return appointment;
+
 	}
 
 	public static User getUser(String brukernavn)throws SQLException{
@@ -261,7 +254,7 @@ public class DatabaseAPI {
 		return newUser;
 
 	}
-	
+
 	public static ArrayList<User> getUsers() throws SQLException{
 
 		ArrayList<User> userList=new ArrayList<User>();
@@ -374,5 +367,45 @@ public class DatabaseAPI {
 	public static void main(String[] args) throws SQLException {
 		open();
 		tests();
+	}
+	public static void updateUser(User user) throws SQLException {
+		if (userNotExists(user.getUsername())) {
+			throw new SQLException("Prøvde å oppdatere en ikke-eksisterende bruker");
+		}
+		conn.createStatement().executeUpdate("DELETE FROM Bruker WHERE Brukernavn LIKE " + user.getUsername() + ';');
+		insertUser(user);
+	}
+
+	public static void updateRoom(Room room) throws SQLException {
+		if (roomNotExists(room.getName())) {
+			throw new SQLException("Prøvde å oppdatere et ikke-eksisterende rom");
+		}
+		conn.createStatement().executeUpdate("DELETE FROM Rom WHERE Navn = " + room.getName() + ";");
+		addRoom(room);
+	}
+
+	public static ArrayList<Room> getFreeRooms(Date start, Date end) throws SQLException {
+		ArrayList<Room> rooms = new ArrayList<Room>();
+
+		ResultSet results = conn.createStatement().executeQuery(
+				"SELECT navn" +
+						"FROM rom" +
+						"WHERE navn NOT IN (" +
+						"SELECT navn " +
+						"FROM avtale JOIN rom ON romNavn = navn " +
+						"WHERE dato = {d '2012-03-20'}" +
+						"AND (" +
+						"(start BETWEEN {t '14:00:00' } AND {t '16:00:00' } " +
+						"OR slutt BETWEEN {t '14:00:00' } AND {t '16:00:00' })" +
+
+	   			 	"OR " +
+
+	   			 	"start < { t '14:00:00' } AND slutt > { t '16:00:00' }" +
+				"));");
+
+		while (results.next()) {
+			rooms.add(new Room(results.getString("Navn")));
+		}
+		return rooms;
 	}
 }

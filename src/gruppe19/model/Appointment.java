@@ -138,7 +138,9 @@ public class Appointment implements Serializable {
 	public void save() {
 		ServerAPI.saveAppointment(this);
 	}
-	
+	public void setIdD(int i){
+		this.ID=i;
+	}
 
 
 	
