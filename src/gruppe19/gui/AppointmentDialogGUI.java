@@ -42,7 +42,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 
 	private GridBagLayout layout;
 	private JTextField txtTitle, txtPlace, txtRoom;
-	private JButton btnConfirm, btnRoom, btnCancel, btnAddUser, btnDeleteUser;
+	private JButton btnConfirm, btnRoom, btnCancel, btnAddUser, btnDeleteUser, btnRemoveRoom;
 	private DefaultListModel defaultModel;
 	private DefaultListSelectionModel defaultSelectModel;
 	private JTextArea txtDescription;
@@ -171,6 +171,9 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		constraints.gridx=2;
 		btnRoom = new JButton("Finn rom");
 		add(btnRoom,constraints);
+		constraints.gridx=3;
+		btnRemoveRoom = new JButton("Fjern Rom");
+		add(btnRemoveRoom,constraints);
 
 		
 		//legg til deltagere
@@ -198,23 +201,20 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		constraints.gridy=7;
 		btnAddUser = new JButton("Legg til deltager");
 		add(btnAddUser,constraints);
-		constraints.gridx=2;
-		constraints.gridy=8;
+		constraints.gridx=3;
 		btnDeleteUser = new JButton("Slett deltager");
 		add(btnDeleteUser,constraints);
 		
 		
 		//knapper for godta og slett av avtale
 		constraints.gridx=1;
-		constraints.gridy=9;
+		constraints.gridy=8;
 		btnConfirm = new JButton("Legg til/endre avtale");
 		add(btnConfirm, constraints);
 		constraints.gridx=2;
-		constraints.gridy=9;
 		btnCancel = new JButton("Avbryt");
 		add(btnCancel, constraints);
 		
-		//setname
 		
 		//add actionlisteners
 		btnRoom.addActionListener(this);
@@ -222,6 +222,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		btnConfirm.addActionListener(this);
 		btnCancel.addActionListener(this);
 		btnDeleteUser.addActionListener(this);
+		btnRemoveRoom.addActionListener(this);
 		
 		//behaviour
 		setModalityType(ModalityType.APPLICATION_MODAL);
@@ -340,6 +341,14 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 			else{
 				labTimeError.setText("Feil i tid");
 				labTimeError.setForeground(Color.RED);
+			}
+		}
+		
+		//btnremoveroom
+		if (e.getSource()==btnRemoveRoom) {
+			if (model.getRoom()!=null) {
+				model.setRoom(new Room(""));
+				txtRoom.setText("");
 			}
 		}
 		

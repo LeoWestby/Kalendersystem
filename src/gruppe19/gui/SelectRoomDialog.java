@@ -2,6 +2,7 @@ package gruppe19.gui;
 
 import gruppe19.model.Appointment;
 import gruppe19.model.Room;
+import gruppe19.server.db.DatabaseAPI;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;

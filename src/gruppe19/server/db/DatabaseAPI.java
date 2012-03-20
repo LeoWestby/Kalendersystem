@@ -63,7 +63,14 @@ public class DatabaseAPI {
 				"leomarti_group19", //Username
 				"group19"); //Password
 	}
-
+	public static void close(){
+		try {
+			conn.close();
+			conn=null;
+		} catch (SQLException e) {
+			System.out.println("Klarte ikke å lukke forbindelse");
+		}
+	}
 	public static void  createExampleData() throws SQLException{
 		Statement s = conn.createStatement();
 
@@ -117,15 +124,20 @@ public class DatabaseAPI {
 	}
 
 	public static boolean userNotExists(String brukernavn) throws SQLException{
-		String st="SELECT brukernavn FROM bruker where brukernavn like ='"+brukernavn+"'";
+		String st="SELECT brukernavn FROM bruker WHERE brukernavn LIKE'"+brukernavn+"';";
 		ResultSet rs= conn.createStatement().executeQuery(st);
-		if(rs.wasNull()){
-			return true;
+		boolean a = rs.first();
+		if (a) {
+			boolean b =rs.getString("brukernavn").equals("");
+			if (b) {				
+				return true;
+			}
 		}
+
 		return false;
 	}
 
-	public static void insertBruker(User user){
+	public static void insertUser(User user){
 
 		try {
 			if(userNotExists(user.getName())){
@@ -149,7 +161,7 @@ public class DatabaseAPI {
 
 
 	}
-	
+
 	public static boolean roomNotExists(String navn)throws SQLException{
 		String st="SELECT navn FROM rom WHERE navn LIKE='"+navn+"'";
 		ResultSet rs= conn.createStatement().executeQuery(st);
@@ -160,32 +172,32 @@ public class DatabaseAPI {
 
 	public static void removeUser(User user) throws SQLException{
 		String userToBeRemoved= user.getUsername();
-		
-			if(userNotExists(userToBeRemoved)){
-				throw new SQLException();
-			}
-			
-			else{
-				Statement st= conn.createStatement();
-				ResultSet rs= st.executeQuery("DELETE FROM bruker WHERE brukernavn='"+ userToBeRemoved+"'");
-					
-				rs.close();
-			}
-		
+
+		if(userNotExists(userToBeRemoved)){
+			throw new SQLException();
+		}
+
+		else{
+			Statement st= conn.createStatement();
+			ResultSet rs= st.executeQuery("DELETE FROM bruker WHERE brukernavn='"+ userToBeRemoved+"'");
+
+			rs.close();
+		}
+
 	}
-	
+
 	//status i deltaker 
 	//2=avslått
 	//1=godtatt
 	//0=ubesvart
-	
+
 	public static void createParticipant(User user, Appointment appointment) throws SQLException{
 		if(!userNotExists(user.getUsername())&& !appointmentNotExists(appointment)){
 			Statement st= conn.createStatement();
 			ResultSet rs = st.executeQuery("INSERT INTO deltaker VALUES('"+user.getUsername()+"',"+appointment.getID()+","+0);
 		}
 	}
-	
+
 	public static void createAppointment(Appointment appointment)throws SQLException{
 		if(appointment.getRoom()!=null){
 			if(roomNotExists(appointment.getRoom().getName())) throw new SQLException();
@@ -196,7 +208,7 @@ public class DatabaseAPI {
 		else{
 			Statement st= conn.createStatement();
 			ResultSet rs;
-			
+
 			if(appointment.getDescription()==null){
 				if(appointment.getRoom()!=null && appointment.getPlace()==null){
 					rs=st.executeQuery("INSERT INTO avtale (avtalenavn,romNavn,dato,start,slutt,lederBrukernavn) VALUES ('"+appointment.getTitle()+"','"+appointment.getRoom().getName()+"',"+appointment.getDateStart()+","+appointment.getDateStart().getTime()+","+appointment.getDateEnd().getTime()+",'"+appointment.getOwner().getName()+"'");
@@ -223,47 +235,70 @@ public class DatabaseAPI {
 			}
 		}
 	}
-	
+
 	public static User getUser(String brukernavn)throws SQLException{
-		User newUser = new User(brukernavn);
-		
+		User newUser = new User("");
+
 		Statement st=conn.createStatement();
 		if(!userNotExists(brukernavn)){
-			ResultSet rs = st.executeQuery("SELECT * FROM bruker WHERE brukernavn LIKE '"+brukernavn+"'");
+
+			ResultSet rs = st.executeQuery("SELECT * FROM bruker WHERE brukernavn LIKE '"+brukernavn+"';");
+
 			while(rs.next()){
-				newUser.setFirstname(rs.getString("brukernavn"));
+				newUser.setUsername(rs.getString("brukernavn"));
+				newUser.setFirstname(rs.getString("fornavn"));
 				newUser.setPassword(rs.getString("passord"));
 				newUser.setLastname(rs.getString("etternavn"));
 				newUser.setTlfnr(rs.getInt("tlf"));
 			}
-			return newUser;
 		}
-		else
-			throw new SQLException();
-		
+		return newUser;
+
 	}
 	
+	public static ArrayList<User> getUsers() throws SQLException{
+
+		ArrayList<User> userList=new ArrayList<User>();
+		Statement st=conn.createStatement();
+
+		ResultSet rs = st.executeQuery("SELECT * FROM bruker ORDER BY brukernavn;");
+
+		User newUser = null;
+
+		while(rs.next()){
+			newUser=new User(rs.getString("brukernavn"));
+			newUser.setFirstname(rs.getString("fornavn"));
+			newUser.setPassword(rs.getString("passord"));
+			newUser.setLastname(rs.getString("etternavn"));
+			newUser.setTlfnr(rs.getInt("tlf"));
+			userList.add(newUser);
+		}
+		rs.close();	
+		return userList;
+	}
+
+
 	public static Appointment getAppointment(int ID){
 		Appointment newAppointment = new Appointment(ID);
-//		
-//		Statement st=conn.createStatement();
-//		if(!appointmentNotExists(ID)){
-//			ResultSet rs = st.executeQuery("SELECT * FROM avtale WHERE avtaleID LIKE '"+brukernavn+"'");
-//			newAppointment = new Appointment(ID, title, dateStart, dateEnd, place, owner, room, null, description)	
-//			newUser.setFirstname(rs.getString("brukernavn"));
-//				newUser.setPassword(rs.getString("passord"));
-//				newUser.setLastname(rs.getString("etternavn"));
-//				newUser.setTlfnr(rs.getInt("tlf"));
-//			return newUser;
-//		}
-//		else
-//			throw new SQLException();
+		//		
+		//		Statement st=conn.createStatement();
+		//		if(!appointmentNotExists(ID)){
+		//			ResultSet rs = st.executeQuery("SELECT * FROM avtale WHERE avtaleID LIKE '"+brukernavn+"'");
+		//			newAppointment = new Appointment(ID, title, dateStart, dateEnd, place, owner, room, null, description)	
+		//			newUser.setFirstname(rs.getString("brukernavn"));
+		//				newUser.setPassword(rs.getString("passord"));
+		//				newUser.setLastname(rs.getString("etternavn"));
+		//				newUser.setTlfnr(rs.getInt("tlf"));
+		//			return newUser;
+		//		}
+		//		else
+		//			throw new SQLException();
 		return newAppointment;
-}
-	
+	}
+
 	//lage change status
-	
-	
+
+
 	public static boolean appointmentNotExists(Appointment appointment)throws SQLException
 	{
 		String st="SELECT avtaleID FROM avtale WHERE avtaleID LIKE='"+appointment.getID()+"'";
@@ -272,35 +307,35 @@ public class DatabaseAPI {
 			return false;
 		return true;
 	}
-	
+
 	public static void addRoom(Room room)throws SQLException{
 		if(roomNotExists(room.getName())){
 			Statement st=conn.createStatement();
-			
+
 			ResultSet rs=st.executeQuery("INSERT INTO rom VALUES('"+room.getName()+"')");
-			
+
 			rs.close();
 		}
-		
+
 		else
 			throw new SQLException();
 	}
 
 	public static void removeRoom(Room room) throws SQLException{
-		
-			if(roomNotExists(room.getName())){
-				throw new SQLException();
-			}
-			
-			else{
-				Statement st= conn.createStatement();
-				ResultSet rs= st.executeQuery("DELETE FROM rom WHERE navn='"+ room.getName()+"'");
-					
-				rs.close();
-			}
-		
+
+		if(roomNotExists(room.getName())){
+			throw new SQLException();
+		}
+
+		else{
+			Statement st= conn.createStatement();
+			ResultSet rs= st.executeQuery("DELETE FROM rom WHERE navn='"+ room.getName()+"'");
+
+			rs.close();
+		}
+
 	}
-	
+
 	/**
 	 * Checks if a user exists with the specified username and password.
 	 * 
@@ -318,7 +353,7 @@ public class DatabaseAPI {
 	/**
 	 * Tests to demonstrate how to interpret result sets
 	 */
-	private static void tests() throws SQLException {
+	public static void tests() throws SQLException {
 		Statement s = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
 		ResultSet result = s.executeQuery("SELECT brukernavn, tlf FROM bruker");
 
