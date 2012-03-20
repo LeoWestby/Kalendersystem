@@ -14,6 +14,33 @@
   <widgets xsi:type="model:Panel" id="17" x="279" y="264" width="108" height="27" measuredWidth="108" measuredHeight="27"/>
   <widgets xsi:type="model:Panel" id="18" x="344" y="296" width="33" height="147" measuredWidth="33" measuredHeight="147"/>
   <widgets xsi:type="model:Panel" id="19" x="419" y="296" width="25" height="147" measuredWidth="25" measuredHeight="147"/>
+  <widgets xsi:type="model:Label" id="20" x="289" y="214" text="(label)" measuredWidth="41" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="21" x="289" y="265" text="(label)" measuredWidth="41" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="22" x="419" y="349" text="(label)" measuredWidth="25" measuredHeight="41" rotation="270">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="23" x="473" y="355" text="(edit)" measuredWidth="35" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="24" x="473" y="301" text="(edit)" measuredWidth="35" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="25" x="473" y="413" text="(edit)" measuredWidth="35" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="26" x="289" y="301" text="(edit)" measuredWidth="35" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="27" x="289" y="357" text="(edit)" measuredWidth="35" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="28" x="289" y="413" text="(edit)" measuredWidth="35" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
   <hRuler/>
   <vRuler/>
   <font/>
