@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore" theme="clean">
+  <widgets xsi:type="model:Panel" id="1" x="200" y="176" width="385" height="297" measuredWidth="385" measuredHeight="297"/>
+  <widgets xsi:type="model:Panel" id="2" x="480" y="416" width="89" height="25" measuredWidth="89" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="5" x="392" y="256" width="145" height="25" measuredWidth="145" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="6" x="392" y="288" width="145" height="25" measuredWidth="145" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="7" x="288" y="256" width="89" height="25" measuredWidth="89" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="8" x="288" y="288" width="89" height="25" measuredWidth="89" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="9" x="297" y="96" width="193" height="73" measuredWidth="193" measuredHeight="73"/>
+  <hRuler/>
+  <vRuler/>
+  <font/>
+</model:Screen>
