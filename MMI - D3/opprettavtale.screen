@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Panel" id="1" x="176" y="102" width="385" height="481" measuredWidth="385" measuredHeight="481"/>
+  <widgets xsi:type="model:Panel" id="2" x="217" y="144" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="3" x="217" y="176" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="6" x="217" y="208" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="7" x="217" y="240" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="8" x="217" y="272" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="9" x="217" y="304" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="10" x="216" y="350" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="11" x="361" y="144" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="12" x="361" y="176" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="13" x="361" y="208" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="14" x="361" y="240" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="15" x="361" y="272" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="16" x="361" y="304" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="17" x="216" y="384" width="313" height="137" measuredWidth="313" measuredHeight="137"/>
+  <widgets xsi:type="model:Panel" id="18" x="328" y="536" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="19" x="465" y="176" width="41" height="25" measuredWidth="41" measuredHeight="25"/>
+  <hRuler/>
+  <vRuler/>
+  <font/>
+</model:Screen>
