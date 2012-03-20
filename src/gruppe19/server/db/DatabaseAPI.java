@@ -145,12 +145,14 @@ public class DatabaseAPI {
 
 				if(user.getTlfnr()!=0){
 					st="INSERT INTO bruker VALUES('"+
-							user.getUsername()+"','"+user.getPassword()+"','"+user.getFirstname()+"','"+user.getLastname()+"',"+user.getTlfnr()+")";
+							user.getUsername()+"','"+user.getPassword()+"','"+user.getFirstname()+"','"
+							+user.getLastname()+"',"+user.getTlfnr()+");";
 
 				}
 				else{
 					st="INSERT INTO bruker VALUES('"+
-							user.getUsername()+"','"+user.getPassword()+"','"+user.getFirstname()+"','"+user.getLastname()+"')";
+							user.getUsername()+"','"+user.getPassword()+"','"
+							+user.getFirstname()+"','"+user.getLastname()+"');";
 				}
 				conn.createStatement().executeQuery(st);
 			}
@@ -161,13 +163,18 @@ public class DatabaseAPI {
 
 
 	}
-
+	public static void tester()throws SQLException{
+		String string = "select last_insert_id() from bruker;";
+		ResultSet rs = conn.createStatement().executeQuery(string);
+		
+	}
 	public static boolean roomNotExists(String navn)throws SQLException{
 		String st="SELECT navn FROM rom WHERE navn LIKE='"+navn+"'";
 		ResultSet rs= conn.createStatement().executeQuery(st);
 		if(rs.wasNull())
 			return false;
 		return true;
+		
 	}
 
 	public static void removeUser(User user) throws SQLException{
@@ -216,7 +223,6 @@ public class DatabaseAPI {
 				else if(appointment.getPlace()!=null && appointment.getRoom()==null){
 					rs=st.executeQuery("INSERT INTO avtale (avtalenavn,sted,dato,start,slutt,lederBrukernavn) VALUES ('"+appointment.getTitle()+"','"+appointment.getPlace()+"',"+appointment.getDateStart()+","+appointment.getDateStart().getTime()+","+appointment.getDateEnd().getTime()+",'"+appointment.getOwner().getName()+"'");
 				}
-				else throw new SQLException();
 			}
 			else{
 				if(appointment.getRoom()!=null && appointment.getPlace()==null){
@@ -312,7 +318,7 @@ public class DatabaseAPI {
 		if(roomNotExists(room.getName())){
 			Statement st=conn.createStatement();
 
-			ResultSet rs=st.executeQuery("INSERT INTO rom VALUES('"+room.getName()+"')");
+			ResultSet rs=st.executeQuery("INSERT INTO rom VALUES('"+room.getName()+"');");
 
 			rs.close();
 		}
@@ -329,7 +335,7 @@ public class DatabaseAPI {
 
 		else{
 			Statement st= conn.createStatement();
-			ResultSet rs= st.executeQuery("DELETE FROM rom WHERE navn='"+ room.getName()+"'");
+			ResultSet rs= st.executeQuery("DELETE FROM rom WHERE navn='"+ room.getName()+"';");
 
 			rs.close();
 		}
