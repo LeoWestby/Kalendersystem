@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
+  <widgets xsi:type="model:Panel" id="1" x="251" y="157" width="356" height="465" measuredWidth="356" measuredHeight="465"/>
+  <widgets xsi:type="model:Panel" id="2" x="433" y="210" width="108" height="35" measuredWidth="108" measuredHeight="35"/>
+  <widgets xsi:type="model:Panel" id="6" x="376" y="552" width="108" height="35" measuredWidth="108" measuredHeight="35"/>
+  <widgets xsi:type="model:Panel" id="7" x="279" y="209" width="108" height="35" measuredWidth="108" measuredHeight="35"/>
+  <widgets xsi:type="model:Panel" id="8" x="279" y="408" width="50" height="35" measuredWidth="50" measuredHeight="35"/>
+  <widgets xsi:type="model:Panel" id="9" x="279" y="296" width="50" height="35" measuredWidth="50" measuredHeight="35"/>
+  <widgets xsi:type="model:Panel" id="10" x="279" y="352" width="50" height="35" measuredWidth="50" measuredHeight="35"/>
+  <widgets xsi:type="model:Panel" id="11" x="456" y="408" width="88" height="35" measuredWidth="88" measuredHeight="35"/>
+  <widgets xsi:type="model:Panel" id="12" x="456" y="296" width="88" height="35" measuredWidth="88" measuredHeight="35"/>
+  <widgets xsi:type="model:Panel" id="13" x="456" y="350" width="88" height="35" measuredWidth="88" measuredHeight="35"/>
+  <widgets xsi:type="model:Panel" id="14" x="560" y="296" width="25" height="147" measuredWidth="25" measuredHeight="147"/>
+  <widgets xsi:type="model:Panel" id="17" x="279" y="264" width="108" height="27" measuredWidth="108" measuredHeight="27"/>
+  <widgets xsi:type="model:Panel" id="18" x="344" y="296" width="33" height="147" measuredWidth="33" measuredHeight="147"/>
+  <widgets xsi:type="model:Panel" id="19" x="419" y="296" width="25" height="147" measuredWidth="25" measuredHeight="147"/>
+  <hRuler/>
+  <vRuler/>
+  <font/>
+</model:Screen>
