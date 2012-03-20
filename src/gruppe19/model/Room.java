@@ -1,9 +1,10 @@
 package gruppe19.model;
 
+import java.io.Serializable;
 
 
-public class Room {
-	public final static String ROOM_PROPERTY = "RoomProperty";
+
+public class Room implements Serializable {
 	
 	private String name;
 
@@ -17,6 +18,9 @@ public class Room {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	public void setRoom(Room a){
+		setName(a.getName());
 	}
 	
 	

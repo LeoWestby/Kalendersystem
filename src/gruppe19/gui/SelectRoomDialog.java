@@ -2,6 +2,7 @@ package gruppe19.gui;
 
 import gruppe19.model.Appointment;
 import gruppe19.model.Room;
+import gruppe19.server.db.DatabaseAPI;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -38,7 +39,7 @@ public class SelectRoomDialog extends JDialog implements ListSelectionListener, 
 		defaultListModel = new DefaultListModel();
 		listRooms = new JList();
 		listRooms.setModel(defaultListModel);
-		
+		listRooms.setCellRenderer(new RoomListRenderer());
 		defaultListSelectionModel = new DefaultListSelectionModel();
 		listRooms.setSelectionModel(defaultListSelectionModel);
 		defaultListSelectionModel.addListSelectionListener(this);
@@ -76,7 +77,7 @@ public class SelectRoomDialog extends JDialog implements ListSelectionListener, 
 			if(!defaultListSelectionModel.isSelectionEmpty()){
 				int i = defaultListSelectionModel.getAnchorSelectionIndex();
 				Room a = (Room)defaultListModel.get(i);
-				model.getRoom().setName(a.getName());
+				model.getRoom().setRoom(a);
 				dispose();		
 
 			}

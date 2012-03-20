@@ -1,6 +1,7 @@
 package gruppe19.gui;
 
 import gruppe19.client.ktn.ServerAPI;
+import gruppe19.model.User;
 import gruppe19.server.ktn.ServerMessage;
 import gruppe19.server.ktn.ServerMessage.Type;
 
@@ -13,6 +14,9 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
@@ -21,6 +25,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import no.ntnu.fp.model.Person;
@@ -30,7 +35,7 @@ public class LoginScreen extends JFrame {
 	private JLabel passPrefix = new JLabel("Passord: ");
 	private JLabel error = new JLabel(" ");
 	private JTextField userBox = new JTextField(16);
-	private JTextField passBox = new JTextField(16);
+	private JTextField passBox = new JPasswordField(16);
 	private JButton logIn = new JButton("Logg inn");
 	
 	public LoginScreen() {
@@ -68,15 +73,28 @@ public class LoginScreen extends JFrame {
 		logIn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int ret = ServerAPI.login(userBox.getText(), passBox.getText());
+				User ret = ServerAPI.login(userBox.getText(), passBox.getText());
 				
-				if (ret < 0) {
+				if (ret == null) {
 					error.setForeground(Color.red);
 					error.setText("Feil brukernavn eller passord");
 				}
 				else {
-					error.setForeground(Color.green);
-					error.setText("Riktig brukernavn og passord");
+					MainScreen frame = new MainScreen(ret);
+					
+					setVisible(false);
+					userBox.setText("");
+					passBox.setText("");
+					error.setText("");
+					
+					frame.addWindowListener(new WindowAdapter() {
+						@Override
+						public void windowClosed(WindowEvent e) {
+							setVisible(true);
+							userBox.requestFocus();
+						}
+					});
+					
 				}
 			}
 		});
