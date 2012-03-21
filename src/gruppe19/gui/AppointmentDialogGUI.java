@@ -379,7 +379,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 				return;
 			}
 			setValues();
-			model.save();
+			//model.save();
 			dispose();
 		}
 		
