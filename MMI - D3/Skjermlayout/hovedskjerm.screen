@@ -34,7 +34,7 @@
     <font size="10"/>
   </widgets>
   <widgets xsi:type="model:Panel" id="33" x="346" y="233" width="162" height="117" measuredWidth="162" measuredHeight="117"/>
-  <widgets xsi:type="model:Label" id="34" x="457" y="246" text="(View)" measuredWidth="40" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="34" x="356" y="239" text="appointment.title (View)" measuredWidth="142" measuredHeight="25">
     <font size="10"/>
   </widgets>
   <hRuler/>
