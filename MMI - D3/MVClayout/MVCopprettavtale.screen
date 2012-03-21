@@ -1,62 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
-  <widgets xsi:type="model:Panel" id="1" x="176" y="102" width="385" height="481" measuredWidth="385" measuredHeight="481"/>
-  <widgets xsi:type="model:Panel" id="2" x="217" y="144" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
-  <widgets xsi:type="model:Panel" id="3" x="217" y="176" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
-  <widgets xsi:type="model:Panel" id="6" x="217" y="208" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
-  <widgets xsi:type="model:Panel" id="7" x="217" y="240" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
-  <widgets xsi:type="model:Panel" id="8" x="217" y="272" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
-  <widgets xsi:type="model:Panel" id="9" x="217" y="304" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
-  <widgets xsi:type="model:Panel" id="10" x="216" y="350" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
-  <widgets xsi:type="model:Panel" id="11" x="361" y="144" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
-  <widgets xsi:type="model:Panel" id="12" x="361" y="176" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
-  <widgets xsi:type="model:Panel" id="13" x="361" y="208" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
-  <widgets xsi:type="model:Panel" id="14" x="361" y="240" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
-  <widgets xsi:type="model:Panel" id="15" x="361" y="272" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
-  <widgets xsi:type="model:Panel" id="16" x="361" y="304" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
-  <widgets xsi:type="model:Panel" id="17" x="216" y="384" width="313" height="137" measuredWidth="313" measuredHeight="137"/>
+  <widgets xsi:type="model:Panel" id="1" x="176" y="104" width="385" height="481" measuredWidth="385" measuredHeight="481"/>
+  <widgets xsi:type="model:Panel" id="2" x="217" y="168" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="3" x="217" y="200" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="6" x="217" y="232" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="7" x="217" y="264" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="8" x="217" y="296" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="9" x="217" y="328" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="10" x="216" y="374" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="11" x="361" y="166" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="12" x="361" y="198" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="13" x="361" y="230" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="14" x="361" y="262" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="15" x="361" y="294" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="16" x="361" y="326" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="17" x="216" y="418" width="313" height="103" measuredWidth="313" measuredHeight="103"/>
   <widgets xsi:type="model:Panel" id="18" x="303" y="532" width="123" height="33" measuredWidth="123" measuredHeight="33"/>
-  <widgets xsi:type="model:Panel" id="19" x="465" y="176" width="41" height="25" measuredWidth="41" measuredHeight="25"/>
-  <widgets xsi:type="model:Label" id="20" x="230" y="176" text="(label)" measuredWidth="41" measuredHeight="25">
-    <font size="10"/>
-  </widgets>
-  <widgets xsi:type="model:Label" id="21" x="230" y="144" text="(label)" measuredWidth="41" measuredHeight="25">
+  <widgets xsi:type="model:Panel" id="19" x="465" y="198" width="80" height="25" measuredWidth="80" measuredHeight="25"/>
+  <widgets xsi:type="model:Label" id="21" x="230" y="168" text="V:Jlabel" measuredWidth="49" measuredHeight="25">
     <font size="10" bold="false"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="22" x="230" y="240" text="(label)" measuredWidth="41" measuredHeight="25">
-    <font size="10"/>
-  </widgets>
-  <widgets xsi:type="model:Label" id="23" x="230" y="208" text="(label)" measuredWidth="41" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="26" x="371" y="168" text="VC:JTextField" measuredWidth="80" measuredHeight="25">
     <font size="10" bold="false"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="24" x="230" y="304" text="(label)" measuredWidth="41" measuredHeight="25">
-    <font size="10"/>
-  </widgets>
-  <widgets xsi:type="model:Label" id="25" x="230" y="272" text="(label)" measuredWidth="41" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="33" x="226" y="428" text="VC:JTextAreal" measuredWidth="83" measuredHeight="25">
     <font size="10" bold="false"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="26" x="379" y="144" text="(edit)" measuredWidth="35" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="34" x="226" y="200" text="V:Jlabel" measuredWidth="49" measuredHeight="25">
     <font size="10" bold="false"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="27" x="379" y="176" text="(edit)" measuredWidth="35" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="35" x="227" y="232" text="V:Jlabel" measuredWidth="49" measuredHeight="25">
     <font size="10" bold="false"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="28" x="379" y="240" text="(edit)" measuredWidth="35" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="36" x="226" y="264" text="V:Jlabel" measuredWidth="49" measuredHeight="25">
     <font size="10" bold="false"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="29" x="379" y="208" text="(edit)" measuredWidth="35" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="37" x="226" y="296" text="V:Jlabel" measuredWidth="49" measuredHeight="25">
     <font size="10" bold="false"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="30" x="379" y="272" text="(edit)" measuredWidth="35" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="38" x="226" y="328" text="V:Jlabel" measuredWidth="49" measuredHeight="25">
     <font size="10" bold="false"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="31" x="379" y="304" text="(edit)" measuredWidth="35" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="39" x="226" y="374" text="V:Jlabel" measuredWidth="49" measuredHeight="25">
     <font size="10" bold="false"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="32" x="230" y="350" text="(label)" measuredWidth="41" measuredHeight="25">
-    <font size="10"/>
+  <widgets xsi:type="model:Label" id="40" x="371" y="200" text="VC:JTextField" measuredWidth="80" measuredHeight="25">
+    <font size="10" bold="false"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="33" x="379" y="424" text="(edit)" measuredWidth="35" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="43" x="371" y="296" text="VC:JTextField" measuredWidth="80" measuredHeight="25">
+    <font size="10" bold="false"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="44" x="371" y="328" text="VC:DropList" measuredWidth="73" measuredHeight="25">
+    <font size="10" bold="false"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="45" x="472" y="200" text="VC:JButton" measuredWidth="66" measuredHeight="25">
+    <font size="10" bold="false"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="46" x="334" y="536" text="VC:JButton" measuredWidth="66" measuredHeight="25">
+    <font size="10" bold="false"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="47" x="371" y="232" text="VC:DropList" measuredWidth="73" measuredHeight="25">
+    <font size="10" bold="false"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="48" x="371" y="264" text="VC:DropList" measuredWidth="73" measuredHeight="25">
+    <font size="10" bold="false"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="49" x="217" y="128" text="V:Jlabel" measuredWidth="49" measuredHeight="25">
+    <font size="10" bold="false"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="50" x="334" y="120" text="VC: OpprettAvtale M: Avtale" measuredWidth="167" measuredHeight="25">
     <font size="10" bold="false"/>
   </widgets>
   <hRuler/>

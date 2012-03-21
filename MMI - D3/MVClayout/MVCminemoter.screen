@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore">
   <widgets xsi:type="model:Panel" id="1" x="160" y="96" width="433" height="513" measuredWidth="433" measuredHeight="513"/>
-  <widgets xsi:type="model:Panel" id="2" x="195" y="152" width="25" height="401" measuredWidth="25" measuredHeight="401"/>
-  <widgets xsi:type="model:Panel" id="3" x="264" y="152" width="129" height="401" measuredWidth="129" measuredHeight="401"/>
-  <widgets xsi:type="model:Panel" id="4" x="416" y="152" width="129" height="401" measuredWidth="129" measuredHeight="401"/>
+  <widgets xsi:type="model:Panel" id="2" x="195" y="232" width="25" height="321" measuredWidth="25" measuredHeight="321"/>
+  <widgets xsi:type="model:Panel" id="3" x="264" y="232" width="129" height="321" measuredWidth="129" measuredHeight="321"/>
+  <widgets xsi:type="model:Panel" id="4" x="416" y="232" width="129" height="321" measuredWidth="129" measuredHeight="321"/>
   <widgets xsi:type="model:Panel" id="5" x="328" y="569" width="137" height="23" measuredWidth="137" measuredHeight="23"/>
-  <widgets xsi:type="model:Panel" id="6" x="195" y="110" width="350" height="23" measuredWidth="350" measuredHeight="23"/>
+  <widgets xsi:type="model:Panel" id="6" x="195" y="168" width="350" height="23" measuredWidth="350" measuredHeight="23"/>
   <widgets xsi:type="model:Label" id="8" x="293" y="360" measuredWidth="5" measuredHeight="25">
     <font size="10"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="9" x="195" y="332" text="(label)" measuredWidth="25" measuredHeight="41" rotation="270">
+  <widgets xsi:type="model:Label" id="9" x="195" y="332" text="V:Jlabel" measuredWidth="25" measuredHeight="49" rotation="270">
     <font size="10"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="10" x="293" y="109" text="(edit)" measuredWidth="35" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="10" x="195" y="120" text="VC:MoterAvtaler, M:MineMoterAvtale" measuredWidth="222" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="11" x="293" y="320" text="VC:Jlabel" measuredWidth="57" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="12" x="454" y="320" text="V:Jlabel" measuredWidth="49" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="13" x="372" y="568" text="VC:JButton" measuredWidth="66" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="14" x="245" y="167" text="VC:JTextField" measuredWidth="80" measuredHeight="25">
     <font size="10"/>
   </widgets>
   <hRuler/>

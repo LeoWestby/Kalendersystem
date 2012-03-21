@@ -11,16 +11,37 @@
   <widgets xsi:type="model:Panel" id="10" x="224" y="216" width="313" height="25" measuredWidth="313" measuredHeight="25"/>
   <widgets xsi:type="model:Panel" id="11" x="224" y="303" width="313" height="25" measuredWidth="313" measuredHeight="25"/>
   <widgets xsi:type="model:Panel" id="12" x="224" y="400" width="313" height="25" measuredWidth="313" measuredHeight="25"/>
-  <widgets xsi:type="model:Label" id="13" x="253" y="132" text="(label)" measuredWidth="41" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="13" x="253" y="132" text="V:Jlabel" measuredWidth="49" measuredHeight="25">
     <font size="10"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="15" x="253" y="303" text="(View)" measuredWidth="40" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="17" x="253" y="216" text="V:Jlabel" measuredWidth="49" measuredHeight="25">
     <font size="10"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="16" x="253" y="400" text="(View)" measuredWidth="40" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="18" x="280" y="253" text="VC:Jbutton" measuredWidth="67" measuredHeight="25">
     <font size="10"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="17" x="253" y="216" text="(View)" measuredWidth="40" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="19" x="424" y="253" text="VC:Jbutton" measuredWidth="67" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="20" x="424" y="340" text="VC:Jbutton" measuredWidth="67" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="21" x="424" y="444" text="VC:Jbutton" measuredWidth="67" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="22" x="280" y="444" text="VC:Jbutton" measuredWidth="67" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="23" x="280" y="340" text="VC:Jbutton" measuredWidth="67" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="24" x="253" y="303" text="V:Jlabel" measuredWidth="49" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="25" x="253" y="400" text="V:Jlabel" measuredWidth="49" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="26" x="216" y="93" text="VC: InvitationCalender M: Invitation" measuredWidth="207" measuredHeight="25">
     <font size="10"/>
   </widgets>
   <hRuler/>

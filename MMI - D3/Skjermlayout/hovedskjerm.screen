@@ -2,7 +2,7 @@
 <model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore" theme="clean">
   <widgets xsi:type="model:Panel" id="2" x="64" y="64" width="737" height="513" measuredWidth="737" measuredHeight="513"/>
   <widgets xsi:type="model:Panel" id="3" x="680" y="74" width="108" height="31" measuredWidth="108" measuredHeight="31"/>
-  <widgets xsi:type="model:Panel" id="4" x="312" y="147" width="466" height="395" measuredWidth="466" measuredHeight="395"/>
+  <widgets xsi:type="model:Panel" id="4" x="312" y="147" width="466" height="408" measuredWidth="466" measuredHeight="408"/>
   <widgets xsi:type="model:Panel" id="11" x="122" y="362" width="169" height="193" measuredWidth="169" measuredHeight="193"/>
   <widgets xsi:type="model:Panel" id="13" x="98" y="118" width="108" height="31" measuredWidth="108" measuredHeight="31"/>
   <widgets xsi:type="model:Panel" id="14" x="98" y="156" width="108" height="31" measuredWidth="108" measuredHeight="31"/>
@@ -31,6 +31,10 @@
     <font size="10"/>
   </widgets>
   <widgets xsi:type="model:Label" id="32" x="91" y="438" text="(View)" measuredWidth="25" measuredHeight="40" rotation="270">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Panel" id="33" x="346" y="233" width="162" height="117" measuredWidth="162" measuredHeight="117"/>
+  <widgets xsi:type="model:Label" id="34" x="356" y="239" text="appointment.title (View)" measuredWidth="142" measuredHeight="25">
     <font size="10"/>
   </widgets>
   <hRuler/>
