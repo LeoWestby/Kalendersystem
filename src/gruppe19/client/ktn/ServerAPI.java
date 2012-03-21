@@ -2,6 +2,7 @@ package gruppe19.client.ktn;
 
 import gruppe19.gui.CalendarView;
 import gruppe19.model.Appointment;
+import gruppe19.model.Room;
 import gruppe19.model.User;
 import gruppe19.server.ktn.ServerMessage;
 import gruppe19.server.ktn.ServerMessage.Type;
@@ -19,6 +20,8 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.codec.binary.Base64;
 
@@ -159,13 +162,126 @@ public class ServerAPI {
 	}
 	
 	/**
-	 * Updates or saves an appointment to the database and sends an update
-	 * message to every client that has this appointment in their calendar.
+	 * Saves a new appointment to the database and notifies
+	 * every user invited.
+	 * 
+	 * @return An appointment object with the correct ID set. 
 	 */
-	public static void saveAppointment(Appointment a) {
+	public static Appointment createAppointment(Appointment a) {
 		send(new ClientMessage('b', a));
+		return (Appointment)getResponse().payload;
 	}
 	
+	/**
+	 * Updates an already existing appointment in the database
+	 * and notifies every participant.
+	 */
+	public static void updateAppointment(Appointment a) {
+		send(new ClientMessage('c', a));
+	}
+	
+	/**
+	 * Deletes an appointment from the database
+	 * and notifies every participant.
+	 * 
+	 * @see ServerAPI#removeAppointment
+	 */
+	public static void destroyAppointment(Appointment a) {
+		send(new ClientMessage('d', a));
+	}
+	
+	/**
+	 * Notifies the server that the user logged in on this client
+	 * has removed an appointment from his calendar.
+	 * 
+	 * @see ServerAPI#destroyAppointment
+	 */
+	public static void removeAppointment(Appointment a) {
+		send(new ClientMessage('e', a));
+	}
+	
+	/**
+	 * Changes the logged in user's status to the specified 
+	 * status flag for the specified appointment.
+	 * 
+	 * @deprecated UNIMPLEMENTED!
+	 */
+	public static void setStatus(Appointment a, Object statusFlag) {
+		//ID f
+	}
+	
+	/**
+	 * Gets all status flags for the specified appointment.
+	 * 
+	 * @deprecated UNIMPLEMENTED!
+	 */
+	public static Object getStatus(Appointment a) {
+		return null;
+		//ID g
+	}
+	
+	/**
+	 * Gets all appointments started by the specified user.
+	 */
+	public static List<Appointment> getAppointmentsStarted(User starter) {
+		send(new ClientMessage('h', starter));
+		return (List<Appointment>)getResponse().payload;
+	}
+	
+	/**
+	 * Gets all appointments the specified user is part of.
+	 * <p>
+	 * NB! This does not include appointments started by the specified user.
+	 * 
+	 * @see ServerAPI#getAppointmentsStarted
+	 */
+	public static List<Appointment> getAppointments(User u) {
+		send(new ClientMessage('i', u));
+		return (List<Appointment>)getResponse().payload;
+	}
+	
+	/**
+	 * Gets a list with all appointments in the database.
+	 */
+	public static List<Appointment> getAppointments() {
+		send(new ClientMessage('j', null));
+		return (List<Appointment>)getResponse().payload;
+	}
+	
+	/**
+	 * Gets all rooms that are not occupied by any other appointments
+	 * between the start and end dates.
+	 */
+	public static List<Room> getFreeRooms(Date start, Date end) {
+		Date[] dates = {start, end};
+		send(new ClientMessage('k', dates));
+		return (List<Room>)getResponse().payload;
+	}
+	
+	/**
+	 * Gets a list with all rooms in the database.
+	 */
+	public static List<Room> getRooms() {
+		send(new ClientMessage('l', null));
+		return (List<Room>)getResponse().payload;
+	}
+	
+	/**
+	 * Gets a user object by user name, or null if no such user exists.
+	 */
+	public static User getUser(String username) {
+		send(new ClientMessage('m', username));
+		return (User)getResponse().payload;
+	}
+	
+	/**
+	 * Gets a list with all users in the database.
+	 */
+	public static List<User> getUsers(String username) {
+		send(new ClientMessage('n', username));
+		return (List<User>)getResponse().payload;
+	}
+
 	/**
 	 * Creates a thread waiting for incoming messages.
 	 */
@@ -189,12 +305,20 @@ public class ServerAPI {
 					}
 					else {
 						switch (msg.ID) {
-							case 'a':
+							case 'a': {
+								//Appointment created / updated
 								Appointment a = (Appointment)msg.payload;
 								
 								listener.removeAppointment(a.getID());
 								listener.addAppointment(a);
 								break;
+							}
+							case 'b': {
+								//Appointment removed
+								Appointment a = (Appointment)msg.payload;
+								
+								listener.removeAppointment(a.getID());
+							}
 						}
 					}
 				} 

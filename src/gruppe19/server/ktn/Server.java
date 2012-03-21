@@ -16,7 +16,9 @@ import java.io.ObjectOutputStream;
 import java.net.BindException;
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.codec.binary.Base64;
@@ -34,6 +36,12 @@ public class Server {
 	private static Connection server = null;
 	private static Base64 stringEncoder = new Base64();
 	
+	/**
+	 * When true, the system will accept any user name / password
+	 * combination and simply return a new user with the specified
+	 * user name.
+	 */
+	public final static boolean noLogin = true;
 	public final static String serverAddress;
 	public final static int listeningPort;
 	public final static boolean usingSimpleConn;
@@ -114,36 +122,59 @@ public class Server {
 		 * Maps a request from the client to the appropriate method.
 		 * 
 		 * @param request The request to handle.
+		 * @throws SQLException
 		 */
-		private void handleMessage(ClientMessage msg) {
+		private void handleMessage(ClientMessage msg) throws SQLException {
 			if (msg == null) {
 				return;
 			}
 			
 			switch (msg.ID) {
-			case 'a':
-			{
-				/* Sends a server message containing a valid user object if
-				 * the username and password are valid, or a server message
-				 * containing null if not.
-				 */
+			case 'a': {
 				String loginInfo = (String)msg.payload;
+				User user = null;
 				int i = loginInfo.indexOf(0);
-				send (new ServerMessage('\0', new User(loginInfo.substring(0, i), "Ola", "Nordmann", 5342523, "123"), Type.Response));
-				this.connectedUser = new User(loginInfo.substring(0, i), "Ola", "Nordmann", 5342523, "123");
-//				send(new ServerMessage(
-//						DatabaseAPI.logIn(	loginInfo.substring(0, i),
-//											loginInfo.substring(i + 1)),
-//											Type.Response));
+
+				if (noLogin) {
+					//Ignore password and return a new user with the specified user name
+					user = new User(loginInfo.substring(0, i), 
+										"Ola", "Nordmann", 64545453, "");
+				}
+				else {
+					//Send a new user object if valid password and user name, null if not
+					user = DatabaseAPI.logIn(loginInfo.substring(0, i),
+												loginInfo.substring(i + 1));
+				}
+				send(new ServerMessage('\0', user, Type.Response));
+				connectedUser = user;
 				break;
 			}
 			case 'b':
 			{
-				Appointment a = (Appointment)msg.payload;
+				/* Create a new appointment in the database
+				 * Notify participants
+				 * Return an appointment object with the correct ID
+				 */
+				Appointment a = DatabaseAPI.createAppointment((Appointment)msg.payload);
 				
 				for (User u : a.getUserList()) {
 					for (Client c : clients) {
-						
+						if (u.getUsername().equals(c.connectedUser.getUsername())) {
+							c.send(new ServerMessage('a', a, Type.Request));
+						}
+					}
+				}
+				send(new ServerMessage('\0', a, Type.Response));
+				break;
+			}
+			case 'c': {
+				/* Update an existing appointment
+				 * Notify participants
+				 */
+				Appointment a = DatabaseAPI.updateAppointment((Appointment)msg.payload);
+				
+				for (User u : a.getUserList()) {
+					for (Client c : clients) {
 						if (u.getUsername().equals(c.connectedUser.getUsername())) {
 							c.send(new ServerMessage('a', a, Type.Request));
 						}
@@ -151,53 +182,91 @@ public class Server {
 				}
 				break;
 			}
-			case 'c':
-							
+			case 'd': {
+				/* Delete the appointment
+				 * Notify participants
+				 */
+				Appointment a = (Appointment)msg.payload;
+				DatabaseAPI.removeAppointment(a);
+				
+				for (User u : a.getUserList()) {
+					for (Client c : clients) {
+						if (u.getUsername().equals(c.connectedUser.getUsername())) {
+							c.send(new ServerMessage('b', a, Type.Request));
+						}
+					}
+				}
 				break;
-						
-			case 'd':
+			}
+			case 'e': {
+				//Notify appointment leader that the specified user deleted the appointment
+				
+
+				break;
+			}
+			case 'f': {
+				//Change status. Unsure how to implement
 				
 				break;
-			
-			case 'e':
+			}
+			case 'g': {
+				//Get status. Unsure how to implement
 				
 				break;
-			
-			case 'f':
-				
+			}
+			case 'h': {
+				//Send all appointments started by the specified user
+				send(new ServerMessage('\0',
+						DatabaseAPI.findAppointments((User)msg.payload), 
+						Type.Response));
 				break;
-			
-			case 'g':
-				
+			}
+			case 'i': {
+				//Send all appointments where specified user is a participant
+				send(new ServerMessage('\0',
+						DatabaseAPI.findAppointmentsParticipant((User)msg.payload),
+						Type.Response));
 				break;
-			
-			case 'h':
-				
+			}
+			case 'j': {
+				//Send all appointments
+
 				break;
-			case 'i':
+			}
+			case 'k': {
+				//Send all free rooms between the specified start and end dates
+				Date[] dates = (Date[])msg.payload;
 				
+				send(new ServerMessage('\0',
+						DatabaseAPI.getFreeRooms(
+								dates[0],
+								dates[1]),
+						Type.Response));
 				break;
-			
-			case 'j':
-				
+			}
+			case 'l': {
+				//Send all rooms
+				send(new ServerMessage('\0',
+						DatabaseAPI.getRooms(),
+						Type.Response));
 				break;
-			
-			case 'k':
-				
+			}
+			case 'm': {
+				/* Send a new user object matching the specified user name
+				 * Send null if no match
+				 */
+				send(new ServerMessage('\0',
+						DatabaseAPI.getUser((String)msg.payload),
+						Type.Response));
 				break;
-			
-			case 'l':
-				
+			}
+			case 'n': {
+				//Send all users
+				send(new ServerMessage('\0',
+						DatabaseAPI.getUsers(),
+						Type.Response));
 				break;
-			
-			case 'm':
-				
-				break;
-			
-			case 'n':
-				
-				break;
-			
+			}
 			case 'o':
 				
 				break;
@@ -261,7 +330,7 @@ public class Server {
 	 */
 	public static synchronized void broadcast(String msg) {
 		for (Client c : clients) {
-//			c.send(new ServerMessage(msg, Type.BroadCast));
+			c.send(new ServerMessage('\0', msg, Type.BroadCast));
 		}
 	}
 	
