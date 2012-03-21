@@ -17,10 +17,10 @@ public class TestDatabase extends TestCase{
 		DatabaseAPI.open();
 	}
 	protected void tearDown(){
-		DatabaseAPI.close();
+//		DatabaseAPI.close();
 	}
 	public void testExsistUser()throws SQLException{
-		
+		System.out.println("test exsist user");
 		String username = "vegahar";
 		assertFalse(DatabaseAPI.userNotExists(username));
 		username = "dagrunki";
@@ -31,6 +31,7 @@ public class TestDatabase extends TestCase{
 	}
 	
 	public void testGetUser() throws SQLException{
+		System.out.println("test get users");
 		String brukernavn = "vegahar";
 		User bruker1 = new User(brukernavn);
 		User bruker2;
@@ -43,23 +44,31 @@ public class TestDatabase extends TestCase{
 		assertFalse(bruker2.getUsername().equals(brukernavn));
 		
 	}
-	
-	public void testGetUsers() throws SQLException{
-		
-	}
 	public void testgetid() throws SQLException{
+		System.out.println("test getid");
 		User a = new User("lolol", "vegard", "harper", 1023120, "passord");
 		DatabaseAPI.insertUser(a);
 		DatabaseAPI.tester();
 	}
 	
-	public void testInsertApp() throws SQLException{
-		Appointment a = new Appointment();
-		a.setOwner(new User("vegahar"));
-		AppointmentDialogGUI b = new AppointmentDialogGUI(a);
-		b.setVisible(true);
-		DatabaseAPI.createAppointment(a);
-				
+	public void testGetAppointments() throws SQLException{
+		System.out.println("test get appointments");
+		User a = new User("vegahar");
+		ArrayList<Appointment> list = DatabaseAPI.findAppointments(a);
+		for (Appointment appointment : list) {
+			System.out.println(appointment.getTitle() + " " + appointment.getDateStart());
+		}
+		System.out.println();
+	}
+	
+	public void testParticipant() throws SQLException{
+		System.out.println("test participant");
+		User a = new User("vegahar");
+		ArrayList<Appointment> list = DatabaseAPI.findAppointmentsParticipant(a);
+		for (Appointment appointment : list) {
+			System.out.println(appointment.getTitle() + " " + appointment.getID());
+		}
+		System.out.println();
 	}
 
 }
