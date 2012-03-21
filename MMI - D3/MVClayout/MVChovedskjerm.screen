@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore" theme="clean">
+  <widgets xsi:type="model:Panel" id="2" x="64" y="64" width="737" height="513" measuredWidth="737" measuredHeight="513"/>
+  <widgets xsi:type="model:Panel" id="3" x="680" y="74" width="108" height="31" measuredWidth="108" measuredHeight="31"/>
+  <widgets xsi:type="model:Panel" id="4" x="312" y="147" width="466" height="395" measuredWidth="466" measuredHeight="395"/>
+  <widgets xsi:type="model:Panel" id="11" x="122" y="362" width="169" height="193" measuredWidth="169" measuredHeight="193"/>
+  <widgets xsi:type="model:Panel" id="13" x="98" y="118" width="108" height="31" measuredWidth="108" measuredHeight="31"/>
+  <widgets xsi:type="model:Panel" id="14" x="98" y="156" width="108" height="31" measuredWidth="108" measuredHeight="31"/>
+  <widgets xsi:type="model:Panel" id="15" x="98" y="196" width="108" height="31" measuredWidth="108" measuredHeight="31"/>
+  <widgets xsi:type="model:Panel" id="16" x="98" y="236" width="108" height="31" measuredWidth="108" measuredHeight="31"/>
+  <widgets xsi:type="model:Panel" id="17" x="98" y="276" width="108" height="31" measuredWidth="108" measuredHeight="31"/>
+  <widgets xsi:type="model:Panel" id="18" x="336" y="118" width="108" height="31" measuredWidth="108" measuredHeight="31"/>
+  <widgets xsi:type="model:Panel" id="21" x="583" y="118" width="108" height="31" measuredWidth="108" measuredHeight="31"/>
+  <widgets xsi:type="model:Panel" id="22" x="88" y="328" width="153" height="33" measuredWidth="153" measuredHeight="33"/>
+  <widgets xsi:type="model:Panel" id="23" x="88" y="360" width="33" height="195" measuredWidth="33" measuredHeight="195"/>
+  <widgets xsi:type="model:Panel" id="24" x="473" y="78" width="80" height="70" measuredWidth="80" measuredHeight="70"/>
+  <widgets xsi:type="model:Panel" id="25" x="98" y="84" width="108" height="26" measuredWidth="108" measuredHeight="26"/>
+  <widgets xsi:type="model:Label" id="27" x="110" y="84" text="(View)" measuredWidth="40" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="28" x="496" y="100" text="(View)" measuredWidth="40" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="29" x="528" y="328" text="(View)" measuredWidth="40" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="30" x="240" y="372" text="(View)" measuredWidth="40" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="31" x="184" y="332" text="(View)" measuredWidth="40" measuredHeight="25">
+    <font size="10"/>
+  </widgets>
+  <widgets xsi:type="model:Label" id="32" x="91" y="438" text="(View)" measuredWidth="25" measuredHeight="40" rotation="270">
+    <font size="10"/>
+  </widgets>
+  <hRuler/>
+  <vRuler/>
+  <font/>
+</model:Screen>
