@@ -206,11 +206,10 @@ public class ServerAPI {
 	/**
 	 * Changes the logged in user's status to the specified 
 	 * status flag for the specified appointment.
-	 * 
-	 * @deprecated UNIMPLEMENTED!
 	 */
-	public static void setStatus(Appointment a, Object statusFlag) {
-		//ID f
+	public static void setStatus(Appointment a, Status flag) {
+		Object[] status = {a, flag};
+		send(new ClientMessage('f', status));
 	}
 	
 	/**
@@ -281,7 +280,7 @@ public class ServerAPI {
 	 * Gets a list with all users in the database.
 	 */
 	public static List<User> getUsers() {
-		send(new ClientMessage('n', username));
+		send(new ClientMessage('n', null));
 		return (List<User>)getResponse().payload;
 	}
 

@@ -157,7 +157,7 @@ public class Server {
 				 */
 				Appointment a = DatabaseAPI.createAppointment((Appointment)msg.payload);
 				
-				for (User u : a.getUserList()) {
+				for (User u : a.getUserList().keySet()) {
 					for (Client c : clients) {
 						if (u.getUsername().equals(c.connectedUser.getUsername())) {
 							c.send(new ServerMessage('a', a, Type.Request));
@@ -173,7 +173,7 @@ public class Server {
 				 */
 				Appointment a = DatabaseAPI.updateAppointment((Appointment)msg.payload);
 				
-				for (User u : a.getUserList()) {
+				for (User u : a.getUserList().keySet()) {
 					for (Client c : clients) {
 						if (u.getUsername().equals(c.connectedUser.getUsername())) {
 							c.send(new ServerMessage('a', a, Type.Request));
@@ -189,7 +189,7 @@ public class Server {
 				Appointment a = (Appointment)msg.payload;
 				DatabaseAPI.removeAppointment(a);
 				
-				for (User u : a.getUserList()) {
+				for (User u : a.getUserList().keySet()) {
 					for (Client c : clients) {
 						if (u.getUsername().equals(c.connectedUser.getUsername())) {
 							c.send(new ServerMessage('b', a, Type.Request));
@@ -205,12 +205,14 @@ public class Server {
 				break;
 			}
 			case 'f': {
-				//Change status. Unsure how to implement
+				/* Change status
+				 * Send notification to all participants
+				 */
 				
 				break;
 			}
 			case 'g': {
-				//Get status. Unsure how to implement
+				
 				
 				break;
 			}
