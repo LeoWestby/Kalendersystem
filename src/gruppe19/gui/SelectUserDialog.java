@@ -69,10 +69,10 @@ public class SelectUserDialog extends JDialog implements ListSelectionListener, 
 		//TODO: Hent alle brukere fra databasen. Sjekk deretter om samme brukeren ikke blir lagt til to ganger
 		ArrayList<User> list = (ArrayList<User>) ServerAPI.getUsers();
 		ArrayList<User> userinapp = new ArrayList<User>();
-		for (int i = 0; i < defaultListModel.size(); i++) {
-			list.add((User)model.get(i));
+		for (int i = 0; i < model.size(); i++) {
+			userinapp.add((User)model.get(i));
 		}
-		System.err.println(list.size());
+		System.err.println(userinapp);
 		for (User user : list) {
 			boolean exsist = false;
 			for (User users : userinapp) {
