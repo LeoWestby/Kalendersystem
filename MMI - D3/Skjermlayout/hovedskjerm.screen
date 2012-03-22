@@ -3,38 +3,38 @@
   <widgets xsi:type="model:Panel" id="2" x="64" y="64" width="737" height="513" measuredWidth="737" measuredHeight="513"/>
   <widgets xsi:type="model:Panel" id="3" x="680" y="74" width="108" height="31" measuredWidth="108" measuredHeight="31"/>
   <widgets xsi:type="model:Panel" id="4" x="312" y="141" width="466" height="408" measuredWidth="466" measuredHeight="408"/>
-  <widgets xsi:type="model:Panel" id="11" x="122" y="362" width="169" height="193" measuredWidth="169" measuredHeight="193"/>
+  <widgets xsi:type="model:Panel" id="11" x="120" y="402" width="171" height="152" measuredWidth="171" measuredHeight="152"/>
   <widgets xsi:type="model:Panel" id="13" x="98" y="118" width="108" height="31" measuredWidth="108" measuredHeight="31"/>
   <widgets xsi:type="model:Panel" id="14" x="98" y="156" width="108" height="31" measuredWidth="108" measuredHeight="31"/>
   <widgets xsi:type="model:Panel" id="15" x="98" y="196" width="108" height="31" measuredWidth="108" measuredHeight="31"/>
   <widgets xsi:type="model:Panel" id="16" x="98" y="236" width="108" height="31" measuredWidth="108" measuredHeight="31"/>
   <widgets xsi:type="model:Panel" id="17" x="98" y="276" width="108" height="31" measuredWidth="108" measuredHeight="31"/>
-  <widgets xsi:type="model:Panel" id="18" x="336" y="118" width="108" height="31" measuredWidth="108" measuredHeight="31"/>
-  <widgets xsi:type="model:Panel" id="21" x="583" y="118" width="108" height="31" measuredWidth="108" measuredHeight="31"/>
-  <widgets xsi:type="model:Panel" id="22" x="88" y="328" width="153" height="33" measuredWidth="153" measuredHeight="33"/>
-  <widgets xsi:type="model:Panel" id="23" x="88" y="360" width="33" height="195" measuredWidth="33" measuredHeight="195"/>
-  <widgets xsi:type="model:Panel" id="24" x="473" y="78" width="80" height="70" measuredWidth="80" measuredHeight="70"/>
+  <widgets xsi:type="model:Panel" id="18" x="412" y="119" width="51" height="31" measuredWidth="51" measuredHeight="31"/>
+  <widgets xsi:type="model:Panel" id="21" x="602" y="119" width="50" height="31" measuredWidth="50" measuredHeight="31"/>
+  <widgets xsi:type="model:Panel" id="22" x="88" y="378" width="118" height="25" measuredWidth="118" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="23" x="88" y="402" width="33" height="153" measuredWidth="33" measuredHeight="153"/>
+  <widgets xsi:type="model:Panel" id="24" x="492" y="119" width="80" height="30" measuredWidth="80" measuredHeight="30"/>
   <widgets xsi:type="model:Panel" id="25" x="98" y="84" width="108" height="26" measuredWidth="108" measuredHeight="26"/>
-  <widgets xsi:type="model:Label" id="28" x="393" y="88" text="Calendar.getCurrentWeek (view, edit)" measuredWidth="288" measuredHeight="31">
+  <widgets xsi:type="model:Label" id="28" x="422" y="84" text="Calendar.getCurrentWeek (view, edit)" measuredWidth="220" measuredHeight="25">
     <font size="10"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="29" x="400" y="402" text="calendar.getAppointment(week) (View)" measuredWidth="299" measuredHeight="31">
+  <widgets xsi:type="model:Label" id="29" x="400" y="402" text="calendar.getAppointment(week) (View)" measuredWidth="228" measuredHeight="25">
     <font size="10"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="30" x="74" y="384" width="287" text="calendar.getSelectedDate() (View)(edit)" measuredWidth="287" measuredHeight="31">
+  <widgets xsi:type="model:Label" id="30" x="74" y="340" width="231" text="calendar.getSelectedDate() (View)(edit)" measuredWidth="231" measuredHeight="25">
     <font size="10"/>
   </widgets>
   <widgets xsi:type="model:Panel" id="33" x="346" y="233" width="197" height="118" measuredWidth="197" measuredHeight="118"/>
-  <widgets xsi:type="model:Label" id="34" x="356" y="239" text="a.title (view)" measuredWidth="95" measuredHeight="31">
+  <widgets xsi:type="model:Label" id="34" x="356" y="239" text="a.title (view)" measuredWidth="73" measuredHeight="25">
     <font size="10"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="35" x="322" y="158" text="Appointment[] appointments = getAppointments(loggedInUser)" measuredWidth="432" measuredHeight="28">
+  <widgets xsi:type="model:Label" id="35" x="322" y="158" text="Appointment[] appointments = getAppointments(loggedInUser)" measuredWidth="346" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Label" id="36" x="322" y="198" text="Appointment a = seleksjon" measuredWidth="183" measuredHeight="28">
+  <widgets xsi:type="model:Label" id="36" x="322" y="198" text="Appointment a = seleksjon" measuredWidth="147" measuredHeight="23">
     <font/>
   </widgets>
-  <widgets xsi:type="model:Label" id="37" x="356" y="296" text="a.rom eller a.place (View)" measuredWidth="173" measuredHeight="28">
+  <widgets xsi:type="model:Label" id="37" x="356" y="296" text="a.rom eller a.place (View)" measuredWidth="137" measuredHeight="23">
     <font/>
   </widgets>
   <hRuler/>
