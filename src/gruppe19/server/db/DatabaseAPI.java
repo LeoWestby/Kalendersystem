@@ -114,7 +114,7 @@ public class DatabaseAPI {
 				a.getTitle(), 
 				a.getDescription() == null ? "null" : "'" + a.getDescription() + "'",
 				a.getPlace() == null ? "null" : "'" + a.getPlace() + "'",
-				s.getYear() + 1900, s.getMonth() + 1, s.getDay(),
+				s.getYear() + 1900, s.getMonth(), s.getDay(),
 				s.getHours(), s.getMinutes(), s.getSeconds(),
 				e.getHours(), e.getMinutes(), e.getSeconds(),
 				a.getOwner().getUsername(), 
