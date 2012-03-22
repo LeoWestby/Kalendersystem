@@ -92,13 +92,4 @@ public class TestDatabase extends TestCase{
 		DatabaseAPI.updateAppointment(b);
 		
 	}
-	
-	public void testchangeStatus() throws SQLException{
-		User a = DatabaseAPI.getUser("dagrun");
-		ArrayList<Appointment> b  = DatabaseAPI.findAppointmentsParticipant(a);
-
-		Appointment c = b.get(0);
-		DatabaseAPI.changeParticipantStatus(a, c, 3);
-	}
-
 }

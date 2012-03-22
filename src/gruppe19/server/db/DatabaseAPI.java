@@ -1,6 +1,7 @@
 package gruppe19.server.db;
 
 import gruppe19.client.ktn.ServerAPI.Status;
+import gruppe19.gui.UserListRenderer;
 import gruppe19.model.Appointment;
 import gruppe19.model.Room;
 import gruppe19.model.User;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 
 /**
@@ -63,15 +65,15 @@ public class DatabaseAPI {
 		}
 	}
 
-	public static boolean appointmentNotExists(Appointment appointment)throws SQLException
-	{
+	public static boolean appointmentNotExists(Appointment appointment)throws SQLException {
 		String st="SELECT avtaleID FROM avtale WHERE avtaleID ="+appointment.getID()+";";
 		ResultSet rs= conn.createStatement().executeQuery(st);
 		return !rs.first();
 	}
-	public static void changeParticipantStatus(User user, Appointment appointment, int status) throws SQLException{
+	
+	public static void changeParticipantStatus(User user, Appointment appointment, Status status) throws SQLException{
 		Statement st=conn.createStatement();
-		String query= String.format("UPDATE deltager SET status=%d WHERE brukernavn='%s' AND avtaleID=%d;", status, user.getUsername(),appointment.getID());
+		String query= String.format("UPDATE deltager SET status=%d WHERE brukernavn='%s' AND avtaleID=%d;", status.ordinal(), user.getUsername(),appointment.getID());
 		st.executeUpdate(query);
 	}
 
@@ -104,7 +106,7 @@ public class DatabaseAPI {
 	}
 
 	public static Appointment createAppointment(Appointment a) throws SQLException{
-
+		
 		Statement st= conn.createStatement();
 		Date s = a.getDateStart(), e = a.getDateEnd();
 
@@ -118,20 +120,24 @@ public class DatabaseAPI {
 				s.getHours(), s.getMinutes(), s.getSeconds(),
 				e.getHours(), e.getMinutes(), e.getSeconds(),
 				a.getOwner().getUsername(), 
-				a.getRoom().getName().equals("") ? "null" : "'" + a.getRoom().getName() + "'");
+				a.getRoom() == null ? "null" : 
+					(a.getRoom().getName() == null ? "null" :
+						(a.getRoom().getName().equals("") ? "null" : "'" + a.getRoom().getName() + "'")));
 		
 		st.executeUpdate(string);
 		ResultSet res=st.executeQuery("SELECT last_insert_id() avtale;");
 		res.first();
-		int ID=res.getInt(1);
+		
+		int ID = res.getInt(1);
+		Map<User, Status> userList = new HashMap<User, Status>();
 		a.setIdD(ID);
 
 		for (User u : a.getUserList().keySet()) {
 			createParticipant(u, a);
+			userList.put(u, Status.PENDING);
 		}
-
+		a.setUserList(userList);
 		return a;
-
 	}
 
 	public static void createExampleData() throws SQLException{
@@ -176,26 +182,20 @@ public class DatabaseAPI {
 	}
 
 	public static void createParticipant(User user, Appointment appointment) throws SQLException{
-		if(!userNotExists(user.getUsername())&& !appointmentNotExists(appointment)){
+//		if(!userNotExists(user.getUsername()) && !appointmentNotExists(appointment)){
 			Statement st= conn.createStatement();
-			String string = "INSERT INTO deltager VALUES('"+user.getUsername()+"',"+appointment.getID()+","+1+");";
+			String string = "INSERT INTO deltager VALUES('"+user.getUsername()+"',"+appointment.getID()+","+Status.PENDING.ordinal()+");";
 			st.executeUpdate(string);
-
-		}
+//		}
 	}
+	
 	public static void createRoom(Room room)throws SQLException{
-		if(roomNotExists(room.getName())){
-			Statement st=conn.createStatement();
+		Statement st=conn.createStatement();
 
-			ResultSet rs=st.executeQuery("INSERT INTO rom VALUES('"+room.getName()+"');");
+		ResultSet rs=st.executeQuery("INSERT INTO rom VALUES('"+room.getName()+"');");
 
-			rs.close();
-		}
-
-		else
-			throw new SQLException();
+		rs.close();
 	} 
-
 
 	public static ArrayList<Appointment> findAppointments(User user) throws SQLException{
 		ArrayList<Appointment> liste = new ArrayList<Appointment>();
@@ -220,7 +220,6 @@ public class DatabaseAPI {
 	}
 
 	public static ArrayList<Appointment> findAppointmentsParticipant(User user) throws SQLException{
-
 		ArrayList<Appointment> liste = new ArrayList<Appointment>();
 		String st = "SELECT * FROM deltager,avtale WHERE deltager.brukernavn LIKE '"+ user.getUsername()+"' and deltager.avtaleID = avtale.avtaleID;";
 		ResultSet rs = conn.createStatement().executeQuery(st);
@@ -262,25 +261,30 @@ public class DatabaseAPI {
 	
 	public static ArrayList<Room> getFreeRooms(Date start, Date end) throws SQLException {
 		ArrayList<Room> rooms = new ArrayList<Room>();
-
-		ResultSet results = conn.createStatement().executeQuery(
-				"SELECT navn" +
-						"FROM rom" +
-						"WHERE navn NOT IN (" +
+		
+		String query = String.format(
+						"SELECT navn " +
+						"FROM rom " +
+						"WHERE navn NOT IN ( " +
 						"SELECT navn " +
 						"FROM avtale JOIN rom ON romNavn = navn " +
-						"WHERE dato = {d '2012-03-20'}" +
-						"AND (" +
-							"(start BETWEEN {t '14:00:00' } AND {t '16:00:00' } " +
-							"OR slutt BETWEEN {t '14:00:00' } AND {t '16:00:00' })" +
+						"WHERE dato = {d '%d-%d-%d'} " +
+						"AND ( " +
+							"(start BETWEEN {t '%4$d:%5$d:%6$d' } AND {t '%7$d:%8$d:%9$d' } " +
+							"OR slutt BETWEEN {t '%4$d:%5$d:%6$d' } AND {t '%7$d:%8$d:%9$d' }) " +
 
 	   			 		"OR " +
 
-	   			 			"start < { t '14:00:00' } AND slutt > { t '16:00:00' }" +
-						"));");
+	   			 			"start < {t '%4$d:%5$d:%6$d' } AND slutt > {t '%7$d:%8$d:%9$d' } " +
+						"));",
+						start.getYear() + 1900, start.getMonth() + 1, start.getDate(),
+						start.getHours(), start.getMinutes(), start.getSeconds(),
+						end.getHours(), end.getMinutes(), end.getSeconds());
+		
+		ResultSet results = conn.createStatement().executeQuery(query);
 
 		while (results.next()) {
-			rooms.add(new Room(results.getString("Navn")));
+			rooms.add(new Room(results.getString(1)));
 		}
 		return rooms;
 	}
@@ -324,22 +328,36 @@ public class DatabaseAPI {
 	}
 	
 	public static Map<User, Status> getUserList(int appointmentID) throws SQLException{
-		Map<User, Status> status = new HashMap<User, Status>();
+		Map<User, Status> userList = new HashMap<User, Status>();
+		Status status = null;
 
 		String st = "SELECT * FROM deltager,bruker WHERE deltager.avtaleID ="+appointmentID+" AND bruker.brukernavn = deltager.brukernavn;";
 		ResultSet rs = conn.createStatement().executeQuery(st);	
+		
 		while(rs.next()){
-			status.put(
+			switch (rs.getInt("status")) {
+				case 0:
+					status = Status.PENDING;
+					break;
+				case 1:
+					status = Status.APPROVED;
+					break;
+				case 2:
+					status = Status.REJECTED;
+					break;
+			}
+			
+			userList.put(
 					new User(
 							rs.getString("brukernavn"), 
 							rs.getString("fornavn"), 
 							rs.getString("etternavn"), 
 							rs.getInt("tlf"),
 							rs.getString("passord")),
-					Status.PENDING);
+					status);
 
 		}
-		return status;
+		return userList;
 	}
 
 	public static ArrayList<User> getUsers() throws SQLException{
@@ -405,14 +423,16 @@ public class DatabaseAPI {
 
 	public static void removeAppointment(Appointment a) throws SQLException {
 		conn.createStatement().executeUpdate
-		("DELETE FROM avtale WHERE avtaleID='"+a.getID()+"';");
+		("DELETE FROM avtale WHERE avtaleID="+a.getID()+";");
+		
+		for (User u : a.getUserList().keySet()) {
+			removeParticipant(u, a);
+		}
 	}
 
 	public static void removeParticipant(User user, Appointment appointment) throws SQLException{
-		if(!userNotExists(user.getUsername())&& !appointmentNotExists(appointment)){
-			Statement st= conn.createStatement();
-			st.executeUpdate("DELETE * FROM deltager WHERE brukernavn='"+user.getUsername()+"' AND avtaleID="+appointment.getID()+";");
-		}
+		Statement st= conn.createStatement();
+		st.executeUpdate("DELETE FROM deltager WHERE brukernavn='"+user.getUsername()+"' AND avtaleID="+appointment.getID()+";");
 	}
 
 	public static void removeRoom(Room room) throws SQLException{
@@ -435,7 +455,7 @@ public class DatabaseAPI {
 		Date s = a.getDateStart(), e = a.getDateEnd();
 		String string =String.format("update avtale " +
 				"set avtalenavn = '%s', beskrivelse = %s, sted = %s, dato = {d '%d-%d-%d'}, " +
-				"start = {t '%d:%d:%d'}, slutt = {t '%d:%d:%d'}, lederBrukernavn = '%s', romNavn = %s" +
+				"start = {t '%d:%d:%d'}, slutt = {t '%d:%d:%d'}, lederBrukernavn = '%s', romNavn = %s " +
 				"where avtaleID = %d;",
 				a.getTitle(), 
 				a.getDescription() == null ? "null" : "'" + a.getDescription() + "'",
@@ -444,13 +464,19 @@ public class DatabaseAPI {
 				s.getHours(), s.getMinutes(), s.getSeconds(),
 				e.getHours(), e.getMinutes(), e.getSeconds(),
 				a.getOwner().getUsername(), 
-				a.getRoom().getName().equals("") ? "null" : "'" + a.getRoom().getName() + "'",
+				a.getRoom() == null ? "null" : 
+					(a.getRoom().getName() == null ? "null" :
+						(a.getRoom().getName().equals("") ? "null" : "'" + a.getRoom().getName() + "'")),
 				a.getID());
 		conn.createStatement().executeUpdate(string);
+		Map<User, Status> userList = new HashMap<User, Status>();
 
 		for (User u : a.getUserList().keySet()) {
+			removeParticipant(u, a);
 			createParticipant(u, a);
+			userList.put(u, Status.PENDING);
 		}
+		a.setUserList(userList);
 		return a;
 	}
 
@@ -472,6 +498,5 @@ public class DatabaseAPI {
 
 	public static void main(String[] args) throws SQLException {
 		open();
-		getFreeRooms(start, end)
 	}
 }

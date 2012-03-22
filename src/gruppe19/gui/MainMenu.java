@@ -26,8 +26,8 @@ public class MainMenu extends JPanel {
 		final int spaceBetweenButtons = 5,
 					spaceBetweenButtonsAndName = 40;
 		this.madeBy = madeBy;
-		firstName = new JLabel(madeBy.getUser().getfirstname());
-		lastName = new JLabel(madeBy.getUser().getLastname());
+		firstName = new JLabel(MainScreen.getUser().getfirstname());
+		lastName = new JLabel(MainScreen.getUser().getLastname());
 		
 		//First name and last name should be added separately. Combined for now
 		lastName.setText(firstName.getText() + " " + lastName.getText());
@@ -58,8 +58,8 @@ public class MainMenu extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Appointment newApp = new Appointment();
-				newApp.setOwner(MainMenu.this.madeBy.getUser());
-				new AppointmentDialogGUI(newApp, MainMenu.this.madeBy.getUser());
+				newApp.setOwner(MainScreen.getUser());
+				new AppointmentDialogGUI(newApp, MainScreen.getUser());
 				
 				//Check if dialog was cancelled
 				if (newApp.getTitle() != null) {

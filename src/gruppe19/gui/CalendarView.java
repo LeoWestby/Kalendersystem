@@ -51,7 +51,7 @@ public class CalendarView extends JScrollPane {
 	}
 	
 	private static class AppointmentWidget extends JPanel {
-		public final Appointment appointment;
+		public Appointment appointment;
 		
 		public AppointmentWidget(Appointment a) {
 			appointment = a;
@@ -67,7 +67,9 @@ public class CalendarView extends JScrollPane {
 				@Override
 				public void mousePressed(MouseEvent e) {
 					new AppointmentDialogGUI(appointment, MainScreen.getUser());
-					ServerAPI.updateAppointment(appointment);
+					
+					System.out.println();
+					appointment = ServerAPI.updateAppointment(appointment);
 				}
 			});
 		}

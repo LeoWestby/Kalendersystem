@@ -1,6 +1,7 @@
 package gruppe19.gui;
 
 import gruppe19.client.ktn.ServerAPI;
+import gruppe19.client.ktn.ServerAPI.Status;
 import gruppe19.model.Appointment;
 import gruppe19.model.Room;
 import gruppe19.model.User;
@@ -58,6 +59,38 @@ public class MainScreen extends JFrame {
 	 * Called when the logged in user is invited to the specified appointment.
 	 */
 	public void invite(Appointment a) {
+		calendar.removeAppointment(-1);
+		appointmentUpdated(a);
+	}
+	
+	/**
+	 * Called when an appointment in the calendar needs to be updated.
+	 */
+	public void appointmentUpdated(Appointment a) {
+		calendar.removeAppointment(a.getID());
+		calendar.addAppointment(a);
+	}
+	
+	/**
+	 * Called when an appointment in the calendar is cancelled.
+	 */
+	public void appointmentCancelled(Appointment a) {
+		calendar.removeAppointment(a.getID());
+	}
+	
+	/**
+	 * Called when a user deletes an appointment from their calendar where
+	 * the logged in user is the leader.
+	 */
+	public void appointmentRemoved(User u, Appointment a) {
+		
+	}
+	
+	/**
+	 * Called when a user changes his status in an appointment in
+	 * the logged in user's calendar.
+	 */
+	public void statusChanged(User u, Appointment a, Status s) {
 		
 	}
 	

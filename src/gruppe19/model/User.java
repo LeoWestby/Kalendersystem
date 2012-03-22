@@ -1,6 +1,7 @@
 package gruppe19.model;
 
 import java.io.Serializable;
+import java.security.InvalidParameterException;
 
 public class User implements Serializable {
 	
@@ -89,7 +90,8 @@ public class User implements Serializable {
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof User)) {
-			return false;
+			throw new InvalidParameterException
+				("Tried to compare a non-user object to a user");
 		}
 		return username.equals(((User)obj).username);
 	}

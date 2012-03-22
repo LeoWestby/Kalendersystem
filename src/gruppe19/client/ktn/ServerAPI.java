@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.ConnectException;
 import java.net.InetAddress;
 import java.net.SocketException;
@@ -45,8 +46,21 @@ public class ServerAPI {
 	private static ReceiveThread receiver;
 	private static MainScreen listener;
 	private static Base64 stringEncoder = new Base64();
-	
+
 	public static enum Status {PENDING, APPROVED, REJECTED}; 
+	
+	
+	/**
+	 * Used for grouping when sending multiple objects over the network.
+	 */
+	public static class Pair implements Serializable {
+		public final Object o1, o2;
+
+		public Pair(Object o1, Object o2) {
+			this.o1 = o1;
+			this.o2 = o2;
+		}
+	}
 	
 	/**
 	 * The amount of ms to wait for a response from the server
@@ -180,8 +194,9 @@ public class ServerAPI {
 	 * Updates an already existing appointment in the database
 	 * and notifies every participant.
 	 */
-	public static void updateAppointment(Appointment a) {
+	public static Appointment updateAppointment(Appointment a) {
 		send(new ClientMessage('c', a));
+		return (Appointment)getResponse().payload;
 	}
 	
 	/**
@@ -209,19 +224,10 @@ public class ServerAPI {
 	 * status flag for the specified appointment.
 	 */
 	public static void setStatus(Appointment a, Status flag) {
-		Object[] status = {a, flag};
-		send(new ClientMessage('f', status));
+		send(new ClientMessage('f', new Pair(a, flag)));
 	}
 	
-	/**
-	 * Gets all status flags for the specified appointment.
-	 * 
-	 * @deprecated UNIMPLEMENTED!
-	 */
-	public static Object getStatus(Appointment a) {
-		return null;
-		//ID g
-	}
+	//ID G unused
 	
 	/**
 	 * Gets all appointments started by the specified user.
@@ -256,10 +262,7 @@ public class ServerAPI {
 	 * between the start and end dates.
 	 */
 	public static List<Room> getFreeRooms(Date start, Date end) {
-		ArrayList<Date> dates = new ArrayList<Date>(2);
-		dates.add(start);
-		dates.add(end);
-		send(new ClientMessage('k', dates));
+		send(new ClientMessage('k', new Pair(start, end)));
 		return (List<Room>)getResponse().payload;
 	}
 	
@@ -311,19 +314,37 @@ public class ServerAPI {
 					else {
 						switch (msg.ID) {
 							case 'a': {
-								//Appointment created / updated
-								Appointment a = (Appointment)msg.payload;
-								
-								listener.getCalendar().removeAppointment(a.getID());
-								listener.getCalendar().addAppointment(a);
+								//You have been invited to a new appointment
+								listener.invite((Appointment)msg.payload);
 								break;
 							}
 							case 'b': {
-								//Appointment removed
-								Appointment a = (Appointment)msg.payload;
-								
-								listener.getCalendar().removeAppointment(a.getID());
+								//An appointment you participate in has been updated
+								listener.appointmentUpdated((Appointment)msg.payload);
+								break;
 							}
+							case 'c': {
+								//An appointment you participated in has been removed
+								listener.appointmentCancelled((Appointment)msg.payload);
+								break;
+							}
+							case 'd': {
+								//The user deleted your appointment from their calendar
+								Pair p = (Pair)msg.payload;
+								
+								listener.appointmentRemoved((User)p.o1, (Appointment)p.o2);
+								break;
+							}
+							case 'e': {
+								//The user changed his status on the appointment
+								Pair p1 = (Pair)msg.payload;
+								Pair p2 = (Pair)p1.o1;
+								
+								listener.statusChanged(
+										(User)p2.o1, (Appointment)p2.o2, (Status)p1.o2);
+								break;
+							}
+							
 						}
 					}
 				} 
@@ -335,18 +356,20 @@ public class ServerAPI {
 				} 
 				catch (InvalidClassException e) {
 					System.err.println("[Error] Failed to convert the received" +
-							" byte stream to ServerMessage. Exiting...");
+							" byte stream to object. Exiting...");
 					e.printStackTrace();
 					System.exit(1);
 				}
 				catch (ClassNotFoundException e) {
 					System.err.println("[Error] Failed to convert the received" +
-							" byte stream to ServerMessage. Exiting...");
+							" byte stream to object. Exiting...");
 					e.printStackTrace();
 					System.exit(1);
 				}
 				catch (EOFException e) {
 					System.err.println("[Error] Lost connection to server. Exiting...");
+					System.err.println("Note to bug hunters: A server crash usually " +
+							"means an error in the DatabaseAPI.java file.");
 					//e.printStackTrace();
 					System.exit(1);
 				}
