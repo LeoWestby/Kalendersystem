@@ -136,7 +136,12 @@ public class Appointment implements Serializable {
 	}
 	
 	public void save() {
-		ServerAPI.saveAppointment(this);
+		if(ID == -1){
+			ID = ServerAPI.createAppointment(this).getID();
+		}
+		else{			
+			ServerAPI.updateAppointment(this);
+		}
 	}
 	public void setIdD(int i){
 		this.ID=i;
