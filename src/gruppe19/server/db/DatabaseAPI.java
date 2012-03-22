@@ -472,5 +472,6 @@ public class DatabaseAPI {
 
 	public static void main(String[] args) throws SQLException {
 		open();
+		getFreeRooms(start, end)
 	}
 }

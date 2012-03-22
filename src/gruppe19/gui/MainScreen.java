@@ -19,6 +19,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -66,7 +67,7 @@ public class MainScreen extends JFrame {
 		
 		loggedInUser = user;
 		menu = new MainMenu(this);
-		miniCalendar = new JCalendar();
+		miniCalendar = new JCalendar(new Locale("no"));
 		calendar = new CalendarView(new Date());
 		logOut = new JButton("Logg ut");
 		selectWeek = new JLabel("Velg uke:");
@@ -203,9 +204,5 @@ public class MainScreen extends JFrame {
 		
 		rightArrow.setLocation(week.getX() + week.getWidth() + 40, 
 								week.getY());
-	}
-	
-	public static void main(String[] args) {
-		new MainScreen(new User("Hans", "Hansen"));
 	}
 }
