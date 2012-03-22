@@ -1,10 +1,13 @@
 package gruppe19.model;
 
 import gruppe19.client.ktn.ServerAPI;
+import gruppe19.client.ktn.ServerAPI.Status;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Appointment implements Serializable {
@@ -16,7 +19,7 @@ public class Appointment implements Serializable {
 	private String place;
 	private User owner;
 	private Room room;
-	private ArrayList<User> userList;
+	private Map<User, Status> userList;
 	private String description;
 	
 	
@@ -25,7 +28,7 @@ public class Appointment implements Serializable {
 		this.dateStart = new Date();
 		this.dateEnd = new Date();
 		this.room = new Room("");
-		this.userList = new ArrayList<User>();
+		this.userList = new HashMap<User, Status>();
 			
 	}
 
@@ -36,7 +39,7 @@ public class Appointment implements Serializable {
 	public Appointment(int ID, String title, Date dateStart, 
 						Date dateEnd, String place, 
 						User owner, Room room, 
-						ArrayList<User> userList, 
+						Map<User, Status> userList, 
 						String description) {
 		this.ID = ID;
 		this.title = title;
@@ -116,12 +119,12 @@ public class Appointment implements Serializable {
 	}
 
 
-	public ArrayList<User> getUserList() {
+	public Map<User, Status> getUserList() {
 		return userList;
 	}
 
 
-	public void setUserList(ArrayList<User> userList) {
+	public void setUserList(Map<User, Status> userList) {
 		this.userList = userList;
 	}
 
@@ -146,7 +149,4 @@ public class Appointment implements Serializable {
 	public void setIdD(int i){
 		this.ID=i;
 	}
-
-
-	
 }

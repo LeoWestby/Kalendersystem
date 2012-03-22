@@ -5,7 +5,9 @@ import java.awt.FlowLayout;
 import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import gruppe19.client.ktn.ServerAPI;
 import gruppe19.model.User;
 
 import javax.swing.DefaultListModel;
@@ -27,7 +29,7 @@ public class SelectUserDialog extends JDialog implements ListSelectionListener, 
 	public SelectUserDialog(DefaultListModel model) {
 		this.model = model;
 		setUp();
-		addUsers();
+		addFreeUsers();
 	}
 	
 	private void setUp(){
@@ -63,13 +65,27 @@ public class SelectUserDialog extends JDialog implements ListSelectionListener, 
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		pack();
 	}
-	private void addUsers(){
+	private void addFreeUsers(){
 		//TODO: Hent alle brukere fra databasen. Sjekk deretter om samme brukeren ikke blir lagt til to ganger
-		
-		for (int i = 0; i < 20; i++) {
-			defaultListModel.addElement(new User("lol"+i,"hallo"+i));			
+		ArrayList<User> list = (ArrayList<User>) ServerAPI.getUsers();
+		ArrayList<User> userinapp = new ArrayList<User>();
+		for (int i = 0; i < defaultListModel.size(); i++) {
+			list.add((User)model.get(i));
 		}
-
+		System.err.println(list.size());
+		for (User user : list) {
+			boolean exsist = false;
+			for (User users : userinapp) {
+				if(user.getUsername().equals(users.getUsername())){
+					exsist = true;
+					break;
+				}
+			}
+			if (!exsist) {
+				defaultListModel.addElement(user);
+			}
+		}
+		
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {

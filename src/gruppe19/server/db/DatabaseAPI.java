@@ -1,5 +1,6 @@
 package gruppe19.server.db;
 
+import gruppe19.client.ktn.ServerAPI.Status;
 import gruppe19.model.Appointment;
 import gruppe19.model.Room;
 import gruppe19.model.User;
@@ -11,6 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -122,7 +125,7 @@ public class DatabaseAPI {
 		int ID=res.getInt(1);
 		a.setIdD(ID);
 
-		for (User u : a.getUserList()) {
+		for (User u : a.getUserList().keySet()) {
 			createParticipant(u, a);
 		}
 
@@ -198,7 +201,7 @@ public class DatabaseAPI {
 		String st = "SELECT * FROM avtale WHERE lederBrukernavn LIKE '"+user.getUsername()+"';";
 		ResultSet rs = conn.createStatement().executeQuery(st);
 		while(rs.next()){
-			ArrayList<User> userList = getUserList(rs.getInt("avtaleID"));
+			Map<User, Status> userList = getUserList(rs.getInt("avtaleID"));
 			Room rom = new Room(rs.getString("romNavn"));
 			User leder = new User(rs.getString("lederBrukernavn"));
 
@@ -226,7 +229,7 @@ public class DatabaseAPI {
 		String st = "SELECT * FROM deltager,avtale WHERE deltager.brukernavn LIKE '"+ user.getUsername()+"' and deltager.avtaleID = avtale.avtaleID;";
 		ResultSet rs = conn.createStatement().executeQuery(st);
 		while(rs.next()){
-			ArrayList<User> userList = getUserList(rs.getInt("avtaleID"));
+			Map<User, Status> userList = getUserList(rs.getInt("avtaleID"));
 			Room rom = new Room(rs.getString("romNavn"));
 			User leder = new User(rs.getString("lederBrukernavn"));
 			liste.add(new Appointment(rs.getInt("avtaleID"), rs.getString("avtalenavn"), 
@@ -317,16 +320,23 @@ public class DatabaseAPI {
 		return newUser;
 	}
 	
-	public static ArrayList<User> getUserList(int appointmentID) throws SQLException{
-		ArrayList<User> liste = new ArrayList<User>();
+	public static Map<User, Status> getUserList(int appointmentID) throws SQLException{
+		Map<User, Status> status = new HashMap<User, Status>();
 
 		String st = "SELECT * FROM deltager,bruker WHERE deltager.avtaleID ="+appointmentID+" AND bruker.brukernavn = deltager.brukernavn;";
 		ResultSet rs = conn.createStatement().executeQuery(st);	
 		while(rs.next()){
-			liste.add(new User(rs.getString("brukernavn"), rs.getString("fornavn"), rs.getString("etternavn"), rs.getInt("tlf"), rs.getString("passord")));
+			status.put(
+					new User(
+							rs.getString("brukernavn"), 
+							rs.getString("fornavn"), 
+							rs.getString("etternavn"), 
+							rs.getInt("tlf"),
+							rs.getString("passord")),
+					Status.PENDING);
 
 		}
-		return liste;
+		return status;
 	}
 
 	public static ArrayList<User> getUsers() throws SQLException{
@@ -435,7 +445,7 @@ public class DatabaseAPI {
 				a.getID());
 		conn.createStatement().executeUpdate(string);
 
-		for (User u : a.getUserList()) {
+		for (User u : a.getUserList().keySet()) {
 			createParticipant(u, a);
 		}
 		return a;

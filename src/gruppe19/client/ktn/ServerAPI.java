@@ -1,6 +1,7 @@
 package gruppe19.client.ktn;
 
 import gruppe19.gui.CalendarView;
+import gruppe19.gui.MainScreen;
 import gruppe19.model.Appointment;
 import gruppe19.model.Room;
 import gruppe19.model.User;
@@ -41,8 +42,10 @@ public class ServerAPI {
 	private static int serverPort;
 	private static boolean usingSimpleConn;
 	private static ReceiveThread receiver;
-	private static CalendarView listener;
+	private static MainScreen listener;
 	private static Base64 stringEncoder = new Base64();
+	
+	public static enum Status {PENDING, APPROVED, REJECTED}; 
 	
 	/**
 	 * The amount of ms to wait for a response from the server
@@ -142,7 +145,7 @@ public class ServerAPI {
 		return tmp;
 	}
 	
-	public static void setListener(CalendarView listener) {
+	public static void setListener(MainScreen listener) {
 		ServerAPI.listener = listener;
 	}
 
@@ -203,11 +206,10 @@ public class ServerAPI {
 	/**
 	 * Changes the logged in user's status to the specified 
 	 * status flag for the specified appointment.
-	 * 
-	 * @deprecated UNIMPLEMENTED!
 	 */
-	public static void setStatus(Appointment a, Object statusFlag) {
-		//ID f
+	public static void setStatus(Appointment a, Status flag) {
+		Object[] status = {a, flag};
+		send(new ClientMessage('f', status));
 	}
 	
 	/**
@@ -277,8 +279,8 @@ public class ServerAPI {
 	/**
 	 * Gets a list with all users in the database.
 	 */
-	public static List<User> getUsers(String username) {
-		send(new ClientMessage('n', username));
+	public static List<User> getUsers() {
+		send(new ClientMessage('n', null));
 		return (List<User>)getResponse().payload;
 	}
 
@@ -309,15 +311,15 @@ public class ServerAPI {
 								//Appointment created / updated
 								Appointment a = (Appointment)msg.payload;
 								
-								listener.removeAppointment(a.getID());
-								listener.addAppointment(a);
+								listener.getCalendar().removeAppointment(a.getID());
+								listener.getCalendar().addAppointment(a);
 								break;
 							}
 							case 'b': {
 								//Appointment removed
 								Appointment a = (Appointment)msg.payload;
 								
-								listener.removeAppointment(a.getID());
+								listener.getCalendar().removeAppointment(a.getID());
 							}
 						}
 					}

@@ -2,6 +2,7 @@ package gruppe19.gui;
 
 import gruppe19.client.ktn.ServerAPI;
 import gruppe19.model.Appointment;
+import gruppe19.model.Room;
 import gruppe19.model.User;
 
 import java.awt.Cursor;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -38,6 +40,17 @@ public class MainScreen extends JFrame {
 	private final JLabel rightArrow;
 	private final JLabel week;
 	private final JLabel selectWeek;
+	
+	public CalendarView getCalendar() {
+		return calendar;
+	}
+	
+	/**
+	 * Called when the logged in user is invited to the specified appointment.
+	 */
+	public void invitate(Appointment a) {
+		
+	}
 	
 	private class MainMenu extends JPanel {
 		private final int XPOS = 47;
@@ -79,6 +92,19 @@ public class MainScreen extends JFrame {
 			add(myMeetings);
 			add(invitations);
 			add(importCalendar);
+			
+			createMeeting.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					Appointment newApp = new Appointment();
+					new AppointmentDialogGUI(newApp);
+					
+					//Check if dialog was cancelled
+					if (newApp.getTitle() != null) {
+						calendar.addAppointment(ServerAPI.createAppointment(newApp));
+					}
+				}
+			});
 			
 			//TODO: Set height properly
 			setSize(Math.max(lastName.getWidth(), importCalendar.getWidth()), 9999);
@@ -130,7 +156,7 @@ public class MainScreen extends JFrame {
 		add(leftArrow);
 		add(rightArrow);
 		
-		ServerAPI.setListener(calendar);
+		ServerAPI.setListener(this);
 		
 		setTitle("Kalendersystem - Hovedskjerm");
 		setLocationRelativeTo(null);
@@ -191,32 +217,6 @@ public class MainScreen extends JFrame {
 				MainScreen.this.dispose();
 			}
 		});
-		
-		//Add some example appointments
-		Appointment a1 = new Appointment();
-		Appointment a2 = new Appointment();
-		
-		
-		a1.setTitle("Forelesing");
-		a2.setTitle("Shopping");
-		
-		a1.setPlace("Skolen");
-		a2.setPlace("På butikken");
-		
-		a1.setDateStart(new Date(112, 2, 21, 12, 00, 00));
-		a1.setDateEnd(new Date(112, 2, 21, 14, 00, 00));
-		
-		a2.setDateStart(new Date(112, 2, 23, 16, 30, 00));
-		a2.setDateEnd(new Date(112, 2, 23, 20, 00, 00));
-		
-		ArrayList<User> users = new ArrayList<User>();
-		users.add(new User("1", "fs", "fsdfd", 12345, "fgsdgs"));
-		users.add(new User("2", "fs", "fsdfd", 80070800, "fgsdgs"));
-		a1.setUserList(users);
-		a2.setUserList(users);
-		
-		calendar.addAppointment(a1);
-		calendar.addAppointment(a2);
 	}
 	
 	/**
