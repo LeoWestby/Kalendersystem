@@ -1,5 +1,6 @@
 package gruppe19.gui;
 
+import gruppe19.client.ktn.ServerAPI;
 import gruppe19.model.Appointment;
 
 import java.awt.Color;
@@ -65,7 +66,8 @@ public class CalendarView extends JScrollPane {
 			addMouseListener(new MouseAdapter() {
 				@Override
 				public void mousePressed(MouseEvent e) {
-					new AppointmentDialogGUI(appointment).setVisible(true);
+					new AppointmentDialogGUI(appointment, MainScreen.getUser());
+					ServerAPI.updateAppointment(appointment);
 				}
 			});
 		}

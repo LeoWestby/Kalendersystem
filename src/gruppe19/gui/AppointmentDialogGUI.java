@@ -8,6 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,6 +37,7 @@ import javax.swing.event.ListSelectionListener;
 
 import com.toedter.calendar.JDateChooser;
 
+import gruppe19.client.ktn.ServerAPI;
 import gruppe19.client.ktn.ServerAPI.Status;
 import gruppe19.model.Appointment;
 import gruppe19.model.Room;
@@ -63,6 +67,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 	 */
 	public AppointmentDialogGUI() {
 		setUp();
+		setVisible(true);
 	}
 	/**
 	 * Create new AppointmentDialogGUI with a {@link Appointment} model set to null
@@ -71,6 +76,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		this.model=model;
 		setUp();
 		getValues();
+		setVisible(true);
 
 	}
 	public AppointmentDialogGUI(Appointment model,User opener) {
@@ -80,6 +86,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		if(!model.getOwner().getUsername().equals(opener.getUsername())){
 			setDisabled();
 		}
+		setVisible(true);
 	}
 
 	private void setUp(){
@@ -231,7 +238,6 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		pack();
-		this.setVisible(true);
 	}
 	private boolean setTime(){
 		String start= spinnerStart.getValue()+"";
@@ -270,8 +276,9 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 
 	private void setValues(){
 		model.setTitle(txtTitle.getText());
-		
+		model.setPlace(txtPlace.getText());
 		Map<User,Status> userList= new HashMap<User,Status>();
+		
 		//adder brukere
 		for (int i = 0; i < defaultModel.size(); i++) {
 			userList.put((User)defaultModel.get(i), Status.PENDING);
@@ -412,7 +419,8 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		btnConfirm.setEnabled(false);
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SocketTimeoutException, UnknownHostException, IOException {
+		ServerAPI.open();
 		Appointment app = new Appointment();
 		app.setTitle("En avtale");
 		app.setDateStart(new Date(1000000000));

@@ -237,12 +237,12 @@ public class Server {
 			}
 			case 'k': {
 				//Send all free rooms between the specified start and end dates
-				Date[] dates = (Date[])msg.payload;
+				ArrayList<Date> dates = (ArrayList<Date>)msg.payload;
 				
 				send(new ServerMessage('\0',
 						DatabaseAPI.getFreeRooms(
-								dates[0],
-								dates[1]),
+								dates.get(0),
+								dates.get(1)),
 						Type.Response));
 				break;
 			}

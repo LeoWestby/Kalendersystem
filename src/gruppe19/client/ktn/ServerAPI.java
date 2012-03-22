@@ -20,6 +20,7 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -255,7 +256,9 @@ public class ServerAPI {
 	 * between the start and end dates.
 	 */
 	public static List<Room> getFreeRooms(Date start, Date end) {
-		Date[] dates = {start, end};
+		ArrayList<Date> dates = new ArrayList<Date>(2);
+		dates.add(start);
+		dates.add(end);
 		send(new ClientMessage('k', dates));
 		return (List<Room>)getResponse().payload;
 	}
