@@ -1,13 +1,18 @@
 package gruppe19.gui;
 
+import gruppe19.client.ktn.ServerAPI;
 import gruppe19.model.Appointment;
 import gruppe19.model.Room;
 import gruppe19.server.db.DatabaseAPI;
 
 import java.awt.FlowLayout;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.DefaultListModel;
@@ -27,10 +32,10 @@ public class SelectRoomDialog extends JDialog implements ListSelectionListener, 
 	private DefaultListSelectionModel defaultListSelectionModel;
 	private Appointment model;
 	
-	public SelectRoomDialog(Appointment model) {
+	public SelectRoomDialog(Appointment model){
 		this.model = model;
 		setUp();
-		addRoom();
+		addFreeRooms();
 	}
 	
 	private void setUp(){
@@ -63,14 +68,13 @@ public class SelectRoomDialog extends JDialog implements ListSelectionListener, 
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		pack();
 	}
-	private void addRoom(){
-		//TODO: Hent alle brukere fra databasen. Sjekk deretter om samme brukeren ikke blir lagt til to ganger
-		
-		for (int i = 0; i < 20; i++) {
-			defaultListModel.addElement(new Room("Rom "+i));			
+	private void addFreeRooms(){
+		ArrayList<Room >list =(ArrayList<Room>)ServerAPI.getRooms();
+		for (Room room : list) {
+			defaultListModel.addElement(room);
 		}
-	
 	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnAdd) {

@@ -11,6 +11,8 @@ import java.beans.PropertyChangeListener;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultListSelectionModel;
@@ -32,6 +34,7 @@ import javax.swing.event.ListSelectionListener;
 
 import com.toedter.calendar.JDateChooser;
 
+import gruppe19.client.ktn.ServerAPI.Status;
 import gruppe19.model.Appointment;
 import gruppe19.model.Room;
 import gruppe19.model.User;
@@ -228,13 +231,13 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		pack();
-
+		this.setVisible(true);
 	}
 	private boolean setTime(){
 		String start= spinnerStart.getValue()+"";
 		String end = spinnerEnd.getValue()+"";
 		Date dateStart = dateChooser.getDate();
-		Date dateEnd = model.getDateEnd();
+		Date dateEnd = dateChooser.getDate();
 		if(end.compareTo(start)> 0){
 			String[] startSplit = start.split(":");
 			String[] endSplit = end.split(":");
@@ -268,11 +271,12 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 	private void setValues(){
 		model.setTitle(txtTitle.getText());
 		
-		ArrayList<User> userList= new ArrayList<User>();
+		Map<User,Status> userList= new HashMap<User,Status>();
 		//adder brukere
 		for (int i = 0; i < defaultModel.size(); i++) {
-			userList.add((User)defaultModel.get(i));
+			userList.put((User)defaultModel.get(i), Status.PENDING);
 		}
+		
 		model.setUserList(userList);
 	}
 
@@ -302,12 +306,9 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		}
 		
 		//adder brukere
-		ArrayList<User> users = model.getUserList();
+		Map<User, Status> users = model.getUserList();
 		if(users==null){
 			return;
-		}
-		for (User user : users) {
-			defaultModel.addElement(user);
 		}
 		
 	}
@@ -385,6 +386,9 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		
 		//button cancel
 		if (e.getSource() == btnCancel) {
+			if(model.getID() ==-1){
+				setTitle(null);
+			}
 			dispose();
 		}
 		
@@ -419,8 +423,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		app.setOwner(a);
 		User b = new User("Vegard", "Harper");
 		b.setUsername("vegahar");
-		AppointmentDialogGUI gui = new AppointmentDialogGUI(app,b);
-		gui.setVisible(true);
+		AppointmentDialogGUI gui = new AppointmentDialogGUI(app);
 	}
 	
 
