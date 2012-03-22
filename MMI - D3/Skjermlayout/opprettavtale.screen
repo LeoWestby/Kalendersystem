@@ -7,7 +7,6 @@
   <widgets xsi:type="model:Panel" id="7" x="217" y="240" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
   <widgets xsi:type="model:Panel" id="8" x="217" y="272" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
   <widgets xsi:type="model:Panel" id="9" x="217" y="304" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
-  <widgets xsi:type="model:Panel" id="10" x="216" y="350" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
   <widgets xsi:type="model:Panel" id="11" x="361" y="144" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
   <widgets xsi:type="model:Panel" id="12" x="361" y="176" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
   <widgets xsi:type="model:Panel" id="13" x="361" y="208" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
@@ -17,47 +16,29 @@
   <widgets xsi:type="model:Panel" id="17" x="216" y="384" width="313" height="137" measuredWidth="313" measuredHeight="137"/>
   <widgets xsi:type="model:Panel" id="18" x="303" y="532" width="123" height="33" measuredWidth="123" measuredHeight="33"/>
   <widgets xsi:type="model:Panel" id="19" x="465" y="176" width="41" height="25" measuredWidth="41" measuredHeight="25"/>
-  <widgets xsi:type="model:Label" id="20" x="230" y="176" text="(label)" measuredWidth="41" measuredHeight="25">
-    <font size="10"/>
-  </widgets>
-  <widgets xsi:type="model:Label" id="21" x="230" y="144" text="(label)" measuredWidth="41" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="26" x="371" y="141" text="model.title (view, edit)" measuredWidth="172" measuredHeight="31">
     <font size="10" bold="false"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="22" x="230" y="240" text="(label)" measuredWidth="41" measuredHeight="25">
-    <font size="10"/>
-  </widgets>
-  <widgets xsi:type="model:Label" id="23" x="230" y="208" text="(label)" measuredWidth="41" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="27" x="371" y="173" text="model.startDate (view, edit)" measuredWidth="213" measuredHeight="31">
     <font size="10" bold="false"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="24" x="230" y="304" text="(label)" measuredWidth="41" measuredHeight="25">
-    <font size="10"/>
-  </widgets>
-  <widgets xsi:type="model:Label" id="25" x="230" y="272" text="(label)" measuredWidth="41" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="28" x="371" y="237" text="model.description (view, edit)" measuredWidth="227" measuredHeight="31">
     <font size="10" bold="false"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="26" x="379" y="144" text="(edit)" measuredWidth="35" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="29" x="371" y="205" text="model.startDate (view, edit)" measuredWidth="213" measuredHeight="31">
     <font size="10" bold="false"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="27" x="379" y="176" text="(edit)" measuredWidth="35" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="30" x="371" y="269" text="model.place (view, edit)" measuredWidth="183" measuredHeight="31">
     <font size="10" bold="false"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="28" x="379" y="240" text="(edit)" measuredWidth="35" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="31" x="371" y="301" text="model.room (view, edit)" measuredWidth="184" measuredHeight="31">
     <font size="10" bold="false"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="29" x="379" y="208" text="(edit)" measuredWidth="35" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="33" x="230" y="437" text="model.userlist (view, edit)" measuredWidth="196" measuredHeight="31">
     <font size="10" bold="false"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="30" x="379" y="272" text="(edit)" measuredWidth="35" measuredHeight="25">
-    <font size="10" bold="false"/>
-  </widgets>
-  <widgets xsi:type="model:Label" id="31" x="379" y="304" text="(edit)" measuredWidth="35" measuredHeight="25">
-    <font size="10" bold="false"/>
-  </widgets>
-  <widgets xsi:type="model:Label" id="32" x="230" y="350" text="(label)" measuredWidth="41" measuredHeight="25">
-    <font size="10"/>
-  </widgets>
-  <widgets xsi:type="model:Label" id="33" x="379" y="424" text="(edit)" measuredWidth="35" measuredHeight="25">
-    <font size="10" bold="false"/>
+  <widgets xsi:type="model:Label" id="34" x="230" y="102" text="Appointment model = new Appointment()" measuredWidth="287" measuredHeight="28">
+    <font/>
   </widgets>
   <hRuler/>
   <vRuler/>
