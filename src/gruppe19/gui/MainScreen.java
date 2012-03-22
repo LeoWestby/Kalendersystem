@@ -29,7 +29,8 @@ import javax.swing.JPanel;
 import com.toedter.calendar.JCalendar;
 
 public class MainScreen extends JFrame {
-	private final User loggedInUser;
+	private static User loggedInUser;
+	
 	private final MainMenu menu;
 	private final JCalendar miniCalendar;
 	private final CalendarView calendar;
@@ -48,7 +49,7 @@ public class MainScreen extends JFrame {
 	/**
 	 * Gets the user logged into the system.
 	 */
-	public User getUser() {
+	public static User getUser() {
 		return loggedInUser;
 	}
 	
