@@ -103,7 +103,7 @@ public class DatabaseAPI {
 		}
 	}
 
-	public static Appointment createAppointment(Appointment a)throws SQLException{
+	public static Appointment createAppointment(Appointment a) throws SQLException{
 
 		Statement st= conn.createStatement();
 		Date s = a.getDateStart(), e = a.getDateEnd();
@@ -119,7 +119,7 @@ public class DatabaseAPI {
 				e.getHours(), e.getMinutes(), e.getSeconds(),
 				a.getOwner().getUsername(), 
 				a.getRoom().getName().equals("") ? "null" : "'" + a.getRoom().getName() + "'");
-		System.err.println(string);
+		
 		st.executeUpdate(string);
 		ResultSet res=st.executeQuery("SELECT last_insert_id() avtale;");
 		res.first();
