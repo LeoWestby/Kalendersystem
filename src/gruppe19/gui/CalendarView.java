@@ -65,7 +65,7 @@ public class CalendarView extends JScrollPane {
 			addMouseListener(new MouseAdapter() {
 				@Override
 				public void mousePressed(MouseEvent e) {
-					new AppointmentDialogGUI(appointment).setVisible(true);
+					new AppointmentDialogGUI(appointment);
 				}
 			});
 		}

@@ -114,11 +114,12 @@ public class DatabaseAPI {
 				a.getTitle(), 
 				a.getDescription() == null ? "null" : "'" + a.getDescription() + "'",
 				a.getPlace() == null ? "null" : "'" + a.getPlace() + "'",
-				s.getYear() + 1900, s.getMonth() + 1, s.getDay(),
+				s.getYear() + 1900, s.getMonth() + 1, s.getDate(),
 				s.getHours(), s.getMinutes(), s.getSeconds(),
 				e.getHours(), e.getMinutes(), e.getSeconds(),
 				a.getOwner().getUsername(), 
 				a.getRoom().getName().equals("") ? "null" : "'" + a.getRoom().getName() + "'");
+		System.err.println(string);
 		st.executeUpdate(string);
 		ResultSet res=st.executeQuery("SELECT last_insert_id() avtale;");
 		res.first();
@@ -159,7 +160,7 @@ public class DatabaseAPI {
 				"('leoen',2,1)," +
 				"('fraol',2,1)," +
 				"('annha',2,1)," +
-				"('fredrik',2,1)," +
+				"('fredrik',1,1)," +
 				"('fraol',3,1)," +
 				"('leon',3,1);");
 
@@ -206,15 +207,10 @@ public class DatabaseAPI {
 			User leder = new User(rs.getString("lederBrukernavn"));
 
 			java.sql.Date start = rs.getDate("dato"), end = rs.getDate("dato");
-			Date datestart = new Date(start.getTime()), dateend = new Date(end.getTime());
-			java.sql.Time tidstart = rs.getTime("start"), tidslutt = rs.getTime("slutt");
-			datestart.setHours(tidstart.getHours());
-			datestart.setMinutes(tidstart.getMinutes());
-			datestart.setSeconds(tidstart.getSeconds());
-			dateend.setHours(tidslutt.getHours());
-			dateend.setMinutes(tidslutt.getMinutes());
-			dateend.setSeconds(tidslutt.getSeconds());
-
+			java.sql.Time tstart = rs.getTime("start"), tend = rs.getTime("slutt");
+			
+			Date datestart = new Date(start.getYear(), start.getMonth(), start.getDate(), tstart.getHours(), tstart.getMinutes(), tstart.getSeconds());
+			Date dateend = new Date(end.getYear(), end.getMonth(), end.getDate(), tend.getHours(), tend.getMinutes(), tend.getSeconds());
 
 			liste.add(new Appointment(rs.getInt("avtaleID"), rs.getString("avtalenavn"), 
 					datestart, dateend, rs.getString("sted"),
@@ -232,8 +228,15 @@ public class DatabaseAPI {
 			Map<User, Status> userList = getUserList(rs.getInt("avtaleID"));
 			Room rom = new Room(rs.getString("romNavn"));
 			User leder = new User(rs.getString("lederBrukernavn"));
+			
+			java.sql.Date start = rs.getDate("dato"), end = rs.getDate("dato");
+			java.sql.Time tstart = rs.getTime("start"), tend = rs.getTime("slutt");
+			
+			Date datestart = new Date(start.getYear(), start.getMonth(), start.getDate(), tstart.getHours(), tstart.getMinutes(), tstart.getSeconds());
+			Date dateend = new Date(end.getYear(), end.getMonth(), end.getDate(), tend.getHours(), tend.getMinutes(), tend.getSeconds());
+			
 			liste.add(new Appointment(rs.getInt("avtaleID"), rs.getString("avtalenavn"), 
-					rs.getDate("dato"), rs.getDate("dato"), rs.getString("sted"),
+					datestart, dateend, rs.getString("sted"),
 					leder, rom , userList, rs.getString("beskrivelse")));
 		}
 		return liste;		
@@ -437,7 +440,7 @@ public class DatabaseAPI {
 				a.getTitle(), 
 				a.getDescription() == null ? "null" : "'" + a.getDescription() + "'",
 				a.getPlace() == null ? "null" : "'" + a.getPlace() + "'",
-				s.getYear() + 1900, s.getMonth() + 1, s.getDay(),
+				s.getYear() + 1900, s.getMonth() + 1, s.getDate(),
 				s.getHours(), s.getMinutes(), s.getSeconds(),
 				e.getHours(), e.getMinutes(), e.getSeconds(),
 				a.getOwner().getUsername(), 
