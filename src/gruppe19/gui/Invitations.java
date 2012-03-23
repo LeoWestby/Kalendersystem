@@ -18,6 +18,7 @@ import java.util.Map.Entry;
 
 import javax.sound.sampled.ReverbType;
 import javax.swing.AbstractButton;
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -27,6 +28,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 
 public class Invitations extends JDialog{
 	private ArrayList<InviteButton> invites;
@@ -41,21 +44,29 @@ public class Invitations extends JDialog{
 		private JLabel lblDescription;
 		
 		public InviteButton(Appointment appointment) {
+			setLayout(new BorderLayout());
+			
+			
 			lblDescription=new JLabel();
 			lblDescription.setText(appointment.getTitle());
-			add(lblDescription,c);
+			add(lblDescription,BorderLayout.NORTH);
 			
 			
 			c.gridy ++;
 			btnAccept=new JButton();
 			btnAccept.setText("Godta");
 			btnAccept.setBackground(Color.GREEN);
-			add(btnAccept,c);
+			add(btnAccept,BorderLayout.WEST);
 			
 			btnDecline=new JButton();
 			btnDecline.setText("Avslå");
 			btnDecline.setBackground(Color.RED);
-			add(btnDecline,c);
+			add(btnDecline,BorderLayout.EAST);
+			JPanel wrapper=new JPanel();
+			wrapper.setDefaultLocale(lblDescription.getLocale());
+			wrapper.setBorder(new EmptyBorder(20,150,20,20));
+			add(wrapper,BorderLayout.SOUTH);
+
 		}
 
 		public void actionPerformed(ActionEvent e) {
@@ -71,7 +82,6 @@ public class Invitations extends JDialog{
 		this.appointments = list;
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
 		setLocationRelativeTo(null);
-		
 	}
 	
 	@Override
