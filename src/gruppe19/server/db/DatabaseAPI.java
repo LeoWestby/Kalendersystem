@@ -14,9 +14,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
 
 /**
  * A static class used for communication between with the server and the SQL server.
@@ -67,6 +67,12 @@ public class DatabaseAPI {
 
 	public static boolean appointmentNotExists(Appointment appointment)throws SQLException {
 		String st="SELECT avtaleID FROM avtale WHERE avtaleID ="+appointment.getID()+";";
+		ResultSet rs= conn.createStatement().executeQuery(st);
+		return !rs.first();
+	}
+	
+	public static boolean appointmentNotExists(int appointmentID)throws SQLException {
+		String st="SELECT avtaleID FROM avtale WHERE avtaleID ="+appointmentID+";";
 		ResultSet rs= conn.createStatement().executeQuery(st);
 		return !rs.first();
 	}
@@ -160,15 +166,14 @@ public class DatabaseAPI {
 				"('vegahar','passord','vegard','harper',98765422);");
 
 		s.executeUpdate("INSERT INTO `deltager` VALUES " +
-				"('dagrun',1,1)," +
-				"('dagrunki',2,1)," +
-				"('annh',2,1)," +
-				"('leoen',2,1)," +
-				"('fraol',2,1)," +
-				"('annha',2,1)," +
-				"('fredrik',1,1)," +
-				"('fraol',3,1)," +
-				"('leoen',3,1);");
+				"('dagrun',1,0)," +
+				"('dagrunki',2,0)," +
+				"('annh',2,0)," +
+				"('leoen',2,0)," +
+				"('fraol',2,0)," +
+				"('annha',2,0)," +
+				"('fredrik',1,0)," +
+				"('leoen',3,0);");
 
 		s.executeUpdate("INSERT INTO `rom` VALUES " +
 				"('101')," +
@@ -240,24 +245,48 @@ public class DatabaseAPI {
 		}
 		return liste;		
 	}
-
-	public static Appointment getAppointment(int ID){
-		Appointment newAppointment = new Appointment(ID);
-		//		
-		//		Statement st=conn.createStatement();
-		//		if(!appointmentNotExists(ID)){
-		//			ResultSet rs = st.executeQuery("SELECT * FROM avtale WHERE avtaleID LIKE '"+brukernavn+"'");
-		//			newAppointment = new Appointment(ID, title, dateStart, dateEnd, place, owner, room, null, description)	
-		//			newUser.setFirstname(rs.getString("brukernavn"));
-		//				newUser.setPassword(rs.getString("passord"));
-		//				newUser.setLastname(rs.getString("etternavn"));
-		//				newUser.setTlfnr(rs.getInt("tlf"));
-		//			return newUser;
-		//		}
-		//		else
-		//			throw new SQLException();
-		return newAppointment;
+	
+	public static ArrayList<User> findUsers(String searchString) throws SQLException {
+		ArrayList<User> users = new ArrayList<User>();
+		
+		ResultSet result = conn.createStatement().executeQuery
+			("SELECT * FROM bruker WHERE brukernavn LIKE '%" + searchString + "%';");
+		
+		while (result.next()) {
+			users.add(
+					new User(result.getString(1),
+							result.getString(3), 
+							result.getString(4), 
+							result.getInt(5), 
+							result.getString(2)));
+		}
+		return users;
 	}
+
+	public static Appointment getAppointment(int ID) throws SQLException{
+        Appointment newAppointment;
+            Statement st=conn.createStatement();
+                if(!appointmentNotExists(ID)){
+                    ResultSet rs = st.executeQuery("SELECT * FROM avtale WHERE avtaleID = '"+ID+"';");
+                    rs.first();
+                    User leder = new User(rs.getString("lederBrukernavn"));
+                    Room rom = new Room(rs.getString("romNavn"));
+                    Map<User, Status> userList = getUserList(rs.getInt("avtaleID"));
+                   
+                    java.sql.Date start = rs.getDate("dato"), end = rs.getDate("dato");
+                    java.sql.Time tstart = rs.getTime("start"), tend = rs.getTime("slutt");
+                   
+                    Date datestart = new Date(start.getYear(), start.getMonth(), start.getDate(), tstart.getHours(), tstart.getMinutes(), tstart.getSeconds());
+                    Date dateend = new Date(end.getYear(), end.getMonth(), end.getDate(), tend.getHours(), tend.getMinutes(), tend.getSeconds());
+                       
+                    newAppointment = new Appointment(ID, rs.getString("avtalenavn"), datestart, dateend, rs.getString("sted"), leder, rom, userList, rs.getString("beskrivelse"));   
+
+                }
+                else{
+                    return null;
+                }
+                return newAppointment;
+    }
 	
 	public static ArrayList<Room> getFreeRooms(Date start, Date end) throws SQLException {
 		ArrayList<Room> rooms = new ArrayList<Room>();
@@ -361,7 +390,6 @@ public class DatabaseAPI {
 	}
 
 	public static ArrayList<User> getUsers() throws SQLException{
-
 		ArrayList<User> userList=new ArrayList<User>();
 		Statement st=conn.createStatement();
 

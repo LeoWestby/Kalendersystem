@@ -66,10 +66,12 @@ public class CalendarView extends JScrollPane {
 			addMouseListener(new MouseAdapter() {
 				@Override
 				public void mousePressed(MouseEvent e) {
-					new AppointmentDialogGUI(appointment, MainScreen.getUser());
-					
-					System.out.println();
-					appointment = ServerAPI.updateAppointment(appointment);
+					Appointment newApp = appointment;
+					new AppointmentDialogGUI(newApp, MainScreen.getUser());
+					//Check if dialog was cancelled
+					if (!newApp.getTitle().equals("")) {
+						ServerAPI.updateAppointment(newApp);
+					}
 				}
 			});
 		}
@@ -138,6 +140,10 @@ public class CalendarView extends JScrollPane {
 	 */
 	public Date getDate() {
 		return currentDate;
+	}
+	
+	public List<Appointment> getAppointments() {
+		return appointments;
 	}
 
 	/**
