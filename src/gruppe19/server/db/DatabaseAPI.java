@@ -471,8 +471,9 @@ public class DatabaseAPI {
 		conn.createStatement().executeUpdate(string);
 		Map<User, Status> userList = new HashMap<User, Status>();
 
+		conn.createStatement().executeUpdate("DELETE FROM deltager WHERE avtaleID = " + a.getID() + ";");
+		
 		for (User u : a.getUserList().keySet()) {
-			removeParticipant(u, a);
 			createParticipant(u, a);
 			userList.put(u, Status.PENDING);
 		}
