@@ -66,7 +66,7 @@ public class ServerAPI {
 	 * The amount of ms to wait for a response from the server
 	 * after sending a request.
 	 */
-	private static final int timeout = 5000;
+	private static final int timeout = 5000 * 5000;
 	
 	/**
 	 * The last response received from the server.

@@ -240,6 +240,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 					model.setTitle("");
 					ServerAPI.destroyAppointment(model);					
 				}else{
+					model.setTitle("");
 					ServerAPI.setStatus(model, Status.REJECTED);
 				}
 				dispose();

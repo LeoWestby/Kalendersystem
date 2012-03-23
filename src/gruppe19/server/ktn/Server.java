@@ -240,26 +240,36 @@ public class Server {
 				Appointment a = (Appointment)p.o1;
 				Status s = (Status)p.o2;
 				
-				DatabaseAPI.changeParticipantStatus(connectedUser, a, s);
+				if (s == Status.REJECTED) {
+					DatabaseAPI.removeParticipant(connectedUser, a);
+					a.getUserList().remove(connectedUser);
+					
+					//Send client rejecting the meeting an appointment cancelled message
+					send(new ServerMessage('c', a, Type.Request));
+				}
+				else {
+					DatabaseAPI.changeParticipantStatus(connectedUser, a, s);
+				}
 				
 				for (Client c : clients) {
 					//Check if client is owner
 					if (c.connectedUser.equals(a.getOwner())) {
 						c.send(new ServerMessage(
-								'e', 
-								new Pair(new Pair(connectedUser, a), s),
+								'b', 
+								a,
 								Type.Request));
 						continue;
 					}
 					
 					//Check if client is participant
 					for (User u : a.getUserList().keySet()) {
-						if (c.connectedUser.equals(u))
+						if (c.connectedUser.equals(u)) {
 							c.send(new ServerMessage(
-									'e', 
-									new Pair(new Pair(connectedUser, a), s),
+									'b', 
+									a,
 									Type.Request));
 						}
+					}
 				}
 				break;
 			}
