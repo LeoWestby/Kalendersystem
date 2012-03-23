@@ -231,11 +231,13 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		add(btnCancel, constraints);
 		constraints.gridx=3;
 		btnDelete = new JButton("slett avtale");
+		
 		btnDelete.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(model.getOwner().equals(opener)){
+					model.setTitle("");
 					ServerAPI.destroyAppointment(model);					
 				}else{
 					ServerAPI.setStatus(model, Status.REJECTED);
@@ -243,6 +245,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 				dispose();
 			}
 		});
+		
 		add(btnDelete, constraints);
 
 
@@ -250,17 +253,22 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		btnRoom.addActionListener(this);
 		btnAddUser.addActionListener(this);
 		btnConfirm.addActionListener(this);
+		
 		btnCancel.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//button cancel
-				if(model.getID() ==-1){
-					setTitle(null);
+				if(model.getOwner().equals(opener)){
+					if(model.getID() ==-1){
+						model.setTitle("");
+					}					
 				}
+				
 				dispose();
 			}
 		});
+		
 		btnDeleteUser.addActionListener(this);
 		btnRemoveRoom.addActionListener(this);
 
@@ -451,22 +459,6 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		btnConfirm.setEnabled(false);
 		btnRemoveRoom.setEnabled(false);
 	}
-
-	public static void main(String[] args) throws SocketTimeoutException, UnknownHostException, IOException {
-		ServerAPI.open();
-		Appointment app = new Appointment();
-		app.setTitle("En avtale");
-		app.setDateStart(new Date(1000000000));
-		Room rom = new Room("");
-		app.setRoom(rom);
-		User a = new User("Vegard", "Harper");
-		a.setUsername("vegahar");
-		app.setOwner(a);
-		User b = new User("Vegard", "Harper");
-		b.setUsername("vegahar");
-		AppointmentDialogGUI gui = new AppointmentDialogGUI(app);
-	}
-
 
 }
 
