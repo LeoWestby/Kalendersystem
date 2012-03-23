@@ -204,7 +204,7 @@ public class DatabaseAPI {
 
 	public static ArrayList<Appointment> findAppointments(User user) throws SQLException{
 		ArrayList<Appointment> liste = new ArrayList<Appointment>();
-		String st = "SELECT * FROM avtale WHERE lederBrukernavn LIKE '"+user.getUsername()+"';";
+		String st = "SELECT * FROM avtale WHERE lederBrukernavn = '"+user.getUsername()+"';";
 		ResultSet rs = conn.createStatement().executeQuery(st);
 		while(rs.next()){
 			Map<User, Status> userList = getUserList(rs.getInt("avtaleID"));
@@ -226,7 +226,7 @@ public class DatabaseAPI {
 
 	public static ArrayList<Appointment> findAppointmentsParticipant(User user) throws SQLException{
 		ArrayList<Appointment> liste = new ArrayList<Appointment>();
-		String st = "SELECT * FROM deltager,avtale WHERE deltager.brukernavn LIKE '"+ user.getUsername()+"' and deltager.avtaleID = avtale.avtaleID;";
+		String st = "SELECT * FROM deltager,avtale WHERE deltager.brukernavn = '"+ user.getUsername()+"' and deltager.avtaleID = avtale.avtaleID;";
 		ResultSet rs = conn.createStatement().executeQuery(st);
 		while(rs.next()){
 			Map<User, Status> userList = getUserList(rs.getInt("avtaleID"));
@@ -344,7 +344,7 @@ public class DatabaseAPI {
 		
 		if(!userNotExists(brukernavn)){
 			newUser = new User("");
-			ResultSet rs = st.executeQuery("SELECT * FROM bruker WHERE brukernavn LIKE '"+brukernavn+"';");
+			ResultSet rs = st.executeQuery("SELECT * FROM bruker WHERE brukernavn = '"+brukernavn+"';");
 			rs.first();
 			newUser.setUsername(rs.getString("brukernavn"));
 			newUser.setFirstname(rs.getString("fornavn"));
@@ -470,11 +470,11 @@ public class DatabaseAPI {
 
 	public static void removeUser(User user) throws SQLException{
 		conn.createStatement().executeUpdate
-		("DELETE FROM bruker WHERE brukernavn='"+ user.getUsername()+"';");
+		("DELETE FROM bruker WHERE brukernavn = '"+ user.getUsername()+"';");
 	}
 
 	public static boolean roomNotExists(String navn)throws SQLException{
-		String st="SELECT navn FROM rom WHERE navn LIKE='"+navn+"'";
+		String st="SELECT navn FROM rom WHERE navn ='"+navn+"'";
 		ResultSet rs= conn.createStatement().executeQuery(st);
 		return !rs.first();
 	}
@@ -515,18 +515,18 @@ public class DatabaseAPI {
 	}
 
 	public static void updateUser(User user) throws SQLException {
-		conn.createStatement().executeUpdate("DELETE FROM Bruker WHERE Brukernavn LIKE " + user.getUsername() + ';');
+		conn.createStatement().executeUpdate("DELETE FROM Bruker WHERE Brukernavn = " + user.getUsername() + ';');
 		insertUser(user);
 	}
 
 	public static boolean userNotExists(String brukernavn) throws SQLException{
-		String st="SELECT brukernavn FROM bruker WHERE brukernavn LIKE'"+brukernavn+"';";
+		String st="SELECT brukernavn FROM bruker WHERE brukernavn = '"+brukernavn+"';";
 		ResultSet rs= conn.createStatement().executeQuery(st);
 		return !rs.first();
 	}
 
 	public static void main(String[] args) throws SQLException {
 		open();
-		clearDatabase(true);
+		
 	}
 }
