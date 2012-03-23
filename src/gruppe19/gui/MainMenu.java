@@ -62,7 +62,7 @@ public class MainMenu extends JPanel {
 				new AppointmentDialogGUI(newApp, MainScreen.getUser());
 				
 				//Check if dialog was cancelled
-				if (newApp.getTitle() != null) {
+				if (!newApp.getTitle().equals("")) {
 					MainMenu.this.madeBy.getCalendar()
 					.addAppointment(ServerAPI.createAppointment(newApp));
 				}
