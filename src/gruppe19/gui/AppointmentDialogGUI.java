@@ -97,7 +97,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		layout = new GridBagLayout();
 		this.setLayout(layout);
 		constraints = new GridBagConstraints();
-		
+
 		//tittel på avtale;
 		constraints.gridx =0;
 		constraints.gridy =0;
@@ -106,7 +106,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		txtTitle = new JTextField();
 		txtTitle.setPreferredSize(dim);
 		add(txtTitle, constraints);
-		
+
 		constraints.gridx=2;
 		labTitleError = new JLabel();
 		add(labTitleError, constraints);
@@ -156,8 +156,8 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		txtDescription = new JTextArea();
 		txtDescription.setLineWrap(true);
 		txtDescription.setName("TextDescription");
-		
-		
+
+
 		JScrollPane pane = new JScrollPane(txtDescription);
 		pane.setPreferredSize(new Dimension(210, 100));
 		pane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -189,19 +189,19 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		btnRemoveRoom = new JButton("Fjern Rom");
 		add(btnRemoveRoom,constraints);
 
-		
+
 		//legg til deltagere
 		constraints.gridx=0;
 		constraints.gridy=7;
 		add(new JLabel("Deltagere: "),constraints);
-		
+
 		constraints.gridx=1;
 		defaultModel = new DefaultListModel();
 		listUsers = new JList();
 		listUsers.setModel(defaultModel);
-		
+
 		listUsers.setCellRenderer(new UserStatusListRenderer());
-		
+
 		defaultSelectModel = new DefaultListSelectionModel();
 		defaultSelectModel.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
 		listUsers.setSelectionModel(defaultSelectModel);
@@ -219,8 +219,8 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		constraints.gridx=3;
 		btnDeleteUser = new JButton("Slett deltager");
 		add(btnDeleteUser,constraints);
-		
-		
+
+
 		//knapper for godta og slett av avtale
 		constraints.gridx=1;
 		constraints.gridy=8;
@@ -230,13 +230,14 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		btnCancel = new JButton("Avbryt");
 		add(btnCancel, constraints);
 		constraints.gridx=3;
-		btnCancel = new JButton("Avbryt");
 		btnDelete = new JButton("slett avtale");
+		
 		btnDelete.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(model.getOwner().equals(opener)){
+					model.setTitle("");
 					ServerAPI.destroyAppointment(model);					
 				}else{
 					ServerAPI.setStatus(model, Status.REJECTED);
@@ -244,17 +245,33 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 				dispose();
 			}
 		});
+		
 		add(btnDelete, constraints);
-		
-		
+
+
 		//add actionlisteners
 		btnRoom.addActionListener(this);
 		btnAddUser.addActionListener(this);
 		btnConfirm.addActionListener(this);
-		btnCancel.addActionListener(this);
+		
+		btnCancel.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//button cancel
+				if(model.getOwner().equals(opener)){
+					if(model.getID() ==-1){
+						model.setTitle("");
+					}					
+				}
+				
+				dispose();
+			}
+		});
+		
 		btnDeleteUser.addActionListener(this);
 		btnRemoveRoom.addActionListener(this);
-		
+
 		//behaviour
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -283,7 +300,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 			return false;
 		}
 	}
-	
+
 	private ArrayList<String> getTimeInterval(){
 		ArrayList<String> list = new ArrayList<String>();
 		for (int i = 0; i < 24; i++) {
@@ -300,13 +317,13 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		model.setPlace(txtPlace.getText());
 		model.setDescription(txtDescription.getText());
 		Map<User,Status> userList= new HashMap<User,Status>();
-		
+
 		//adder brukere
 		for (int i = 0; i < defaultModel.size(); i++) {
 			Entry<User,Status> a = (Entry<User,Status>)defaultModel.get(i);
 			userList.put(a.getKey(),a.getValue());
 		}
-		
+
 		model.setUserList(userList);
 	}
 
@@ -316,7 +333,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		if(model.getRoom()!=null){			
 			txtRoom.setText(model.getRoom().getName());
 		}
-		
+
 		//tid
 		Date start = model.getDateStart();
 		String startS = format.format(start.getHours()) + ":" +format.format(start.getMinutes());
@@ -324,17 +341,17 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		String endS = format.format(end.getHours()) + ":" +format.format(end.getMinutes());
 		spinnerStart.setValue(startS);
 		spinnerEnd.setValue(endS);
-		
+
 		//sted
 		if (model.getPlace()!=null) {			
 			txtPlace.setText(model.getPlace());
 		}
-		
+
 		//rom
 		if(model.getRoom()!=null){			
 			txtRoom.setText(model.getRoom().getName());
 		}
-		
+
 		//adder brukere
 		Map<User, Status> users = model.getUserList();
 		if(users==null){
@@ -342,11 +359,11 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		}
 		Set<Entry<User,Status>> set = users.entrySet();
 		for (Entry<User,Status> user : set) {
-			
+
 			defaultModel.addElement(user);
 		}
-		
-		
+
+
 	}
 
 	public void setModel(Appointment a){
@@ -366,8 +383,8 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 	public void actionPerformed(ActionEvent e) {
 		labTimeError.setText("");
 		labTitleError.setText("");
-		
-		
+
+
 		//Button room 
 		if (e.getSource() == btnRoom) {
 			if(setTime()){
@@ -380,7 +397,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 				labTimeError.setForeground(Color.RED);
 			}
 		}
-		
+
 		//btnremoveroom
 		if (e.getSource()==btnRemoveRoom) {
 			if (model.getRoom()!=null) {
@@ -388,13 +405,13 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 				txtRoom.setText("");
 			}
 		}
-		
+
 		//button add users
 		if (e.getSource() == btnAddUser) {
 			SelectUserDialog selectUser = new SelectUserDialog(defaultModel,model.getOwner());
 			selectUser.setVisible(true);
 		}
-		
+
 		//button delete user
 		if(e.getSource()==btnDeleteUser){
 			if(!defaultSelectModel.isSelectionEmpty()){
@@ -402,7 +419,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 				defaultModel.remove(i);
 			}
 		}
-		
+
 		//button confirm
 		if(e.getSource()==btnConfirm){
 			if (txtTitle.getText().equals("")) {
@@ -416,20 +433,12 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 				return;
 			}
 			setValues();
-			System.out.println(model.getDescription());
 			//model.save();
 			dispose();
 		}
-		
-		//button cancel
-		if (e.getSource() == btnCancel) {
-			if(model.getID() ==-1){
-				setTitle(null);
-			}
-			System.err.println("hallo");
-			dispose();
-		}
-		
+
+
+
 	}
 
 	@Override
@@ -450,22 +459,6 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		btnConfirm.setEnabled(false);
 		btnRemoveRoom.setEnabled(false);
 	}
-	
-	public static void main(String[] args) throws SocketTimeoutException, UnknownHostException, IOException {
-		ServerAPI.open();
-		Appointment app = new Appointment();
-		app.setTitle("En avtale");
-		app.setDateStart(new Date(1000000000));
-		Room rom = new Room("");
-		app.setRoom(rom);
-		User a = new User("Vegard", "Harper");
-		a.setUsername("vegahar");
-		app.setOwner(a);
-		User b = new User("Vegard", "Harper");
-		b.setUsername("vegahar");
-		AppointmentDialogGUI gui = new AppointmentDialogGUI(app);
-	}
-	
 
 }
 
