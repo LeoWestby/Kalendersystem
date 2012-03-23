@@ -50,7 +50,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 
 	private GridBagLayout layout;
 	private JTextField txtTitle, txtPlace, txtRoom;
-	private JButton btnConfirm, btnRoom, btnCancel, btnAddUser, btnDeleteUser, btnRemoveRoom;
+	private JButton btnConfirm, btnRoom, btnCancel, btnAddUser, btnDeleteUser, btnRemoveRoom,btnDelete ;
 	private DefaultListModel defaultModel;
 	private DefaultListSelectionModel defaultSelectModel;
 	private JTextArea txtDescription;
@@ -61,6 +61,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 	private JLabel labTimeError, labTitleError;
 	private JList listUsers;
 	private Dimension dim = new Dimension(210, 20);
+	private User opener;
 
 
 	/**
@@ -82,6 +83,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 	}
 	public AppointmentDialogGUI(Appointment model,User opener) {
 		this.model=model;
+		this.opener=opener;
 		setUp();
 		getValues();
 		if(!model.getOwner().getUsername().equals(opener.getUsername())){
@@ -225,6 +227,22 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		constraints.gridx=2;
 		btnCancel = new JButton("Avbryt");
 		add(btnCancel, constraints);
+		constraints.gridx=3;
+		btnCancel = new JButton("Avbryt");
+		btnDelete = new JButton("slett avtale");
+		btnDelete.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(model.getOwner().equals(opener)){
+					ServerAPI.setStatus(model, Status.REJECTED);
+				}else{
+					ServerAPI.destroyAppointment(model);					
+				}
+				
+			}
+		});
+		add(btnDelete, constraints);
 		
 		
 		//add actionlisteners
@@ -369,7 +387,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		
 		//button add users
 		if (e.getSource() == btnAddUser) {
-			SelectUserDialog selectUser = new SelectUserDialog(defaultModel);
+			SelectUserDialog selectUser = new SelectUserDialog(defaultModel,model.getOwner());
 			selectUser.setVisible(true);
 		}
 		
