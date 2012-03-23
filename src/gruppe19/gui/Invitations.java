@@ -24,7 +24,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class Invitations extends JDialog{
-	private ArrayList<InviteButton> invites;
 	private List<Appointment> appointments;
 	private JLabel lblInvitations;
 	private GridBagConstraints c;
@@ -83,11 +82,11 @@ public class Invitations extends JDialog{
 		
 		
 		add(lblInvitations,c);
-
-		for (Appointment appointment : appointments) {
-			add(new InviteButton(appointment),c);
-			c.gridy++;
-		}
+//
+//		for (Appointment appointment : appointments) {
+//			add(new InviteButton(appointment),c);
+//			c.gridy++;
+//		}
 
 		this.appointments = list;
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
@@ -96,20 +95,20 @@ public class Invitations extends JDialog{
 	}
 	
 
-	public static void main(String[]args){
-		JFrame frame=new JFrame("Det er her det skjer");
-		ArrayList<Appointment> avtaler= new ArrayList<Appointment>();
-		
-		
-		avtaler.add(new Appointment(2, "Avtale", new Date(), new Date(), "Kiosken på hjørnet", new User("Bjarne"), new Room("101"), null, "Kjøpe mat"));
-		avtaler.add(new Appointment(3, "Dette er en lengre avtalebeskrivelse som skal vise om dette blir seendes bra ut", new Date(), new Date(), "Kiosken på hjørnet", new User("Bjarne"), new Room("101"), null, "Kjøpe mat"));
-		
-		frame.getContentPane().add(new Invitations(avtaler));
-		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
-	}
+//	public static void main(String[]args){
+//		JFrame frame=new JFrame("Det er her det skjer");
+//		ArrayList<Appointment> avtaler= new ArrayList<Appointment>();
+//		
+//		
+//		avtaler.add(new Appointment(2, "Avtale", new Date(), new Date(), "Kiosken på hjørnet", new User("Bjarne"), new Room("101"), null, "Kjøpe mat"));
+//		avtaler.add(new Appointment(3, "Dette er en lengre avtalebeskrivelse som skal vise om dette blir seendes bra ut", new Date(), new Date(), "Kiosken på hjørnet", new User("Bjarne"), new Room("101"), null, "Kjøpe mat"));
+//		
+//		frame.getContentPane().add(new Invitations(avtaler));
+//		frame.pack();
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setLocationRelativeTo(null);
+//		frame.setVisible(true);
+//	}
 
 	@Override
 	public void setVisible(boolean b) {
