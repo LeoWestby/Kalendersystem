@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.swing.DefaultListModel;
@@ -198,7 +199,8 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		defaultModel = new DefaultListModel();
 		listUsers = new JList();
 		listUsers.setModel(defaultModel);
-		listUsers.setCellRenderer(new UserListRenderer());
+		
+		listUsers.setCellRenderer(new UserStatusListRenderer());
 		
 		defaultSelectModel = new DefaultListSelectionModel();
 		defaultSelectModel.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
@@ -235,11 +237,11 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(model.getOwner().equals(opener)){
-					ServerAPI.setStatus(model, Status.REJECTED);
-				}else{
 					ServerAPI.destroyAppointment(model);					
+				}else{
+					ServerAPI.setStatus(model, Status.REJECTED);
 				}
-				
+				dispose();
 			}
 		});
 		add(btnDelete, constraints);
@@ -301,7 +303,8 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		
 		//adder brukere
 		for (int i = 0; i < defaultModel.size(); i++) {
-			userList.put((User)defaultModel.get(i), Status.PENDING);
+			Entry<User,Status> a = (Entry<User,Status>)defaultModel.get(i);
+			userList.put(a.getKey(),a.getValue());
 		}
 		
 		model.setUserList(userList);
@@ -337,8 +340,9 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		if(users==null){
 			return;
 		}
-		Set<User> set = users.keySet();
-		for (User user : set) {
+		Set<Entry<User,Status>> set = users.entrySet();
+		for (Entry<User,Status> user : set) {
+			
 			defaultModel.addElement(user);
 		}
 		
@@ -422,6 +426,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 			if(model.getID() ==-1){
 				setTitle(null);
 			}
+			System.err.println("hallo");
 			dispose();
 		}
 		
@@ -443,6 +448,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		btnDeleteUser.setEnabled(false);
 		btnRoom.setEnabled(false);
 		btnConfirm.setEnabled(false);
+		btnRemoveRoom.setEnabled(false);
 	}
 	
 	public static void main(String[] args) throws SocketTimeoutException, UnknownHostException, IOException {

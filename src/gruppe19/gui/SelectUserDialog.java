@@ -6,8 +6,12 @@ import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import gruppe19.client.ktn.ServerAPI;
+import gruppe19.client.ktn.ServerAPI.Status;
 import gruppe19.model.User;
 
 import javax.swing.DefaultListModel;
@@ -72,9 +76,9 @@ public class SelectUserDialog extends JDialog implements ListSelectionListener, 
 		ArrayList<User> list = (ArrayList<User>) ServerAPI.getUsers();
 		ArrayList<User> userinapp = new ArrayList<User>();
 		for (int i = 0; i < model.size(); i++) {
-			userinapp.add((User)model.get(i));
+			Entry<User,Status> set = (Entry<User,Status>)model.get(i);
+			userinapp.add(set.getKey());
 		}
-		System.err.println(userinapp);
 		for (User user : list) {
 			boolean exsist = false;
 			for (User users : userinapp) {
@@ -103,8 +107,11 @@ public class SelectUserDialog extends JDialog implements ListSelectionListener, 
 			if(!defaultListSelectionModel.isSelectionEmpty()){
 				int i = defaultListSelectionModel.getAnchorSelectionIndex();
 				User a = (User)defaultListModel.get(i);
-				if(!model.contains(a)){
-					model.addElement(a);
+				HashMap<User, Status> b = new HashMap<User, ServerAPI.Status>();
+				b.put(a, Status.PENDING);
+				Set<Entry<User,Status>> set = b.entrySet();
+				for (Entry<User,Status> user : set) {
+					model.addElement(user);
 				}
 				defaultListModel.remove(i);
 			}
