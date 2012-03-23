@@ -168,7 +168,7 @@ public class DatabaseAPI {
 				"('annha',2,1)," +
 				"('fredrik',1,1)," +
 				"('fraol',3,1)," +
-				"('leon',3,1);");
+				"('leoen',3,1);");
 
 		s.executeUpdate("INSERT INTO `rom` VALUES " +
 				"('101')," +
@@ -498,5 +498,6 @@ public class DatabaseAPI {
 
 	public static void main(String[] args) throws SQLException {
 		open();
+		clearDatabase(true);
 	}
 }

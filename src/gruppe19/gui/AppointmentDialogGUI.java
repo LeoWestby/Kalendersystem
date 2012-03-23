@@ -384,7 +384,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		//button confirm
 		if(e.getSource()==btnConfirm){
 			if (txtTitle.getText().equals("")) {
-				labTitleError.setText("En avtale må ha en tittel");
+				labTitleError.setText("Mangler tittel");
 				labTitleError.setForeground(Color.red);
 				return;
 			}

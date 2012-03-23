@@ -69,9 +69,11 @@ public class SelectRoomDialog extends JDialog implements ListSelectionListener, 
 		pack();
 	}
 	private void addFreeRooms(){
-		ArrayList<Room >list =(ArrayList<Room>)ServerAPI.getRooms();
+		ArrayList<Room >list =(ArrayList<Room>)ServerAPI.getFreeRooms(model.getDateStart(),model.getDateEnd());
 		for (Room room : list) {
-			defaultListModel.addElement(room);
+			if(!room.getName().equals(model.getRoom().getName())){				
+				defaultListModel.addElement(room);
+			}
 		}
 	}
 	
