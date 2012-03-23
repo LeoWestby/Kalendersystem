@@ -16,8 +16,8 @@ public class MainMenu extends JPanel {
 	private final MainScreen madeBy;
 	private final JLabel firstName, lastName;
 	
-	private final JButton createMeeting = new JButton("Kall inn til møte"),
-						createAppointment = new JButton("Opprett avtale"), 
+	private final JButton createMeeting = new JButton("Opprett avtale"),
+						createAppointment = new JButton("Ubrukt knapp"), 
 						myMeetings = new JButton("Mine møter"),
 						invitations = new JButton("Invitasjoner"),
 						importCalendar = new JButton("Importer kalendere");
@@ -68,6 +68,15 @@ public class MainMenu extends JPanel {
 				}
 			}
 		});
+		
+		invitations.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainMenu.this.madeBy.getInvitationPanel().setVisible(true);
+			}
+		});
+		
+		
 		
 		//Height should probably be set to a proper value, but it isn't needed
 		setSize(Math.max(lastName.getWidth(), importCalendar.getWidth()), 9999);

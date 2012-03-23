@@ -141,6 +141,10 @@ public class CalendarView extends JScrollPane {
 	public Date getDate() {
 		return currentDate;
 	}
+	
+	public List<Appointment> getAppointments() {
+		return appointments;
+	}
 
 	/**
 	 * Adds all appointments of the current week to the calendar.
