@@ -1,5 +1,6 @@
 package gruppe19.gui;
 
+import gruppe19.client.ktn.ServerAPI.Status;
 import gruppe19.model.Appointment;
 import gruppe19.model.Room;
 import gruppe19.model.User;
@@ -12,19 +13,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Map.Entry;
 
+import javax.sound.sampled.ReverbType;
 import javax.swing.AbstractButton;
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
-public class Invitations extends JPanel{
+public class Invitations extends JDialog{
 	private ArrayList<InviteButton> invites;
+	private List<Appointment> appointments;
 	private JLabel lblInvitations;
 	private GridBagConstraints c;
 	
@@ -60,41 +66,42 @@ public class Invitations extends JPanel{
 	
 	
 	
-	public Invitations(ArrayList<Appointment> appointments){
+	public Invitations(List<Appointment> list){
 		setLayout(new GridBagLayout());
-		c=new GridBagConstraints();
-		c.gridy=0;
-		c.gridx=0;
-		lblInvitations = new JLabel();
-		lblInvitations.setText("Nye møteinvitasjoner:");
-		c.gridx++;
-		c.gridy++;
-		add(lblInvitations,c);
-//		add(new JSeparator(JSeparator.HORIZONTAL));
-
-//		add(Box.createHorizontalStrut(50));
+		this.appointments = list;
+		setDefaultCloseOperation(HIDE_ON_CLOSE);
+		setLocationRelativeTo(null);
 		
-		
-		
-		for (Appointment appointment : appointments) {
-			add(new InviteButton(appointment),c);
-			c.gridy++;
-			
-		}
 	}
 	
-	public static void main(String[]args){
-		JFrame frame=new JFrame("Det er her det skjer");
-		ArrayList<Appointment> avtaler= new ArrayList<Appointment>();
-		
-		
-		avtaler.add(new Appointment(2, "Avtale", new Date(), new Date(), "Kiosken på hjørnet", new User("Bjarne"), new Room("101"), null, "Kjøpe mat"));
-		avtaler.add(new Appointment(3, "Avtale", new Date(), new Date(), "Kiosken på hjørnet", new User("Bjarne"), new Room("101"), null, "Kjøpe mat"));
-		
-		frame.getContentPane().add(new Invitations(avtaler));
-		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
+	@Override
+	public void setVisible(boolean b) {
+		if (b) {
+			removeAll();
+			
+			c=new GridBagConstraints();
+			c.gridy=0;
+			c.gridx=0;
+			lblInvitations = new JLabel();
+			lblInvitations.setText("Nye møteinvitasjoner:");
+			c.gridx++;
+			c.gridy++;
+			add(lblInvitations,c);
+			
+			//Add all appointments where your status is pending to the list
+			for (Appointment appointment : appointments) {
+				for (Entry<User, Status> entry : appointment.getUserList().entrySet()) {
+					if (entry.getKey().equals(MainScreen.getUser())
+							&& entry.getValue() == Status.PENDING) {
+						add(new InviteButton(appointment),c);
+						c.gridy++;
+					}
+				}
+			}
+		}
+		pack();
+		validate();
+		repaint();
+		super.setVisible(b);
 	}
 }

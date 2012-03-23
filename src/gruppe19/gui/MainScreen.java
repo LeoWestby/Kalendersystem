@@ -36,8 +36,8 @@ public class MainScreen extends JFrame {
 	private final MainMenu menu;
 	private final JCalendar miniCalendar;
 	private final CalendarView calendar;
+	private final Invitations invitationPanel; 
 	private final JButton logOut;
-	
 	private final JLabel calendarHeader;
 	private final JLabel leftArrow;
 	private final JLabel rightArrow;
@@ -46,6 +46,10 @@ public class MainScreen extends JFrame {
 	
 	public CalendarView getCalendar() {
 		return calendar;
+	}
+	
+	public Invitations getInvitationPanel() {
+		return invitationPanel;
 	}
 	
 	/**
@@ -102,6 +106,7 @@ public class MainScreen extends JFrame {
 		menu = new MainMenu(this);
 		miniCalendar = new JCalendar(new Locale("no"));
 		calendar = new CalendarView(new Date());
+		invitationPanel = new Invitations(calendar.getAppointments());
 		logOut = new JButton("Logg ut");
 		selectWeek = new JLabel("Velg uke:");
 		week = new JLabel("Uke " + calendar.getCurrentWeek());
