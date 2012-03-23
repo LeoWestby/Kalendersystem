@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultListSelectionModel;
@@ -277,6 +278,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 	private void setValues(){
 		model.setTitle(txtTitle.getText());
 		model.setPlace(txtPlace.getText());
+		model.setDescription(txtDescription.getText());
 		Map<User,Status> userList= new HashMap<User,Status>();
 		
 		//adder brukere
@@ -317,6 +319,11 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		if(users==null){
 			return;
 		}
+		Set<User> set = users.keySet();
+		for (User user : set) {
+			defaultModel.addElement(user);
+		}
+		
 		
 	}
 
@@ -387,6 +394,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 				return;
 			}
 			setValues();
+			System.out.println(model.getDescription());
 			//model.save();
 			dispose();
 		}
