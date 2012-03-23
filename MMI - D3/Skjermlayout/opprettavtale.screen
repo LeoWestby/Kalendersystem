@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore" theme="clean">
-  <widgets xsi:type="model:Panel" id="1" x="112" y="32" width="497" height="481" measuredWidth="497" measuredHeight="481"/>
+  <widgets xsi:type="model:Panel" id="1" x="104" y="32" width="689" height="481" measuredWidth="689" measuredHeight="481"/>
   <widgets xsi:type="model:Panel" id="2" x="153" y="74" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
   <widgets xsi:type="model:Panel" id="3" x="153" y="106" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
   <widgets xsi:type="model:Panel" id="6" x="153" y="138" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
@@ -13,8 +13,8 @@
   <widgets xsi:type="model:Panel" id="14" x="272" y="170" width="186" height="25" measuredWidth="186" measuredHeight="25"/>
   <widgets xsi:type="model:Panel" id="15" x="272" y="202" width="186" height="25" measuredWidth="186" measuredHeight="25"/>
   <widgets xsi:type="model:Panel" id="16" x="272" y="234" width="186" height="25" measuredWidth="186" measuredHeight="25"/>
-  <widgets xsi:type="model:Panel" id="17" x="152" y="314" width="313" height="137" measuredWidth="313" measuredHeight="137"/>
-  <widgets xsi:type="model:Panel" id="18" x="239" y="462" width="123" height="33" measuredWidth="123" measuredHeight="33"/>
+  <widgets xsi:type="model:Panel" id="17" x="272" y="314" width="186" height="127" measuredWidth="186" measuredHeight="127"/>
+  <widgets xsi:type="model:Panel" id="18" x="302" y="464" width="123" height="33" measuredWidth="123" measuredHeight="33"/>
   <widgets xsi:type="model:Panel" id="19" x="472" y="106" width="41" height="25" measuredWidth="41" measuredHeight="25"/>
   <widgets xsi:type="model:Label" id="26" x="282" y="74" text="model.title (view, edit)" measuredWidth="132" measuredHeight="25">
     <font size="10" bold="false"/>
@@ -34,12 +34,18 @@
   <widgets xsi:type="model:Label" id="31" x="282" y="234" text="model.room (view, edit)" measuredWidth="143" measuredHeight="25">
     <font size="10" bold="false"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="33" x="166" y="324" text="model.userlist (view, edit)" measuredWidth="152" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="33" x="282" y="324" text="model.userlist (view, edit)" measuredWidth="152" measuredHeight="25">
     <font size="10" bold="false"/>
   </widgets>
   <widgets xsi:type="model:Label" id="34" x="166" y="32" text="Appointment model = new Appointment()" measuredWidth="231" measuredHeight="23">
     <font/>
   </widgets>
+  <widgets xsi:type="model:Panel" id="35" x="153" y="314" width="97" height="25" measuredWidth="97" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="36" x="592" y="464" width="123" height="33" measuredWidth="123" measuredHeight="33"/>
+  <widgets xsi:type="model:Panel" id="37" x="520" y="234" width="105" height="25" measuredWidth="105" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="38" x="632" y="234" width="105" height="25" measuredWidth="105" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="39" x="520" y="315" width="105" height="23" measuredWidth="105" measuredHeight="23"/>
+  <widgets xsi:type="model:Panel" id="40" x="632" y="315" width="105" height="23" measuredWidth="105" measuredHeight="23"/>
   <hRuler/>
   <vRuler>
     <guides position="8"/>
