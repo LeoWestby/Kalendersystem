@@ -39,27 +39,26 @@ public class Invitations extends JPanel{
 		
 		public InviteButton(Appointment appointment) {
 			setLayout(new BorderLayout());
-			
-			
 			lblDescription=new JLabel();
+			btnAccept=new JButton();
+			btnDecline=new JButton();
+						
 			lblDescription.setText(appointment.getTitle());
 			add(lblDescription,BorderLayout.NORTH);
 			
+			JPanel wrapper=new JPanel();
+			wrapper.setDefaultLocale(lblDescription.getLocale());
+			wrapper.setBorder(new EmptyBorder(10,110,5,20));
+			add(wrapper,BorderLayout.SOUTH);
 			
 			c.gridy ++;
-			btnAccept=new JButton();
 			btnAccept.setText("Godta");
 			btnAccept.setBackground(Color.GREEN);
 			add(btnAccept,BorderLayout.WEST);
 			
-			btnDecline=new JButton();
 			btnDecline.setText("Avslå");
 			btnDecline.setBackground(Color.RED);
 			add(btnDecline,BorderLayout.EAST);
-			JPanel wrapper=new JPanel();
-			wrapper.setDefaultLocale(lblDescription.getLocale());
-			wrapper.setBorder(new EmptyBorder(20,150,20,20));
-			add(wrapper,BorderLayout.SOUTH);
 
 		}
 
@@ -70,27 +69,23 @@ public class Invitations extends JPanel{
 	}
 	
 	
-	
 	public Invitations(ArrayList<Appointment> appointments){
 		setLayout(new GridBagLayout());
 		c=new GridBagConstraints();
+		lblInvitations = new JLabel();
+
 		c.gridy=0;
 		c.gridx=0;
-		lblInvitations = new JLabel();
 		lblInvitations.setText("Nye møteinvitasjoner:");
 		c.gridx++;
 		c.gridy++;
 		
 		
 		add(lblInvitations,c);
-//		add(lblInvitations,BorderLayout.NORTH);
 
 		for (Appointment appointment : appointments) {
-			
 			add(new InviteButton(appointment),c);
-//			add(new InviteButton(appointment),BorderLayout.SOUTH);
 			c.gridy++;
-			
 		}
 	}
 	
@@ -100,7 +95,7 @@ public class Invitations extends JPanel{
 		
 		
 		avtaler.add(new Appointment(2, "Avtale", new Date(), new Date(), "Kiosken på hjørnet", new User("Bjarne"), new Room("101"), null, "Kjøpe mat"));
-		avtaler.add(new Appointment(3, "Avtale", new Date(), new Date(), "Kiosken på hjørnet", new User("Bjarne"), new Room("101"), null, "Kjøpe mat"));
+		avtaler.add(new Appointment(3, "Dette er en lengre avtalebeskrivelse som skal vise om dette blir seendes bra ut", new Date(), new Date(), "Kiosken på hjørnet", new User("Bjarne"), new Room("101"), null, "Kjøpe mat"));
 		
 		frame.getContentPane().add(new Invitations(avtaler));
 		frame.pack();
