@@ -68,29 +68,30 @@ public class Invitations extends JDialog{
 	
 
 	public Invitations(List<Appointment> list){
-
-		setLayout(new GridBagLayout());
-
-		c=new GridBagConstraints();
-		lblInvitations = new JLabel();
-
-		c.gridy=0;
-		c.gridx=0;
-		lblInvitations.setText("Nye møteinvitasjoner:");
-		c.gridx++;
-		c.gridy++;
 		
-		
-		add(lblInvitations,c);
+		setVisible(true);
+//		setLayout(new GridBagLayout());
+//
+//		c=new GridBagConstraints();
+//		lblInvitations = new JLabel();
+//
+//		c.gridy=0;
+//		c.gridx=0;
+//		lblInvitations.setText("Nye møteinvitasjoner:");
+//		c.gridx++;
+//		c.gridy++;
+//		
+//		
+//		add(lblInvitations,c);
 //
 //		for (Appointment appointment : appointments) {
 //			add(new InviteButton(appointment),c);
 //			c.gridy++;
 //		}
-
-		this.appointments = list;
-		setDefaultCloseOperation(HIDE_ON_CLOSE);
-		setLocationRelativeTo(null);
+//
+//		this.appointments = list;
+//		setDefaultCloseOperation(HIDE_ON_CLOSE);
+//		setLocationRelativeTo(null);
 
 	}
 	
