@@ -125,8 +125,9 @@ public class MyAppointments extends JPanel {
 			btnHyperlink.addActionListener(this);
 			add(btnHyperlink);
 			
+			String []months={"Januar","Februar","Mars","April","Mai","Juni","Juli","August","September","Oktober","November","Desember"};
 			lblDescription=new JLabel();
-			String txt=String.format("%d.%s, %d.%d, %s", appointment.getDateStart().getDate(),appointment.getDateStart().getMonth(),appointment.getDateStart().getHours(),appointment.getDateStart().getMinutes(),appointment.getRoom()!=null?appointment.getRoom().getName():appointment.getPlace());
+			String txt=String.format("%d. %s, kl. %d:%d, %s", appointment.getDateStart().getDate(),months[appointment.getDateStart().getMonth()],appointment.getDateStart().getHours(),appointment.getDateStart().getMinutes(),appointment.getRoom()!=null?"rom "+appointment.getRoom().getName():appointment.getPlace());
 			lblDescription.setText(txt);
 			add(lblDescription,c);
 			
