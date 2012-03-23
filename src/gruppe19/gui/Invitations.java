@@ -29,7 +29,7 @@ public class Invitations extends JDialog{
 	private GridBagConstraints c;
 	
 	
-	class InviteButton extends JPanel implements ActionListener{
+	class InviteButton extends JPanel{
 		private JButton btnAccept;
 		private JButton btnDecline;
 		private JLabel lblDescription;
@@ -57,11 +57,24 @@ public class Invitations extends JDialog{
 			btnDecline.setBackground(Color.RED);
 			add(btnDecline,BorderLayout.EAST);
 
+			btnAccept.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					System.out.println("Accept");
+				}
+			});
+			
+			btnDecline.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					System.out.println("Decline");
+				}
+			});
+		
 		}
 
-		public void actionPerformed(ActionEvent e) {
-			
-		}
 		
 	}
 	
@@ -70,19 +83,35 @@ public class Invitations extends JDialog{
 	public Invitations(List<Appointment> list){
 		appointments=list;
 		setLayout(new GridBagLayout());
+
+		c=new GridBagConstraints();
+		lblInvitations = new JLabel();
+
+		c.gridy=0;
+		c.gridx=0;
+		lblInvitations.setText("Nye møteinvitasjoner:");
+		c.gridx++;
+		c.gridy++;
+		
+		
+		add(lblInvitations,c);
+		
+		c.gridx++;
+		c.gridy++;
+		
+		//Add all appointments where your status is pending to the list
+		for (Appointment appointment : appointments) {
+			for (Entry<User, Status> entry : appointment.getUserList().entrySet()) {
+				if (entry.getKey().equals(MainScreen.getUser())
+						&& entry.getValue() == Status.PENDING) {
+					add(new InviteButton(appointment),c);
+					c.gridy++;
+				}
+			}
+		}
+		pack();
 		setVisible(true);
-//
-//		c=new GridBagConstraints();
-//		lblInvitations = new JLabel();
-//
-//		c.gridy=0;
-//		c.gridx=0;
-//		lblInvitations.setText("Nye møteinvitasjoner:");
-//		c.gridx++;
-//		c.gridy++;
-//		
-//		
-//		add(lblInvitations,c);
+	}
 //
 //		for (Appointment appointment : appointments) {
 //			add(new InviteButton(appointment),c);
@@ -111,35 +140,14 @@ public class Invitations extends JDialog{
 //		frame.setVisible(true);
 //	}
 
-	@Override
-	public void setVisible(boolean b) {
+//	@Override
+//	public void setVisible(boolean b) {
 //		if (b) {
-//			removeAll();
+////			removeAll();
 //			
-//			c=new GridBagConstraints();
-//			c.gridy=0;
-//			c.gridx=0;
-//			lblInvitations = new JLabel();
-//			lblInvitations.setText("Nye møteinvitasjoner:");
-//			c.gridx++;
-//			c.gridy++;
-//			add(lblInvitations,c);
-//			
-//			//Add all appointments where your status is pending to the list
-//			for (Appointment appointment : appointments) {
-//				for (Entry<User, Status> entry : appointment.getUserList().entrySet()) {
-//					if (entry.getKey().equals(MainScreen.getUser())
-//							&& entry.getValue() == Status.PENDING) {
-//						add(new InviteButton(appointment),c);
-//						c.gridy++;
-//					}
-//				}
-//			}
-//		}
-//		pack();
-//		validate();
-//		repaint();
-		super.setVisible(b);
+////		validate();
+////		repaint();
+//		super.setVisible(b);
+//
+//	}
 
-	}
-}
