@@ -36,7 +36,6 @@ public class MainScreen extends JFrame {
 	private final MainMenu menu;
 	private final JCalendar miniCalendar;
 	private final CalendarView calendar;
-	private final Invitations invitationPanel; 
 	private final JButton logOut;
 	private final JLabel calendarHeader;
 	private final JLabel leftArrow;
@@ -47,11 +46,7 @@ public class MainScreen extends JFrame {
 	public CalendarView getCalendar() {
 		return calendar;
 	}
-	
-	public Invitations getInvitationPanel() {
-		return invitationPanel;
-	}
-	
+
 	/**
 	 * Gets the user logged into the system.
 	 */
@@ -63,7 +58,6 @@ public class MainScreen extends JFrame {
 	 * Called when the logged in user is invited to the specified appointment.
 	 */
 	public void invite(Appointment a) {
-		calendar.removeAppointment(-1);
 		appointmentUpdated(a);
 	}
 	
@@ -72,7 +66,13 @@ public class MainScreen extends JFrame {
 	 */
 	public void appointmentUpdated(Appointment a) {
 		calendar.removeAppointment(a.getID());
-		calendar.addAppointment(a);
+		
+		//Check if you are still included in the appointment
+		if (a.getOwner().equals(loggedInUser)
+			 ||	a.getUserList().containsKey(loggedInUser)) {
+			calendar.addAppointment(a);
+		}
+		menu.updateInvitationCount();
 	}
 	
 	/**
@@ -83,13 +83,13 @@ public class MainScreen extends JFrame {
 	}
 	
 	/**
-	 * Called when a user deletes an appointment from their calendar where
+	 * Called when a user rejects an appointment from their calendar where
 	 * the logged in user is the leader.
 	 */
-	public void appointmentRemoved(User u, Appointment a) {
+	public void appointmentRejected(User u, Appointment a) {
 		
 	}
-	
+
 	/**
 	 * Called when a user changes his status in an appointment in
 	 * the logged in user's calendar.
@@ -106,7 +106,6 @@ public class MainScreen extends JFrame {
 		menu = new MainMenu(this);
 		miniCalendar = new JCalendar(new Locale("no"));
 		calendar = new CalendarView(new Date());
-		invitationPanel = new Invitations(calendar.getAppointments());
 		logOut = new JButton("Logg ut");
 		selectWeek = new JLabel("Velg uke:");
 		week = new JLabel("Uke " + calendar.getCurrentWeek());
@@ -159,6 +158,8 @@ public class MainScreen extends JFrame {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
+		
+		menu.updateInvitationCount();
 		
 		//Called after the window is resized
 		getContentPane().addComponentListener(new ComponentAdapter() {

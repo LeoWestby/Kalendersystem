@@ -22,6 +22,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.codec.binary.Base64;
 
@@ -162,7 +163,7 @@ public class Server {
 				for (Client c : clients) {
 					//Check if client is owner
 					if (c.connectedUser.equals(a.getOwner())) {
-						c.send(new ServerMessage('a', a, Type.Request));
+						c.send(new ServerMessage('b', a, Type.Request));
 						continue;
 					}
 					
@@ -179,7 +180,9 @@ public class Server {
 				 * Return the updated appointment
 				 * Notify participants
 				 */
-				Appointment a = DatabaseAPI.updateAppointment((Appointment)msg.payload);
+				Appointment a = (Appointment)msg.payload;
+				Map<User, Status> oldUserList = DatabaseAPI.getUserList(a.getID());
+				a = DatabaseAPI.updateAppointment((Appointment)msg.payload);
 				send(new ServerMessage('\0', a, Type.Response));
 				
 				for (Client c : clients) {
@@ -189,11 +192,11 @@ public class Server {
 						continue;
 					}
 					
-					//Check if client is participant
-					for (User u : a.getUserList().keySet()) {
-						if (c.connectedUser.equals(u))
-							c.send(new ServerMessage('b', a, Type.Request));
-						}
+					//Check if client is participant or old participant
+					if (oldUserList.containsKey(c.connectedUser) 
+							|| a.getUserList().containsKey(c.connectedUser)) {
+						c.send(new ServerMessage('b', a, Type.Request));
+					}
 				}
 				break;
 			}
@@ -220,7 +223,7 @@ public class Server {
 				break;
 			}
 			case 'e': {
-				//Notify appointment leader that the connected user deleted the appointment
+				//Notify appointment leader that the connected user rejected the appointment
 				Appointment a = (Appointment)msg.payload;
 				
 				for (Client c : clients) {

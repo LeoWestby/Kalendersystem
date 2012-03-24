@@ -139,7 +139,7 @@ public class DatabaseAPI {
 		a.setIdD(ID);
 
 		for (User u : a.getUserList().keySet()) {
-			createParticipant(u, a);
+			createParticipant(u, a, Status.PENDING);
 			userList.put(u, Status.PENDING);
 		}
 		a.setUserList(userList);
@@ -186,10 +186,10 @@ public class DatabaseAPI {
 				"('hovedbygg2');");
 	}
 
-	public static void createParticipant(User user, Appointment appointment) throws SQLException{
+	public static void createParticipant(User user, Appointment appointment, Status s) throws SQLException{
 //		if(!userNotExists(user.getUsername()) && !appointmentNotExists(appointment)){
 			Statement st= conn.createStatement();
-			String string = "INSERT INTO deltager VALUES('"+user.getUsername()+"',"+appointment.getID()+","+Status.PENDING.ordinal()+");";
+			String string = "INSERT INTO deltager VALUES('"+user.getUsername()+"',"+appointment.getID()+","+s.ordinal()+");";
 			st.executeUpdate(string);
 //		}
 	}
@@ -295,16 +295,16 @@ public class DatabaseAPI {
 						"SELECT navn " +
 						"FROM rom " +
 						"WHERE navn NOT IN ( " +
-						"SELECT navn " +
-						"FROM avtale JOIN rom ON romNavn = navn " +
-						"WHERE dato = {d '%d-%d-%d'} " +
-						"AND ( " +
-							"(start BETWEEN {t '%4$d:%5$d:%6$d' } AND {t '%7$d:%8$d:%9$d' } " +
-							"OR slutt BETWEEN {t '%4$d:%5$d:%6$d' } AND {t '%7$d:%8$d:%9$d' }) " +
-
-	   			 		"OR " +
-
-	   			 			"start < {t '%4$d:%5$d:%6$d' } AND slutt > {t '%7$d:%8$d:%9$d' } " +
+							"SELECT navn " +
+							"FROM avtale JOIN rom ON romNavn = navn " +
+							"WHERE dato = {d '%d-%d-%d'} " +
+							"AND ( " +
+								"(start BETWEEN {t '%4$d:%5$d:%6$d' } AND {t '%7$d:%8$d:%9$d' } " +
+								"OR slutt BETWEEN {t '%4$d:%5$d:%6$d' } AND {t '%7$d:%8$d:%9$d' }) " +
+	
+		   			 		"OR " +
+	
+		   			 			"start < {t '%4$d:%5$d:%6$d' } AND slutt > {t '%7$d:%8$d:%9$d' } " +
 						"));",
 						start.getYear() + 1900, start.getMonth() + 1, start.getDate(),
 						start.getHours(), start.getMinutes(), start.getSeconds(),
@@ -497,15 +497,12 @@ public class DatabaseAPI {
 						(a.getRoom().getName().equals("") ? "null" : "'" + a.getRoom().getName() + "'")),
 				a.getID());
 		conn.createStatement().executeUpdate(string);
-		Map<User, Status> userList = new HashMap<User, Status>();
-
+		
 		conn.createStatement().executeUpdate("DELETE FROM deltager WHERE avtaleID = " + a.getID() + ";");
 		
-		for (User u : a.getUserList().keySet()) {
-			createParticipant(u, a);
-			userList.put(u, Status.PENDING);
+		for (Entry<User, Status> entry : a.getUserList().entrySet()) {
+			createParticipant(entry.getKey(), a, entry.getValue());
 		}
-		a.setUserList(userList);
 		return a;
 	}
 
@@ -527,5 +524,6 @@ public class DatabaseAPI {
 
 	public static void main(String[] args) throws SQLException {
 		open();
+		clearDatabase(true);
 	}
 }

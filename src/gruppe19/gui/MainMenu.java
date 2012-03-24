@@ -1,6 +1,7 @@
 package gruppe19.gui;
 
 import gruppe19.client.ktn.ServerAPI;
+import gruppe19.client.ktn.ServerAPI.Status;
 import gruppe19.model.Appointment;
 
 import java.awt.event.ActionEvent;
@@ -57,29 +58,52 @@ public class MainMenu extends JPanel {
 		createMeeting.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Appointment newApp = new Appointment();
+				final Appointment newApp = new Appointment();
 				newApp.setOwner(MainScreen.getUser());
-				new AppointmentDialogGUI(newApp, MainScreen.getUser());
+				final AppointmentDialogGUI appGUI = 
+						new AppointmentDialogGUI(newApp, MainScreen.getUser(), false);
 				
-				//Check if dialog was cancelled
-				if (!newApp.getTitle().equals("")) {
-					MainMenu.this.madeBy.getCalendar()
-					.addAppointment(ServerAPI.createAppointment(newApp));
-				}
+				appGUI.addConfirmButtonListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						if (appGUI.validateModel()) {
+							ServerAPI.createAppointment(newApp);
+							appGUI.dispose();
+						}
+					}
+				});
+				appGUI.setVisible(true);
 			}
 		});
 		
 		invitations.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MainMenu.this.madeBy.getInvitationPanel().setVisible(true);
+				new Invitations(MainMenu.this.madeBy.getCalendar().getAppointments())
+				.setLocationRelativeTo(MainMenu.this.madeBy);
 			}
 		});
-		
-		
 		
 		//Height should probably be set to a proper value, but it isn't needed
 		setSize(Math.max(lastName.getWidth(), importCalendar.getWidth()), 9999);
 		setLocation(XPOS, YPOS);
+	}
+	
+	public void updateInvitationCount() {
+		int count = 0;
+		
+		for (Appointment a : madeBy.getCalendar().getAppointments()) {
+			if (a.getUserList().get(MainScreen.getUser()) == Status.PENDING) {
+				count++;
+			}
+		}
+		
+		if (count == 0) {
+			invitations.setText("Invitasjoner");
+		}
+		else {
+			invitations.setText("<html>Invitasjoner " +
+									"<font color='red'>(" + count + ")");
+		}
 	}
 }

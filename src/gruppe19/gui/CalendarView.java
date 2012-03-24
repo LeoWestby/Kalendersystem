@@ -1,7 +1,9 @@
 package gruppe19.gui;
 
 import gruppe19.client.ktn.ServerAPI;
+import gruppe19.client.ktn.ServerAPI.Status;
 import gruppe19.model.Appointment;
+import gruppe19.model.User;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -9,15 +11,20 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.ConcurrentModificationException;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -50,30 +57,72 @@ public class CalendarView extends JScrollPane {
 							).getImage();
 	}
 	
-	private static class AppointmentWidget extends JPanel {
+	private class AppointmentWidget extends JPanel {
 		public Appointment appointment;
 		
 		public AppointmentWidget(Appointment a) {
 			appointment = a;
 					
 			setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			setBackground(Color.GREEN);
+			setBackground(getColor());
 			setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 			add(new JLabel(appointment.getTitle()));
-			add(Box.createVerticalStrut(30));
 			add(new JLabel(appointment.getPlace()));
 			
 			addMouseListener(new MouseAdapter() {
 				@Override
 				public void mousePressed(MouseEvent e) {
-					Appointment newApp = appointment;
-					new AppointmentDialogGUI(newApp, MainScreen.getUser());
-					//Check if dialog was cancelled
-					if (!newApp.getTitle().equals("")) {
-						ServerAPI.updateAppointment(newApp);
-					}
+					final AppointmentDialogGUI appGUI = 
+							new AppointmentDialogGUI(appointment, MainScreen.getUser(), false);
+					
+					appGUI.addConfirmButtonListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							if (appGUI.validateModel()) {
+								ServerAPI.updateAppointment(appointment);
+								appGUI.dispose();
+							}
+						}
+					});
+					
+					appGUI.addDeleteButtonListener(new ActionListener() {
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							if (appointment.getOwner().equals(MainScreen.getUser())) {
+								//Remove appointment for everyone
+								ServerAPI.destroyAppointment(appointment);
+							}
+							else {
+								//Remove appointment for you and
+								//change status to rejected
+								appointment.getUserList().put(
+										MainScreen.getUser(), Status.REJECTED);
+								ServerAPI.updateAppointment(appointment);
+							}
+							appGUI.dispose();
+						}
+					});
+					appGUI.setLocationRelativeTo(CalendarView.this);
+					appGUI.setVisible(true);
 				}
 			});
+		}
+		
+		private Color getColor() {
+			boolean someonePending = false;
+			Color allApproved = new Color(0x228B22);
+			Color oneRejected = new Color(0xFF003F);
+			Color onePending = new Color(0xFF9F00);
+			
+			for (Status s : appointment.getUserList().values()) {
+				if (s == Status.REJECTED) {
+					return oneRejected;
+				}
+				else if (s == Status.PENDING) {
+					someonePending = true;
+				}
+			}
+			return someonePending ? onePending : allApproved;
 		}
 	}
 	
@@ -160,17 +209,33 @@ public class CalendarView extends JScrollPane {
 		//Clear the calendar
 		calendarPanel.removeAll();
 		
-		for (Appointment a : appointments) {
-			cal.setTime(a.getDateStart());
-			
-			if (cal.get(Calendar.WEEK_OF_YEAR) == currentWeek
-					&& cal.get(Calendar.YEAR) == currentYear) {
-				AppointmentWidget widget = new AppointmentWidget(a);
+		try {
+			for (Appointment a : appointments) {
+				//Only approved appointments should be painted
+				if (!a.getOwner().equals(MainScreen.getUser())) {
+					Status myStatus = a.getUserList().get(MainScreen.getUser());
+					
+					if (myStatus != Status.APPROVED) {
+						continue;
+					}
+				}
+				cal.setTime(a.getDateStart());
 				
-				setWidgetLocAndPos(widget);
-				calendarPanel.add(widget);
+				if (cal.get(Calendar.WEEK_OF_YEAR) == currentWeek
+						&& cal.get(Calendar.YEAR) == currentYear) {
+					AppointmentWidget widget = new AppointmentWidget(a);
+					
+					setWidgetLocAndPos(widget);
+					calendarPanel.add(widget);
+				}
 			}
 		}
+		catch (ConcurrentModificationException e) {
+			//This exception is thrown at "random" times. No idea why
+			repaintAppointments();
+			return;
+		}
+		
 		calendarPanel.revalidate();
 		calendarPanel.repaint();
 	}

@@ -71,16 +71,7 @@ public class TestDatabase extends TestCase{
 		
 
 	}
-	
-	public void testInsertApp() throws SQLException{
-		Appointment a = new Appointment();
-		AppointmentDialogGUI gui = new AppointmentDialogGUI();
-		a.setOwner(new User("fredrik"));
-		gui.setModel(a);
-		gui.setVisible(true);
-		DatabaseAPI.createAppointment(a);	
-	}
-	
+
 	public void testUpdateAppointment() throws SQLException{
 		User a = new User("dagrunki");
 		ArrayList<Appointment> list = DatabaseAPI.findAppointments(a);

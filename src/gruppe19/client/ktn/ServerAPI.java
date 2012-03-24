@@ -211,11 +211,11 @@ public class ServerAPI {
 	
 	/**
 	 * Notifies the server that the user logged in on this client
-	 * has removed an appointment from his calendar.
+	 * has rejected an appointment in his calendar.
 	 * 
 	 * @see ServerAPI#destroyAppointment
 	 */
-	public static void removeAppointment(Appointment a) {
+	public static void rejectedAppointment(Appointment a) {
 		send(new ClientMessage('e', a));
 	}
 	
@@ -227,7 +227,7 @@ public class ServerAPI {
 		send(new ClientMessage('f', new Pair(a, flag)));
 	}
 	
-	//ID G unused
+	//Id g unused
 	
 	/**
 	 * Gets all appointments started by the specified user.
@@ -329,10 +329,10 @@ public class ServerAPI {
 								break;
 							}
 							case 'd': {
-								//The user deleted your appointment from their calendar
+								//The specified user rejected the specified appointment
 								Pair p = (Pair)msg.payload;
 								
-								listener.appointmentRemoved((User)p.o1, (Appointment)p.o2);
+								listener.appointmentRejected((User)p.o1, (Appointment)p.o2);
 								break;
 							}
 							case 'e': {
@@ -344,7 +344,6 @@ public class ServerAPI {
 										(User)p2.o1, (Appointment)p2.o2, (Status)p1.o2);
 								break;
 							}
-							
 						}
 					}
 				} 
@@ -368,8 +367,8 @@ public class ServerAPI {
 				}
 				catch (EOFException e) {
 					System.err.println("[Error] Lost connection to server. Exiting...");
-					System.err.println("Note to bug hunters: A server crash usually " +
-							"means an error in the DatabaseAPI.java file.");
+					//System.err.println("Note to bug hunters: A server crash usually " +
+					//	"indicates an error in the DatabaseAPI.java file.");
 					//e.printStackTrace();
 					System.exit(1);
 				}
