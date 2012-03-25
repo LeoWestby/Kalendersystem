@@ -57,14 +57,14 @@ public class CalendarView extends JScrollPane {
 							).getImage();
 	}
 	
-	private class AppointmentWidget extends JPanel {
+	public static class AppointmentWidget extends JPanel {
 		public Appointment appointment;
 		
 		public AppointmentWidget(Appointment a) {
 			appointment = a;
 					
 			setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			setBackground(getColor());
+			setBackground(getColor(a));
 			setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 			add(new JLabel(appointment.getTitle()));
 			add(new JLabel(appointment.getPlace()));
@@ -102,19 +102,19 @@ public class CalendarView extends JScrollPane {
 							appGUI.dispose();
 						}
 					});
-					appGUI.setLocationRelativeTo(CalendarView.this);
+					appGUI.setLocationRelativeTo(null);
 					appGUI.setVisible(true);
 				}
 			});
 		}
 		
-		private Color getColor() {
+		public static Color getColor(Appointment a) {
 			boolean someonePending = false;
 			Color allApproved = new Color(0x228B22);
 			Color oneRejected = new Color(0xFF003F);
 			Color onePending = new Color(0xFF9F00);
 			
-			for (Status s : appointment.getUserList().values()) {
+			for (Status s : a.getUserList().values()) {
 				if (s == Status.REJECTED) {
 					return oneRejected;
 				}

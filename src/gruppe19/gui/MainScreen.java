@@ -12,7 +12,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowStateListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -46,6 +50,10 @@ public class MainScreen extends JFrame {
 	public CalendarView getCalendar() {
 		return calendar;
 	}
+	
+	public JCalendar getMiniCalendar() {
+		return miniCalendar;
+	}
 
 	/**
 	 * Gets the user logged into the system.
@@ -73,6 +81,7 @@ public class MainScreen extends JFrame {
 			calendar.addAppointment(a);
 		}
 		menu.updateInvitationCount();
+		menu.updateRejectedMeetingsCount();
 	}
 	
 	/**
@@ -160,6 +169,7 @@ public class MainScreen extends JFrame {
 		setVisible(true);
 		
 		menu.updateInvitationCount();
+		menu.updateRejectedMeetingsCount();
 		
 		//Called after the window is resized
 		getContentPane().addComponentListener(new ComponentAdapter() {

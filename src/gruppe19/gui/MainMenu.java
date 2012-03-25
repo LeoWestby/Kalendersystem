@@ -18,7 +18,6 @@ public class MainMenu extends JPanel {
 	private final JLabel firstName, lastName;
 	
 	private final JButton createMeeting = new JButton("Opprett avtale"),
-						createAppointment = new JButton("Ubrukt knapp"), 
 						myMeetings = new JButton("Mine møter"),
 						invitations = new JButton("Invitasjoner"),
 						importCalendar = new JButton("Importer kalendere");
@@ -36,21 +35,18 @@ public class MainMenu extends JPanel {
 		setLayout(null);
 		lastName.setSize(lastName.getPreferredSize());
 		createMeeting.setSize(importCalendar.getPreferredSize());
-		createAppointment.setSize(importCalendar.getPreferredSize());
 		myMeetings.setSize(importCalendar.getPreferredSize());
 		invitations.setSize(importCalendar.getPreferredSize());
 		importCalendar.setSize(importCalendar.getPreferredSize());
 		
 		lastName.setLocation(0, 0);
 		createMeeting.setLocation(0, lastName.getY() + spaceBetweenButtonsAndName);
-		createAppointment.setLocation(0, createMeeting.getHeight() + createMeeting.getY() + spaceBetweenButtons);
-		myMeetings.setLocation(0, createAppointment.getHeight() + createAppointment.getY() + spaceBetweenButtons);
+		myMeetings.setLocation(0, createMeeting.getHeight() + createMeeting.getY() + spaceBetweenButtons);
 		invitations.setLocation(0, myMeetings.getHeight() + myMeetings.getY() + spaceBetweenButtons);
 		importCalendar.setLocation(0, invitations.getHeight() + invitations.getY() + spaceBetweenButtons);
 		
 		add(lastName);
 		add(createMeeting);
-		add(createAppointment);
 		add(myMeetings);
 		add(invitations);
 		add(importCalendar);
@@ -72,6 +68,7 @@ public class MainMenu extends JPanel {
 						}
 					}
 				});
+				appGUI.setLocationRelativeTo(null);
 				appGUI.setVisible(true);
 			}
 		});
@@ -80,6 +77,14 @@ public class MainMenu extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new Invitations(MainMenu.this.madeBy.getCalendar().getAppointments())
+				.setLocationRelativeTo(MainMenu.this.madeBy);
+			}
+		});
+		
+		myMeetings.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new MyAppointments(MainMenu.this.madeBy)
 				.setLocationRelativeTo(MainMenu.this.madeBy);
 			}
 		});
@@ -104,6 +109,30 @@ public class MainMenu extends JPanel {
 		else {
 			invitations.setText("<html>Invitasjoner " +
 									"<font color='red'>(" + count + ")");
+		}
+	}
+	
+	public void updateRejectedMeetingsCount() {
+		int count = 0;
+		
+		for (Appointment a : madeBy.getCalendar().getAppointments()) {
+			if (a.getOwner().equals(MainScreen.getUser()) ||
+					a.getUserList().get(MainScreen.getUser()) != Status.REJECTED) {
+				for (Status s : a.getUserList().values()) {
+					if (s == Status.REJECTED) {
+						count++;
+						break;
+					}
+				}
+			}
+		}
+		
+		if (count == 0) {
+			myMeetings.setText("Mine møter");
+		}
+		else {
+			myMeetings.setText("<html>Mine møter " +
+					"<font color='red'>(" + count + ")");
 		}
 	}
 }
