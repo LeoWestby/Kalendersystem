@@ -44,7 +44,7 @@ public class Server {
 	 * combination and simply return a new user with the specified
 	 * user name.
 	 */
-	public final static boolean noLogin = true;
+	public final static boolean noLogin = false;
 	public final static String serverAddress;
 	public final static int listeningPort;
 	public final static boolean usingSimpleConn;

@@ -209,7 +209,8 @@ public class DatabaseAPI {
 		while(rs.next()){
 			Map<User, Status> userList = getUserList(rs.getInt("avtaleID"));
 			Room rom = new Room(rs.getString("romNavn"));
-			User leder = new User(rs.getString("lederBrukernavn"));
+			User leder = getUser(rs.getString("lederBrukernavn"));
+			
 
 			java.sql.Date start = rs.getDate("dato"), end = rs.getDate("dato");
 			java.sql.Time tstart = rs.getTime("start"), tend = rs.getTime("slutt");
@@ -231,7 +232,7 @@ public class DatabaseAPI {
 		while(rs.next()){
 			Map<User, Status> userList = getUserList(rs.getInt("avtaleID"));
 			Room rom = new Room(rs.getString("romNavn"));
-			User leder = new User(rs.getString("lederBrukernavn"));
+			User leder = getUser(rs.getString("lederBrukernavn"));
 			
 			java.sql.Date start = rs.getDate("dato"), end = rs.getDate("dato");
 			java.sql.Time tstart = rs.getTime("start"), tend = rs.getTime("slutt");
@@ -269,7 +270,7 @@ public class DatabaseAPI {
                 if(!appointmentNotExists(ID)){
                     ResultSet rs = st.executeQuery("SELECT * FROM avtale WHERE avtaleID = '"+ID+"';");
                     rs.first();
-                    User leder = new User(rs.getString("lederBrukernavn"));
+                    User leder = getUser(rs.getString("lederBrukernavn"));
                     Room rom = new Room(rs.getString("romNavn"));
                     Map<User, Status> userList = getUserList(rs.getInt("avtaleID"));
                    

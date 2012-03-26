@@ -34,6 +34,7 @@ public class SelectUserDialog extends JDialog implements ListSelectionListener, 
 	public SelectUserDialog(DefaultListModel model, User owner) {
 		this.model = model;
 		this.owner = owner;
+		System.err.println(owner.getUsername());
 		setUp();
 		addFreeUsers();
 	}
@@ -81,11 +82,10 @@ public class SelectUserDialog extends JDialog implements ListSelectionListener, 
 		}
 		for (User user : list) {
 			boolean exsist = false;
+			if(user.getUsername().equals(owner.getUsername())){
+				continue;
+			}
 			for (User users : userinapp) {
-				if(user.equals(owner)){
-					exsist = true;
-					break;
-				}
 				if(user.getUsername().equals(users.getUsername())){
 					exsist = true;
 					break;
