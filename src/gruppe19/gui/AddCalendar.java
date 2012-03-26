@@ -1,10 +1,15 @@
 package gruppe19.gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -13,25 +18,30 @@ import java.util.Set;
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 
+import gruppe19.client.ktn.ServerAPI;
 import gruppe19.client.ktn.ServerAPI.Status;
 import gruppe19.model.Appointment;
 import gruppe19.model.User;
+import gruppe19.server.ktn.Server;
 
 public class AddCalendar extends JDialog implements ActionListener, ListSelectionListener{
+
+	
+	private static final long serialVersionUID = 1L;
 
 	private Appointment model;
 
 	private GridBagLayout layout;
-	private JButton btnConfirm, btnRoom, btnCancel, btnAddUser, btnDeleteUser, btnRemoveRoom,btnDelete ;
+	private JButton btnCancel, btnConfirm, btnColorChooser, btnAddUser, btnDeleteImportedCalendar, btnDeleteAllImportedCalendars;
 	private DefaultListModel defaultModel;
 	private DefaultListSelectionModel defaultSelectModel;
 	private GridBagConstraints constraints;
@@ -39,83 +49,87 @@ public class AddCalendar extends JDialog implements ActionListener, ListSelectio
 	private JList listUsers;
 	private Dimension dim = new Dimension(210, 20);
 	private User opener;
-	private boolean noButtons;
+	private Color color;
 
 
 
-	public AddCalendar(Appointment model,User opener, boolean noButtons) {
-		this.model=model;
-		this.opener=opener;
-		this.noButtons = noButtons;
+	public AddCalendar() throws SocketTimeoutException, UnknownHostException, IOException {
 		setUp();
 		getValues();
 	}
 
-	private void setUp(){
+	private void setUp() throws SocketTimeoutException, UnknownHostException, IOException{
+		Server.startServer();
+		ServerAPI.open();
 		layout = new GridBagLayout();
 		this.setLayout(layout);
 		constraints = new GridBagConstraints();
 
-		
-		
 		//legg til deltagere
 		constraints.gridx=0;
-		constraints.gridy=7;
-		add(new JLabel("Deltagere: "),constraints);
+		constraints.gridy=0;
+		add(new JLabel("Velg kalendre: "),constraints);
 
-		constraints.gridx=1;
+		constraints.gridx=0;
+		constraints.gridy=1;
 		defaultModel = new DefaultListModel();
 		listUsers = new JList();
-		listUsers.setModel(defaultModel);
+		
 
+		listUsers.setModel(defaultModel);
 		listUsers.setCellRenderer(new UserStatusListRenderer());
 
 		defaultSelectModel = new DefaultListSelectionModel();
 		defaultSelectModel.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
+		
 		listUsers.setSelectionModel(defaultSelectModel);
 		defaultSelectModel.addListSelectionListener(this);
+		
 		JScrollPane scrollUsers = new JScrollPane(listUsers);
 		scrollUsers.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		scrollUsers.setPreferredSize(new Dimension(210, 100));
 		add(scrollUsers, constraints);
 
-		if (!noButtons) {
-			//legge til knapper
-			constraints.gridx=2;
-			constraints.gridy=7;
-			btnAddUser = new JButton("Legg til deltager");
-			add(btnAddUser,constraints);
-			constraints.gridx=3;
-			btnDeleteUser = new JButton("Slett deltager");
-			add(btnDeleteUser,constraints);
-			//knapper for godta og slett av avtale
-			constraints.gridx=1;
-			constraints.gridy=8;
-			btnConfirm = new JButton("Legg til/endre avtale");
-			add(btnConfirm, constraints);
-			constraints.gridx=2;
-			btnCancel = new JButton("Avbryt");
-			add(btnCancel, constraints);
-			constraints.gridx=3;
-			btnDelete = new JButton("Slett avtale");
+		//legge til knapper
+		
+		constraints.gridy=1;
+		constraints.gridx=3;
+		
+		// Create a button using the action
+		btnColorChooser = new JButton("Velg farge");
+		add(btnColorChooser,constraints);
+		
+		//knapper for å slette en kalender og for å slette alle kalendre
+		constraints.gridy=2;
+		constraints.gridx=0;
+		btnDeleteImportedCalendar = new JButton("Slett kalender");
+		add(btnDeleteImportedCalendar,constraints);
+		
+		constraints.gridx=1;
+		btnDeleteAllImportedCalendars=new JButton("Slett alle importerte kalendre");
+		add(btnDeleteAllImportedCalendars,constraints);
+		
+		//knapper for godta og slett
+		constraints.gridx=3;
+		btnConfirm=new JButton("Lagre");
+		add(btnConfirm, constraints);
+		
+		constraints.gridx=4;
+		btnCancel = new JButton("Avbryt");
+		add(btnCancel, constraints);
 
-			//An ID of -1 means the appointment is new
-			if (model.getID() != -1) {
-				add(btnDelete, constraints);
-			}
-
-			//add actionlisteners
-			btnRoom.addActionListener(this);
-			btnAddUser.addActionListener(this);
-			btnCancel.addActionListener(this);
-			btnDeleteUser.addActionListener(this);
-			btnRemoveRoom.addActionListener(this);
-		}
+		//add actionlisteners
+		btnCancel.addActionListener(this);
+		btnDeleteImportedCalendar.addActionListener(this);
+		btnConfirm.addActionListener(this);
+		btnDeleteAllImportedCalendars.addActionListener(this);
+		btnColorChooser.addActionListener(this);
 
 		//behaviour
 		setModalityType(ModalityType.APPLICATION_MODAL);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		pack();
+		setVisible(true);
 	}
 
 
@@ -162,8 +176,8 @@ public class AddCalendar extends JDialog implements ActionListener, ListSelectio
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		labTimeError.setText("");
-		labTitleError.setText("");
+//		labTimeError.setText("");
+//		labTitleError.setText("");
 
 		if (e.getSource() == btnCancel) {
 			dispose();
@@ -177,11 +191,17 @@ public class AddCalendar extends JDialog implements ActionListener, ListSelectio
 		}
 
 		//button delete user
-		if(e.getSource()==btnDeleteUser){
+		if(e.getSource()==btnDeleteImportedCalendar){
 			if(!defaultSelectModel.isSelectionEmpty()){
 				int i= defaultSelectModel.getAnchorSelectionIndex();
 				defaultModel.remove(i);
 			}
+		}
+		
+		if(e.getSource()==btnColorChooser){
+			color=JColorChooser.showDialog(this, "Velg farge til kalenderen", Color.WHITE);
+			if(color==null)
+				color=Color.WHITE;
 		}
 	}
 	
@@ -191,15 +211,18 @@ public class AddCalendar extends JDialog implements ActionListener, ListSelectio
 		btnConfirm.addActionListener(listener);
 	}
 	
-	public void addDeleteButtonListener(ActionListener listener) {
-		btnDelete.addActionListener(listener);
-	}
+	
 
 	@Override
 	public void valueChanged(ListSelectionEvent arg0) {
-		// TODO Auto-generated method stub
 
 	}
+	
+	public static void main(String[] args) throws SocketTimeoutException, UnknownHostException, IOException {
+		
+		AddCalendar cal=new AddCalendar();
+	}
+
 
 }
 
