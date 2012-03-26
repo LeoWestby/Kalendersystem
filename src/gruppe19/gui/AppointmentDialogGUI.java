@@ -216,6 +216,11 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		scrollUsers.setPreferredSize(new Dimension(210, 100));
 		add(scrollUsers, constraints);
 
+		constraints.gridx=1;
+		constraints.gridy=8;
+		labOwner = new JLabel("Eier: ");
+		add(labOwner,constraints);
+		
 		if (!noButtons) {
 			//legge til knapper
 			constraints.gridx=2;
@@ -227,10 +232,6 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 			add(btnDeleteUser,constraints);
 			
 			//
-			constraints.gridx=1;
-			constraints.gridy=8;
-			labOwner = new JLabel("Eier: ");
-			add(labOwner,constraints);
 			
 			//knapper for godta og slett av avtale
 			constraints.gridx=1;
