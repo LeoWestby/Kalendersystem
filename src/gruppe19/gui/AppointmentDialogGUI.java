@@ -1,16 +1,16 @@
 package gruppe19.gui;
 
+import gruppe19.client.ktn.ServerAPI.Status;
+import gruppe19.model.Appointment;
+import gruppe19.model.Room;
+import gruppe19.model.User;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.io.IOException;
-import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,20 +32,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SpinnerListModel;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-
-import com.toedter.calendar.IDateEditor;
 import com.toedter.calendar.JDateChooser;
-
-import gruppe19.client.ktn.ServerAPI;
-import gruppe19.client.ktn.ServerAPI.Status;
-import gruppe19.model.Appointment;
-import gruppe19.model.Room;
-import gruppe19.model.User;
 
 public class AppointmentDialogGUI extends JDialog implements ActionListener, ListSelectionListener{
 
@@ -66,6 +56,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 	private Dimension dim = new Dimension(210, 20);
 	private User opener;
 	private boolean noButtons;
+	private Room roomtemp;
 
 
 //	/**
@@ -374,6 +365,9 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		labTitleError.setText("");
 
 		if (e.getSource() == btnCancel) {
+			if(roomtemp != null){
+				model.setRoom(roomtemp);
+			}
 			dispose();
 		}
 		
@@ -394,6 +388,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		//btnremoveroom
 		if (e.getSource()==btnRemoveRoom) {
 			if (model.getRoom()!=null) {
+				roomtemp = model.getRoom();
 				model.setRoom(new Room(""));
 				txtRoom.setText("");
 			}
