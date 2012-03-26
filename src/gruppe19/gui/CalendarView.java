@@ -86,7 +86,9 @@ public class CalendarView extends JScrollPane {
 									ServerAPI.destroyAppointment(appointment);
 									ServerAPI.createAppointment(appointment);
 								}
-								ServerAPI.updateAppointment(appointment);
+								else {
+									ServerAPI.updateAppointment(appointment);
+								}
 								appGUI.dispose();
 							}
 						}
