@@ -61,7 +61,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 	private DecimalFormat format = new DecimalFormat("00");
 	private JSpinner spinnerEnd, spinnerStart;
 	private JDateChooser dateChooser;
-	private JLabel labTimeError, labTitleError;
+	private JLabel labTimeError, labTitleError, labOwner;
 	private JList listUsers;
 	private Dimension dim = new Dimension(210, 20);
 	private User opener;
@@ -216,6 +216,11 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		scrollUsers.setPreferredSize(new Dimension(210, 100));
 		add(scrollUsers, constraints);
 
+		constraints.gridx=1;
+		constraints.gridy=8;
+		labOwner = new JLabel("Eier: ");
+		add(labOwner,constraints);
+		
 		if (!noButtons) {
 			//legge til knapper
 			constraints.gridx=2;
@@ -225,9 +230,12 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 			constraints.gridx=3;
 			btnDeleteUser = new JButton("Slett deltager");
 			add(btnDeleteUser,constraints);
+			
+			//
+			
 			//knapper for godta og slett av avtale
 			constraints.gridx=1;
-			constraints.gridy=8;
+			constraints.gridy=9;
 			btnConfirm = new JButton("Legg til/endre avtale");
 			add(btnConfirm, constraints);
 			constraints.gridx=2;
@@ -323,12 +331,16 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		if (model.getPlace()!=null) {			
 			txtPlace.setText(model.getPlace());
 		}
-
+		//beskrivelse
+		txtDescription.setText(model.getDescription());
 		//rom
-		if(model.getRoom()!=null){			
+		if(model.getRoom()!=null){
 			txtRoom.setText(model.getRoom().getName());
 		}
-
+		
+		//sett eier
+		labOwner.setText("Eier: " + model.getOwner().getName());
+		
 		//adder brukere
 		Map<User, Status> users = model.getUserList();
 		if(users==null){
@@ -369,6 +381,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		if (e.getSource() == btnRoom) {
 			if(setTime()){
 				SelectRoomDialog selectRoom = new SelectRoomDialog(model);
+				selectRoom.setLocationRelativeTo(this);
 				selectRoom.setVisible(true);
 				txtRoom.setText(model.getRoom().getName());
 			}
@@ -389,6 +402,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		//button add users
 		if (e.getSource() == btnAddUser) {
 			SelectUserDialog selectUser = new SelectUserDialog(defaultModel,model.getOwner());
+			selectUser.setLocationRelativeTo(this);
 			selectUser.setVisible(true);
 		}
 
