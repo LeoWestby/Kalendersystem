@@ -186,6 +186,10 @@ public class ServerAPI {
 	 * @return An appointment object with the correct ID set. 
 	 */
 	public static Appointment createAppointment(Appointment a) {
+		//Set all user statuses to pending before sending
+		for (User u : a.getUserList().keySet()) {
+			a.getUserList().put(u, Status.PENDING);
+		}
 		send(new ClientMessage('b', a));
 		return (Appointment)getResponse().payload;
 	}
