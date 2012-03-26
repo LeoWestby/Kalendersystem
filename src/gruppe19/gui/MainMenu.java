@@ -6,6 +6,7 @@ import gruppe19.model.Appointment;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import javax.swing.JButton;
@@ -55,8 +56,14 @@ public class MainMenu extends JPanel {
 		createMeeting.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				GregorianCalendar timeNow = new GregorianCalendar();
 				final Appointment newApp = new Appointment();
+				
+				timeNow.setTime(newApp.getDateStart());
+				timeNow.add(Calendar.HOUR_OF_DAY, 1);
+				newApp.setDateEnd(timeNow.getTime());
 				newApp.setOwner(MainScreen.getUser());
+				
 				final AppointmentDialogGUI appGUI = 
 						new AppointmentDialogGUI(newApp, MainScreen.getUser(), false);
 				

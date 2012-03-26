@@ -190,10 +190,10 @@ public class DatabaseAPI {
 				
 				"('victor',6,0)," +
 				
-				"('kristian',7,1)," +
+				"('kristian',7,0)," +
 				"('dagrun',7,1)," +
 				"('victor',7,1)," +
-				"('tt',7,1)," +
+				"('tt',7,0)," +
 				"('vegard',7,1);");
 
 		s.executeUpdate("INSERT INTO `rom` VALUES " +
