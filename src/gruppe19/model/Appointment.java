@@ -22,7 +22,6 @@ public class Appointment implements Serializable {
 	private Map<User, Status> userList;
 	private String description;
 	
-	
 	public Appointment(){
 		this.title="";
 		this.dateStart = new Date();
@@ -148,5 +147,12 @@ public class Appointment implements Serializable {
 	}
 	public void setIdD(int i){
 		this.ID=i;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Appointment)) {
+			return false;
+		}
+		return ID == ((Appointment)obj).getID();
 	}
 }
