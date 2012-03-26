@@ -333,7 +333,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		//beskrivelse
 		txtDescription.setText(model.getDescription());
 		//rom
-		if(model.getRoom()!=null){			
+		if(model.getRoom()!=null){
 			txtRoom.setText(model.getRoom().getName());
 		}
 		
@@ -380,6 +380,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		if (e.getSource() == btnRoom) {
 			if(setTime()){
 				SelectRoomDialog selectRoom = new SelectRoomDialog(model);
+				selectRoom.setLocationRelativeTo(this);
 				selectRoom.setVisible(true);
 				txtRoom.setText(model.getRoom().getName());
 			}
@@ -400,6 +401,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		//button add users
 		if (e.getSource() == btnAddUser) {
 			SelectUserDialog selectUser = new SelectUserDialog(defaultModel,model.getOwner());
+			selectUser.setLocationRelativeTo(this);
 			selectUser.setVisible(true);
 		}
 
