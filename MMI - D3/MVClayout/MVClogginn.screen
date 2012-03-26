@@ -1,31 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model:Screen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://wireframesketcher.com/1.0/model.ecore" theme="clean">
-  <widgets xsi:type="model:Panel" id="1" x="200" y="176" width="385" height="297" measuredWidth="385" measuredHeight="297"/>
-  <widgets xsi:type="model:Panel" id="2" x="480" y="416" width="89" height="25" measuredWidth="89" measuredHeight="25"/>
-  <widgets xsi:type="model:Panel" id="5" x="392" y="256" width="145" height="25" measuredWidth="145" measuredHeight="25"/>
-  <widgets xsi:type="model:Panel" id="6" x="392" y="288" width="145" height="25" measuredWidth="145" measuredHeight="25"/>
-  <widgets xsi:type="model:Panel" id="7" x="288" y="256" width="89" height="25" measuredWidth="89" measuredHeight="25"/>
-  <widgets xsi:type="model:Panel" id="8" x="288" y="288" width="89" height="25" measuredWidth="89" measuredHeight="25"/>
-  <widgets xsi:type="model:Panel" id="9" x="297" y="96" width="193" height="73" measuredWidth="193" measuredHeight="73"/>
-  <widgets xsi:type="model:Label" id="11" x="369" y="120" text="V: Jlabel" measuredWidth="53" measuredHeight="25">
+  <widgets xsi:type="model:Panel" id="1" x="48" y="24" width="385" height="297" measuredWidth="385" measuredHeight="297"/>
+  <widgets xsi:type="model:Panel" id="2" x="328" y="264" width="89" height="25" measuredWidth="89" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="5" x="240" y="104" width="145" height="25" measuredWidth="145" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="6" x="240" y="136" width="145" height="25" measuredWidth="145" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="7" x="136" y="104" width="89" height="25" measuredWidth="89" measuredHeight="25"/>
+  <widgets xsi:type="model:Panel" id="8" x="136" y="136" width="89" height="25" measuredWidth="89" measuredHeight="25"/>
+  <widgets xsi:type="model:Label" id="12" x="146" y="104" text="V:Jlabel" measuredWidth="49" measuredHeight="25">
     <font size="10"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="12" x="298" y="256" text="V:Jlabel" measuredWidth="49" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="13" x="146" y="136" text="V:Jlabel" measuredWidth="49" measuredHeight="25">
     <font size="10"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="13" x="298" y="288" text="V:Jlabel" measuredWidth="49" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="14" x="257" y="104" text="VC:JTextField" measuredWidth="80" measuredHeight="25">
     <font size="10"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="14" x="409" y="256" text="VC:JTextField" measuredWidth="80" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="15" x="257" y="136" text="VC:JTextField" measuredWidth="80" measuredHeight="25">
     <font size="10"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="15" x="409" y="288" text="VC:JTextField" measuredWidth="80" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="18" x="344" y="264" text="VC: JButton" measuredWidth="70" measuredHeight="25">
     <font size="10"/>
   </widgets>
-  <widgets xsi:type="model:Label" id="18" x="496" y="416" text="VC: JButton" measuredWidth="70" measuredHeight="25">
-    <font size="10"/>
-  </widgets>
-  <widgets xsi:type="model:Label" id="19" x="218" y="186" text="VC:Login, M: log" measuredWidth="101" measuredHeight="25">
+  <widgets xsi:type="model:Label" id="19" x="66" y="34" text="VC:Login, M: log" measuredWidth="101" measuredHeight="25">
     <font size="10"/>
   </widgets>
   <hRuler/>
