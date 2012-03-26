@@ -124,8 +124,8 @@ public class MyAppointments extends JDialog {
 					months[appointment.getDateStart().getMonth()],
 					appointment.getDateStart().getHours(),
 					appointment.getDateStart().getMinutes(),
-					appointment.getRoom() != null || appointment.getRoom().getName().equals("") 
-													|| appointment.getRoom().getName().equals("null") ?
+					appointment.getRoom() != null && appointment.getRoom().getName() != null
+													&& appointment.getRoom().getName().equals("") ?
 							"rom " +appointment.getRoom().getName() 
 							: appointment.getPlace());
 			lblDescription.setText(txt);
