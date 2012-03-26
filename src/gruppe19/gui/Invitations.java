@@ -53,10 +53,10 @@ public class Invitations extends JDialog{
 			lblDescription.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			add(lblDescription,BorderLayout.NORTH);
 			
-			JPanel wrapper=new JPanel();
-			wrapper.setDefaultLocale(lblDescription.getLocale());
-			wrapper.setBorder(new EmptyBorder(10,110,5,20));
-			add(wrapper,BorderLayout.SOUTH);
+//			JPanel wrapper=new JPanel();
+//			wrapper.setDefaultLocale(this.getLocale());
+//			wrapper.setBorder(new EmptyBorder(10,110,10,10));
+//			add(wrapper,BorderLayout.SOUTH);
 			
 			c.gridy ++;
 			btnAccept.setText("Godta");
