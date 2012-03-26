@@ -72,6 +72,8 @@ public class CalendarView extends JScrollPane {
 			addMouseListener(new MouseAdapter() {
 				@Override
 				public void mousePressed(MouseEvent e) {
+					final Date oldStartDate = new Date(appointment.getDateStart().getTime());
+					final Date oldEndDate = new Date(appointment.getDateEnd().getTime());
 					final AppointmentDialogGUI appGUI = 
 							new AppointmentDialogGUI(appointment, MainScreen.getUser(), false);
 					
@@ -79,7 +81,14 @@ public class CalendarView extends JScrollPane {
 						@Override
 						public void actionPerformed(ActionEvent e) {
 							if (appGUI.validateModel()) {
-								ServerAPI.updateAppointment(appointment);
+								if (!oldStartDate.equals(appointment.getDateStart())
+										|| !oldEndDate.equals(appointment.getDateEnd())) {
+									ServerAPI.destroyAppointment(appointment);
+									ServerAPI.createAppointment(appointment);
+								}
+								else {
+									ServerAPI.updateAppointment(appointment);
+								}
 								appGUI.dispose();
 							}
 						}

@@ -92,10 +92,10 @@ public class DatabaseAPI {
 		Statement s = conn.createStatement();
 
 		//Clear all tables
-		s.executeUpdate("DELETE FROM avtale;");
-		s.executeUpdate("DELETE FROM bruker;");
-		s.executeUpdate("DELETE FROM deltager;");
-		s.executeUpdate("DELETE FROM rom;");
+		s.executeUpdate("TRUNCATE avtale;");
+		s.executeUpdate("TRUNCATE bruker;");
+		s.executeUpdate("TRUNCATE deltager;");
+		s.executeUpdate("TRUNCATE rom;");
 
 		if (insertExampleData) {
 			createExampleData();
@@ -127,7 +127,7 @@ public class DatabaseAPI {
 				e.getHours(), e.getMinutes(), e.getSeconds(),
 				a.getOwner().getUsername(), 
 				a.getRoom() == null ? "null" : 
-					(a.getRoom().getName() == null ? "null" :
+						(a.getRoom().getName() == null ? "null" :
 						(a.getRoom().getName().equals("") ? "null" : "'" + a.getRoom().getName() + "'")));
 		
 		st.executeUpdate(string);
@@ -149,41 +149,66 @@ public class DatabaseAPI {
 	public static void createExampleData() throws SQLException{
 		Statement s = conn.createStatement();
 
-
 		s.executeUpdate("INSERT INTO `avtale` VALUES " +
-				"(1,'Frisør','klippe meg for å bli pen','frisøren','2012-03-15','15:00:00','16:00:00','dagrunki','101')," +
-				"(2,'lunsj',NULL,'parken','2012-03-12','12:00:00','13:00:00','fredrik','412')," +
-				"(3,'Frokost',NULL,'Hjemme','2012-03-21','14:00:00','16:00:00','fredrik',NULL);");
+				"(1,'Forelesing i KTN',NULL,NULL,'2012-03-26','15:00:00','18:00:00','vegard','F1')," +
+				"(2,'Kino','Skal se Hunger Games','Nova Kinosenter','2012-03-30','20:00:00','22:00:00','dagrun',NULL)," +
+				"(3,'Frisørtime','Vil bli kortere!','Frisøren i Kongens Gate','2012-03-29','12:00:00','13:00:00','leo',NULL)," +
+				"(4,'Lunsj',NULL,'På hangaren','2012-04-3','12:00:00','14:00:00','dagrun',NULL)," +
+				"(5,'Abakus LAN','PARTEEEY',NULL,'2012-03-24','00:00:00','23:59:59','kristian','P15 421')," +
+				"(6,'Forelesing i Java',NULL,NULL,'2012-03-19','12:00:00','14:00:00','tt','R1')," +
+				"(7,'Jobbe med fellesprosjektet','Heldigvis snart ferdig nå!',NULL,'2012-03-27','10:00:00','15:00:00','leo','P15 421');");
 
 		s.executeUpdate("INSERT INTO `bruker` VALUES " +
-				"('dagrun','passord','dagrun','haugland',NULL)," +
-				"('dagrunki','passord','dagrun','haugland',NULL)," +
-				"('fraol','passord','Frank','olsen',NULL)," +
-				"('annh','passord','anne','hansen',NULL)," +
-				"('annha','passord','anne','haun',NULL)," +
-				"('leoen','passord','Leo','Etternavn',78896756)," +
-				"('fredrik','passord','fredrik','fredriksen',78895690),"+
-				"('vegahar','passord','vegard','harper',98765422);");
+				"('kristian','passord','Kristian','Snare', 62813295)," +
+				"('dagrun','passord','Dagrun','Haugland', 22913336)," +
+				"('leo','passord','Leo','Westby',62859990)," +
+				"('victor','passord','Victor','Fielding',82902305)," +
+				"('vegard','passord','Vegard','Harper',61184753)," +
+				"('tt','passord','Jennife','Lee',82929407)," +
+				"('ola','passord','Ola','Nordmann',11111111);");
 
 		s.executeUpdate("INSERT INTO `deltager` VALUES " +
-				"('dagrun',1,0)," +
-				"('dagrunki',2,0)," +
-				"('annh',2,0)," +
-				"('leoen',2,0)," +
-				"('fraol',2,0)," +
-				"('annha',2,0)," +
-				"('fredrik',1,0)," +
-				"('leoen',3,0);");
+				"('leo',1,1)," +
+				"('dagrun',1,1)," +
+				"('victor',1,1)," +
+				"('tt',1,1)," +
+				"('kristian',1,1)," +
+				
+				"('leo',2,0)," +
+				
+				"('leo',4,0)," +
+				"('victor',4,0)," +
+				"('tt',4,0)," +
+				"('vegard',4,0)," +
+				"('kristian',4,0)," +
+				
+				"('leo',5,1)," +
+				"('dagrun',5,1)," +
+				"('victor',5,1)," +
+				"('tt',5,1)," +
+				"('vegard',5,1)," +
+				
+				"('victor',6,0)," +
+				
+				"('kristian',7,0)," +
+				"('dagrun',7,1)," +
+				"('victor',7,1)," +
+				"('tt',7,0)," +
+				"('vegard',7,1);");
 
 		s.executeUpdate("INSERT INTO `rom` VALUES " +
-				"('101')," +
-				"('106')," +
-				"('123')," +
-				"('215')," +
-				"('406')," +
-				"('412')," +
-				"('hovedbygg1')," +
-				"('hovedbygg2');");
+				"('S1')," +
+				"('S5')," +
+				"('S7')," +
+				"('EL5')," +
+				"('EL6')," +
+				"('F1')," +
+				"('P15 421')," +
+				"('P15 415')," +
+				"('P15 321')," +
+				"('P15 315')," +
+				"('R1')," +
+				"('R2');");
 	}
 
 	public static void createParticipant(User user, Appointment appointment, Status s) throws SQLException{
@@ -442,7 +467,7 @@ public class DatabaseAPI {
 	 * no such user exists.
 	 */
 	public static User logIn(String username, String password) throws SQLException {
-		User u = getUser(username);
+		User u = getUser(username.toLowerCase());
 
 		if (u != null && u.getPassword().equals(password)) {
 			return u;

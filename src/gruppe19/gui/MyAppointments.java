@@ -125,7 +125,7 @@ public class MyAppointments extends JDialog {
 					appointment.getDateStart().getHours(),
 					appointment.getDateStart().getMinutes(),
 					appointment.getRoom() != null && appointment.getRoom().getName() != null
-													&& appointment.getRoom().getName().equals("") ?
+													&& !appointment.getRoom().getName().equals("") ?
 							"rom " +appointment.getRoom().getName() 
 							: appointment.getPlace());
 			lblDescription.setText(txt);
@@ -190,7 +190,8 @@ public class MyAppointments extends JDialog {
 		Arrays.sort(sortedAppointments, AppSorter.getInstance());
 		
 		for (Appointment appointment : sortedAppointments) {
-			if (appointment.getUserList().get(MainScreen.getUser()) == Status.REJECTED) {
+			if (appointment.getUserList().get(MainScreen.getUser()) != Status.APPROVED
+					&& !appointment.getOwner().equals(MainScreen.getUser())) {
 				continue;
 			}
 			
