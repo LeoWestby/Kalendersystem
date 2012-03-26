@@ -61,7 +61,7 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 	private DecimalFormat format = new DecimalFormat("00");
 	private JSpinner spinnerEnd, spinnerStart;
 	private JDateChooser dateChooser;
-	private JLabel labTimeError, labTitleError;
+	private JLabel labTimeError, labTitleError, labOwner;
 	private JList listUsers;
 	private Dimension dim = new Dimension(210, 20);
 	private User opener;
@@ -225,9 +225,16 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 			constraints.gridx=3;
 			btnDeleteUser = new JButton("Slett deltager");
 			add(btnDeleteUser,constraints);
-			//knapper for godta og slett av avtale
+			
+			//
 			constraints.gridx=1;
 			constraints.gridy=8;
+			labOwner = new JLabel("Eier: ");
+			add(labOwner,constraints);
+			
+			//knapper for godta og slett av avtale
+			constraints.gridx=1;
+			constraints.gridy=9;
 			btnConfirm = new JButton("Legg til/endre avtale");
 			add(btnConfirm, constraints);
 			constraints.gridx=2;
@@ -323,12 +330,16 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		if (model.getPlace()!=null) {			
 			txtPlace.setText(model.getPlace());
 		}
-
+		//beskrivelse
+		txtDescription.setText(model.getDescription());
 		//rom
 		if(model.getRoom()!=null){			
 			txtRoom.setText(model.getRoom().getName());
 		}
-
+		
+		//sett eier
+		labOwner.setText("Eier: " + model.getOwner().getName());
+		
 		//adder brukere
 		Map<User, Status> users = model.getUserList();
 		if(users==null){
