@@ -190,7 +190,8 @@ public class MyAppointments extends JDialog {
 		Arrays.sort(sortedAppointments, AppSorter.getInstance());
 		
 		for (Appointment appointment : sortedAppointments) {
-			if (appointment.getUserList().get(MainScreen.getUser()) != Status.APPROVED) {
+			if (appointment.getUserList().get(MainScreen.getUser()) != Status.APPROVED
+					&& !appointment.getOwner().equals(MainScreen.getUser())) {
 				continue;
 			}
 			
