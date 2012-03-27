@@ -2,6 +2,7 @@ package gruppe19.client.gui;
 
 import gruppe19.client.gui.CalendarView.AppointmentWidget;
 import gruppe19.client.ktn.ServerAPI;
+import gruppe19.client.ktn.ServerAPI.Status;
 import gruppe19.model.Appointment;
 import gruppe19.model.User;
 
@@ -191,6 +192,10 @@ public class CalendarImportDialog extends JDialog implements ActionListener {
 			
 			for (Appointment a : 
 					ServerAPI.getAppointments((User)listUsers.getSelectedValue())) {
+				//We only want appointments that our user has approved
+				if (a.getUserList().get(listUsers.getSelectedValue()) != Status.APPROVED) {
+					continue;
+				}
 				AppointmentWidget appW = new AppointmentWidget(a, true);
 				appW.setBackground(color);
 				container.add(appW);

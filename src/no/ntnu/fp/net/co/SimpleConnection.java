@@ -93,7 +93,6 @@ public class SimpleConnection implements Connection {
 	 */
 	public void send(String msg) throws ConnectException, IOException {
 		if (!mySocket.isClosed()) {
-			System.out.println("Socket open.");
 			os.writeUTF(msg);
 		}else{
 			System.out.println("Socket closed.");
