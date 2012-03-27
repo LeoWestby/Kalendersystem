@@ -49,6 +49,7 @@ public class CalendarView extends JScrollPane {
 	private final static Image calendarImage;
 	private final JPanel calendarPanel;
 	private final List<Appointment> appointments; 
+	private final List<AppointmentWidget> importedAppointments;
 	private Date currentDate;
 	
 	static {
@@ -60,57 +61,66 @@ public class CalendarView extends JScrollPane {
 	public static class AppointmentWidget extends JPanel {
 		public Appointment appointment;
 		
-		public AppointmentWidget(Appointment a) {
+		public AppointmentWidget(Appointment a, final boolean imported) {
 			appointment = a;
 					
 			setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			setBackground(getColor(a));
 			setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 			add(new JLabel(appointment.getTitle()));
 			add(new JLabel(appointment.getPlace()));
 			
+			if (!imported) {
+				setBackground(getColor(a));
+			}
+			
 			addMouseListener(new MouseAdapter() {
 				@Override
 				public void mousePressed(MouseEvent e) {
-					final Date oldStartDate = new Date(appointment.getDateStart().getTime());
-					final Date oldEndDate = new Date(appointment.getDateEnd().getTime());
-					final AppointmentDialogGUI appGUI = 
-							new AppointmentDialogGUI(appointment, MainScreen.getUser(), false);
+					final AppointmentDialogGUI appGUI;
 					
-					appGUI.addConfirmButtonListener(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if (appGUI.validateModel()) {
-								if (!oldStartDate.equals(appointment.getDateStart())
-										|| !oldEndDate.equals(appointment.getDateEnd())) {
+					if (imported) {
+						appGUI = new AppointmentDialogGUI(appointment, MainScreen.getUser(), true);
+					}
+					else {
+						final Date oldStartDate = new Date(appointment.getDateStart().getTime());
+						final Date oldEndDate = new Date(appointment.getDateEnd().getTime());
+						appGUI = new AppointmentDialogGUI(appointment, MainScreen.getUser(), false);
+						
+						appGUI.addConfirmButtonListener(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								if (appGUI.validateModel()) {
+									if (!oldStartDate.equals(appointment.getDateStart())
+											|| !oldEndDate.equals(appointment.getDateEnd())) {
+										ServerAPI.destroyAppointment(appointment);
+										ServerAPI.createAppointment(appointment);
+									}
+									else {
+										ServerAPI.updateAppointment(appointment);
+									}
+									appGUI.dispose();
+								}
+							}
+						});
+						
+						appGUI.addDeleteButtonListener(new ActionListener() {
+							@Override
+							public void actionPerformed(ActionEvent e) {
+								if (appointment.getOwner().equals(MainScreen.getUser())) {
+									//Remove appointment for everyone
 									ServerAPI.destroyAppointment(appointment);
-									ServerAPI.createAppointment(appointment);
 								}
 								else {
+									//Remove appointment for you and
+									//change status to rejected
+									appointment.getUserList().put(
+											MainScreen.getUser(), Status.REJECTED);
 									ServerAPI.updateAppointment(appointment);
 								}
 								appGUI.dispose();
 							}
-						}
-					});
-					
-					appGUI.addDeleteButtonListener(new ActionListener() {
-						@Override
-						public void actionPerformed(ActionEvent e) {
-							if (appointment.getOwner().equals(MainScreen.getUser())) {
-								//Remove appointment for everyone
-								ServerAPI.destroyAppointment(appointment);
-							}
-							else {
-								//Remove appointment for you and
-								//change status to rejected
-								appointment.getUserList().put(
-										MainScreen.getUser(), Status.REJECTED);
-								ServerAPI.updateAppointment(appointment);
-							}
-							appGUI.dispose();
-						}
-					});
+						});
+					}
 					appGUI.setLocationRelativeTo(null);
 					appGUI.setVisible(true);
 				}
@@ -118,10 +128,11 @@ public class CalendarView extends JScrollPane {
 		}
 		
 		public static Color getColor(Appointment a) {
+			final int alpha = 255 << 24; //255 = no alpha, 0 = full alpha
 			boolean someonePending = false;
-			Color allApproved = new Color(0x228B22);
-			Color oneRejected = new Color(0xFF003F);
-			Color onePending = new Color(0xFF9F00);
+			Color allApproved = new Color(alpha | 0x228B22, true);
+			Color oneRejected = new Color(alpha | 0xFF003F, true);
+			Color onePending = new Color(alpha | 0xFF9F00, true);
 			
 			for (Status s : a.getUserList().values()) {
 				if (s == Status.REJECTED) {
@@ -138,6 +149,7 @@ public class CalendarView extends JScrollPane {
 	public CalendarView(Date currentDate) {
 		this.currentDate = currentDate;
 		appointments = new ArrayList<Appointment>();
+		importedAppointments = new ArrayList<AppointmentWidget>();
 		calendarPanel = new JPanel() {
 			@Override
 			protected void paintComponent(Graphics g) {
@@ -203,6 +215,10 @@ public class CalendarView extends JScrollPane {
 	public List<Appointment> getAppointments() {
 		return appointments;
 	}
+	
+	public List<AppointmentWidget> getImportedAppointments() {
+		return importedAppointments;
+	}
 
 	/**
 	 * Adds all appointments of the current week to the calendar.
@@ -219,6 +235,18 @@ public class CalendarView extends JScrollPane {
 		calendarPanel.removeAll();
 		
 		try {
+			for (AppointmentWidget a : importedAppointments) {
+				if (!appointments.contains(a.appointment)) {
+					cal.setTime(a.appointment.getDateStart());
+					
+					if (cal.get(Calendar.WEEK_OF_YEAR) == currentWeek
+							&& cal.get(Calendar.YEAR) == currentYear) {
+						setWidgetLocAndPos(a);
+						calendarPanel.add(a);
+					}
+				}
+			}
+			
 			for (Appointment a : appointments) {
 				//Only approved appointments should be painted
 				if (!a.getOwner().equals(MainScreen.getUser())) {
@@ -232,7 +260,7 @@ public class CalendarView extends JScrollPane {
 				
 				if (cal.get(Calendar.WEEK_OF_YEAR) == currentWeek
 						&& cal.get(Calendar.YEAR) == currentYear) {
-					AppointmentWidget widget = new AppointmentWidget(a);
+					AppointmentWidget widget = new AppointmentWidget(a, false);
 					
 					setWidgetLocAndPos(widget);
 					calendarPanel.add(widget);

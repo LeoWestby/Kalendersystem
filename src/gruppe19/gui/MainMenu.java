@@ -2,10 +2,12 @@ package gruppe19.gui;
 
 import gruppe19.client.ktn.ServerAPI;
 import gruppe19.client.ktn.ServerAPI.Status;
+import gruppe19.gui.CalendarView.AppointmentWidget;
 import gruppe19.model.Appointment;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -94,6 +96,33 @@ public class MainMenu extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				new MyAppointments(MainMenu.this.madeBy)
 				.setLocationRelativeTo(MainMenu.this.madeBy);
+			}
+		});
+		
+		importCalendar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<AppointmentWidget> imported =
+						new ArrayList<AppointmentWidget>();
+				new CalendarImportDialog(imported);
+				
+				if (imported.isEmpty()) {
+					return;
+				}
+				
+				if (imported.get(0) == null) {
+					//Reset imported calendars
+					MainMenu.this.madeBy.getCalendar()
+					.getImportedAppointments()
+					.clear();
+				}
+				else {
+					MainMenu.this.madeBy.getCalendar()
+					.getImportedAppointments()
+					.addAll(imported);
+				}
+				MainMenu.this.madeBy.getCalendar()
+				.repaintAppointments();
 			}
 		});
 		

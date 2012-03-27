@@ -154,7 +154,7 @@ public class DatabaseAPI {
 				"(2,'Kino','Skal se Hunger Games','Nova Kinosenter','2012-03-30','20:00:00','22:00:00','dagrun',NULL)," +
 				"(3,'Frisørtime','Vil bli kortere!','Frisøren i Kongens Gate','2012-03-29','12:00:00','13:00:00','leo',NULL)," +
 				"(4,'Lunsj',NULL,'På hangaren','2012-04-3','12:00:00','14:00:00','dagrun',NULL)," +
-				"(5,'Abakus LAN','PARTEEEY',NULL,'2012-03-24','00:00:00','23:59:59','kristian','P15 421')," +
+				"(5,'Abakus LAN','PARTEEEY',NULL,'2012-03-24','00:00:00','23:59:00','kristian','P15 421')," +
 				"(6,'Forelesing i Java',NULL,NULL,'2012-03-19','12:00:00','14:00:00','tt','R1')," +
 				"(7,'Jobbe med fellesprosjektet','Heldigvis snart ferdig nå!',NULL,'2012-03-27','10:00:00','15:00:00','leo','P15 421');");
 

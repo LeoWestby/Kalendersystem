@@ -95,4 +95,9 @@ public class User implements Serializable {
 		}
 		return username.equals(((User)obj).username);
 	}
+	
+	@Override
+	public String toString() {
+		return getName();
+	}
 }
