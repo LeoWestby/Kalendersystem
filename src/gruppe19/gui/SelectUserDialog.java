@@ -23,6 +23,10 @@ import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+/**
+ * A dialog for selecting users 
+ *
+ */
 public class SelectUserDialog extends JDialog implements ListSelectionListener, ActionListener{
 	
 	private JButton btnClose, btnAdd;
@@ -31,10 +35,15 @@ public class SelectUserDialog extends JDialog implements ListSelectionListener, 
 	private DefaultListSelectionModel defaultListSelectionModel;
 	private User owner;
 	
+	/**
+	 * creates a new SelectUserDialog with a DefaultlistModel and an owner of the appointment
+	 * The gui will then hold every other user than the users who are currently selected to join an event   
+	 * @param model
+	 * @param owner
+	 */
 	public SelectUserDialog(DefaultListModel model, User owner) {
 		this.model = model;
 		this.owner = owner;
-		System.err.println(owner.getUsername());
 		setUp();
 		addFreeUsers();
 	}
@@ -72,6 +81,7 @@ public class SelectUserDialog extends JDialog implements ListSelectionListener, 
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		pack();
 	}
+	
 	private void addFreeUsers(){
 		//TODO: Hent alle brukere fra databasen. Sjekk deretter om samme brukeren ikke blir lagt til to ganger
 		ArrayList<User> list = (ArrayList<User>) ServerAPI.getUsers();

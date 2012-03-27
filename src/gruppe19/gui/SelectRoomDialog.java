@@ -24,6 +24,10 @@ import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+/**
+ * Gui for selecting a room
+ *
+ */
 public class SelectRoomDialog extends JDialog implements ListSelectionListener, ActionListener{
 
 	private JButton btnClose, btnAdd;
@@ -32,6 +36,10 @@ public class SelectRoomDialog extends JDialog implements ListSelectionListener, 
 	private DefaultListSelectionModel defaultListSelectionModel;
 	private Appointment model;
 	
+	/**
+	 * Create a new dialog with an appointment as model
+	 * @param model
+	 */
 	public SelectRoomDialog(Appointment model){
 		this.model = model;
 		setUp();

@@ -37,6 +37,10 @@ import javax.swing.event.ListSelectionListener;
 
 import com.toedter.calendar.JDateChooser;
 
+/**
+ * dialog for creating and eiditing an appointment
+ *
+ */
 public class AppointmentDialogGUI extends JDialog implements ActionListener, ListSelectionListener{
 
 	private Appointment model;
@@ -58,23 +62,13 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 	private boolean noButtons;
 	private Room roomtemp;
 
-
-//	/**
-//	 * Create new AppointmentDialogGUI with a {@link Appointment} model set to null
-//	 */
-//	public AppointmentDialogGUI() {
-//		setUp();
-//		
-//	}
-//	/**
-//	 * Create new AppointmentDialogGUI with a {@link Appointment} model set to null
-//	 */
-//	public AppointmentDialogGUI(Appointment model) {
-//		this.model=model;
-//		setUp();
-//		getValues();
-//
-//	}
+	/**
+	 * 
+	 * Creates a new dialog with an appointment as model a User as opener and nobuttons for viewing
+	 * @param model
+	 * @param opener
+	 * @param noButtons
+	 */
 	public AppointmentDialogGUI(Appointment model,User opener, boolean noButtons) {
 		this.model=model;
 		this.opener=opener;
@@ -346,6 +340,10 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 
 	}
 
+	/**
+	 * change appointment model to the gui
+	 * @param a
+	 */
 	public void setModel(Appointment a){
 		if(a==null){
 			throw new NullPointerException();
@@ -354,6 +352,10 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		getValues();
 	}
 
+	/**
+	 * returns the model used by the dialog
+	 * @return
+	 */
 	public Appointment getModel(){
 		return model;
 	}
@@ -409,7 +411,10 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 			}
 		}
 	}
-	
+	/**
+	 * checks whether the appointment is valid
+	 * @return
+	 */
 	public boolean validateModel() {
 		if (txtTitle.getText().equals("")) {
 			labTitleError.setText("Mangler tittel");
@@ -438,7 +443,11 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		// TODO Auto-generated method stub
 
 	}
-	public void setDisabled(){
+	
+	/**
+	 * disable all input fields and buttons
+	 */
+	private void setDisabled(){
 		txtTitle.setEditable(false);
 		dateChooser.getCalendarButton().setVisible(false);
 		((JTextField)dateChooser.getDateEditor().getUiComponent()).setEditable(false);

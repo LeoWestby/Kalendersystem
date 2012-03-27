@@ -75,13 +75,7 @@ public class Appointment implements Serializable {
 
 
 	public void setDateStart(Date dateStart) {
-		this.dateStart = dateStart;
-		
-		//WTF is this?
-//		Date a = new Date(dateStart.getTime());
-//		a.setHours(dateStart.getHours()+1);
-//		this.dateEnd  =a;
-		//Dette bør egentlig være med i konstruktøren. Vet ikke helt hvorfor jeg tenkte å ha dette her
+		this.dateStart = dateStart;		
 	}
 	public void setDateEnd(Date dateEnd) {
 		this.dateEnd = dateEnd;
