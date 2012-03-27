@@ -9,7 +9,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * A model for holding appointments
+ */
 public class Appointment implements Serializable {
 	
 	private int ID = -1;
@@ -22,6 +24,9 @@ public class Appointment implements Serializable {
 	private Map<User, Status> userList;
 	private String description;
 	
+	/**
+	 * creates a new empty appointment
+	 */
 	public Appointment(){
 		this.title="";
 		this.dateStart = new Date();
@@ -30,11 +35,26 @@ public class Appointment implements Serializable {
 		this.userList = new HashMap<User, Status>();
 			
 	}
-
+	/**
+	 * create new appointment with a appointment id
+	 * @param ID
+	 */
 	public Appointment(int ID){
 		this.ID=ID;
 	}
 
+	/**
+	 * create new appointment with values
+	 * @param ID
+	 * @param title
+	 * @param dateStart
+	 * @param dateEnd
+	 * @param place
+	 * @param owner
+	 * @param room
+	 * @param userList
+	 * @param description
+	 */
 	public Appointment(int ID, String title, Date dateStart, 
 						Date dateEnd, String place, 
 						User owner, Room room, 

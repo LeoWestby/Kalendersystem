@@ -3,6 +3,9 @@ package gruppe19.model;
 import java.io.Serializable;
 import java.security.InvalidParameterException;
 
+/**
+ *  A model for holding user data
+ */
 public class User implements Serializable {
 	
 	private String username, firstname, lastname, password;
@@ -15,12 +18,24 @@ public class User implements Serializable {
 		this.username=brukernavn;
 	}
 	
+	/**
+	 * new user with firstname and lastname
+	 * @param firstname
+	 * @param lastname
+	 */
 	public User(String firstname, String lastname) {
 		this.firstname = firstname;
 		this.lastname=lastname;
 	}
 	
-	
+	/**
+	 * New user with values
+	 * @param username
+	 * @param firstname
+	 * @param lastname
+	 * @param tlfnr
+	 * @param password
+	 */
 	public User(String username, String firstname, 
 				String lastname, int tlfnr, String password) {
 		this.username = username;
