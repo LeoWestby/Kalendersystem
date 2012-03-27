@@ -114,7 +114,6 @@ public class SimpleConnection implements Connection {
 			} catch (Exception e) {
 				close();
 			}
-			System.out.println("Received the text: " + s);
 			return s;
 		}
 		throw new IOException(
