@@ -1,38 +1,33 @@
-package gruppe19.gui;
+package gruppe19.client.gui;
 
 import gruppe19.client.ktn.ServerAPI;
 import gruppe19.client.ktn.ServerAPI.Status;
 import gruppe19.model.Appointment;
-import gruppe19.model.User;
 
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.ConcurrentModificationException;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Map;
 
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+/**
+ * A class containing all functions interacting with the main calendar. 
+ */
 public class CalendarView extends JScrollPane {
 	private final static int 	colHeight = 28,
 								oneHourHeight = colHeight * 2,
@@ -58,6 +53,10 @@ public class CalendarView extends JScrollPane {
 							).getImage();
 	}
 	
+	/**
+	 * A class encapsulating an appointment in a graphical interface to be
+	 * displayed on the calendar view. 
+	 */
 	public static class AppointmentWidget extends JPanel {
 		public Appointment appointment;
 		
@@ -127,6 +126,17 @@ public class CalendarView extends JScrollPane {
 			});
 		}
 		
+		/**
+		 * This function returns one of three colors depending on the user list
+		 * of the appointment.
+		 * 
+		 * <ul>
+		 * <li>Red if one or more participants have rejected the appointment
+		 * <li>Yellowish if one or more particpants have not answered the appointment
+		 * <li>Green if all participants have accepeted the appointment
+		 * </ul>
+		 * @param a The appointment to validate.
+		 */
 		public static Color getColor(Appointment a) {
 			final int alpha = 255 << 24; //255 = no alpha, 0 = full alpha
 			boolean someonePending = false;
@@ -173,7 +183,7 @@ public class CalendarView extends JScrollPane {
 	}
 	
 	/**
-	 * Adds an appointment to the calendar.
+	 * Adds an appointment to the main calendar.
 	 * 
 	 * @param a The appointment to add.
 	 */
@@ -182,6 +192,11 @@ public class CalendarView extends JScrollPane {
 		repaintAppointments();
 	}
 	
+	/**
+	 * Removes an appointment from the main calendar.
+	 * 
+	 * @param a The appointment to remove.
+	 */
 	public void removeAppointment(int ID) {
 		Appointment[] tmp = new Appointment[appointments.size()];
 		appointments.toArray(tmp);
@@ -195,7 +210,7 @@ public class CalendarView extends JScrollPane {
 	}
 	
 	/**
-	 * Sets the calendar to the specified date.
+	 * Sets the calendar view to the specified date.
 	 * 
 	 * @param date The date to which the calendar will be set.
 	 * If <code>null</code>, today's date will be used.
@@ -212,10 +227,16 @@ public class CalendarView extends JScrollPane {
 		return currentDate;
 	}
 	
+	/**
+	 * Gets all non-imported appointments in the calendar.
+	 */
 	public List<Appointment> getAppointments() {
 		return appointments;
 	}
 	
+	/**
+	 * Gets all imported appointments currently in the calendar.
+	 */
 	public List<AppointmentWidget> getImportedAppointments() {
 		return importedAppointments;
 	}

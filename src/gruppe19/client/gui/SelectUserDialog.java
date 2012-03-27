@@ -1,8 +1,12 @@
-package gruppe19.gui;
+package gruppe19.client.gui;
 
+import gruppe19.client.ktn.ServerAPI;
+import gruppe19.client.ktn.ServerAPI.Status;
+import gruppe19.model.User;
+
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -10,16 +14,14 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import gruppe19.client.ktn.ServerAPI;
-import gruppe19.client.ktn.ServerAPI.Status;
-import gruppe19.model.User;
-
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import javax.swing.ListCellRenderer;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -34,6 +36,25 @@ public class SelectUserDialog extends JDialog implements ListSelectionListener, 
 	private DefaultListModel defaultListModel, model;
 	private DefaultListSelectionModel defaultListSelectionModel;
 	private User owner;
+
+	private class UserListRenderer extends JLabel implements ListCellRenderer{
+		@Override
+		public Component getListCellRendererComponent(JList list, Object value,
+				int index, boolean isSelected, boolean cellHasFocus) {
+			setText(((User) value).getName());
+			if (isSelected) {
+				setBackground(list.getSelectionBackground());
+				setForeground(list.getSelectionForeground());
+			}
+			else {
+				setBackground(list.getBackground());
+				setForeground(list.getForeground());
+			}
+			setEnabled(list.isEnabled());
+			setOpaque(true);
+			return this;
+		}
+	}
 	
 	/**
 	 * creates a new SelectUserDialog with a DefaultlistModel and an owner of the appointment

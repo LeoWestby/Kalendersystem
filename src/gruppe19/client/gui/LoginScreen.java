@@ -1,27 +1,15 @@
-package gruppe19.gui;
+package gruppe19.client.gui;
 
 import gruppe19.client.ktn.ServerAPI;
 import gruppe19.model.User;
-import gruppe19.server.ktn.ServerMessage;
-import gruppe19.server.ktn.ServerMessage.Type;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.io.IOException;
-import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -30,8 +18,9 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import no.ntnu.fp.model.Person;
-
+/**
+ * The login screen acts as the main entry point of the client.
+ */
 public class LoginScreen extends JFrame {
 	private JLabel userPrefix = new JLabel("Brukernavn: ");
 	private JLabel passPrefix = new JLabel("Passord: ");
@@ -127,6 +116,11 @@ public class LoginScreen extends JFrame {
 		setVisible(true);
 	}
 	
+	/**
+	 * The main entry point of the client.
+	 * 
+	 * @param args Ignored.
+	 */
 	public static void main(String[] args) {
 		new LoginScreen();
 	}

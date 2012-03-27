@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.security.InvalidParameterException;
 
 /**
- *  A model for holding user data
+ *  A model containing user data.
  */
 public class User implements Serializable {
 	
@@ -12,7 +12,8 @@ public class User implements Serializable {
 	private int tlfnr;
 	
 	/**
-	 * @deprecated Use the other constructor instead.
+	 * Creates a new user with the specified user name.
+	 * @param brukernavn
 	 */
 	public User(String brukernavn){
 		this.username=brukernavn;

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 
 /**
- * Model for holding a room data 
+ * Model containing room data.
  */
 public class Room implements Serializable {
 	

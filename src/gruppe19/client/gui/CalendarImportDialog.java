@@ -1,23 +1,18 @@
-package gruppe19.gui;
+package gruppe19.client.gui;
+
+import gruppe19.client.gui.CalendarView.AppointmentWidget;
+import gruppe19.client.ktn.ServerAPI;
+import gruppe19.model.Appointment;
+import gruppe19.model.User;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import javax.swing.Box;
 import javax.swing.DefaultListModel;
@@ -28,19 +23,11 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
-
-import gruppe19.client.ktn.ServerAPI;
-import gruppe19.client.ktn.ServerAPI.Status;
-import gruppe19.gui.CalendarView.AppointmentWidget;
-import gruppe19.model.Appointment;
-import gruppe19.model.User;
-import gruppe19.server.ktn.Server;
-
+/**
+ * A dialog for importing other users' calendars.
+ */
 public class CalendarImportDialog extends JDialog implements ActionListener {
 	private GridBagLayout layout;
 	private JButton btnCancel, 

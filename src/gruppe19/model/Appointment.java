@@ -4,13 +4,12 @@ import gruppe19.client.ktn.ServerAPI;
 import gruppe19.client.ktn.ServerAPI.Status;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A model for holding appointments
+ * A model containing appointment data.
  */
 public class Appointment implements Serializable {
 	

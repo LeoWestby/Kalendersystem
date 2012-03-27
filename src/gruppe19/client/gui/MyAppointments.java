@@ -1,34 +1,25 @@
-package gruppe19.gui;
+package gruppe19.client.gui;
 
 import gruppe19.client.ktn.ServerAPI;
 import gruppe19.client.ktn.ServerAPI.Status;
 import gruppe19.model.Appointment;
-import gruppe19.model.Room;
-import gruppe19.model.User;
-import gruppe19.server.ktn.Server;
 
-import java.awt.Color;
-import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * A dialog displaying all non-imported appointments.
+ */
 public class MyAppointments extends JDialog {
 	private JLabel lblInvitations;
 	private GridBagConstraints c;
@@ -102,7 +93,7 @@ public class MyAppointments extends JDialog {
 		}
 	}
 	
-	class AppoinmentsButton extends JPanel implements ActionListener{
+	private class AppoinmentsButton extends JPanel implements ActionListener{
 		private JLabel lblDescription;
 		private JButton btnHyperlink;
 		private Appointment appointment;

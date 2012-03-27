@@ -1,7 +1,5 @@
 package gruppe19.client.ktn;
 
-import gruppe19.server.ktn.ServerMessage.Type;
-
 import java.io.Serializable;
 
 /**
@@ -13,6 +11,10 @@ public class ClientMessage implements Serializable {
 	 */
 	public final char ID;
 	public final Object payload;
+	
+	/**
+	 * Creates a new client message with the specified ID and payload.
+	 */
 	public ClientMessage(char ID, Object payload) {
 		this.ID = ID;
 		this.payload = payload;

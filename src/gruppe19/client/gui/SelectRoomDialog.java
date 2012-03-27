@@ -1,26 +1,24 @@
-package gruppe19.gui;
+package gruppe19.client.gui;
 
 import gruppe19.client.ktn.ServerAPI;
 import gruppe19.model.Appointment;
 import gruppe19.model.Room;
-import gruppe19.server.db.DatabaseAPI;
 
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import javax.swing.ListCellRenderer;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -35,6 +33,26 @@ public class SelectRoomDialog extends JDialog implements ListSelectionListener, 
 	private DefaultListModel defaultListModel;
 	private DefaultListSelectionModel defaultListSelectionModel;
 	private Appointment model;
+	
+	private class RoomListRenderer extends JLabel implements ListCellRenderer{
+
+		@Override
+		public Component getListCellRendererComponent(JList list, Object value,
+				int index, boolean isSelected, boolean cellHasFocus) {
+			setText(((Room) value).getName());
+			if (isSelected) {
+	            setBackground(list.getSelectionBackground());
+	              setForeground(list.getSelectionForeground());
+	          }
+	        else {
+	              setBackground(list.getBackground());
+	              setForeground(list.getForeground());
+	          }
+	        setEnabled(list.isEnabled());
+	        setOpaque(true);
+			return this;
+		}
+	}
 	
 	/**
 	 * Create a new dialog with an appointment as model
@@ -57,6 +75,7 @@ public class SelectRoomDialog extends JDialog implements ListSelectionListener, 
 		listRooms.setSelectionModel(defaultListSelectionModel);
 		defaultListSelectionModel.addListSelectionListener(this);
 		JScrollPane scrollUsers = new JScrollPane(listRooms);
+		scrollUsers.setPreferredSize(new Dimension(100, 100));
 		scrollUsers.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		
 		btnClose = new JButton("Lukk");

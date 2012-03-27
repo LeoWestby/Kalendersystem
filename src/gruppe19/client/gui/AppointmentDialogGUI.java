@@ -1,4 +1,4 @@
-package gruppe19.gui;
+package gruppe19.client.gui;
 
 import gruppe19.client.ktn.ServerAPI.Status;
 import gruppe19.model.Appointment;
@@ -6,6 +6,7 @@ import gruppe19.model.Room;
 import gruppe19.model.User;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -30,6 +31,7 @@ import javax.swing.JSpinner;
 import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ListCellRenderer;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SpinnerListModel;
 import javax.swing.event.ListSelectionEvent;
@@ -38,8 +40,7 @@ import javax.swing.event.ListSelectionListener;
 import com.toedter.calendar.JDateChooser;
 
 /**
- * dialog for creating and eiditing an appointment
- *
+ * Dialog for creating and editing an appointment.
  */
 public class AppointmentDialogGUI extends JDialog implements ActionListener, ListSelectionListener{
 
@@ -61,13 +62,31 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 	private User opener;
 	private boolean noButtons;
 	private Room roomtemp;
+	
+	private class UserStatusListRenderer extends JLabel implements ListCellRenderer{
+		@Override
+		public Component getListCellRendererComponent(JList list, Object value,
+				int index, boolean isSelected, boolean cellHasFocus) {
+			// TODO Auto-generated method stub
+			Entry<User,Status> set = (Entry<User,Status>)value;
+			
+			setText((set.getKey()).getName() + " " + set.getValue());
+			if (isSelected) {
+				setBackground(list.getSelectionBackground());
+				setForeground(list.getSelectionForeground());
+			}
+			else {
+				setBackground(list.getBackground());
+				setForeground(list.getForeground());
+			}
+			setEnabled(list.isEnabled());
+			setOpaque(true);
+			return this;
+		}
+	}
 
 	/**
-	 * 
 	 * Creates a new dialog with an appointment as model a User as opener and nobuttons for viewing
-	 * @param model
-	 * @param opener
-	 * @param noButtons
 	 */
 	public AppointmentDialogGUI(Appointment model,User opener, boolean noButtons) {
 		this.model=model;
@@ -412,8 +431,8 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		}
 	}
 	/**
-	 * checks whether the appointment is valid
-	 * @return
+	 *@return True if the contained model has a valid date and title,
+	 *			false if not.
 	 */
 	public boolean validateModel() {
 		if (txtTitle.getText().equals("")) {
@@ -430,10 +449,16 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 		return true;
 	}
 	
+	/**
+	 * Adds a listener to the confirmation button of the dialog.
+	 */
 	public void addConfirmButtonListener(ActionListener listener) {
 		btnConfirm.addActionListener(listener);
 	}
 	
+	/**
+	 * Adds a listener to the delete button of the dialog.
+	 */
 	public void addDeleteButtonListener(ActionListener listener) {
 		btnDelete.addActionListener(listener);
 	}
@@ -466,6 +491,3 @@ public class AppointmentDialogGUI extends JDialog implements ActionListener, Lis
 	}
 
 }
-
-
-

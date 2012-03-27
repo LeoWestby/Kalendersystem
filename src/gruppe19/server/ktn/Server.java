@@ -1,7 +1,6 @@
 package gruppe19.server.ktn;
 
 import gruppe19.client.ktn.ClientMessage;
-import gruppe19.client.ktn.ServerAPI;
 import gruppe19.client.ktn.ServerAPI.Pair;
 import gruppe19.client.ktn.ServerAPI.Status;
 import gruppe19.model.Appointment;
@@ -24,15 +23,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.codec.binary.Base64;
-
 import no.ntnu.fp.net.admin.Settings;
 import no.ntnu.fp.net.co.Connection;
 import no.ntnu.fp.net.co.ConnectionImpl;
 import no.ntnu.fp.net.co.SimpleConnection;
 
+import org.apache.commons.codec.binary.Base64;
+
 /**
  * A static class accepting incoming connections and requests.
+ * This class also holds a list of all connected clients.
  */
 public class Server {
 	private static List<Client> clients = new ArrayList<Client>();
@@ -133,241 +133,161 @@ public class Server {
 			}
 			
 			switch (msg.ID) {
-			case 'a': {
-				String loginInfo = (String)msg.payload;
-				User user = null;
-				int i = loginInfo.indexOf(0);
-
-				if (noLogin) {
-					//Ignore password and return a new user with the specified user name
-					user = new User(loginInfo.substring(0, i), 
-										"Ola", "Nordmann", 64545453, "");
-				}
-				else {
-					//Send a new user object if valid password and user name, null if not
-					user = DatabaseAPI.logIn(loginInfo.substring(0, i),
-												loginInfo.substring(i + 1));
-				}
-				send(new ServerMessage('\0', user, Type.Response));
-				connectedUser = user;
-				break;
-			}
-			case 'b': {
-				/* Create a new appointment in the database
-				 * Return an appointment object with the correct ID
-				 * Invite participants
-				 */
-				Appointment a = DatabaseAPI.createAppointment((Appointment)msg.payload);
-				send(new ServerMessage('\0', a, Type.Response));
-				
-				for (Client c : clients) {
-					//Check if client is owner
-					if (c.connectedUser.equals(a.getOwner())) {
-						c.send(new ServerMessage('b', a, Type.Request));
-						continue;
+				case 'a': {
+					String loginInfo = (String)msg.payload;
+					User user = null;
+					int seperator = loginInfo.indexOf(0);
+	
+					if (noLogin) {
+						//Ignore password and return a new user with the specified user name
+						user = new User(loginInfo.substring(0, seperator), 
+											"Ola", "Nordmann", 64545453, "");
 					}
+					else {
+						//Send a new user object if valid password and user name, null if not
+						user = DatabaseAPI.logIn(loginInfo.substring(0, seperator),
+													loginInfo.substring(seperator + 1));
+					}
+					send(new ServerMessage('\0', user, Type.Response));
+					connectedUser = user;
+					break;
+				}
+				case 'b': {
+					/* Create a new appointment in the database
+					 * Return an appointment object with the correct ID
+					 * Invite participants
+					 */
+					Appointment a = DatabaseAPI.createAppointment((Appointment)msg.payload);
+					send(new ServerMessage('\0', a, Type.Response));
 					
-					//Check if client is participant
-					for (User u : a.getUserList().keySet()) {
-						if (c.connectedUser.equals(u))
-							c.send(new ServerMessage('a', a, Type.Request));
+					for (Client c : clients) {
+						//Check if client is owner
+						if (c.connectedUser.equals(a.getOwner())) {
+							c.send(new ServerMessage('b', a, Type.Request));
+							continue;
 						}
+						
+						//Check if client is participant
+						for (User u : a.getUserList().keySet()) {
+							if (c.connectedUser.equals(u))
+								c.send(new ServerMessage('a', a, Type.Request));
+							}
+					}
+					break;
 				}
-				break;
-			}
-			case 'c': {
-				/* Update an existing appointment
-				 * Return the updated appointment
-				 * Notify participants
-				 */
-				Appointment a = (Appointment)msg.payload;
-				Map<User, Status> oldUserList = DatabaseAPI.getUserList(a.getID());
-				a = DatabaseAPI.updateAppointment((Appointment)msg.payload);
-				send(new ServerMessage('\0', a, Type.Response));
-				
-				for (Client c : clients) {
-					//Check if client is owner
-					if (c.connectedUser.equals(a.getOwner())) {
-						c.send(new ServerMessage('b', a, Type.Request));
-						continue;
-					}
+				case 'c': {
+					/* Update an existing appointment
+					 * Return the updated appointment
+					 * Notify participants
+					 */
+					Appointment a = (Appointment)msg.payload;
+					Map<User, Status> oldUserList = DatabaseAPI.getUserList(a.getID());
+					a = DatabaseAPI.updateAppointment((Appointment)msg.payload);
+					send(new ServerMessage('\0', a, Type.Response));
 					
-					//Check if client is participant or old participant
-					if (oldUserList.containsKey(c.connectedUser) 
-							|| a.getUserList().containsKey(c.connectedUser)) {
-						c.send(new ServerMessage('b', a, Type.Request));
+					for (Client c : clients) {
+						//Check if client is owner
+						if (c.connectedUser.equals(a.getOwner())) {
+							c.send(new ServerMessage('b', a, Type.Request));
+							continue;
+						}
+						
+						//Check if client is participant or old participant
+						if (oldUserList.containsKey(c.connectedUser) 
+								|| a.getUserList().containsKey(c.connectedUser)) {
+							c.send(new ServerMessage('b', a, Type.Request));
+						}
 					}
+					break;
 				}
-				break;
-			}
-			case 'd': {
-				/* Delete the appointment
-				 * Notify participants
-				 */
-				Appointment a = (Appointment)msg.payload;
-				DatabaseAPI.removeAppointment(a);
-				
-				for (Client c : clients) {
-					//Check if client is owner
-					if (c.connectedUser.equals(a.getOwner())) {
-						c.send(new ServerMessage('c', a, Type.Request));
-						continue;
-					}
+				case 'd': {
+					/* Delete the appointment
+					 * Notify participants
+					 */
+					Appointment a = (Appointment)msg.payload;
+					DatabaseAPI.removeAppointment(a);
 					
-					//Check if client is participant
-					for (User u : a.getUserList().keySet()) {
-						if (c.connectedUser.equals(u))
+					for (Client c : clients) {
+						//Check if client is owner
+						if (c.connectedUser.equals(a.getOwner())) {
 							c.send(new ServerMessage('c', a, Type.Request));
+							continue;
 						}
-				}
-				break;
-			}
-			case 'e': {
-				//Notify appointment leader that the connected user rejected the appointment
-				Appointment a = (Appointment)msg.payload;
-				
-				for (Client c : clients) {
-					if (c.connectedUser.equals(a.getOwner())) {
-						c.send(new ServerMessage(
-								'd', new Pair(connectedUser, a), Type.Request));
-						break;
+						
+						//Check if client is participant
+						for (User u : a.getUserList().keySet()) {
+							if (c.connectedUser.equals(u))
+								c.send(new ServerMessage('c', a, Type.Request));
+							}
 					}
+					break;
 				}
-				break;
-			}
-			case 'f': {
-				/* Change status of connected user
-				 * Send notification to all participants
-				 */
-				Pair p = (Pair)msg.payload;
-				Appointment a = (Appointment)p.o1;
-				Status s = (Status)p.o2;
-				
-				if (s == Status.REJECTED) {
-					DatabaseAPI.removeParticipant(connectedUser, a);
-					a.getUserList().remove(connectedUser);
+				case 'e': {
+					//Unused
+					break;
+				}
+				case 'f': {
+					//Unused
+					break;
+				}
+				case 'g': {
+					//Unused
+					break;
+				}
+				case 'h': {
+					//Send all appointments started by the specified user
+					send(new ServerMessage('\0',
+							DatabaseAPI.getAppointments((User)msg.payload), 
+							Type.Response));
+					break;
+				}
+				case 'i': {
+					//Send all appointments where specified user is a participant
+					send(new ServerMessage('\0',
+							DatabaseAPI.getAppointmentsParticipant((User)msg.payload),
+							Type.Response));
+					break;
+				}
+				case 'j': {
+					///Unused
+					break;
+				}
+				case 'k': {
+					//Send all free rooms between the specified start and end dates
+					Pair p = (Pair)msg.payload;
 					
-					//Send client rejecting the meeting an appointment cancelled message
-					send(new ServerMessage('c', a, Type.Request));
+					send(new ServerMessage('\0',
+							DatabaseAPI.getFreeRooms(
+									(Date)p.o1,
+									(Date)p.o2),
+							Type.Response));
+					break;
 				}
-				else {
-					DatabaseAPI.changeParticipantStatus(connectedUser, a, s);
+				case 'l': {
+					//Send all rooms
+					send(new ServerMessage('\0',
+							DatabaseAPI.getRooms(),
+							Type.Response));
+					break;
 				}
-				
-				for (Client c : clients) {
-					//Check if client is owner
-					if (c.connectedUser.equals(a.getOwner())) {
-						c.send(new ServerMessage(
-								'b', 
-								a,
-								Type.Request));
-						continue;
-					}
-					
-					//Check if client is participant
-					for (User u : a.getUserList().keySet()) {
-						if (c.connectedUser.equals(u)) {
-							c.send(new ServerMessage(
-									'b', 
-									a,
-									Type.Request));
-						}
-					}
+				case 'm': {
+					/* Send a new user object matching the specified user name
+					 * Send null if no match
+					 */
+					send(new ServerMessage('\0',
+							DatabaseAPI.getUser((String)msg.payload),
+							Type.Response));
+					break;
 				}
-				break;
-			}
-			case 'g': {
-				//Unused
-				
-				break;
-			}
-			case 'h': {
-				//Send all appointments started by the specified user
-				send(new ServerMessage('\0',
-						DatabaseAPI.findAppointments((User)msg.payload), 
-						Type.Response));
-				break;
-			}
-			case 'i': {
-				//Send all appointments where specified user is a participant
-				send(new ServerMessage('\0',
-						DatabaseAPI.findAppointmentsParticipant((User)msg.payload),
-						Type.Response));
-				break;
-			}
-			case 'j': {
-				//Send all appointments
-				
-				//No database support for this
-				break;
-			}
-			case 'k': {
-				//Send all free rooms between the specified start and end dates
-				Pair p = (Pair)msg.payload;
-				
-				send(new ServerMessage('\0',
-						DatabaseAPI.getFreeRooms(
-								(Date)p.o1,
-								(Date)p.o2),
-						Type.Response));
-				break;
-			}
-			case 'l': {
-				//Send all rooms
-				send(new ServerMessage('\0',
-						DatabaseAPI.getRooms(),
-						Type.Response));
-				break;
-			}
-			case 'm': {
-				/* Send a new user object matching the specified user name
-				 * Send null if no match
-				 */
-				send(new ServerMessage('\0',
-						DatabaseAPI.getUser((String)msg.payload),
-						Type.Response));
-				break;
-			}
-			case 'n': {
-				//Send all users
-				send(new ServerMessage('\0',
-						DatabaseAPI.getUsers(),
-						Type.Response));
-				break;
-			}
-			case 'o':
-				
-				break;
-			
-			case 'p':
-				
-				break;
-			case 'q':
-				
-				break;
-			case 'r':
-				
-				break;
-			case 's':
-				
-				break;
-			
-			case 't':
-				
-				break;
-			
-			case 'u':
-				
-				break;
-			case 'v':
-				
-				break;
-			
-			case 'w':
-				
-				break;
-			default:
-				//Invalid request. Ignore
+				case 'n': {
+					//Send all users
+					send(new ServerMessage('\0',
+							DatabaseAPI.getUsers(),
+							Type.Response));
+					break;
+				}
+				default:
+					//Invalid request. Simply ignore.
 			}
 		}
 
@@ -452,6 +372,11 @@ public class Server {
 		}.start();
 	}
 	
+	/**
+	 * The main entry point of the server.
+	 * 
+	 * @param args Ignored.
+	 */
 	public static void main(String[] args) {
 		startServer();
 	}

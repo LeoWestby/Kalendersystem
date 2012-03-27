@@ -6,12 +6,15 @@ import java.io.Serializable;
  * All messages sent from the server are of this class.
  */
 public class ServerMessage implements Serializable {
+	/**
+	 * A response message is expected, a request or broad cast message is not.
+	 */
 	public static enum Type {
 		Response, Request, BroadCast
 	};
 	
 	/**
-	 * Request ID.
+	 * The request ID recognized by the client.
 	 */
 	public final char ID;
 	public final Type type;

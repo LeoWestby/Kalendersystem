@@ -1,7 +1,6 @@
 package gruppe19.client.ktn;
 
-import gruppe19.gui.CalendarView;
-import gruppe19.gui.MainScreen;
+import gruppe19.client.gui.MainScreen;
 import gruppe19.model.Appointment;
 import gruppe19.model.Room;
 import gruppe19.model.User;
@@ -21,21 +20,20 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.codec.binary.Base64;
-
-import no.ntnu.fp.model.Person;
 import no.ntnu.fp.net.admin.Settings;
 import no.ntnu.fp.net.co.Connection;
 import no.ntnu.fp.net.co.ConnectionImpl;
 import no.ntnu.fp.net.co.SimpleConnection;
 
+import org.apache.commons.codec.binary.Base64;
+
 /**
- * A class used for communication between the client and the server.
+ * A static class used by the client to communicate with the server.
+ * 
+ * @see ServerAPI#open()
  */
 public class ServerAPI {
 	private static Connection conn = null;
@@ -48,7 +46,6 @@ public class ServerAPI {
 	private static Base64 stringEncoder = new Base64();
 
 	public static enum Status {PENDING, APPROVED, REJECTED}; 
-	
 	
 	/**
 	 * Used for grouping when sending multiple objects over the network.
@@ -214,26 +211,6 @@ public class ServerAPI {
 	}
 	
 	/**
-	 * Notifies the server that the user logged in on this client
-	 * has rejected an appointment in his calendar.
-	 * 
-	 * @see ServerAPI#destroyAppointment
-	 */
-	public static void rejectedAppointment(Appointment a) {
-		send(new ClientMessage('e', a));
-	}
-	
-	/**
-	 * Changes the logged in user's status to the specified 
-	 * status flag for the specified appointment.
-	 */
-	public static void setStatus(Appointment a, Status flag) {
-		send(new ClientMessage('f', new Pair(a, flag)));
-	}
-	
-	//Id g unused
-	
-	/**
 	 * Gets all appointments started by the specified user.
 	 */
 	public static List<Appointment> getAppointmentsStarted(User starter) {
@@ -250,14 +227,6 @@ public class ServerAPI {
 	 */
 	public static List<Appointment> getAppointments(User u) {
 		send(new ClientMessage('i', u));
-		return (List<Appointment>)getResponse().payload;
-	}
-	
-	/**
-	 * Gets a list with all appointments in the database.
-	 */
-	public static List<Appointment> getAppointments() {
-		send(new ClientMessage('j', null));
 		return (List<Appointment>)getResponse().payload;
 	}
 	
@@ -330,22 +299,6 @@ public class ServerAPI {
 							case 'c': {
 								//An appointment you participated in has been removed
 								listener.appointmentCancelled((Appointment)msg.payload);
-								break;
-							}
-							case 'd': {
-								//The specified user rejected the specified appointment
-								Pair p = (Pair)msg.payload;
-								
-								listener.appointmentRejected((User)p.o1, (Appointment)p.o2);
-								break;
-							}
-							case 'e': {
-								//The user changed his status on the appointment
-								Pair p1 = (Pair)msg.payload;
-								Pair p2 = (Pair)p1.o1;
-								
-								listener.statusChanged(
-										(User)p2.o1, (Appointment)p2.o2, (Status)p1.o2);
 								break;
 							}
 						}

@@ -1,9 +1,7 @@
-package gruppe19.gui;
+package gruppe19.client.gui;
 
 import gruppe19.client.ktn.ServerAPI;
-import gruppe19.client.ktn.ServerAPI.Status;
 import gruppe19.model.Appointment;
-import gruppe19.model.Room;
 import gruppe19.model.User;
 
 import java.awt.Cursor;
@@ -12,28 +10,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowStateListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 import java.util.Locale;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import com.toedter.calendar.JCalendar;
 
+/**
+ * The main screen of the program. 
+ * This frame contains the main menu, the calendar and a mini calendar.
+ */
 public class MainScreen extends JFrame {
 	private static User loggedInUser;
 	
@@ -46,22 +41,30 @@ public class MainScreen extends JFrame {
 	private final JLabel rightArrow;
 	private final JLabel week;
 	private final JLabel selectWeek;
-	
+
+	//GETTERS
+	/**
+	 * @return The calendar view displayed on the main screen.
+	 */
 	public CalendarView getCalendar() {
 		return calendar;
 	}
 	
+	/**
+	 * @return The JCalendar displayed on the main screen.
+	 */
 	public JCalendar getMiniCalendar() {
 		return miniCalendar;
 	}
 
 	/**
-	 * Gets the user logged into the system.
+	 * Gets the user currently logged into the system.
 	 */
 	public static User getUser() {
 		return loggedInUser;
 	}
 	
+	//LISTENER CALLS
 	/**
 	 * Called when the logged in user is invited to the specified appointment.
 	 */
@@ -89,22 +92,6 @@ public class MainScreen extends JFrame {
 	 */
 	public void appointmentCancelled(Appointment a) {
 		calendar.removeAppointment(a.getID());
-	}
-	
-	/**
-	 * Called when a user rejects an appointment from their calendar where
-	 * the logged in user is the leader.
-	 */
-	public void appointmentRejected(User u, Appointment a) {
-		
-	}
-
-	/**
-	 * Called when a user changes his status in an appointment in
-	 * the logged in user's calendar.
-	 */
-	public void statusChanged(User u, Appointment a, Status s) {
-		
 	}
 	
 	public MainScreen(User user) {

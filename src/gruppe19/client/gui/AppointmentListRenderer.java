@@ -1,7 +1,6 @@
-package gruppe19.gui;
+package gruppe19.client.gui;
 
 import gruppe19.model.Appointment;
-import gruppe19.model.Room;
 
 import java.awt.Component;
 

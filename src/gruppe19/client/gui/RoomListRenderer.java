@@ -1,4 +1,4 @@
-package gruppe19.gui;
+package gruppe19.client.gui;
 
 import gruppe19.model.Room;
 

@@ -1,8 +1,8 @@
-package gruppe19.gui;
+package gruppe19.client.gui;
 
+import gruppe19.client.gui.CalendarView.AppointmentWidget;
 import gruppe19.client.ktn.ServerAPI;
 import gruppe19.client.ktn.ServerAPI.Status;
-import gruppe19.gui.CalendarView.AppointmentWidget;
 import gruppe19.model.Appointment;
 
 import java.awt.event.ActionEvent;
@@ -15,16 +15,22 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * The main menu displayed on a main screen. 
+ */
 public class MainMenu extends JPanel {
+	/**
+	 * The main screen containing the main menu.
+	 */
+	private final MainScreen madeBy;
 	private final int XPOS = 47;
 	private final int YPOS = 39;
-	private final MainScreen madeBy;
 	private final JLabel firstName, lastName;
 	
 	private final JButton createMeeting = new JButton("Opprett avtale"),
-						myMeetings = new JButton("Mine møter"),
-						invitations = new JButton("Invitasjoner"),
-						importCalendar = new JButton("Importer kalendere");
+							myMeetings = new JButton("Mine møter"),
+							invitations = new JButton("Invitasjoner"),
+							importCalendar = new JButton("Importer kalendere");
 	
 	public MainMenu(MainScreen madeBy) {
 		final int spaceBetweenButtons = 5,
@@ -131,6 +137,9 @@ public class MainMenu extends JPanel {
 		setLocation(XPOS, YPOS);
 	}
 	
+	/**
+	 * Updates the invitation count on the invitation button.
+	 */
 	public void updateInvitationCount() {
 		int count = 0;
 		
@@ -149,6 +158,9 @@ public class MainMenu extends JPanel {
 		}
 	}
 	
+	/**
+	 * Updates the rejected meetings count on the my meetings button.
+	 */
 	public void updateRejectedMeetingsCount() {
 		int count = 0;
 		

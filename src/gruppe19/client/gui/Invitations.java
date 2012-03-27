@@ -1,14 +1,12 @@
-package gruppe19.gui;
+package gruppe19.client.gui;
 
 import gruppe19.client.ktn.ServerAPI;
 import gruppe19.client.ktn.ServerAPI.Status;
 import gruppe19.model.Appointment;
-import gruppe19.model.Room;
 import gruppe19.model.User;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -16,22 +14,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.ConcurrentModificationException;
-import java.util.Date;
 import java.util.List;
 import java.util.Map.Entry;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
+/**
+ * A dialog showing the logged in user's invitations.
+ */
 public class Invitations extends JDialog{
 	private List<Appointment> appointments;
 	private JLabel lblInvitations;
@@ -52,11 +46,6 @@ public class Invitations extends JDialog{
 									+ appointment.getTitle());
 			lblDescription.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			add(lblDescription,BorderLayout.NORTH);
-			
-//			JPanel wrapper=new JPanel();
-//			wrapper.setDefaultLocale(this.getLocale());
-//			wrapper.setBorder(new EmptyBorder(10,110,10,10));
-//			add(wrapper,BorderLayout.SOUTH);
 			
 			c.gridy ++;
 			btnAccept.setText("Godta");
@@ -108,6 +97,8 @@ public class Invitations extends JDialog{
 	}
 	
 	/**
+	 * Paints invites on the dialog.
+	 * 
 	 * @return The number of appointments added.
 	 */
 	private int addAppointments() {

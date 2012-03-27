@@ -1,7 +1,6 @@
 package gruppe19.server.db;
 
 import gruppe19.client.ktn.ServerAPI.Status;
-import gruppe19.gui.UserListRenderer;
 import gruppe19.model.Appointment;
 import gruppe19.model.Room;
 import gruppe19.model.User;
@@ -14,13 +13,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 /**
  * A static class used for communication between with the server and the SQL server.
  */
+@SuppressWarnings("deprecation")
 public class DatabaseAPI {
 	private static Connection conn = null;
 
@@ -65,18 +64,27 @@ public class DatabaseAPI {
 		}
 	}
 
+	/**
+	 * @return True if the specified appointment does not exist in the database.
+	 */
 	public static boolean appointmentNotExists(Appointment appointment)throws SQLException {
 		String st="SELECT avtaleID FROM avtale WHERE avtaleID ="+appointment.getID()+";";
 		ResultSet rs= conn.createStatement().executeQuery(st);
 		return !rs.first();
 	}
 	
+	/**
+	 * @return True if the appointment with the specified ID does not exist in the database.
+	 */
 	public static boolean appointmentNotExists(int appointmentID)throws SQLException {
 		String st="SELECT avtaleID FROM avtale WHERE avtaleID ="+appointmentID+";";
 		ResultSet rs= conn.createStatement().executeQuery(st);
 		return !rs.first();
 	}
 	
+	/**
+	 * Changes the specified participant's status in the specified appointment.
+	 */
 	public static void changeParticipantStatus(User user, Appointment appointment, Status status) throws SQLException{
 		Statement st=conn.createStatement();
 		String query= String.format("UPDATE deltager SET status=%d WHERE brukernavn='%s' AND avtaleID=%d;", status.ordinal(), user.getUsername(),appointment.getID());
@@ -102,6 +110,9 @@ public class DatabaseAPI {
 		}
 	}
 
+	/**
+	 * Closes the database connection.
+	 */
 	public static void close(){
 		try {
 			conn.close();
@@ -111,8 +122,11 @@ public class DatabaseAPI {
 		}
 	}
 
+	/**
+	 * Creates a new appointment in the database corrosponding to
+	 * the specified appointment model.
+	 */
 	public static Appointment createAppointment(Appointment a) throws SQLException{
-		
 		Statement st= conn.createStatement();
 		Date s = a.getDateStart(), e = a.getDateEnd();
 
@@ -146,7 +160,10 @@ public class DatabaseAPI {
 		return a;
 	}
 
-	public static void createExampleData() throws SQLException{
+	/**
+	 * Inserts example data into the database.
+	 */
+	private static void createExampleData() throws SQLException{
 		Statement s = conn.createStatement();
 
 		s.executeUpdate("INSERT INTO `avtale` VALUES " +
@@ -211,14 +228,19 @@ public class DatabaseAPI {
 				"('R2');");
 	}
 
+	/**
+	 * Adds the specified user as a participant with the specified status
+	 * to the specified appointment.
+	 */
 	public static void createParticipant(User user, Appointment appointment, Status s) throws SQLException{
-//		if(!userNotExists(user.getUsername()) && !appointmentNotExists(appointment)){
 			Statement st= conn.createStatement();
 			String string = "INSERT INTO deltager VALUES('"+user.getUsername()+"',"+appointment.getID()+","+s.ordinal()+");";
 			st.executeUpdate(string);
-//		}
 	}
 	
+	/**
+	 * Adds a new room corrosponding to the room model to the database.
+	 */
 	public static void createRoom(Room room)throws SQLException{
 		Statement st=conn.createStatement();
 
@@ -227,7 +249,11 @@ public class DatabaseAPI {
 		rs.close();
 	} 
 
-	public static ArrayList<Appointment> findAppointments(User user) throws SQLException{
+
+	/**
+	 * Gets all appointments started by the specified user.
+	 */
+	public static ArrayList<Appointment> getAppointments(User user) throws SQLException{
 		ArrayList<Appointment> liste = new ArrayList<Appointment>();
 		String st = "SELECT * FROM avtale WHERE lederBrukernavn = '"+user.getUsername()+"';";
 		ResultSet rs = conn.createStatement().executeQuery(st);
@@ -250,7 +276,10 @@ public class DatabaseAPI {
 		return liste;
 	}
 
-	public static ArrayList<Appointment> findAppointmentsParticipant(User user) throws SQLException{
+	/**
+	 * Gets all appointments where the specified user is a participant.
+	 */
+	public static ArrayList<Appointment> getAppointmentsParticipant(User user) throws SQLException{
 		ArrayList<Appointment> liste = new ArrayList<Appointment>();
 		String st = "SELECT * FROM deltager,avtale WHERE deltager.brukernavn = '"+ user.getUsername()+"' and deltager.avtaleID = avtale.avtaleID;";
 		ResultSet rs = conn.createStatement().executeQuery(st);
@@ -272,6 +301,9 @@ public class DatabaseAPI {
 		return liste;		
 	}
 	
+	/**
+	 * Returns all users matching the specified search string.
+	 */
 	public static ArrayList<User> findUsers(String searchString) throws SQLException {
 		ArrayList<User> users = new ArrayList<User>();
 		
@@ -289,6 +321,9 @@ public class DatabaseAPI {
 		return users;
 	}
 
+	/**
+	 * Gets the appointment matching the specified ID.
+	 */
 	public static Appointment getAppointment(int ID) throws SQLException{
         Appointment newAppointment;
             Statement st=conn.createStatement();
@@ -314,6 +349,9 @@ public class DatabaseAPI {
                 return newAppointment;
     }
 	
+	/**
+	 * Gets all rooms where no appointments are booked between the specified start and end dates.
+	 */
 	public static ArrayList<Room> getFreeRooms(Date start, Date end) throws SQLException {
 		ArrayList<Room> rooms = new ArrayList<Room>();
 		
@@ -344,6 +382,9 @@ public class DatabaseAPI {
 		return rooms;
 	}
 	
+	/**
+	 * Gets the status of the specified user on the specified appointment.
+	 */
 	public static int getParticipantStatus(User user, Appointment appointment)throws SQLException{
 		Statement st=conn.createStatement();
 		String query= String.format("SELECT status From deltager WHERE user='%s' AND avtaleID='%d';", user.getUsername(),appointment.getID());
@@ -351,6 +392,9 @@ public class DatabaseAPI {
 		return rs.getInt(0);
 	}
 	
+	/**
+	 * Gets all rooms in the database.
+	 */
 	public static ArrayList<Room> getRooms() throws SQLException {
 		ArrayList<Room> rooms = new ArrayList<Room>();
 		
@@ -363,6 +407,9 @@ public class DatabaseAPI {
 		return rooms;
 	}
 
+	/**
+	 * @return The user exactly matching the username, or null if no such user exists.
+	 */
 	public static User getUser(String brukernavn)throws SQLException{
 		User newUser = null;
 
@@ -382,6 +429,9 @@ public class DatabaseAPI {
 		return newUser;
 	}
 	
+	/**
+	 * Gets the appointment matching the specified ID's user list.
+	 */
 	public static Map<User, Status> getUserList(int appointmentID) throws SQLException{
 		Map<User, Status> userList = new HashMap<User, Status>();
 		Status status = null;
@@ -415,6 +465,9 @@ public class DatabaseAPI {
 		return userList;
 	}
 
+	/**
+	 * Gets a list of all users stored in the database.
+	 */
 	public static ArrayList<User> getUsers() throws SQLException{
 		ArrayList<User> userList=new ArrayList<User>();
 		Statement st=conn.createStatement();
@@ -435,6 +488,9 @@ public class DatabaseAPI {
 		return userList;
 	}
 
+	/**
+	 * Inserts a new user into the database.
+	 */
 	public static void insertUser(User user){
 
 		try {
@@ -484,27 +540,45 @@ public class DatabaseAPI {
 		}
 	}
 
+	/**
+	 * Removes the specified user from the specified appointment.
+	 */
 	public static void removeParticipant(User user, Appointment appointment) throws SQLException{
 		Statement st= conn.createStatement();
 		st.executeUpdate("DELETE FROM deltager WHERE brukernavn='"+user.getUsername()+"' AND avtaleID="+appointment.getID()+";");
 	}
 
+	/**
+	 * Removes the specified room from the database.
+	 * Does nothing if the room does not exist.
+	 */
 	public static void removeRoom(Room room) throws SQLException{
 			Statement st= conn.createStatement();
 			st.executeUpdate("DELETE FROM rom WHERE navn='"+ room.getName()+"';");
 	}
 
+	/**
+	 * Removes the specified user from the database.
+	 * Does nothing if the room does not exist.
+	 */
 	public static void removeUser(User user) throws SQLException{
 		conn.createStatement().executeUpdate
 		("DELETE FROM bruker WHERE brukernavn = '"+ user.getUsername()+"';");
 	}
 
+	/**
+	 * @return True if the room does not exist.
+	 */
 	public static boolean roomNotExists(String navn)throws SQLException{
 		String st="SELECT navn FROM rom WHERE navn ='"+navn+"'";
 		ResultSet rs= conn.createStatement().executeQuery(st);
 		return !rs.first();
 	}
 
+	/**
+	 * Updates the appointment in the database matching the appointment ID of the 
+	 * specified appointment to exactly match the specified appointment.
+	 */
 	public static Appointment updateAppointment(Appointment a) throws SQLException {
 		Date s = a.getDateStart(), e = a.getDateEnd();
 		String string =String.format("update avtale " +
@@ -532,22 +606,18 @@ public class DatabaseAPI {
 		return a;
 	}
 
-	public static void updateRoom(Room room) throws SQLException {
-		conn.createStatement().executeUpdate("DELETE FROM Rom WHERE Navn = " + room.getName() + ";");
-		createRoom(room);
-	}
-
-	public static void updateUser(User user) throws SQLException {
-		conn.createStatement().executeUpdate("DELETE FROM Bruker WHERE Brukernavn = " + user.getUsername() + ';');
-		insertUser(user);
-	}
-
+	/**
+	 * @return True if a user with the specified user name does not exist.
+	 */
 	public static boolean userNotExists(String brukernavn) throws SQLException{
 		String st="SELECT brukernavn FROM bruker WHERE brukernavn = '"+brukernavn+"';";
 		ResultSet rs= conn.createStatement().executeQuery(st);
 		return !rs.first();
 	}
 
+	/**
+	 * Opens a database connection, clears the database and inserts example data.
+	 */
 	public static void main(String[] args) throws SQLException {
 		open();
 		clearDatabase(true);
