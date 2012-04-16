@@ -14,7 +14,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.print.attribute.standard.JobMessageFromOperator;
+
 import no.ntnu.fp.net.admin.Log;
+import no.ntnu.fp.net.cl.ClException;
 import no.ntnu.fp.net.cl.ClSocket;
 import no.ntnu.fp.net.cl.KtnDatagram;
 import no.ntnu.fp.net.cl.KtnDatagram.Flag;
@@ -33,8 +36,7 @@ import no.ntnu.fp.net.cl.KtnDatagram.Flag;
  * @see no.ntnu.fp.net.cl.ClSocket
  */
 public class ConnectionImpl extends AbstractConnection {
-
-	/** Keeps track of the used ports for each server port. */
+	//Keeps track of the used ports for each server port
 	private static Map<Integer, Boolean> usedPorts = Collections
 			.synchronizedMap(new HashMap<Integer, Boolean>());
 
@@ -90,7 +92,6 @@ public class ConnectionImpl extends AbstractConnection {
 			//Send SYN to server
 			int tries = 3;
 			boolean sent = false;
-
 			KtnDatagram synPacket = constructInternalPacket(Flag.SYN);
 
 			// Send the SYN, trying at most `tries' times.
@@ -101,8 +102,6 @@ public class ConnectionImpl extends AbstractConnection {
 					new ClSocket().send(synPacket);
 					sent = true;
 				} catch (ConnectException e) {
-					// Silently ignore: Maybe server was processing and didn't
-					// manage to receive the syn before we were ready to send.
 					try {
 						Thread.sleep(100);
 					} catch (InterruptedException ex) {/*Ignore*/}
@@ -117,10 +116,6 @@ public class ConnectionImpl extends AbstractConnection {
 			
 			//Receive SYNACK from server
 			KtnDatagram response = receiveAck();
-			
-			while (response == null) {
-				receiveAck();
-			}
 
 			//Connect to the new connection
 			this.remoteAddress = response.getSrc_addr();
@@ -166,8 +161,7 @@ public class ConnectionImpl extends AbstractConnection {
 		//Send SYNACK
 		newConnection.sendAck(response, true);
 
-		while (newConnection.receiveAck() == null)
-			;
+		newConnection.receiveAck();
 		
 		//Return the established connection to client
 		newConnection.state = State.ESTABLISHED;
@@ -180,8 +174,9 @@ public class ConnectionImpl extends AbstractConnection {
 	 */
 	private static int getFreePort() {
 		int port;
+		
 		while (usedPorts.containsKey(
-				port = (int)(Math.random() * 10000) + 10000))
+					port = (int)(Math.random() * 10000) + 10000))
 			;
 		return port;
 	}
@@ -202,16 +197,44 @@ public class ConnectionImpl extends AbstractConnection {
 		if (state != State.ESTABLISHED) {
 			throw new ConnectException("Cannot send without an established connection");
 		}
-		boolean sent = false;
+		KtnDatagram ack = null;
 		
-		while (!sent) {
+		while (ack == null) {
 			try {
-				sendDataPacketWithRetransmit(constructDataPacket(msg));
-				sent = true;
+				ack = sendDataPacketWithRetransmit(constructDataPacket(msg));
+				
+				if (!isValid(ack)) {
+					//Bad checksum? Send again
+					ack = null;
+				}
 			}
 			catch (SocketException e) {/*Try again*/}
 		}
-		
+	}
+
+	private synchronized void sendFin() throws IOException {
+		int tries = 3;
+		boolean sent = false;
+		KtnDatagram finPacket = constructInternalPacket(Flag.FIN);
+
+		// Send the FIN, trying at most `tries' times.
+		Log.writeToLog(finPacket, "Sending FIN", "ConnectionImpl");
+
+		do {
+			try {
+				new ClSocket().send(finPacket);
+				sent = true;
+			} catch (Exception e) {
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException ex) {/*Ignore*/}
+			}
+		} while (!sent && (tries-- > 0));
+
+		if (!sent) {
+			nextSequenceNo--;
+			throw new ConnectException("Unable to send FIN.");
+		}
 	}
 
 	/**
@@ -226,23 +249,28 @@ public class ConnectionImpl extends AbstractConnection {
 		if (state != State.ESTABLISHED) {
 			throw new ConnectException("Cannot receive without an established connection");
 		}
-		boolean done = false;
 		KtnDatagram received = null;
-		
-		while (!isValid(received) || !done) {
-			try {
-				received = receivePacket(false);
-				lastValidPacketReceived = received;
-				done = true;
-				sendAck(received, false);
+
+		while (received == null) {
+			received = receivePacket(false);
+
+			if (lastValidPacketReceived != null && 
+					received.getSeq_nr() <= lastValidPacketReceived.getSeq_nr()) {
+				//Ignore the already received packet
+				received = null;
 			}
-			catch (EOFException e) {
-				//More code for closing the connection goes here
+			else if (!isValid(received)) {
+				//Probably indicates a checksum mismatch
+				received = null;
 			}
-			catch (SocketException e){/*Try again*/}
+
 		}
-		return (String)lastValidPacketReceived.getPayload();
+		//ACK the received packet
+		sendAck(received, false);
+		lastValidPacketReceived = received;
+		return (String)received.getPayload();
 	}
+
 
 	/**
 	 * Close the connection.
@@ -253,38 +281,48 @@ public class ConnectionImpl extends AbstractConnection {
 		if (state != State.ESTABLISHED) {
 			throw new ConnectException("Cannot disconnect an unestablished connection");
 		}
-		
-		//if (1 == 1) throw new UnsupportedOperationException();
-		//The below code crashes and needs fixing
-		
-		//Send FIN packet
-		KtnDatagram finPacket = constructInternalPacket(Flag.FIN);
-		sendDataPacketWithRetransmit(finPacket);
-		state = State.FIN_WAIT_1;
-		
-		//Receive ACK
-		if ((lastValidPacketReceived = receiveAck()) == null) {
-			throw new ConnectException(
-					"Unexpected response from server while disconnecting");
+
+		if (disconnectRequest == null) {
+			//Make disconnect request
+			try {
+				sendFin();
+				state = State.FIN_WAIT_1;
+
+				KtnDatagram response = receiveAck();
+				
+				if (response.getFlag() == Flag.FIN) {
+					disconnectRequest = response;
+				}
+				state = State.FIN_WAIT_2;
+
+				//Listen for FIN packet
+				KtnDatagram	finPacket = receivePacket(true);
+
+				if (finPacket.getFlag() != Flag.FIN) {
+					throw new Exception("Did not receive expected FIN from server.");
+				}
+
+				sendAck(finPacket, false);
+
+				//Give the server 10 seconds to close the connection
+				Thread.sleep(10000);
+			}
+			catch (Exception e) {}
 		}
-		state = State.FIN_WAIT_2;
-		
-		//Receive FIN and send ACK
-		lastValidPacketReceived = receivePacket(true);
-		
-		if (lastValidPacketReceived.getFlag() != Flag.FIN
-				|| (lastValidPacketReceived = receiveAck()) == null) {
-			throw new ConnectException(
-					"Unexpected response from server while disconnecting");
+		else {
+			//Respond to disconnect request
+			try {
+				sendAck(disconnectRequest, false);
+				state = State.CLOSE_WAIT;
+				
+				sendFin();
+				state = State.LAST_ACK;
+				
+				receiveAck();
+			}
+			catch (Exception e) {}
 		}
-		state = State.TIME_WAIT;
-		
-		//Allow receiving end to close down
-		try {
-			Thread.sleep(30000);
-		} catch (InterruptedException e) {/*Ignore*/}
-		
-		//Shut down
+		//Close the connection on your side
 		state = State.CLOSED;
 	}
 
@@ -297,6 +335,25 @@ public class ConnectionImpl extends AbstractConnection {
 	 * @return true if packet is free of errors, false otherwise.
 	 */
 	protected boolean isValid(KtnDatagram packet) {
-		return packet != null && packet.calculateChecksum() == packet.getChecksum();
+		if (packet == null) {
+			return false;
+		}
+
+		if (packet.calculateChecksum() != packet.getChecksum()) {
+			//Checksum mismatch
+			return false;
+		}
+		
+		if (packet.getFlag() == Flag.NONE && packet.getPayload() == null) {
+			//External packet with null-load is invalid
+			return false;
+		}
+		
+		if (packet.getFlag() != Flag.NONE && packet.getPayload() != null) {
+			//An internal packet with a non-null payload is invalid
+			return false;
+		}
+		//All tests passed
+		return true;
 	}
 }
